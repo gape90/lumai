@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes de Estudiantes - LUMAI</title>
+    <!-- EmailJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 30px;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            color: #007bff;
+            background: white;
+            border-bottom: 3px solid #007bff;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Dashboard */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Logo LUMAI */
+        .logo-section {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+        }
+
+        .logo-lumai {
+            max-width: 200px;
+            height: auto;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .logo-lumai:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Lista de estudiantes */
+        .students-list {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .student-item {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .student-item:hover {
+            background: #f8f9fa;
+        }
+
+        .view-report-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .view-report-btn:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .student-info h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .student-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .student-stats {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .stat-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .stat-badge.success { background: #d4edda; color: #155724; }
+        .stat-badge.warning { background: #fff3cd; color: #856404; }
+        .stat-badge.danger { background: #f8d7da; color: #721c24; }
+
+        /* Reporte Individual */
+        .individual-report {
+            display: none;
+        }
+
+        .report-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .back-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border-left: 4px solid #007bff;
+        }
+
+        .summary-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 5px;
+        }
+
+        /* Actividades */
+        .activity-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #28a745;
+        }
+
+        .activity-title {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .activity-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .activity-stat {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .activity-stat .value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .activity-stat .label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .questions-list {
+            margin-top: 20px;
+        }
+
+        .questions-title {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .question-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .question-item.incorrect {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .question-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .detail-label {
+            color: #666;
+            font-weight: 500;
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+
+        .detail-value {
+            color: #333;
+            font-weight: 600;
+            text-align: right;
+            flex-grow: 1;
+        }
+
+        .detail-value.correct { color: #28a745; }
+        .detail-value.incorrect { color: #dc3545; }
+
+        /* Informe de IA */
+        .ai-report-section {
+            background: #f0f4ff;
+            border: 1px solid #3b82f6;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .ai-report-title {
+            color: #1e40af;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .ai-report-content {
+            color: #1f2937;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .ai-report-content strong {
+            color: #1e40af;
+        }
+
+        .ai-report-content ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .ai-report-content li {
+            margin: 5px 0;
+        }
+
+        /* Dificultades */
+        .difficulties-section {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .difficulties-section h3 {
+            color: #856404;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .difficulty-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5e6a3;
+        }
+
+        .difficulty-item:last-child {
+            border-bottom: none;
+        }
+
+        .difficulty-question {
+            font-weight: 600;
+            color: #856404;
+            flex: 1;
+            margin-right: 15px;
+        }
+
+        .difficulty-count {
+            background: #dc3545;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Sección de Email */
+        .email-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 2px solid #e9ecef;
+        }
+
+        .email-title {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .email-input {
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .email-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .email-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .email-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            animation: pulse 2s infinite;
+        }
+
+        .messages-container {
+            min-height: 80px;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .success-message, .error-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid;
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            z-index: 5;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #ffffff30;
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        .btn-volver {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 2px solid rgba(255,255,255,0.3);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-clave-ia {
+            left: auto;
+            right: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .btn-volver:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-1px);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Sistema de autenticación */
+        .auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .auth-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .auth-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .auth-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .auth-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .auth-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .auth-error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border: 1px solid #f5c6cb;
+            display: none;
+        }
+
+        .lumai-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay de autenticación -->
+    <div id="auth-overlay" class="auth-overlay">
+        <div class="auth-container">
+            <div class="lumai-logo">L</div>
+            <h2 class="auth-title">Acceso Docente</h2>
+            <p class="auth-subtitle">Ingresa la contraseña para acceder a los reportes de estudiantes</p>
+            
+            <input 
+                type="password" 
+                id="password-input" 
+                class="auth-input" 
+                placeholder="Contraseña" 
+                maxlength="50"
+                autocomplete="current-password"
+            />
+            
+            <button id="login-btn" class="auth-btn" onclick="authenticateUser()">
+                Acceder a Reportes
+            </button>
+            
+            <div id="auth-error" class="auth-error">
+                Contraseña incorrecta. Por favor, inténtalo de nuevo.
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="btn-volver">Volver a LUMAI</a>
+            <button type="button" class="btn-volver btn-clave-ia" onclick="borrarClaveIA()">🔑 Cambiar clave IA</button>
+            <script>
+                // V91: borra la clave de Gemini guardada en ESTE navegador.
+                // La próxima vez que LumAI use la IA, la va a pedir de nuevo.
+                function borrarClaveIA() {
+                    if (!confirm('¿Borrar la clave de IA guardada en esta computadora? LumAI la pedirá de nuevo la próxima vez que la necesite.')) return;
+                    try { localStorage.removeItem('lumai_gemini_api_key'); } catch (e) {}
+                    alert('Listo. La clave se borró de esta computadora.');
+                }
+            </script>
+            <h1>Reportes de Estudiantes LUMAI</h1>
+            <p>Análisis del progreso estudiantil por actividades</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('dashboard')">Dashboard</button>
+            <button class="tab" onclick="showTab('students')">Estudiantes</button>
+            <button class="tab" onclick="showTab('individual')">Reporte Individual</button>
+        </div>
+
+        <div class="content">
+            <!-- Dashboard -->
+            <div id="dashboard" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-students">0</div>
+                        <div class="stat-label">Estudiantes Evaluados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-activities">0</div>
+                        <div class="stat-label">Actividades Realizadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="avg-time">0 min</div>
+                        <div class="stat-label">Tiempo Promedio</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="success-rate">0%</div>
+                        <div class="stat-label">Tasa de Éxito</div>
+                    </div>
+                </div>
+                
+                <!-- Logo LUMAI -->
+                <div class="logo-section">
+                    <img src="img/logo-lumai.png" alt="Logo LUMAI" class="logo-lumai">
+                </div>
+            </div>
+
+            <!-- Lista de Estudiantes -->
+            <div id="students" class="tab-content">
+                <div class="students-list" id="students-list">
+                    <!-- Lista dinámica -->
+                </div>
+            </div>
+
+            <!-- Reporte Individual -->
+            <div id="individual" class="tab-content">
+                <div class="individual-report" id="individual-report">
+                    <!-- Contenido dinámico -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let evaluationData = null;
+        let isAuthenticated = false;
+
+        // Configuración EmailJS
+        const EMAILJS_CONFIG = {
+            PUBLIC_KEY: 'gnWhVjYOOLiyRRdPo',          
+            SERVICE_ID: 'reporte-lumai',          
+            TEMPLATE_ID: 'template_kpmmik2'         
+        };
+
+        // SISTEMA DE AUTENTICACIÓN
+        const CORRECT_PASSWORD = 'lumaidocente20254';
+
+        function authenticateUser() {
+            const passwordInput = document.getElementById('password-input');
+            const errorDiv = document.getElementById('auth-error');
+            const loginBtn = document.getElementById('login-btn');
+            
+            const enteredPassword = passwordInput.value.trim();
+            
+            // Limpiar mensaje de error
+            errorDiv.style.display = 'none';
+            
+            if (!enteredPassword) {
+                showAuthError('Por favor ingresa la contraseña');
+                return;
+            }
+            
+            // Validar contraseña
+            if (enteredPassword === CORRECT_PASSWORD) {
+                // Contraseña correcta
+                isAuthenticated = true;
+                hideAuthOverlay();
+                initializeApp();
+            } else {
+                // Contraseña incorrecta
+                showAuthError('Contraseña incorrecta. Verifica e inténtalo de nuevo.');
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        }
+
+        function showAuthError(message) {
+            const errorDiv = document.getElementById('auth-error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function hideAuthOverlay() {
+            const overlay = document.getElementById('auth-overlay');
+            overlay.style.display = 'none';
+        }
+
+        function showAuthOverlay() {
+            const overlay = document.getElementById('auth-overlay');
+            overlay.style.display = 'flex';
+            const passwordInput = document.getElementById('password-input');
+            setTimeout(() => passwordInput.focus(), 100);
+        }
+
+        function initializeApp() {
+            console.log('Usuario autenticado - Iniciando aplicación...');
+            
+            // Inicializar EmailJS
+            initializeEmailJS();
+            
+            // Cargar datos
+            loadData();
+            updateDashboard();
+            displayStudents();
+        }
+
+        // Event listener para Enter en el campo de contraseña
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('password-input');
+            const loginBtn = document.getElementById('login-btn');
+            
+            // Enfocar el input al cargar
+            setTimeout(() => passwordInput.focus(), 100);
+            
+            // Manejar Enter
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    authenticateUser();
+                }
+            });
+            
+            // Si ya está autenticado, ocultar overlay
+            if (isAuthenticated) {
+                hideAuthOverlay();
+                initializeApp();
+            }
+        });
+
+        // FUNCIÓN PRINCIPAL DE ENVÍO DE REPORTE HTML - MODIFICADA
+        window.enviarReporte = function(studentKey) {
+            console.log('Enviando reporte HTML para:', studentKey);
+            
+            const emailInput = document.getElementById(`emailDestino-${studentKey}`);
+            const emailBtn = emailInput.nextElementSibling;
+            const successDiv = document.getElementById(`success-${studentKey}`);
+            const errorDiv = document.getElementById(`error-${studentKey}`);
+            const emailDestino = emailInput.value.trim();
+            
+            // Funciones locales para mensajes
+            function mostrarErrorLocal(msg) {
+                if (errorDiv) {
+                    errorDiv.textContent = msg;
+                    errorDiv.style.display = 'block';
+                    setTimeout(() => errorDiv.style.display = 'none', 8000);
+                }
+            }
+            
+            function mostrarExitoLocal(msg) {
+                if (successDiv) {
+                    successDiv.textContent = msg;
+                    successDiv.style.display = 'block';
+                    setTimeout(() => successDiv.style.display = 'none', 8000);
+                }
+            }
+            
+            // Limpiar mensajes
+            if (successDiv) successDiv.style.display = 'none';
+            if (errorDiv) errorDiv.style.display = 'none';
+            
+            if (!emailDestino) {
+                mostrarErrorLocal('Por favor ingresa un correo electrónico');
+                emailInput.focus();
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailDestino)) {
+                mostrarErrorLocal('Por favor ingresa un correo válido');
+                emailInput.focus();
+                return;
+            }
+
+            const student = evaluationData.students[studentKey];
+            if (!student) {
+                mostrarErrorLocal('Error: Estudiante no encontrado');
+                return;
+            }
+
+            // Cambiar botón
+            emailBtn.disabled = true;
+            emailBtn.innerHTML = '<span class="loading-spinner"></span> Preparando reporte...';
+
+            try {
+                // Obtener estadísticas
+                const activities = getStudentActivities(student);
+                const totalQuestions = Object.values(activities).reduce((sum, act) => sum + act.total, 0);
+                const totalCorrect = Object.values(activities).reduce((sum, act) => sum + act.correct, 0);
+                const accuracy = totalQuestions > 0 ? (totalCorrect / totalQuestions * 100).toFixed(1) : 0;
+                
+                // Calcular tiempo
+                let tiempoTotalMinutos = 0;
+                if (student.sessions && student.sessions.length > 0) {
+                    const tiempoTotalMs = student.sessions.reduce((total, session) => total + (session.timeSpent || 0), 0);
+                    tiempoTotalMinutos = Math.round(tiempoTotalMs / 1000 / 60);
+                } else {
+                    tiempoTotalMinutos = 25; // ficticio
+                }
+
+                const fechaActual = new Date().toLocaleDateString('es-ES');
+
+                // Generar HTML completo del reporte
+                const reporteHTML = generarReporteHTMLCompleto(student, studentKey, {
+                    totalQuestions,
+                    totalCorrect,
+                    accuracy,
+                    activities,
+                    fechaActual,
+                    tiempoTotalMinutos
+                });
+
+                emailBtn.innerHTML = '<span class="loading-spinner"></span> Enviando email...';
+
+                // Parámetros EmailJS
+                const emailParams = {
+                    to_email: emailDestino,
+                    subject: `Envio reporte de ${student.name}`,
+                    report_html: reporteHTML,
+                    from_name: 'Sistema LUMAI'
+                };
+
+                console.log('Enviando email con HTML detallado...');
+
+                // Enviar con EmailJS
+                emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, emailParams)
+                    .then(function(response) {
+                        console.log('Email HTML enviado exitosamente:', response);
+                        mostrarExitoLocal(`Reporte detallado enviado exitosamente a ${emailDestino}`);
+                        emailInput.value = '';
+                    })
+                    .catch(function(error) {
+                        console.error('Error al enviar email:', error);
+                        mostrarErrorLocal(`Error: ${error.message || 'No se pudo enviar el email'}`);
+                    })
+                    .finally(function() {
+                        emailBtn.disabled = false;
+                        emailBtn.innerHTML = 'Enviar Reporte Detallado';
+                    });
+
+            } catch (error) {
+                console.error('Error al generar reporte:', error);
+                mostrarErrorLocal('Error al generar el reporte');
+                emailBtn.disabled = false;
+                emailBtn.innerHTML = 'Enviar Reporte Detallado';
+            }
+        };
+
+        // FUNCIÓN MODIFICADA para generar HTML completo del reporte con detalle mejorado
+        function generarReporteHTMLCompleto(student, studentKey, stats) {
+            const { totalQuestions, totalCorrect, accuracy, activities, fechaActual, tiempoTotalMinutos } = stats;
+            const totalIncorrect = totalQuestions - totalCorrect;
+            
+            // Obtener explicación IA
+            const explanationData = getExplanationContent(student);
+            
+            // Obtener TODAS las respuestas del estudiante ordenadas por actividad
+            const todasLasRespuestas = [];
+            const conceptosProblematicos = {};
+            
+            student.sessions.forEach(session => {
+                session.customEvents.forEach(event => {
+                    if (event.type === 'response_recorded' && event.data) {
+                        todasLasRespuestas.push(event.data);
+                        
+                        // Contar conceptos problemáticos
+                        if (!event.data.isCorrect) {
+                            const concepto = event.data.concept || 'Concepto no identificado';
+                            conceptosProblematicos[concepto] = (conceptosProblematicos[concepto] || 0) + 1;
+                        }
+                    }
+                });
+            });
+
+            // Top 5 conceptos con más errores
+            const topDificultades = Object.entries(conceptosProblematicos)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5);
+
+            // Generar análisis pedagógico
+            const analisisPedagogico = generateAIReport(student, activities, totalQuestions, totalCorrect, accuracy);
+
+            // Calcular tiempo promedio
+            const tiempoEnClase = student.sessions.length > 0 ? 
+                Math.round(student.sessions.reduce((sum, s) => sum + (s.timeSpent || 0), 0) / 1000 / 60) : 0;
+
+            // NUEVA SECCIÓN: Generar tabla detallada de TODAS las preguntas por actividad
+            let detalleCompletoPorActividad = '';
+            Object.entries(activities).forEach(([activityId, activity]) => {
+                const activityAccuracy = activity.total > 0 ? (activity.correct / activity.total * 100).toFixed(1) : 0;
+                const errors = activity.total - activity.correct;
+
+                detalleCompletoPorActividad += `
+                    <div style="margin-bottom: 40px; border: 1px solid #dee2e6; border-radius: 10px; overflow: hidden;">
+                        <!-- Cabecera de la actividad -->
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center;">
+                            <h3 style="margin: 0; font-size: 1.4rem; font-weight: 600;">${activity.name}</h3>
+                            <p style="margin: 10px 0 0 0; opacity: 0.9;">
+                                ${activity.total} pregunta${activity.total !== 1 ? 's' : ''} • 
+                                ${activity.correct} correcta${activity.correct !== 1 ? 's' : ''} • 
+                                ${errors} error${errors !== 1 ? 'es' : ''} • 
+                                ${activityAccuracy}% precisión
+                            </p>
+                        </div>
+
+                        <!-- Tabla de preguntas detallada -->
+                        <table style="width: 100%; border-collapse: collapse; background: white;">
+                            <thead>
+                                <tr style="background: #f8f9fa;">
+                                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057; width: 8%;">#</th>
+                                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057; width: 42%;">Pregunta</th>
+                                    <th style="padding: 15px; text-align: center; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057; width: 25%;">Respuesta Correcta</th>
+                                    <th style="padding: 15px; text-align: center; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057; width: 25%;">Respuesta del Estudiante</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${activity.questions.map((q, index) => {
+                                    const isCorrect = q.isCorrect;
+                                    const rowBg = isCorrect ? '#d4edda' : '#f8d7da';
+                                    const statusIcon = isCorrect ? '✓' : '✗';
+                                    const statusColor = isCorrect ? '#155724' : '#721c24';
+                                    const correctAnswerColor = isCorrect ? '#155724' : '#721c24';
+                                    const userAnswerColor = isCorrect ? '#155724' : '#721c24';
+
+                                    return `
+                                        <tr style="background: ${rowBg};">
+                                            <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; text-align: center; font-weight: bold; color: ${statusColor};">
+                                                ${index + 1} ${statusIcon}
+                                            </td>
+                                            <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; color: ${statusColor}; font-weight: 500;">
+                                                ${q.question}
+                                            </td>
+                                            <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; text-align: center; font-weight: 600; color: ${correctAnswerColor};">
+                                                ${cleanAnswer(q.correctAnswer)}
+                                            </td>
+                                            <td style="padding: 12px 15px; border-bottom: 1px solid #dee2e6; text-align: center; font-weight: 600; color: ${userAnswerColor};">
+                                                ${cleanAnswer(q.userAnswer, true)}
+                                            </td>
+                                        </tr>
+                                    `;
+                                }).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            });
+
+            // Generar HTML completo
+            const html = `
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte LUMAI - ${student.name}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; 
+            background: #f5f7fa; 
+            padding: 20px; 
+            line-height: 1.6;
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            background: white; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1); 
+        }
+        
+        /* Header exactamente como en LUMAI */
+        .report-header { 
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); 
+            color: white; 
+            padding: 25px; 
+            text-align: center;
+        }
+        .report-header h1 { 
+            font-size: 2rem; 
+            margin-bottom: 10px; 
+            font-weight: 600;
+        }
+        .report-header p { 
+            font-size: 1rem; 
+            opacity: 0.9; 
+        }
+        
+        /* Summary stats exactamente como en LUMAI */
+        .summary-stats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 15px; 
+            padding: 30px; 
+            background: #f8f9fa;
+        }
+        .summary-card { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            text-align: center; 
+            border-left: 4px solid #007bff; 
+        }
+        .summary-value { 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: #007bff; 
+            margin-bottom: 5px; 
+        }
+        .summary-label { 
+            color: #666; 
+            font-size: 0.9rem; 
+        }
+
+        /* Explicación IA como en LUMAI */
+        .explanation-section { 
+            background: #f0f9ff; 
+            border: 1px solid #0ea5e9; 
+            border-radius: 10px; 
+            padding: 20px; 
+            margin: 30px; 
+        }
+        .explanation-title { 
+            color: #0369a1; 
+            font-weight: 600; 
+            font-size: 1.3rem; 
+            margin-bottom: 15px; 
+        }
+        .explanation-content { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            border: 1px solid #cbd5e1; 
+            color: #333;
+            line-height: 1.7;
+        }
+
+        /* Secciones generales */
+        .section-title {
+            text-align: center; 
+            margin: 40px 0 30px 0; 
+            padding: 0 30px;
+        }
+        .section-title h2 {
+            color: #333; 
+            font-size: 1.8rem; 
+            font-weight: 600; 
+            border-bottom: 3px solid #007bff; 
+            display: inline-block; 
+            padding-bottom: 10px;
+        }
+
+        /* Footer */
+        .footer { 
+            text-align: center; 
+            padding: 30px; 
+            color: #666; 
+            background: #f8f9fa; 
+            border-top: 1px solid #dee2e6; 
+        }
+
+        /* Estilos responsive para tablas */
+        @media (max-width: 768px) {
+            table { font-size: 0.9rem; }
+            th, td { padding: 10px 8px !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header del Reporte -->
+        <div class="report-header">
+            <h1>Reporte Individual: ${student.name}</h1>
+            <p>${student.subject} | Perfil ${student.profile}</p>
+            <p>Primera sesión: ${new Date(student.firstSession).toLocaleDateString()} | 
+               Última sesión: ${new Date(student.lastSession).toLocaleDateString()}</p>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="summary-stats">
+            <div class="summary-card">
+                <div class="summary-value">${accuracy}%</div>
+                <div class="summary-label">Precisión General</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-value">${tiempoEnClase} min</div>
+                <div class="summary-label">Tiempo en Clase</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-value" style="color: #28a745;">${totalCorrect}</div>
+                <div class="summary-label">Respuestas Correctas</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-value" style="color: #dc3545;">${totalIncorrect}</div>
+                <div class="summary-label">Respuestas Incorrectas</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-value">${totalQuestions}</div>
+                <div class="summary-label">Total de Preguntas</div>
+            </div>
+        </div>
+
+        <!-- Explicación generada por IA -->
+        ${(explanationData.html || explanationData.text) ? `
+        <div class="explanation-section">
+            <div class="explanation-title">Explicación Generada por IA</div>
+            <div class="explanation-content">
+                ${explanationData.html || explanationData.text}
+            </div>
+        </div>
+        ` : ''}
+
+        <!-- Título de Actividades -->
+        <div class="section-title">
+            <h2>Detalle Completo de Actividades Realizadas</h2>
+        </div>
+
+        <!-- NUEVA SECCIÓN: Detalle completo por actividad -->
+        <div style="padding: 0 30px 30px 30px;">
+            ${detalleCompletoPorActividad}
+        </div>
+
+        <!-- Análisis Pedagógico al final -->
+        <div class="explanation-section">
+            <div class="explanation-title">Informe de Análisis Pedagógico</div>
+            <div class="explanation-content">
+                ${analisisPedagogico.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Reporte generado automáticamente por Sistema LUMAI</strong></p>
+            <p>Fecha de generación: ${new Date().toLocaleString('es-ES')}</p>
+            <p>Este reporte incluye el detalle completo de todas las preguntas realizadas</p>
+        </div>
+    </div>
+</body>
+</html>
+            `;
+
+            return html;
+        }
+
+        // Obtener explicación IA
+        function getExplanationContent(student) {
+            let explanationHTML = '';
+            let explanationText = '';
+            
+            student.sessions.forEach(session => {
+                if (session.customEvents) {
+                    session.customEvents.forEach(event => {
+                        if (event.type === 'explanation_content_saved' && event.data) {
+                            if (event.data.explicacionHTML) {
+                                explanationHTML = event.data.explicacionHTML;
+                            }
+                            if (event.data.explicacion) {
+                                explanationText = event.data.explicacion;
+                            }
+                        }
+                    });
+                }
+            });
+            
+            return {
+                html: explanationHTML,
+                text: explanationText
+            };
+        }
+
+        console.log('Función enviarReporte definida en scope global');
+
+        // Inicializar EmailJS
+        function initializeEmailJS() {
+            try {
+                emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+                console.log('EmailJS inicializado');
+            } catch (error) {
+                console.error('Error inicializando EmailJS:', error);
+            }
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Iniciando sistema de reportes...');
+            
+            // Inicializar EmailJS
+            initializeEmailJS();
+            
+            // Cargar datos
+            loadData();
+            updateDashboard();
+            displayStudents();
+        });
+
+        // Cargar datos
+        function loadData() {
+            try {
+                const rawData = localStorage.getItem('lumai_evaluation_data');
+                if (rawData) {
+                    evaluationData = JSON.parse(rawData);
+                    console.log('Datos cargados:', evaluationData);
+                } else {
+                    console.log('No hay datos disponibles');
+                    evaluationData = { students: {} };
+                }
+            } catch (error) {
+                console.error('Error cargando datos:', error);
+                evaluationData = { students: {} };
+            }
+        }
+
+        // Actualizar dashboard
+        function updateDashboard() {
+            if (!evaluationData || !evaluationData.students) return;
+
+            const students = Object.values(evaluationData.students);
+            let totalActivities = 0;
+            let totalTime = 0;
+            let totalAnswers = 0;
+            let totalCorrect = 0;
+
+            students.forEach(student => {
+                const activities = getStudentActivities(student);
+                totalActivities += Object.keys(activities).length;
+                
+                student.sessions.forEach(session => {
+                    totalTime += session.timeSpent || 0;
+                    if (session.customEvents) {
+                        session.customEvents.forEach(event => {
+                            if (event.type === 'response_recorded' && event.data) {
+                                totalAnswers++;
+                                if (event.data.isCorrect) totalCorrect++;
+                            }
+                        });
+                    }
+                });
+            });
+
+            const avgTime = students.length > 0 ? Math.round(totalTime / students.length / 1000 / 60) : 0;
+            const successRate = totalAnswers > 0 ? (totalCorrect / totalAnswers * 100).toFixed(1) : 0;
+
+            document.getElementById('total-students').textContent = students.length;
+            document.getElementById('total-activities').textContent = totalActivities;
+            document.getElementById('avg-time').textContent = avgTime + ' min';
+            document.getElementById('success-rate').textContent = successRate + '%';
+        }
+
+        // Limpiar respuestas para evitar duplicación de texto
+        function cleanAnswer(answer, isUserAnswer = false) {
+            if (!answer) return 'No disponible';
+            
+            let cleaned = answer.toString().trim();
+            
+            // Remover patrones comunes
+            cleaned = cleaned.replace(/\s+Respuesta\s+correcta\s*:?\s*$/gi, '');
+            cleaned = cleaned.replace(/^Respuesta\s+correcta\s*:?\s*/gi, '');
+            
+            const patternsToRemove = [
+                /Tu respuesta:\s*/gi,
+                /Respuesta del usuario:\s*/gi,
+                /Respuesta:\s*/gi,
+                /^\s*:\s*/,
+                /\s*:\s*$/
+            ];
+            
+            patternsToRemove.forEach(pattern => {
+                cleaned = cleaned.replace(pattern, '');
+            });
+            
+            cleaned = cleaned.trim();
+            
+            // Normalizar verdadero/falso
+            if (cleaned.toLowerCase() === 'true' || cleaned.toLowerCase() === 'verdadero') {
+                return 'Verdadero';
+            } else if (cleaned.toLowerCase() === 'false' || cleaned.toLowerCase() === 'falso') {
+                return 'Falso';
+            }
+            
+            if (!cleaned || /^[:\s]*$/.test(cleaned)) {
+                return 'No disponible';
+            }
+            
+            return cleaned;
+        }
+
+        // Obtener actividades del estudiante SIN DUPLICACIÓN
+        function getStudentActivities(student) {
+            const activities = {};
+            
+            student.sessions.forEach(session => {
+                if (session.customEvents) {
+                    session.customEvents.forEach(event => {
+                        if (event.type === 'response_recorded' && event.data) {
+                            const activity = event.data.activity || 'Actividad desconocida';
+                            
+                            if (!activities[activity]) {
+                                activities[activity] = {
+                                    name: getActivityName(activity),
+                                    icon: getActivityIcon(activity),
+                                    questions: new Map(),
+                                    correct: 0,
+                                    total: 0
+                                };
+                            }
+                            
+                            const questionKey = event.data.question;
+                            
+                            if (!activities[activity].questions.has(questionKey)) {
+                                const cleanUserAnswer = cleanAnswer(event.data.userAnswer, true);
+                                const cleanCorrectAnswer = cleanAnswer(event.data.correctAnswer, false);
+                                
+                                activities[activity].questions.set(questionKey, {
+                                    question: event.data.question,
+                                    userAnswer: cleanUserAnswer,
+                                    correctAnswer: cleanCorrectAnswer,
+                                    isCorrect: event.data.isCorrect,
+                                    concept: event.data.concept || 'General'
+                                });
+                                
+                                activities[activity].total++;
+                                if (event.data.isCorrect) {
+                                    activities[activity].correct++;
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+            
+            // Convertir Maps a Arrays
+            Object.keys(activities).forEach(activityKey => {
+                activities[activityKey].questions = Array.from(activities[activityKey].questions.values());
+            });
+            
+            return activities;
+        }
+
+        // Nombres de actividades
+        function getActivityName(id) {
+            const names = {
+                'verdadero-falso': 'Verdadero o Falso',
+                'multiple-choice': 'Opción Múltiple',
+                'basketball': 'Basketball',
+                'skater': 'Skater',
+                'carrera-conocimiento': 'Carrera del Conocimiento',
+                'sopa-de-letras': 'Sopa de Letras'
+            };
+            return names[id] || id;
+        }
+
+        // Iconos de actividades
+        function getActivityIcon(id) {
+            const icons = {
+                'verdadero-falso': 'Verdadero/Falso',
+                'multiple-choice': 'Multiple Choice',
+                'basketball': 'Basketball',
+                'skater': 'Skater',
+                'carrera-conocimiento': 'Carrera',
+                'sopa-de-letras': 'Sopa de Letras'
+            };
+            return icons[id] || 'Actividad';
+        }
+
+        // Mostrar estudiantes
+        function displayStudents() {
+            const container = document.getElementById('students-list');
+            const studentsData = evaluationData.students || {};
+            const studentKeys = Object.keys(studentsData);
+
+            if (studentKeys.length === 0) {
+                container.innerHTML = `
+                    <div class="no-data">
+                        <h3>No hay datos de estudiantes</h3>
+                        <p>Los reportes aparecerán aquí cuando los estudiantes completen actividades.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            studentKeys.forEach(studentKey => {
+                const student = studentsData[studentKey];
+                const activities = getStudentActivities(student);
+                const totalQuestions = Object.values(activities).reduce((sum, act) => sum + act.total, 0);
+                const totalCorrect = Object.values(activities).reduce((sum, act) => sum + act.correct, 0);
+                const accuracy = totalQuestions > 0 ? (totalCorrect / totalQuestions * 100).toFixed(1) : 0;
+                
+                let statusClass = 'success';
+                if (accuracy < 60) statusClass = 'danger';
+                else if (accuracy < 80) statusClass = 'warning';
+
+                html += `
+                    <div class="student-item">
+                        <div class="student-info">
+                            <h3>${student.name}</h3>
+                            <p>${student.subject} | Perfil ${student.profile}</p>
+                            <p>Última sesión: ${new Date(student.lastSession).toLocaleDateString()}</p>
+                        </div>
+                        <div class="student-stats">
+                            <span class="stat-badge ${statusClass}">${accuracy}% precisión</span>
+                            <span class="stat-badge">${Object.keys(activities).length} actividades</span>
+                            <span class="stat-badge">${totalQuestions} preguntas</span>
+                            <button class="view-report-btn" onclick="showIndividualReport('${studentKey}')">
+                                Ver Detalle
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // FUNCIÓN PRINCIPAL PARA MOSTRAR REPORTE CON ESTRUCTURA MEJORADA
+        function showIndividualReport(studentKey) {
+            console.log('Mostrando reporte para clave única:', studentKey);
+            
+            const student = evaluationData.students[studentKey];
+            if (!student) {
+                console.error('Estudiante no encontrado con clave:', studentKey);
+                return;
+            }
+
+            const activities = getStudentActivities(student);
+
+            if (Object.keys(activities).length === 0) {
+                document.getElementById('individual-report').innerHTML = `
+                    <div class="report-header">
+                        <button class="back-button" onclick="showTab('students')">← Volver</button>
+                        <h2>Reporte: ${student.name}</h2>
+                        <p style="color: #ff6b6b;">No hay datos de actividades para este estudiante.</p>
+                    </div>
+                `;
+                showTab('individual');
+                return;
+            }
+
+            const totalQuestions = Object.values(activities).reduce((sum, act) => sum + act.total, 0);
+            const totalCorrect = Object.values(activities).reduce((sum, act) => sum + act.correct, 0);
+            const totalIncorrect = totalQuestions - totalCorrect;
+            const accuracy = totalQuestions > 0 ? (totalCorrect / totalQuestions * 100).toFixed(1) : 0;
+            const tiempoEnClase = student.sessions.length > 0 ? 
+                Math.round(student.sessions.reduce((sum, s) => sum + (s.timeSpent || 0), 0) / 1000 / 60) : 0;
+
+            // Obtener explicación IA
+            const explanationData = getExplanationContent(student);
+            const explanationHtml = (explanationData.html || explanationData.text) ? `
+                <div class="ai-report-section" style="margin: 30px 0;">
+                    <h3 class="ai-report-title">Explicación Generada por IA</h3>
+                    <div class="ai-report-content">
+                        ${explanationData.html || explanationData.text}
+                    </div>
+                </div>
+            ` : '';
+
+            // Generar HTML de actividades
+            let activitiesHtml = '';
+            Object.entries(activities).forEach(([activityId, activity]) => {
+                const activityAccuracy = activity.total > 0 ? (activity.correct / activity.total * 100).toFixed(1) : 0;
+                const errors = activity.total - activity.correct;
+
+                activitiesHtml += `
+                    <div class="activity-section">
+                        <div class="activity-title">
+                            <span>${activity.name}</span>
+                        </div>
+                        
+                        <div class="activity-stats">
+                            <div class="activity-stat">
+                                <div class="value">${activityAccuracy}%</div>
+                                <div class="label">Precisión</div>
+                            </div>
+                            <div class="activity-stat">
+                                <div class="value">${activity.correct}</div>
+                                <div class="label">Correctas</div>
+                            </div>
+                            <div class="activity-stat">
+                                <div class="value">${errors}</div>
+                                <div class="label">Errores</div>
+                            </div>
+                            <div class="activity-stat">
+                                <div class="value">${activity.total}</div>
+                                <div class="label">Total</div>
+                            </div>
+                        </div>
+
+                        <div class="questions-list">
+                            <h4 class="questions-title">Preguntas realizadas (${activity.questions.length} total):</h4>
+                            
+                            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; font-weight: bold; background: #e9ecef; padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 0.9rem;">
+                                <div>Pregunta</div>
+                                <div style="text-align: center;">Respuesta Correcta</div>
+                                <div>Respuesta del Estudiante</div>
+                            </div>
+                            
+                            ${activity.questions.map((q, i) => `
+                                <div class="question-item ${q.isCorrect ? '' : 'incorrect'}">
+                                    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; align-items: start;">
+                                        <div style="font-weight: 600; color: #333;">
+                                            ${i + 1}. ${q.question}
+                                        </div>
+                                        <div style="font-weight: 600; color: #28a745; text-align: center;">
+                                            ${cleanAnswer(q.correctAnswer)}
+                                        </div>
+                                        <div style="font-weight: 600; color: ${q.isCorrect ? '#28a745' : '#dc3545'}; text-align: center;">
+                                            ${cleanAnswer(q.userAnswer, true)}
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Generar tabla de errores por pregunta
+            const errorSummary = {};
+            Object.values(activities).forEach(activity => {
+                activity.questions.forEach(q => {
+                    const key = q.question;
+                    if (!errorSummary[key]) {
+                        errorSummary[key] = {
+                            question: q.question,
+                            correctAnswer: q.correctAnswer,
+                            errorCount: 0,
+                            wasAnswered: true
+                        };
+                    }
+                    if (!q.isCorrect) {
+                        errorSummary[key].errorCount++;
+                    }
+                });
+            });
+
+            const errorSummaryHtml = Object.keys(errorSummary).length > 0 ? `
+                <div class="all-questions-section">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h2 style="color: #333; font-size: 1.5rem; font-weight: 600; border-bottom: 3px solid #28a745; display: inline-block; padding-bottom: 10px;">Resumen de Errores</h2>
+                    </div>
+                    <table class="questions-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 50%; text-align: left;">Pregunta Realizada</th>
+                                <th style="width: 30%; text-align: left;">Respuesta Correcta</th>
+                                <th style="width: 20%; text-align: left;">Veces Respondida Erróneamente</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${Object.values(errorSummary).map(item => `
+                                <tr class="question-row">
+                                    <td class="question-text">${item.question}</td>
+                                    <td class="answer-text" style="color: #28a745; font-weight: 600;">${cleanAnswer(item.correctAnswer)}</td>
+                                    <td class="answer-text" style="text-align: center; font-weight: 600; color: ${item.errorCount > 0 ? '#dc3545' : '#28a745'};">${item.errorCount}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            ` : '';
+
+            // Generar informe de IA (solo análisis de dificultades)
+            const aiReport = generateAIReport(student, activities, totalQuestions, totalCorrect, accuracy);
+            const aiReportHtml = `
+                <div class="ai-report-section">
+                    <h3 class="ai-report-title">Informe de Análisis Pedagógico</h3>
+                    <div class="ai-report-content">
+                        ${aiReport.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}
+                    </div>
+                </div>
+            `;
+
+            // NUEVA ESTRUCTURA CON ORDEN MODIFICADO
+            document.getElementById('individual-report').innerHTML = `
+                <div class="report-header">
+                    <button class="back-button" onclick="showTab('students')">← Volver a la lista</button>
+                    <h2>Reporte Individual: ${student.name}</h2>
+                    <p>${student.subject} | Perfil ${student.profile}</p>
+                    <p>Primera sesión: ${new Date(student.firstSession).toLocaleDateString()} | 
+                       Última sesión: ${new Date(student.lastSession).toLocaleDateString()}</p>
+                </div>
+
+                <div class="summary-stats">
+                    <div class="summary-card">
+                        <div class="summary-value">${accuracy}%</div>
+                        <div class="summary-label">Precisión General</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-value">${tiempoEnClase} min</div>
+                        <div class="summary-label">Tiempo en Clase</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-value" style="color: #dc3545;">${totalIncorrect}</div>
+                        <div class="summary-label">Respuestas Incorrectas</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-value" style="color: #28a745;">${totalCorrect}</div>
+                        <div class="summary-label">Respuestas Correctas</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-value">${totalQuestions}</div>
+                        <div class="summary-label">Total de Preguntas</div>
+                    </div>
+                </div>
+
+                ${explanationHtml}
+                
+                <div style="text-align: center; margin: 40px 0 20px 0;">
+                    <h2 style="color: #333; font-size: 1.8rem; font-weight: 600; border-bottom: 3px solid #007bff; display: inline-block; padding-bottom: 10px;">Actividades Realizadas</h2>
+                </div>
+                
+                ${activitiesHtml}
+                ${errorSummaryHtml}
+                ${aiReportHtml}
+
+                <div class="email-section">
+                    <h3 class="email-title">Enviar Reporte por Correo</h3>
+                    <div class="email-form">
+                        <input 
+                            type="email" 
+                            id="emailDestino-${studentKey}" 
+                            class="email-input" 
+                            placeholder="Correo electrónico de destino"
+                            required
+                        />
+                        <button 
+                            class="email-btn" 
+                            onclick="enviarReporte('${studentKey}')"
+                        >
+                            Enviar Reporte Detallado
+                        </button>
+                        <!-- CONTENEDOR FIJO PARA MENSAJES -->
+                        <div class="messages-container">
+                            <div id="success-${studentKey}" class="success-message"></div>
+                            <div id="error-${studentKey}" class="error-message"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            showTab('individual');
+            console.log('Reporte individual mostrado correctamente con botón fijo para:', studentKey);
+        }
+
+        // Generar informe de análisis con IA (solo análisis, sin sugerencias)
+        function generateAIReport(student, activities, totalQuestions, totalCorrect, accuracy) {
+            const errors = totalQuestions - totalCorrect;
+            const activitiesCompleted = Object.keys(activities).length;
+            
+            const problemConcepts = [];
+            Object.values(activities).forEach(activity => {
+                activity.questions.forEach(q => {
+                    if (!q.isCorrect && q.concept && q.concept !== 'General') {
+                        if (!problemConcepts.find(c => c.concept === q.concept)) {
+                            problemConcepts.push({
+                                concept: q.concept,
+                                activity: activity.name,
+                                count: 1
+                            });
+                        } else {
+                            problemConcepts.find(c => c.concept === q.concept).count++;
+                        }
+                    }
+                });
+            });
+
+            const activityPerformance = Object.entries(activities).map(([id, activity]) => {
+                const activityAccuracy = activity.total > 0 ? (activity.correct / activity.total * 100) : 0;
+                return {
+                    name: activity.name,
+                    accuracy: activityAccuracy,
+                    total: activity.total
+                };
+            });
+
+            let report = '';
+
+            // Análisis general de rendimiento
+            if (accuracy >= 85) {
+                report += `**Excelente Rendimiento:** ${student.name} demuestra un dominio sobresaliente de los contenidos trabajados con un ${accuracy}% de precisión. `;
+            } else if (accuracy >= 70) {
+                report += `**Buen Rendimiento:** ${student.name} muestra un progreso satisfactorio con un ${accuracy}% de precisión. `;
+            } else if (accuracy >= 50) {
+                report += `**Rendimiento Moderado:** ${student.name} presenta algunas dificultades con un ${accuracy}% de precisión. `;
+            } else {
+                report += `**Necesita Apoyo:** ${student.name} requiere refuerzo adicional, con un ${accuracy}% de precisión. `;
+            }
+
+            // Análisis de diversidad de actividades
+            if (activitiesCompleted > 1) {
+                report += `Ha trabajado con ${activitiesCompleted} actividades diferentes, demostrando diversidad en su proceso de aprendizaje. `;
+                
+                const bestActivity = activityPerformance.reduce((best, current) => 
+                    current.accuracy > best.accuracy ? current : best
+                );
+                const worstActivity = activityPerformance.reduce((worst, current) => 
+                    current.accuracy < worst.accuracy ? current : worst
+                );
+
+                if (bestActivity.accuracy !== worstActivity.accuracy) {
+                    report += `Su mejor desempeño se registró en **${bestActivity.name}** con ${bestActivity.accuracy.toFixed(1)}% de precisión, mientras que en **${worstActivity.name}** obtuvo ${worstActivity.accuracy.toFixed(1)}%. `;
+                }
+            }
+
+            // Análisis de contenidos con dificultad
+            if (problemConcepts.length > 0) {
+                report += '\n\n**Contenidos con Mayor Dificultad:**\n';
+                
+                const sortedConcepts = problemConcepts.sort((a, b) => b.count - a.count);
+                sortedConcepts.forEach((item, index) => {
+                    report += `${index + 1}. **${item.concept}** (${item.count} error${item.count > 1 ? 'es' : ''} en ${item.activity})\n`;
+                });
+
+                const mainConcept = sortedConcepts[0];
+                report += `\nEl principal foco de dificultad se encuentra en **"${mainConcept.concept}"**, donde se registraron ${mainConcept.count} respuestas incorrectas durante la actividad ${mainConcept.activity}. `;
+                
+                if (sortedConcepts.length > 1) {
+                    report += `También se observaron dificultades en ${sortedConcepts.slice(1, 3).map(c => `"${c.concept}"`).join(' y ')}.`;
+                }
+            } else {
+                report += '\n\n**Fortalezas:** No se identificaron patrones específicos de dificultad, el estudiante mostró un desempeño equilibrado en todos los contenidos trabajados.';
+            }
+
+            // Análisis de patrones de error
+            if (errors > 0) {
+                report += `\n\n**Patrón de Errores:** Se registraron ${errors} respuestas incorrectas de un total de ${totalQuestions} preguntas respondidas. `;
+                
+                if (errors <= 2) {
+                    report += 'Los errores fueron mínimos y no indican dificultades significativas.';
+                } else if (errors <= 5) {
+                    report += 'Los errores sugieren algunas áreas específicas que requieren refuerzo.';
+                } else {
+                    report += 'La cantidad de errores indica la necesidad de revisar varios conceptos fundamentales.';
+                }
+            }
+
+            return report;
+        }
+
+        // Navegación de tabs
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            if (tabName === 'individual') {
+                document.getElementById('individual-report').style.display = 'block';
+            } else {
+                document.getElementById('individual-report').style.display = 'none';
+            }
+            
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUMAI - Explicación Educativa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css"/>
+  <script src="js/lumai-metrics-tracker.js"></script>
+  <script>
+    // Suprimir ÚNICAMENTE errores de extensiones Chrome
+    window.addEventListener('error', function(e) {
+      if (e.message && (
+          e.message.includes('message channel closed') || 
+          e.message.includes('Extension context invalidated') ||
+          e.message.includes('listener indicated an asynchronous response')
+      )) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+      }
+    });
+
+    window.addEventListener('unhandledrejection', function(e) {
+      if (e.reason && e.reason.message && (
+          e.reason.message.includes('message channel closed') ||
+          e.reason.message.includes('Extension context invalidated') ||
+          e.reason.message.includes('listener indicated an asynchronous response')
+      )) {
+          e.preventDefault();
+          return false;
+      }
+    });
+
+    console.log('🛡️ Filtro de errores de extensiones Chrome activado');
+  </script>
+  <style>
+    /* ========== ESTILOS ESPECÍFICOS DE PÁGINA ========== */
+    body {
+      background: url('img/fondo-lumai.png') center/cover no-repeat;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    /* Overlay muy sutil */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, 
+          rgba(102, 126, 234, 0.01) 0%, 
+          rgba(118, 75, 162, 0.005) 25%,
+          rgba(78, 205, 196, 0.01) 50%,
+          rgba(255, 107, 107, 0.005) 75%,
+          rgba(255, 215, 0, 0.01) 100%);
+      pointer-events: none;
+      z-index: 1;
+      animation: hologram-overlay 12s ease-in-out infinite;
+    }
+
+    main {
+      position: relative;
+      z-index: 10;
+      max-width: 1210px;
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+    /* Personajes LUMAI */
+    .lumai-characters-container {
+      position: fixed;
+      top: 22px;
+      left: 22px;
+      width: 190px;
+      height: 190px;
+      z-index: 5;
+      cursor: pointer;
+    }
+
+    .lumai-character-main {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+      transition: all 0.5s ease;
+      animation: float-main 4s ease-in-out infinite;
+    }
+
+    .lumai-character-main.character-3 {
+      opacity: 1;
+    }
+
+    .lumai-character-main.character-4 {
+      opacity: 0;
+    }
+
+    .lumai-characters-container:hover .lumai-character-main {
+      transform: scale(1.15);
+    }
+
+    /* Header */
+    #encabezado {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      width: 88%;
+      max-width: 880px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .logo-secundario {
+      width: 88px;
+      height: auto;
+      filter: drop-shadow(0 5px 15px rgba(102, 126, 234, 0.3));
+    }
+
+    .titulos-container {
+      flex: 1;
+      min-width: 330px;
+    }
+
+    .titulos-container h1 {
+      font-size: 1.65rem;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .titulos-container h1 span {
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    .titulos-container h2 {
+      font-size: 1.3rem;
+      color: #34495e;
+      margin-bottom: 0;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .titulos-container h2 span {
+      color: #4ecdc4;
+      font-weight: 500;
+    }
+
+    /* 🎯 CONTROL DE VISIBILIDAD DEL BOTÓN - SOLUCIÓN DEFINITIVA */
+    
+    /* Estado por defecto: visible en modo explicación */
+    #leerExplicacion {
+      background: linear-gradient(135deg, #4ecdc4, #44a08d, #2d8a82);
+      color: white;
+      border: none;
+      padding: 16px 35px;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(68, 160, 141, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 25px;
+      position: relative;
+      overflow: hidden;
+      display: block;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #leerExplicacion:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(68, 160, 141, 0.6);
+    }
+
+    /* 🎯 CLASES PARA CONTROLAR ESTADOS */
+    
+    /* Cuando el body tiene la clase 'modo-explicacion': botón visible */
+    body.modo-explicacion #leerExplicacion {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    /* Cuando el body tiene la clase 'modo-actividades': botón oculto */
+    body.modo-actividades #leerExplicacion {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+
+    /* Clase adicional para forzar ocultación */
+    #leerExplicacion.ocultar-boton-lectura {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+
+    /* Clase adicional para forzar visibilidad */
+    #leerExplicacion.mostrar-boton-lectura {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    /* Loading spinner */
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #ecf0f1;
+      border-top: 5px solid #667eea;
+      border-right: 5px solid #4ecdc4;
+      border-radius: 50%;
+      animation: spin 1.2s linear infinite;
+    }
+
+    /* Botones principales */
+    #btnVerActividades {
+      background: linear-gradient(135deg, #667eea, #764ba2, #5a4a92);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 30px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-finalizar {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24, #e55239);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 30px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(238, 90, 36, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Botón volver a explicación */
+    .btn-volver-explicacion {
+      background: linear-gradient(135deg, #667eea, #764ba2, #5a67d8) !important;
+      color: white !important;
+      border: none !important;
+      padding: 18px 40px !important;
+      border-radius: 30px !important;
+      font-size: 1.3rem !important;
+      font-weight: bold !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4) !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1.5px !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    /* ESTILOS PARA TEXTO 15% MÁS GRANDE Y MEJOR INTERLINEADO */
+    #contenido,
+    #contenido p,
+    #contenido div,
+    #contenido span,
+    #contenido li,
+    #contenido td,
+    #contenido th {
+      font-size: 115% !important;
+      line-height: 1.7 !important;
+      letter-spacing: 0.3px !important;
+    }
+
+    /* Headers específicos */
+    #contenido h1 { font-size: 140% !important; line-height: 1.5 !important; }
+    #contenido h2 { font-size: 135% !important; line-height: 1.5 !important; }
+    #contenido h3 { font-size: 130% !important; line-height: 1.5 !important; }
+    #contenido h4 { font-size: 125% !important; line-height: 1.6 !important; }
+
+    /* ========== ESTILOS PARA ESTRUCTURA CONSISTENTE ========== */
+
+    /* Saludo inicial con el mismo estilo que el final */
+    .student-greeting {
+      margin-top: 40px !important;
+      margin-bottom: 35px !important;
+      padding: 20px !important;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(78, 205, 196, 0.1)) !important;
+      border-radius: 15px !important;
+      border-left: 4px solid #667eea !important;
+      text-align: center !important;
+      font-weight: bold !important;
+      color: #667eea !important;
+      font-size: 130% !important;
+      line-height: 1.6 !important;
+      text-shadow: 0 2px 4px rgba(102, 126, 234, 0.3) !important;
+    }
+
+    /* Título principal destacado */
+    .main-topic-title {
+      text-align: center !important;
+      color: #2c3e50 !important;
+      font-size: 160% !important;
+      font-weight: bold !important;
+      margin: 25px 0 !important;
+      padding: 15px !important;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(78, 205, 196, 0.05)) !important;
+      border-radius: 10px !important;
+      border: 2px solid rgba(102, 126, 234, 0.2) !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Separadores de sección */
+    .section-separator {
+      height: 30px !important;
+      margin: 20px 0 !important;
+      clear: both !important;
+    }
+
+    /* Subtítulos de sección */
+    #contenido h3 {
+      color: #4ecdc4 !important;
+      font-size: 125% !important;
+      font-weight: bold !important;
+      margin-top: 30px !important;
+      margin-bottom: 15px !important;
+      padding-left: 10px !important;
+      border-left: 3px solid #4ecdc4 !important;
+      text-shadow: 0 1px 2px rgba(78, 205, 196, 0.3) !important;
+    }
+
+    /* Párrafos de explicación */
+    #contenido p:not(.student-greeting):not(.lumai-final-message) {
+      margin-bottom: 20px !important;
+      text-align: justify !important;
+      text-indent: 15px !important;
+    }
+
+    /* Mejoras visuales para listas */
+    #contenido ul {
+      margin: 20px 0 !important;
+      padding-left: 30px !important;
+    }
+
+    #contenido li {
+      margin-bottom: 10px !important;
+      line-height: 1.7 !important;
+    }
+
+    /* Espaciado para elementos SVG */
+    #contenido svg {
+      margin: 25px auto !important;
+      display: block !important;
+      background: rgba(255, 255, 255, 0.8) !important;
+      border-radius: 10px !important;
+      padding: 15px !important;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* ESTILOS ESPECÍFICOS PARA SALUDOS - INICIAL Y FINAL */
+    .final-greeting {
+      margin-top: 45px !important;
+      margin-bottom: 40px !important;
+      padding-top: 30px !important;
+      border-top: 3px solid rgba(0, 123, 255, 0.2) !important;
+      text-align: center !important;
+      font-weight: bold !important;
+      color: #667eea !important;
+      font-size: 130% !important;
+      line-height: 1.6 !important;
+      text-shadow: 0 2px 4px rgba(102, 126, 234, 0.3) !important;
+    }
+
+    /* Estilos para mensaje final generado por IA */
+    .lumai-final-message {
+      margin-top: 2.5rem !important;
+      padding: 20px !important;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(78, 205, 196, 0.1)) !important;
+      border-radius: 15px !important;
+      border-left: 4px solid #4ecdc4 !important;
+      text-align: center !important;
+      font-size: 1.3rem !important;
+      line-height: 1.6 !important;
+    }
+
+    .lumai-final-message strong {
+      color: #667eea !important;
+      font-weight: bold !important;
+    }
+
+    /* SOLUCIÓN: Agregar espacio después del texto en negrita en mensaje final */
+    .lumai-final-message strong::after {
+      content: " ";
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .contenedor-base {
+        width: 100% !important;
+        padding: 25px !important;
+      }
+
+      #encabezado {
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .lumai-characters-container {
+        position: static;
+        width: 130px;
+        height: 130px;
+        margin: 0 auto 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contenedor-base {
+        padding: 20px !important;
+      }
+      
+      .lumai-characters-container {
+        width: 90px;
+        height: 90px;
+      }
+    }
+
+    /* Animaciones */
+    @keyframes float-main {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(-1deg); }
+    }
+
+    @keyframes hologram-overlay {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.7; }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes character-switch {
+      0%, 45% { opacity: 1; }
+      50%, 95% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes character-switch-alt {
+      0%, 45% { opacity: 0; }
+      50%, 95% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .character-switching .character-3 {
+      animation: character-switch 7s infinite, float-main 4s ease-in-out infinite;
+    }
+
+    .character-switching .character-4 {
+      animation: character-switch-alt 7s infinite, float-main 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="modo-explicacion">
+  <!-- 🎯 AGREGADO: clase inicial 'modo-explicacion' al body -->
+
+  <!-- Personajes LUMAI alternando -->
+  <div class="lumai-characters-container character-switching" onclick="saludarLumai()">
+    <img src="img/3.png" alt="LUMAI te acompaña" class="lumai-character-main character-3">
+    <img src="img/4.png" alt="LUMAI te acompaña" class="lumai-character-main character-4">
+  </div>
+
+  <main>
+    <!-- Header con clase contenedor-base -->
+    <header id="encabezado" class="contenedor-base">
+      <div class="marco-fondo"></div>
+      <img src="img/logo-lumai.png" alt="Logo de LUMAI" class="logo-secundario">
+      <div class="titulos-container">
+        <h1>Espacio Curricular: <span id="tituloMateria">Cargando…</span></h1>
+        <h2>Tema: <span id="tituloTema">Cargando…</span></h2>
+      </div>
+    </header>
+
+    <!-- 🎯 BOTÓN SÍNTESIS DE VOZ - AHORA VISIBLE POR DEFECTO -->
+    <button id="leerExplicacion">🔊 Escucha la explicación</button>
+
+    <!-- Contenido principal con clase contenedor-base -->
+    <section id="contenido" class="contenedor-base">
+      <div class="marco-fondo"></div>
+      <div style="text-align: center; padding: 3rem;">
+        <div class="loading-spinner" style="margin: 0 auto 1rem;"></div>
+        <h3 style="color: #00509e; margin-bottom: 1rem;">🧠 Pensando...</h3>
+        <p style="color: #666;">Generando contenido personalizado</p>
+      </div>
+    </section>
+
+    <!-- Actividades con clase contenedor-base -->
+    <section id="actividades" class="contenedor-base" style="display:none;">
+      <div class="marco-fondo"></div>
+    </section>
+
+    <!-- Navegación con clase contenedor-base -->
+    <div class="navigation-container contenedor-base" id="nav-explicacion">
+      <div class="marco-fondo"></div>
+      <button id="btnVerActividades">🎮 Hacer actividades</button>
+      <button id="btnFinalizarClase" class="btn-finalizar">🏠 Finalizar Clase</button>
+    </div>
+    
+  </main>
+
+  <!-- Scripts originales funcionales -->
+  <script type="module" src="js/ui-controller.js"></script>
+  <script nomodule>
+    alert('Tu navegador no soporta la tecnología necesaria para esta aplicación.');
+  </script>
+
+  <!-- ✅ SCRIPT OPTIMIZADO - SIN LOOPS INFINITOS -->
+  <script>
+    // 🎯 VARIABLES PARA CONTROL DE PROCESAMIENTO
+    let ultimoProcesamientoTexto = '';
+    let procesamientoEnCurso = false;
+    let contadorProcesos = 0;
+
+    // Obtener nombre del estudiante
+    let nombreEstudiante = 'estudiante';
+    try {
+      const datos = sessionStorage.getItem('datosLumai') || sessionStorage.getItem('datosFormulario') || sessionStorage.getItem('datosSession');
+      if (datos) {
+        const datosSession = JSON.parse(datos);
+        nombreEstudiante = datosSession.nombreAlumno || datosSession.nombre || 'estudiante';
+      }
+    } catch (e) {
+      console.log('No se pudieron cargar los datos de sesión');
+    }
+
+    // 🎯 FUNCIÓN DE CORRECCIÓN ESPECÍFICA
+    function corregirErroresTexto(texto) {
+      if (!texto || typeof texto !== 'string') return texto;
+      
+      // Corrección específica: "propongos" → "propongo"
+      let textoCorregido = texto.replace(/propongos/gi, 'propongo');
+      textoCorregido = textoCorregido.replace(/te propongos/gi, 'te propongo');
+      textoCorregido = textoCorregido.replace(/que propongos/gi, 'que propongo');
+      textoCorregido = textoCorregido.replace(/las propongos/gi, 'las propongo');
+      
+      return textoCorregido;
+    }
+
+    // 🎯 FUNCIÓN OPTIMIZADA: Limpiar emojis sin loops
+    function limpiarEmojisRepetidos(texto) {
+      if (!texto || typeof texto !== 'string') return texto;
+      if (procesamientoEnCurso) return texto;
+      
+      const textoHash = texto.substring(0, 50) + texto.length;
+      if (textoHash === ultimoProcesamientoTexto) {
+        return texto; // Ya procesado
+      }
+      
+      procesamientoEnCurso = true;
+      contadorProcesos++;
+      
+      try {
+        // Patrones específicos para limpiar emojis duplicados
+        let textoLimpio = texto;
+        
+        // Patrón 1: Emoji espacio emoji idéntico
+        textoLimpio = textoLimpio.replace(/([\u{1F300}-\u{1F9FF}])\s+\1/gu, '$1');
+        
+        // Patrón 2: Emoji emoji idéntico sin espacio
+        textoLimpio = textoLimpio.replace(/([\u{1F300}-\u{1F9FF}])\1+/gu, '$1');
+        
+        // Limpiar espacios múltiples
+        textoLimpio = textoLimpio.replace(/\s+/g, ' ').trim();
+        
+        ultimoProcesamientoTexto = textoHash;
+        return textoLimpio;
+        
+      } finally {
+        procesamientoEnCurso = false;
+      }
+    }
+
+    // 🎯 FUNCIÓN SIMPLIFICADA: Procesar texto sin loops
+    function procesarTextoElemento(elemento) {
+      if (!elemento || procesamientoEnCurso) return;
+      
+      procesamientoEnCurso = true;
+      
+      try {
+        // Procesar solo nodos de texto
+        const walker = document.createTreeWalker(
+          elemento,
+          NodeFilter.SHOW_TEXT,
+          null,
+          false
+        );
+        
+        const nodos = [];
+        let nodo;
+        while ((nodo = walker.nextNode())) {
+          nodos.push(nodo);
+        }
+        
+        nodos.forEach(nodoTexto => {
+          const textoOriginal = nodoTexto.textContent;
+          let textoLimpio = limpiarEmojisRepetidos(textoOriginal);
+          textoLimpio = corregirErroresTexto(textoLimpio);
+          
+          if (textoOriginal !== textoLimpio) {
+            nodoTexto.textContent = textoLimpio;
+          }
+        });
+      } finally {
+        procesamientoEnCurso = false;
+      }
+    }
+
+    // 🎯 FUNCIÓN OPTIMIZADA: Detectar saludos sin loops
+    function detectarYMarcarSaludo(elemento) {
+      if (!elemento || procesamientoEnCurso) return;
+      
+      const parrafos = elemento.querySelectorAll('p, div');
+      
+      parrafos.forEach((nodo, index) => {
+        const texto = nodo.textContent;
+        
+        // Detectar saludos con nombres en mayúsculas
+        if (texto.includes('¡') && texto.includes('!') && /[A-ZAÉÍÓÚÑ]{3,}/.test(texto)) {
+          console.log('🎯 Saludo detectado:', texto);
+          
+          if (index === 0 || !elemento.querySelector('.student-greeting')) {
+            nodo.classList.add('student-greeting');
+          } else {
+            nodo.classList.add('final-greeting', 'student-greeting');
+          }
+        }
+        
+        // Detectar mensajes motivacionales
+        if (texto.includes('ADELANTE') || texto.includes('SIGUE') || 
+            texto.includes('EXCELENTE') || texto.includes('CONTINUEMOS') ||
+            (texto.includes('🚀') && texto.length > 20)) {
+          console.log('🎯 Mensaje final detectado:', texto);
+          nodo.classList.add('lumai-final-message');
+        }
+      });
+    }
+
+    // 🎯 FUNCIÓN PARA ESTILOS DE BOTONES
+    function aplicarEstilosBoton(btn) {
+      const texto = btn.textContent || '';
+      
+      if (texto.includes('Ver Explicación') || 
+          texto.includes('Volver a') ||
+          texto.includes('📖') ||
+          btn.getAttribute('onclick')?.includes('verExplicacion')) {
+        
+        btn.className = 'btn-volver-explicacion';
+        btn.id = 'btnVolverExplicacion';
+        console.log('🔵 Estilos aplicados a botón:', btn);
+      }
+    }
+
+    // 🎯 OBSERVER OPTIMIZADO - Solo para cambios importantes
+    let observerTimeout;
+    let observacionesRealizadas = 0;
+    
+    const observer = new MutationObserver(function(mutations) {
+      // Throttling: Solo procesar cada 2 segundos máximo
+      if (observerTimeout) return;
+      
+      observerTimeout = setTimeout(() => {
+        if (procesamientoEnCurso) {
+          observerTimeout = null;
+          return;
+        }
+        
+        observacionesRealizadas++;
+        
+        // Solo procesar si hay cambios significativos
+        let hayNuevosElementos = false;
+        
+        mutations.forEach(function(mutation) {
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1 && node.tagName !== 'SCRIPT') {
+              hayNuevosElementos = true;
+              
+              // Aplicar estilos a botones nuevos
+              if (node.tagName === 'BUTTON') {
+                aplicarEstilosBoton(node);
+              } else if (node.querySelector) {
+                node.querySelectorAll('button').forEach(aplicarEstilosBoton);
+              }
+            }
+          });
+        });
+        
+        // Solo procesar contenido si hay elementos realmente nuevos
+        if (hayNuevosElementos && observacionesRealizadas % 3 === 1) {
+          const contenido = document.getElementById('contenido');
+          if (contenido) {
+            procesarTextoElemento(contenido);
+            detectarYMarcarSaludo(contenido);
+          }
+        }
+        
+        observerTimeout = null;
+      }, 2000); // Reducido el throttling a 2 segundos
+    });
+
+    // 🎯 FUNCIÓN DE SALUDO INTERACTIVO
+    function saludarLumai() {
+      const personajes = document.querySelectorAll('.lumai-character-main');
+      personajes.forEach(personaje => {
+        personaje.style.animation = 'none';
+        setTimeout(() => {
+          personaje.style.animation = 'float-main 1s ease-in-out 2';
+        }, 10);
+      });
+      
+      const mensajes = [
+        `¡Hola ${nombreEstudiante}! Estoy aquí para acompañarte en tu aprendizaje`,
+        `¡Qué genial verte estudiando, ${nombreEstudiante}! Sigamos aprendiendo juntos`, 
+        `¡Excelente ${nombreEstudiante}! Me encanta ayudarte a descubrir cosas nuevas`,
+        `¡Hola ${nombreEstudiante}! ¿Necesitas ayuda con algo?`
+      ];
+      
+      const mensajeAleatorio = mensajes[Math.floor(Math.random() * mensajes.length)];
+      alert(mensajeAleatorio);
+    }
+
+    // 🎯 PROCESAMIENTO INICIAL CONTROLADO
+    function procesamientoInicial() {
+      if (procesamientoEnCurso) return;
+      
+      const contenido = document.getElementById('contenido');
+      if (contenido) {
+        procesarTextoElemento(contenido);
+        detectarYMarcarSaludo(contenido);
+      }
+      
+      document.querySelectorAll('button').forEach(aplicarEstilosBoton);
+    }
+
+    // Iniciar observación con configuración restrictiva
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: false, // No observar cambios de atributos
+      characterData: false // No observar cambios de texto
+    });
+
+    // Procesamiento inicial al cargar
+    document.addEventListener('DOMContentLoaded', procesamientoInicial);
+
+    // 🎯 PROCESAMIENTO PERIÓDICO REDUCIDO - Solo cada 60 segundos
+    setInterval(() => {
+      if (!procesamientoEnCurso && contadorProcesos < 10) {
+        procesamientoInicial();
+      }
+    }, 60000); // Reducido a 1 vez por minuto
+
+    console.log('✅ SISTEMA OPTIMIZADO ACTIVADO - Sin loops infinitos + Procesamiento eficiente');
+  </script>
+</body>
+</html>

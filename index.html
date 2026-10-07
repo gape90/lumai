@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMAI - Aprendizaje Iluminado por IA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: url('img/fondo-lumai.png') center/cover no-repeat,
+                        linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        /* Overlay holográfico sobre el fondo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(102, 126, 234, 0.3) 0%, 
+                rgba(118, 75, 162, 0.2) 25%,
+                rgba(78, 205, 196, 0.3) 50%,
+                rgba(255, 107, 107, 0.2) 75%,
+                rgba(255, 215, 0, 0.3) 100%);
+            pointer-events: none;
+            z-index: 1;
+            animation: hologram-overlay 8s ease-in-out infinite;
+        }
+
+        /* ========== MODAL PERSONALIZADO PARA ERROR ========== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .modal-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            padding: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            max-width: 450px;
+            width: 90%;
+            transform: scale(0.8);
+            animation: modalAppear 0.4s ease-out forwards;
+        }
+
+        .modal-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            pointer-events: none;
+            animation: shimmer 3s infinite;
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+            filter: drop-shadow(0 8px 16px rgba(255, 107, 107, 0.4));
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        .modal-title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-message {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(238, 90, 36, 0.4);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            border-radius: 30px;
+            animation: holographic-scan 2s linear infinite;
+            z-index: -1;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(238, 90, 36, 0.6);
+            background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+        }
+
+        /* ========== FASE 1: VIDEO INTRO ========== */
+        #video-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(30, 60, 114, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.8s ease;
+        }
+
+        #intro-video {
+            width: 80%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .ingresar-btn {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(238, 90, 36, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ingresar-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            border-radius: 50px;
+            animation: holographic-scan 2s linear infinite;
+        }
+
+        .ingresar-btn:hover {
+            transform: translateX(-50%) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(238, 90, 36, 0.6);
+            background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+        }
+
+        /* ========== FASE 2: FORMULARIO PRINCIPAL ========== */
+        #formulario-principal {
+            display: none;
+            min-height: 100vh;
+            position: relative;
+            overflow-y: auto;
+            z-index: 10;
+        }
+
+        .container-principal {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .header-lumai {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .logo-lumai {
+            max-width: 400px;
+            height: auto;
+            margin: 0 auto 20px;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            animation: logo-glow 3s ease-in-out infinite alternate;
+        }
+
+        .lumai-characters-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 120px;
+            height: 120px;
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        .lumai-character-main {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+            transition: all 0.5s ease;
+            animation: float-main 4s ease-in-out infinite;
+        }
+
+        .lumai-character-main.character-1 {
+            opacity: 1;
+        }
+
+        .lumai-character-main.character-2 {
+            opacity: 0;
+        }
+
+        .lumai-characters-container:hover .lumai-character-main {
+            transform: scale(1.1);
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(25px);
+            border-radius: 30px;
+            padding: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            pointer-events: none;
+            animation: shimmer 4s infinite;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-label {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: block;
+            font-size: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 18px 25px;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .input-field:focus {
+            outline: none;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .input-field:focus::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            border-radius: 15px;
+            z-index: -1;
+            animation: holographic-border 1s ease-in-out;
+        }
+
+        select.input-field {
+            cursor: pointer;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn-comenzar {
+            background: linear-gradient(45deg, #667eea, #764ba2, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 22px 55px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-comenzar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(45deg, #764ba2, #667eea, #4ecdc4);
+        }
+
+        .btn-comenzar:disabled {
+            background: linear-gradient(45deg, #ccc, #999);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Panel para Docentes */
+        .seccion-reportes {
+            margin-top: 30px;
+            text-align: center;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reportes-container {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .reportes-container h4 {
+            color: white;
+            margin-bottom: 18px;
+            font-size: 1.3rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-reportes {
+            background: linear-gradient(45deg, #ff9a56, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+            font-weight: bold;
+        }
+
+        .btn-reportes::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent,
+                rgba(255, 154, 86, 0.5),
+                transparent);
+            border-radius: 30px;
+            animation: holographic-scan 2.5s linear infinite;
+            z-index: -1;
+        }
+
+        .btn-reportes:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 107, 107, 0.5);
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes modalAppear {
+            0% { 
+                transform: scale(0.8) translateY(-50px); 
+                opacity: 0; 
+            }
+            100% { 
+                transform: scale(1) translateY(0); 
+                opacity: 1; 
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+
+        @keyframes float-intro {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        @keyframes float-main {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(-1deg); }
+        }
+
+        @keyframes logo-glow {
+            0% { 
+                filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3)) 
+                        drop-shadow(0 0 30px rgba(255, 215, 0, 0.3)); 
+            }
+            100% { 
+                filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.4)) 
+                        drop-shadow(0 0 50px rgba(255, 215, 0, 0.8)); 
+            }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(200%) rotate(45deg); }
+        }
+
+        @keyframes holographic-scan {
+            0% { transform: translateX(-100%); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+
+        @keyframes holographic-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes holographic-border {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.5; transform: scale(1); }
+        }
+
+        @keyframes hologram-overlay {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes character-switch {
+            0%, 45% { opacity: 1; }
+            50%, 95% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes character-switch-alt {
+            0%, 45% { opacity: 0; }
+            50%, 95% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .lumai-characters-container {
+                position: static;
+                width: 100px;
+                height: 100px;
+                margin: 0 auto 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .lumai-characters-container {
+                width: 80px;
+                height: 80px;
+            }
+            
+            #intro-video {
+                width: 95%;
+            }
+            
+            .ingresar-btn {
+                font-size: 18px;
+                padding: 15px 30px;
+            }
+
+            .modal-container {
+                padding: 30px 20px;
+                max-width: 350px;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .modal-message {
+                font-size: 1rem;
+            }
+        }
+
+        /* Ocultar video-intro cuando se muestra formulario */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Alternar personajes */
+        .character-switching .character-1 {
+            animation: character-switch 6s infinite;
+        }
+
+        .character-switching .character-2 {
+            animation: character-switch-alt 6s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== MODAL PERSONALIZADO PARA ERRORES ========== -->
+    <div id="modal-error" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-icon">🔒</div>
+            <h2 class="modal-title">Contraseña Incorrecta</h2>
+            <p class="modal-message">
+                Por favor, verifica tu contraseña con el docente.<br>
+                Las contraseñas válidas son proporcionadas en clase.
+            </p>
+            <button class="modal-btn" onclick="cerrarModal()">Aceptar</button>
+        </div>
+    </div>
+
+    <!-- ========== FASE 1: VIDEO INTRO ========== -->
+    <div id="video-intro">
+        <video id="intro-video" autoplay muted loop>
+            <source src="img/video-intro.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+        
+        <button class="ingresar-btn" onclick="mostrarFormulario()">
+            🚀 INGRESAR A LUMAI
+        </button>
+    </div>
+
+    <!-- ========== FASE 2: FORMULARIO PRINCIPAL ========== -->
+    <div id="formulario-principal">
+        <div class="container-principal">
+            <!-- Header con logo y personaje -->
+            <div class="header-lumai">
+                <img src="img/logo-lumai.png" alt="LUMAI Logo" class="logo-lumai">
+            </div>
+            
+            <!-- Personajes LUMAI alternando -->
+            <div class="lumai-characters-container character-switching" onclick="saludarLumai()">
+                <img src="img/1.png" alt="LUMAI te acompaña" class="lumai-character-main character-1">
+                <img src="img/2.png" alt="LUMAI te acompaña" class="lumai-character-main character-2">
+            </div>
+
+            <!-- Formulario principal -->
+            <div class="form-container">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label class="input-label">👤 ¿Cuál es tu nombre?</label>
+                        <input type="text" id="nombre" class="input-field" placeholder="Escribe tu nombre aquí..." maxlength="50">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">🔑 Contraseña de Acceso</label>
+                        <input type="password" id="contrasena" class="input-field" placeholder="Ingresa tu contraseña">
+                        <small style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 0.5rem; display: block;">
+                          Solicita tu contraseña al docente
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label class="input-label">🎓 ¿En qué ciclo estás?</label>
+                        <select id="ciclo" class="input-field">
+                            <option value="">Selecciona tu ciclo</option>
+                            <option value="basico">Ciclo Básico</option>
+                            <option value="orientado">Ciclo Orientado</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group" id="orientacion-group" style="display: none;">
+                        <label class="input-label">🎯 ¿Cuál es tu orientación?</label>
+                        <select id="orientacion" class="input-field">
+                            <option value="">Selecciona tu orientación</option>
+                            <option value="agro">Agro y Ambiente</option>
+                            <option value="arte">Arte</option>
+                            <option value="cnat">Ciencias Naturales</option>
+                            <option value="csoc">Ciencias Sociales y Humanidades</option>
+                            <option value="comu">Comunicación</option>
+                            <option value="econ">Economía y Administración</option>
+                            <option value="efis">Educación Física</option>
+                            <option value="info">Informática</option>
+                            <option value="leng">Lenguas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label class="input-label">📚 ¿Qué materia vas a estudiar?</label>
+                        <select id="materia" class="input-field">
+                            <option value="">Primero elige ciclo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label class="input-label">🎯 ¿Qué tema quieres aprender hoy?</label>
+                        <input type="text" id="tema" class="input-field" placeholder="Ejemplo: Suma y resta, Células, Guerra de Independencia..." maxlength="100">
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <button id="btn-comenzar" class="btn-comenzar" onclick="comenzarExperiencia()">
+                        🚀 ¡COMENZAR EXPERIENCIA PEDAGÓGICA!
+                    </button>
+                </div>
+            </div>
+
+            <!-- Panel para Docentes -->
+            <section class="seccion-reportes">
+                <div class="reportes-container">
+                    <h4>👨‍🏫 Panel para Docentes</h4>
+                    <button class="btn-reportes" onclick="window.location.href='reportes.html'">
+                        📊 Ver Reportes de Estudiantes
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // ========== FUNCIONES DEL MODAL PERSONALIZADO ==========
+        function mostrarModal() {
+            const modal = document.getElementById('modal-error');
+            modal.style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            const modal = document.getElementById('modal-error');
+            modal.style.display = 'none';
+            
+            // Limpiar campo de contraseña y enfocarlo
+            document.getElementById('contrasena').value = '';
+            document.getElementById('contrasena').focus();
+        }
+
+        // ========== TRANSICIÓN ENTRE FASES ==========
+        function mostrarFormulario() {
+            const videoIntro = document.getElementById('video-intro');
+            const formulario = document.getElementById('formulario-principal');
+            
+            // Ocultar video con transición
+            videoIntro.style.opacity = '0';
+            setTimeout(() => {
+                videoIntro.classList.add('hidden');
+                formulario.style.display = 'block';
+                document.body.style.overflow = 'auto';
+                
+                // Iniciar animación de personajes
+                iniciarAnimacionPersonajes();
+            }, 800);
+        }
+
+        // ========== ANIMACIÓN DE PERSONAJES ==========
+        function iniciarAnimacionPersonajes() {
+            const container = document.querySelector('.lumai-characters-container');
+            if (container) {
+                container.classList.add('character-switching');
+            }
+        }
+
+        // ========== INTERACCIÓN CON PERSONAJE ==========
+        function saludarLumai() {
+            const personajes = document.querySelectorAll('.lumai-character-main');
+            personajes.forEach(personaje => {
+                personaje.style.animation = 'none';
+                setTimeout(() => {
+                    personaje.style.animation = 'float-main 1s ease-in-out 2';
+                }, 10);
+            });
+            
+            // Mensajes aleatorios de LUMAI
+            const mensajes = [
+                "¡Hola! Soy LUMAI y estoy aquí para ayudarte 🤖✨",
+                "¡Qué emocionante! Vamos a aprender juntos 🚀",
+                "¡Estoy listo para hacer tu aprendizaje increíble! 🌟",
+                "¡Hola estudiante! Preparemos una aventura educativa 🎯"
+            ];
+            
+            const mensajeAleatorio = mensajes[Math.floor(Math.random() * mensajes.length)];
+            alert(mensajeAleatorio);
+        }
+
+        // ========== FUNCIÓN PRINCIPAL CON MODAL PERSONALIZADO ==========
+        function comenzarExperiencia() {
+            // Obtener datos del formulario
+            const nombre = document.getElementById('nombre').value.trim();
+            const contrasena = document.getElementById('contrasena').value.trim();
+            const ciclo = document.getElementById('ciclo').value;
+            const orientacion = document.getElementById('orientacion').value;
+            const materia = document.getElementById('materia').value;
+            const tema = document.getElementById('tema').value.trim();
+
+            // Validación simple
+            if (!nombre || !ciclo || !materia || !tema) {
+                alert('Por favor completa todos los campos obligatorios');
+                return;
+            }
+
+            // VALIDACIÓN DE CONTRASEÑA CON MODAL PERSONALIZADO
+            const contrasenasValidas = ['n012', 'n123', 'n234', 'n345'];
+            
+            // Verificar si la contraseña es válida
+            if (!contrasenasValidas.includes(contrasena)) {
+                // Mostrar modal personalizado en lugar de alert nativo
+                mostrarModal();
+                return;
+            }
+
+            // ✅ CORRECCIÓN: Agregar condición para N0 y guardar contraseña
+            let perfil = 'N2'; // Por defecto
+            if (contrasena === 'n012') perfil = 'N0';        // ← ¡NUEVA LÍNEA!
+            else if (contrasena === 'n123') perfil = 'N1';
+            else if (contrasena === 'n234') perfil = 'N2';
+            else if (contrasena === 'n345') perfil = 'N3';
+
+            // ✅ CORRECCIÓN: Incluir contraseña en sessionStorage
+            const datosSession = {
+                nombreAlumno: nombre,
+                perfil: perfil,
+                ciclo: ciclo === 'basico' ? 'Ciclo Básico' : 'Ciclo Orientado',
+                orientacion: orientacion || '',
+                materia: materia,
+                tema: tema,
+                contrasena: contrasena  // ← ¡NUEVA LÍNEA!
+            };
+
+            // Guardar con la clave que usa LUMAI
+            sessionStorage.setItem('datosLumai', JSON.stringify(datosSession));
+
+            // Mostrar que está cargando
+            document.getElementById('btn-comenzar').innerHTML = '🔄 Cargando...';
+            
+            // Redirigir a explicacion.html
+            setTimeout(() => {
+                window.location.href = 'explicacion.html';
+            }, 1000);
+        }
+
+        // ========== LÓGICA DEL FORMULARIO CON MATERIAS COMPLETAS ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            const cicloSelect = document.getElementById('ciclo');
+            const orientacionGroup = document.getElementById('orientacion-group');
+            const orientacionSelect = document.getElementById('orientacion');
+            const materiaSelect = document.getElementById('materia');
+
+            // MATERIAS COMPLETAS - Ciclo Básico (16 materias)
+            const materiasBasico = [
+                "Formación ética y ciudadana",
+                "Lengua y Literatura",
+                "Educación Física",
+                "Matemática",
+                "Educación Tecnológica",
+                "Biología",
+                "Físico-Química",
+                "Geografía",
+                "Historia",
+                "Educación Artística Música",
+                "Educación Artística Artes Visuales",
+                "Lengua Extranjera Inglés",
+                "Lengua Extranjera Francés",
+                "Lengua Extranjera Italiano",
+                "Seminario Cs. Sociales",
+                "Lab. Ciencias Naturales"
+            ];
+
+            // MATERIAS COMPLETAS - Formación General Orientado (13 materias)
+            const materiasFormacionGeneral = [
+                "Lengua y Literatura",
+                "Matemática",
+                "Educación Física",
+                "Historia",
+                "Geografía",
+                "Biología",
+                "Física",
+                "Química",
+                "Educación Artística Música",
+                "Educación Artística Artes Visuales",
+                "Lengua Extranjera Inglés",
+                "Lengua Extranjera Francés",
+                "Lengua Extranjera Italiano"
+            ];
+
+            // MATERIAS COMPLETAS - Por Orientación
+            const materiasOrientadas = {
+                agro: [
+                    "Sociología Rural",
+                    "Educación para la Salud",
+                    "Sistemas Productivos y Problemática Ambiental",
+                    "Economía",
+                    "Marco Jurídico y Legislación Rural",
+                    "Ecología",
+                    "Manejo y Gestión de Recursos Rurales"
+                ],
+                arte: [
+                    "Lenguaje y Producción Audiovisual",
+                    "Artes Audiovisuales y Contexto",
+                    "Lenguaje Artístico Complementario",
+                    "Taller de Integración de Lenguajes Artísticos"
+                ],
+                cnat: [
+                    "Biología",
+                    "Química",
+                    "Física",
+                    "Salud y Adolescencia",
+                    "Ciencias de la Tierra",
+                    "Salud y Ambiente"
+                ],
+                csoc: [
+                    "Economía",
+                    "Sociología",
+                    "Ciencias de la Comunicación",
+                    "Psicología",
+                    "Historia",
+                    "Geografía",
+                    "Ciencias Políticas",
+                    "Seminario de Investigación",
+                    "Problemática Educativa"
+                ],
+                comu: [
+                    "Introducción a la Comunicación",
+                    "Teorías de la Comunicación y Contextos",
+                    "Historia de los Medios",
+                    "Tecnologías Digitales de la Comunicación",
+                    "Prácticas de los Lenguajes",
+                    "Metodología de la Investigación en Comunicación",
+                    "Observatorio de Experiencias Comunicacionales",
+                    "Gestión de Productos Comunicacionales"
+                ],
+                econ: [
+                    "Administración",
+                    "Economía",
+                    "Sistema de Información Contable",
+                    "Derecho"
+                ],
+                efis: [
+                    "Iniciación a la Práctica Deportiva y Juegos",
+                    "Práctica en el Ambiente Natural",
+                    "Formación Motriz",
+                    "Prácticas Deportivas"
+                ],
+                info: [
+                    "Alfabetización Informática",
+                    "Fundamentos de Programación",
+                    "Redes Digitales",
+                    "Alfabetización Multimedia",
+                    "Seguridad Informática",
+                    "Medios Digitales Colaborativos",
+                    "Sistemas de Información",
+                    "Informática Aplicada"
+                ],
+                leng: [
+                    "Lengua y Cultura Extranjera I",
+                    "Lengua y Cultura Extranjera II",
+                    "Lengua y Cultura Extranjera III",
+                    "Taller de Integración de Lenguas-Culturas"
+                ]
+            };
+
+            // Cuando cambia el ciclo
+            cicloSelect.addEventListener('change', function() {
+                const ciclo = this.value;
+                
+                if (ciclo === 'orientado') {
+                    orientacionGroup.style.display = 'block';
+                    materiaSelect.innerHTML = '<option value="">Primero elige orientación</option>';
+                } else if (ciclo === 'basico') {
+                    orientacionGroup.style.display = 'none';
+                    orientacionSelect.value = '';
+                    
+                    // Llenar materias básico (16 materias completas)
+                    materiaSelect.innerHTML = '<option value="">Elige una materia</option>';
+                    materiasBasico.forEach(materia => {
+                        const option = document.createElement('option');
+                        option.value = materia;
+                        option.textContent = materia;
+                        materiaSelect.appendChild(option);
+                    });
+                } else {
+                    orientacionGroup.style.display = 'none';
+                    materiaSelect.innerHTML = '<option value="">Primero elige ciclo</option>';
+                }
+            });
+
+            // Cuando cambia orientación
+            orientacionSelect.addEventListener('change', function() {
+                if (this.value) {
+                    // Llenar materias orientado (formación general + específicas)
+                    materiaSelect.innerHTML = '<option value="">Elige una materia</option>';
+                    
+                    // Agregar materias de formación general
+                    materiasFormacionGeneral.forEach(materia => {
+                        const option = document.createElement('option');
+                        option.value = materia;
+                        option.textContent = materia;
+                        materiaSelect.appendChild(option);
+                    });
+                    
+                    // Agregar materias específicas de la orientación
+                    if (materiasOrientadas[this.value]) {
+                        materiasOrientadas[this.value].forEach(materia => {
+                            const option = document.createElement('option');
+                            option.value = materia;
+                            option.textContent = materia;
+                            materiaSelect.appendChild(option);
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

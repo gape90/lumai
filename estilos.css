@@ -1,0 +1,758 @@
+/* ==================== VARIABLES CSS ==================== */
+:root {
+  --primary-color: #00509e;
+  --primary-light: #0066cc;
+  --primary-dark: #003f7d;
+  --secondary-color: #00a676;
+  --secondary-light: #00d4aa;
+  --accent-color: #ffd700;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --white: #ffffff;
+  --light-bg: #f8f9fa;
+  --shadow-light: 0 2px 10px rgba(0,0,0,0.1);
+  --shadow-medium: 0 4px 20px rgba(0,0,0,0.15);
+  --shadow-heavy: 0 8px 30px rgba(0,0,0,0.2);
+  --border-radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* NUEVAS VARIABLES PARA HALO AZUL */
+  --electric-blue: #007BFF;
+  --electric-blue-glow: rgba(0, 123, 255, 0.4);
+  --electric-blue-soft: rgba(0, 123, 255, 0.15);
+  --electric-blue-subtle: rgba(0, 123, 255, 0.05);
+}
+
+/* ==================== RESET Y BASE ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+/* ==================== PÁGINA DE INICIO ==================== */
+body.index-page {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.index-container {
+  width: 100%;
+  max-width: 480px;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-heavy);
+  overflow: hidden;
+  animation: slideUp 0.6s ease-out;
+  margin: auto;
+  position: relative;
+}
+
+main.index-container {
+  display: flex;
+  flex-direction: column;
+  min-height: auto;
+}
+
+/* ==================== HEADER DE INICIO ==================== */
+.header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: var(--white);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+  animation: float 20s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(-100px) translateY(-100px); }
+}
+
+.logo {
+  position: relative;
+  z-index: 2;
+}
+
+.logo h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.logo .subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+.logo .description {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+/* ==================== FORMULARIO DE INICIO ==================== */
+#login {
+  padding: 2rem 1.5rem 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e1e8ed;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--white);
+  transition: var(--transition);
+  appearance: none;
+}
+
+.form-group select {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="%23718096"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 80, 158, 0.1);
+  transform: translateY(-1px);
+}
+
+.form-group input::placeholder {
+  color: var(--text-light);
+}
+
+.form-group.hidden {
+  display: none;
+}
+
+.form-group.show {
+  animation: fadeInDown 0.4s ease-out;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-group.with-icon {
+  position: relative;
+}
+
+.form-group.with-icon::before {
+  content: attr(data-icon);
+  position: absolute;
+  left: 1rem;
+  top: 2.3rem;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  z-index: 1;
+}
+
+.form-group.with-icon input,
+.form-group.with-icon select {
+  padding-left: 2.5rem;
+}
+
+#btnComenzar {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light));
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-light);
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+#btnComenzar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s;
+}
+
+#btnComenzar:hover::before {
+  left: 100%;
+}
+
+#btnComenzar:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+#btnComenzar:active {
+  transform: translateY(0);
+}
+
+#btnComenzar:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.progress-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  gap: 0.5rem;
+}
+
+.progress-step {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e1e8ed;
+  transition: var(--transition);
+}
+
+.progress-step.active {
+  background: var(--primary-color);
+  transform: scale(1.2);
+}
+
+.progress-step.completed {
+  background: var(--secondary-color);
+}
+
+.loading #btnComenzar {
+  background: #bdc3c7;
+  position: relative;
+}
+
+.loading #btnComenzar::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading .form-group {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ==================== PÁGINA DE EXPLICACIÓN ==================== */
+body:not(.index-page) {
+  background: url('img/fondo-lumai.png') center/cover no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem 0;
+  overflow-x: hidden;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* ==================== CONTENEDORES CON CAPA TRANSPARENTE DETRÁS ==================== */
+
+/* CAPA TRANSPARENTE DETRÁS - NUEVA IMPLEMENTACIÓN */
+html body:not(.index-page) .contenedor-base::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  
+  /* MISMO FONDO TRANSPARENTE QUE INDEX.HTML */
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  border: 2px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 30px !important;
+  
+  /* HALO DE LUZ AZUL ELÉCTRICA */
+  box-shadow: 
+      0 0 40px 12px rgba(0, 123, 255, 0.6),
+      0 0 80px 20px rgba(0, 123, 255, 0.3),
+      0 0 120px 30px rgba(0, 123, 255, 0.15),
+      0 15px 30px rgba(0, 0, 0, 0.1);
+      
+  z-index: -1;
+  pointer-events: none;
+  
+  /* ANIMACIÓN SUTIL DE RESPIRACIÓN DEL HALO */
+  animation: electric-glow-pulse 4s ease-in-out infinite !important;
+}
+
+/* CONTENEDORES PRINCIPALES - MANTENER FONDO BLANCO */
+html body:not(.index-page) .contenedor-base,
+html body:not(.index-page) #encabezado.contenedor-base,
+html body:not(.index-page) #contenido.contenedor-base,
+html body:not(.index-page) #actividades.contenedor-base,
+html body:not(.index-page) .navigation-container.contenedor-base,
+html body:not(.index-page) .mensaje-final.contenedor-base,
+html body:not(.index-page) header.contenedor-base,
+html body:not(.index-page) section.contenedor-base,
+html body:not(.index-page) div.contenedor-base,
+html body:not(.index-page) main .contenedor-base {
+  /* MANTENER FONDO BLANCO ORIGINAL */
+  background: rgba(255, 255, 255, 0.85) !important;
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 2px solid rgba(255, 255, 255, 0.9) !important;
+  
+  /* MANTENER ESTILOS ORIGINALES */
+  border-radius: 25px !important;
+  padding: 35px !important;
+  margin-bottom: 25px !important;
+  position: relative !important;
+  overflow: visible !important;
+  width: 88% !important;
+  max-width: 880px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  z-index: 10 !important;
+}
+
+/* EFECTO HOVER PARA LAS CAPAS TRANSPARENTES */
+html body:not(.index-page) .contenedor-base:hover::before {
+  transform: translateY(-5px) !important;
+  box-shadow: 
+    0 0 70px 20px rgba(0, 123, 255, 0.9) !important,
+    0 0 120px 30px rgba(0, 123, 255, 0.5) !important,
+    0 0 180px 50px rgba(0, 123, 255, 0.25) !important,
+    0 25px 50px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.4s ease !important;
+  animation: none !important;
+}
+
+/* ANIMACIÓN DEL HALO AZUL ELÉCTRICO */
+@keyframes electric-glow-pulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 40px 12px rgba(0, 123, 255, 0.6),
+      0 0 80px 20px rgba(0, 123, 255, 0.3),
+      0 0 120px 30px rgba(0, 123, 255, 0.15),
+      0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+  50% { 
+    box-shadow: 
+      0 0 60px 18px rgba(0, 123, 255, 0.8),
+      0 0 100px 25px rgba(0, 123, 255, 0.4),
+      0 0 150px 40px rgba(0, 123, 255, 0.2),
+      0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* CONTENIDO MÁS LEGIBLE */
+body:not(.index-page) #contenido.contenedor-base {
+  background: rgba(255, 255, 255, 0.92) !important;
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+
+/* ==================== CENTRADO PERFECTO DE BOTONES - DISTRIBUCIÓN CORREGIDA ==================== */
+
+/* CONTENEDOR DE NAVEGACIÓN - DISTRIBUCIÓN MEJORADA */
+.navigation-container.contenedor-base,
+body:not(.index-page) .navigation-container.contenedor-base,
+#nav-explicacion.navigation-container.contenedor-base,
+div.navigation-container.contenedor-base {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  min-height: 120px !important;
+  padding: 30px 50px !important;
+  flex-wrap: wrap !important;
+  text-align: center !important;
+}
+
+/* BOTÓN HACER ACTIVIDADES - IZQUIERDA */
+.navigation-container #btnVerActividades,
+#nav-explicacion #btnVerActividades,
+#btnVerActividades {
+  margin: 0 !important;
+  flex-shrink: 0;
+  order: 1;
+  margin-right: auto !important;
+}
+
+/* BOTÓN FINALIZAR CLASE - DERECHA */
+.navigation-container #btnFinalizarClase,
+.navigation-container .btn-finalizar,
+#nav-explicacion #btnFinalizarClase,
+#btnFinalizarClase,
+.btn-finalizar {
+  margin: 0 !important;
+  flex-shrink: 0;
+  order: 3;
+  margin-left: auto !important;
+}
+
+/* BOTÓN VOLVER EXPLICACIÓN - CENTRO (cuando aparezca) */
+.navigation-container #btnVolverExplicacion,
+#nav-explicacion #btnVolverExplicacion,
+#btnVolverExplicacion {
+  margin: 0 auto !important;
+  flex-shrink: 0;
+  order: 2;
+}
+
+/* ==================== ESPACIADO DEL SALUDO INICIAL ==================== */
+
+/* SALUDO DEL ESTUDIANTE - MÁS SEPARACIÓN */
+#contenido p:first-child,
+#contenido div:first-child,
+#contenido [style*="color: #"]:first-child,
+body:not(.index-page) #contenido .student-greeting,
+body:not(.index-page) #contenido p[style*="font-weight: bold"]:first-of-type {
+  margin-top: 35px !important;
+  margin-bottom: 30px !important;
+  padding-top: 20px !important;
+}
+
+/* SELECTOR MÁS ESPECÍFICO PARA SALUDOS EN MAYÚSCULAS */
+#contenido p:contains("¡"),
+#contenido p[style*="font-weight"]:first-of-type {
+  margin-top: 40px !important;
+  margin-bottom: 35px !important;
+  padding-top: 25px !important;
+  border-top: 2px solid rgba(0, 123, 255, 0.1) !important;
+}
+
+/* ==================== TEXTO 15% MÁS GRANDE Y MEJOR INTERLINEADO ==================== */
+
+/* HACER TODA LA EXPLICACIÓN 15% MÁS GRANDE */
+#contenido,
+#contenido p,
+#contenido div,
+#contenido span,
+#contenido h1,
+#contenido h2,
+#contenido h3,
+#contenido h4,
+#contenido h5,
+#contenido h6,
+body:not(.index-page) #contenido * {
+  font-size: 115% !important;
+  line-height: 1.7 !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* Headers específicos */
+#contenido h1 { font-size: 140% !important; line-height: 1.5 !important; }
+#contenido h2 { font-size: 135% !important; line-height: 1.5 !important; }
+#contenido h3 { font-size: 130% !important; line-height: 1.5 !important; }
+#contenido h4 { font-size: 125% !important; line-height: 1.6 !important; }
+
+/* SALUDO INICIAL - TAMAÑO ESPECÍFICO */
+#contenido .student-greeting,
+#contenido p[style*="font-weight: bold"]:first-of-type,
+#contenido p:contains("¡"):first-of-type {
+  font-size: 130% !important;
+  line-height: 1.6 !important;
+  font-weight: bold !important;
+  color: #667eea !important;
+  text-align: center !important;
+}
+
+/* SALUDO FINAL - MISMO TAMAÑO QUE EL INICIAL */
+#contenido .final-greeting,
+#contenido p[style*="font-weight: bold"]:last-of-type,
+#contenido p:contains("¡"):last-of-type,
+#contenido p:contains("ADELANTE"):last-of-type,
+#contenido p:contains("SIGUE"):last-of-type,
+#contenido p:contains("EXCELENTE"):last-of-type,
+#contenido div:last-child p[style*="font-weight: bold"],
+body:not(.index-page) #contenido p:last-of-type[style*="font-weight"] {
+  font-size: 130% !important;
+  line-height: 1.6 !important;
+  font-weight: bold !important;
+  color: #667eea !important;
+  text-align: center !important;
+  margin-top: 40px !important;
+  margin-bottom: 35px !important;
+  padding-top: 25px !important;
+  border-top: 2px solid rgba(0, 123, 255, 0.1) !important;
+}
+
+/* ==================== ENCABEZADO ==================== */
+#encabezado {
+  text-align: center;
+}
+
+#encabezado h1 {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-bottom: 0.8rem;
+}
+
+#encabezado h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+#tituloMateria, #tituloTema {
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+/* ==================== BOTÓN SÍNTESIS DE VOZ - SOLUCIÓN COMPLETA ==================== */
+#leerExplicacion {
+  /* POSICIONAMIENTO Y Z-INDEX */
+  position: relative !important;
+  z-index: 999 !important;
+  
+  /* RESETEAR EFECTOS DEL CONTENEDOR PADRE */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  
+  /* FONDO COMPLETAMENTE OPACO */
+  background: linear-gradient(135deg, #4ecdc4, #44a08d, #2d8a82) !important;
+  opacity: 1 !important;
+  
+  /* ESTILOS DEL BOTÓN */
+  display: block !important;
+  margin: 1.5rem auto 2rem !important;
+  padding: 16px 35px !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 30px !important;
+  font-size: 1.2rem !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 10px 25px rgba(68, 160, 141, 0.4) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  
+  /* AISLAR DEL CONTENEDOR */
+  isolation: isolate !important;
+}
+
+#leerExplicacion:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 15px 35px rgba(68, 160, 141, 0.6) !important;
+  z-index: 1000 !important;
+  opacity: 1 !important;
+}
+
+/* ASEGURAR QUE NO HEREDE TRANSPARENCIAS DEL CONTENEDOR */
+#contenido #leerExplicacion {
+  background: linear-gradient(135deg, #4ecdc4, #44a08d, #2d8a82) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ==================== SECCIÓN DE ACTIVIDADES ==================== */
+#actividades .actividad {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(248, 249, 250, 0.8);
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+}
+
+.vf-botones, .mc-opciones {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.vf-botones { justify-content: center; }
+.mc-opciones { flex-direction: column; }
+
+.vf-btn, .mc-opcion {
+  padding: 0.8rem 1.5rem;
+  border: 2px solid;
+  background: var(--white);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.mc-opcion { border-color: #dee2e6; text-align: left; }
+.vf-btn[data-choice="true"] { border-color: #28a745; }
+.vf-btn[data-choice="false"] { border-color: #dc3545; }
+
+.vf-feedback, .mc-feedback {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* ==================== CHAT WIDGET ==================== */
+#chat-widget {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 320px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  box-shadow: var(--shadow-heavy);
+  backdrop-filter: blur(10px);
+}
+
+#chat-input {
+  flex: 1;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#chat-send, #btnMic {
+  padding: 0.6rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ==================== SPINNER Y ANIMACIONES ==================== */
+.loading-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 768px) {
+  .navigation-container.contenedor-base,
+  body:not(.index-page) .navigation-container.contenedor-base,
+  #nav-explicacion.navigation-container.contenedor-base {
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 20px !important;
+    min-height: 140px !important;
+    padding: 25px !important;
+  }
+  
+  /* En móviles todos los botones se centran */
+  .navigation-container button,
+  #btnVerActividades,
+  #btnFinalizarClase,
+  #btnVolverExplicacion {
+    width: 90% !important;
+    max-width: 300px !important;
+    margin: 8px auto !important;
+    order: unset !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body.index-page { 
+    padding: 0.5rem; 
+  }
+  
+  .index-container { 
+    border-radius: 0; 
+    min-height: 100vh; 
+  }
+  
+  .navigation-container.contenedor-base {
+    padding: 20px !important;
+    gap: 15px !important;
+    min-height: 120px !important;
+  }
+  
+  /* Reducir intensidad del halo en móviles para mejor rendimiento */
+  html body:not(.index-page) .contenedor-base::before {
+    box-shadow: 
+      0 0 30px 10px rgba(0, 123, 255, 0.5) !important,
+      0 0 60px 15px rgba(0, 123, 255, 0.25) !important,
+      0 0 90px 20px rgba(0, 123, 255, 0.12) !important,
+      0 10px 20px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Desactivar animación en móviles para mejor rendimiento */
+  html body:not(.index-page) .contenedor-base::before {
+    animation: none !important;
+  }
+  
+  /* Texto un poco más pequeño en móviles pero manteniendo la mejora */
+  #contenido,
+  #contenido p,
+  #contenido div,
+  #contenido span {
+    font-size: 110% !important;
+    line-height: 1.65 !important;
+  }
+}
