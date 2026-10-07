@@ -47,11 +47,12 @@ export const configuracionMetricas = {
 };
 
 // ==================== CONFIGURACIÓN DE ACTIVIDADES POR PERFIL ====================
+// 'skater' desactivado temporalmente (en revisión). Para volver a activarlo, agregarlo al final de N1, N2 y N3.
 export const ACTIVIDADES_POR_PERFIL = {
   'N0': ['exploradores-sonido', 'puente-palabras', 'aventura-silabas', 'supermercado'],
-  'N1': ['sopa-de-letras', 'race', 'basketball', 'multiple-choice', 'verdadero-falso', 'skater'],
-  'N2': ['sopa-de-letras', 'race', 'basketball', 'multiple-choice', 'verdadero-falso', 'skater'],
-  'N3': ['sopa-de-letras', 'race', 'basketball', 'multiple-choice', 'verdadero-falso', 'skater']
+  'N1': ['sopa-de-letras', 'race', 'basketball', 'multiple-choice', 'verdadero-falso'],
+  'N2': ['sopa-de-letras', 'race', 'basketball', 'multiple-choice', 'verdadero-falso'],
+  'N3': ['sopa-de-letras', 'race', 'basketball', 'multiple-choice', 'verdadero-falso']
 };
 
 // ==================== SISTEMA DE RONDAS PEDAGÓGICAS ====================
@@ -330,8 +331,8 @@ export const estadoGlobal = {
     "race", 
     "basketball",
     "multiple-choice",
-    "verdadero-falso",
-    "skater"
+    "verdadero-falso"
+    // "skater" desactivado temporalmente (en revisión)
   ],
   actividadActual: null,
   respuestasCompletadas: 0,

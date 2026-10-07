@@ -40,7 +40,8 @@ function inicializarActividadesPorPerfil() {
             actividadesDisponibles = obtenerActividadesParaPerfil(datosSession.perfil);
             return;
         }
-        actividadesDisponibles = ["multiple-choice", "verdadero-falso", "basketball", "skater", "race", "sopa-de-letras"];
+        // 'skater' desactivado temporalmente (en revisión)
+        actividadesDisponibles = ["multiple-choice", "verdadero-falso", "basketball", "race", "sopa-de-letras"];
         return;
     }
     
