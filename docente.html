@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LumAI · Módulo docente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azul:#00509e;--azul-osc:#003f7d;--azul-claro:#e8f1fb;--verde:#00a676;--verde-claro:#e6f7f1;--naranja:#f97316;--texto:#1f2a37;--suave:#5b6675;--borde:#dbe3ec;--fondo:#eef3f9}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Poppins',system-ui,sans-serif;background:var(--fondo);color:var(--texto);line-height:1.5}
+button{font-family:inherit}
+.barra{background:linear-gradient(135deg,var(--azul-osc),var(--azul));color:#fff}
+.barra-int{max-width:980px;margin:0 auto;padding:14px max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra img{height:38px;background:#fff;border-radius:10px;padding:4px 8px}
+.barra h1{margin:0;font-size:1.25rem;flex:1}
+.barra a,.barra button{color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;border:1.5px solid rgba(255,255,255,.6);border-radius:999px;padding:6px 14px;background:none;cursor:pointer}
+.barra a:hover,.barra button:hover{background:rgba(255,255,255,.15)}
+main{max-width:980px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-left,0px)) 40px}
+.saludo{margin:0 0 4px;font-size:1.5rem;color:var(--azul-osc)}
+.intro{margin:0 0 22px;color:var(--suave)}
+.opciones{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.opcion{display:grid;gap:10px;align-content:start;background:#fff;border:1px solid var(--borde);border-radius:20px;padding:24px;text-decoration:none;color:inherit;box-shadow:0 4px 16px rgba(0,63,125,.06);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.opcion:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,63,125,.14);border-color:var(--azul)}
+.opcion:focus-visible{outline:3px solid var(--naranja);outline-offset:3px}
+.opcion-icono{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:1.8rem;background:var(--azul-claro)}
+.opcion:nth-child(2) .opcion-icono{background:var(--verde-claro)}
+.opcion h2{margin:0;font-size:1.2rem;color:var(--azul-osc)}
+.opcion p{margin:0;color:var(--suave);font-size:.94rem}
+.opcion ul{margin:0;padding-left:18px;font-size:.9rem;color:var(--texto)}
+.opcion-ir{margin-top:6px;font-weight:700;color:var(--azul)}
+.opcion:nth-child(2) .opcion-ir{color:#00805b}
+.herramientas{margin-top:26px;background:#fff;border:1px solid var(--borde);border-radius:16px;padding:16px 20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.herramientas p{margin:0;font-size:.9rem;color:var(--suave);flex:1 1 320px}
+.btn{border:2px solid var(--azul);background:#fff;color:var(--azul);border-radius:999px;padding:8px 16px;font-weight:600;cursor:pointer;font-size:.9rem}
+.btn:hover{background:var(--azul-claro)}
+.aviso{font-size:.88rem;color:#00805b;min-height:1.2em;flex-basis:100%;margin:0}
+.privacidad{margin-top:18px;background:var(--verde-claro);border:1px solid #bfe9da;border-radius:14px;padding:12px 16px;font-size:.88rem}
+.acceso[hidden]{display:none}
+.acceso{position:fixed;inset:0;background:linear-gradient(135deg,var(--azul-osc),var(--azul));display:grid;place-items:center;padding:16px;z-index:10}
+.acceso form{background:#fff;border-radius:18px;padding:26px;max-width:380px;width:100%;display:grid;gap:12px;text-align:center}
+.acceso h2{margin:0;color:var(--azul-osc)}
+.acceso input{font:inherit;padding:11px 14px;border:1.5px solid var(--borde);border-radius:10px}
+.acceso .entrar{border:none;border-radius:999px;padding:11px 18px;font-weight:700;background:var(--azul);color:#fff;cursor:pointer;font-size:1rem}
+.error{color:#b42318;font-size:.86rem;min-height:1.2em}
+</style>
+</head>
+<body>
+<div class="acceso" id="acceso" hidden>
+  <form id="form-acceso">
+    <h2>Módulo docente</h2>
+    <p style="margin:0;color:var(--suave);font-size:.92rem">Ingresá la contraseña docente.</p>
+    <input type="password" id="clave-docente" autocomplete="current-password" aria-label="Contraseña docente">
+    <div class="error" id="error-acceso" role="alert"></div>
+    <button class="entrar" type="submit">Entrar</button>
+    <a href="index.html" style="font-size:.88rem;color:var(--azul)">Volver a LumAI</a>
+  </form>
+</div>
+
+<header class="barra">
+  <div class="barra-int">
+    <img src="img/logo-lumai.png" alt="LumAI">
+    <h1>Módulo docente</h1>
+    <a href="index.html">Inicio</a>
+    <button type="button" id="salir">Cerrar sesión</button>
+  </div>
+</header>
+
+<main>
+  <h2 class="saludo">¿Qué querés hacer?</h2>
+  <p class="intro">Desde acá seguís el progreso de tus alumnos y armás el perfil con el que LumAI adapta las clases a cada uno.</p>
+
+  <div class="opciones">
+    <a class="opcion" href="reportes.html">
+      <span class="opcion-icono" aria-hidden="true">📊</span>
+      <h2>Reportes de los alumnos</h2>
+      <p>Cómo le fue a cada alumno en las clases y en las actividades.</p>
+      <ul>
+        <li>Recorrido de las clases base y adaptación aplicada</li>
+        <li>Respuestas, errores y tiempos de cada actividad</li>
+        <li>Envío del reporte por correo</li>
+      </ul>
+      <span class="opcion-ir">Ver reportes →</span>
+    </a>
+    <a class="opcion" href="perfiles.html">
+      <span class="opcion-icono" aria-hidden="true">🧩</span>
+      <h2>Perfiles y códigos</h2>
+      <p>El perfil de cada alumno y el código con el que entra a LumAI.</p>
+      <ul>
+        <li>Marcar las 13 dimensiones y los intereses</li>
+        <li>Ver cómo va a ver las clases</li>
+        <li>Generar e imprimir el código, o modificar uno ya entregado</li>
+      </ul>
+      <span class="opcion-ir">Armar perfiles →</span>
+    </a>
+  </div>
+
+  <div class="herramientas">
+    <p><b>Clave de la IA en esta compu.</b> LumAI la pide la primera vez que usa la IA y la guarda solo en este navegador.</p>
+    <button class="btn" type="button" id="borrar-clave">🔑 Cambiar clave de IA</button>
+    <p class="aviso" id="aviso-clave" role="status"></p>
+  </div>
+
+  <div class="privacidad">🔒 LumAI no guarda los perfiles en ningún lado: cada perfil viaja dentro del código del alumno. Guardá la lista de qué código le diste a cada alumno solo en papel o en tu compu.</div>
+</main>
+
+<script src="js/acceso-docente.js"></script>
+<script>
+(function () {
+  const capa = document.getElementById('acceso');
+  if (!LumaiDocente.activo()) {
+    capa.hidden = false;
+    document.getElementById('clave-docente').focus();
+  }
+  document.getElementById('form-acceso').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const ok = await LumaiDocente.verificar(document.getElementById('clave-docente').value);
+    if (!ok) { document.getElementById('error-acceso').textContent = 'Contraseña incorrecta.'; return; }
+    LumaiDocente.marcar();
+    capa.hidden = true;
+  });
+  document.getElementById('salir').addEventListener('click', () => {
+    LumaiDocente.salir();
+    window.location.href = 'index.html';
+  });
+  let confirmar = false;
+  document.getElementById('borrar-clave').addEventListener('click', () => {
+    const aviso = document.getElementById('aviso-clave');
+    if (!confirmar) {
+      confirmar = true;
+      aviso.style.color = '#b42318';
+      aviso.textContent = 'Tocá de nuevo para borrar la clave guardada en esta compu. LumAI la va a pedir la próxima vez.';
+      return;
+    }
+    try { localStorage.removeItem('lumai_gemini_api_key'); } catch (e) {}
+    confirmar = false;
+    aviso.style.color = '';
+    aviso.textContent = 'Listo: la clave se borró de esta compu.';
+  });
+})();
+</script>
+</body>
+</html>
