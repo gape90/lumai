@@ -344,5 +344,33 @@
       "epigrafe": "Las pistas del paratexto.",
       "descripcion": "Página de revista de divulgación sobre volcanes, con flechas y etiquetas que señalan: \"Título\", \"Subtítulo\", \"Imagen\", \"Epígrafe\", \"Palabra destacada\" y \"Fuente\". Diseño claro, etiquetas grandes en naranja, texto de relleno ilegible para no distraer."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "PARATEXTO",
+        "pista": "Todo lo que rodea al texto y da pistas sobre él"
+      },
+      {
+        "palabra": "EPIGRAFE",
+        "pista": "Texto breve que explica qué muestra una imagen"
+      },
+      {
+        "palabra": "CONTEXTO",
+        "pista": "Las palabras que rodean a una palabra nueva y ayudan a entenderla"
+      },
+      {
+        "palabra": "FUENTE",
+        "pista": "De dónde viene la información"
+      },
+      {
+        "palabra": "DIVULGACION",
+        "pista": "Texto que explica temas científicos para todo el público"
+      },
+      {
+        "palabra": "RELEER",
+        "pista": "Volver a leer cuando no se entiende"
+      }
+    ]
+  }
 }

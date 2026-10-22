@@ -315,5 +315,33 @@
       "epigrafe": "Cada amiga recibe 2 porciones de 1/3: en total, 2/3 de pizza.",
       "descripcion": "Dos pizzas vistas desde arriba, cada una cortada en 3 porciones iguales. Las 6 porciones están coloreadas de a pares con tres colores (azul, naranja, verde), uno por amiga. Al costado, la expresión \"2 ÷ 3 = 2/3\". Diagrama claro, sin elementos decorativos."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "FRACCION",
+        "pista": "Número escrito como a/b; es el resultado de dividir"
+      },
+      {
+        "palabra": "NUMERADOR",
+        "pista": "El número de arriba: lo que se reparte"
+      },
+      {
+        "palabra": "DENOMINADOR",
+        "pista": "El número de abajo: entre cuántas partes se reparte"
+      },
+      {
+        "palabra": "COCIENTE",
+        "pista": "El resultado de una división"
+      },
+      {
+        "palabra": "RACIONAL",
+        "pista": "Número que se escribe como división de dos enteros"
+      },
+      {
+        "palabra": "DIVISION",
+        "pista": "Repartir en partes iguales"
+      }
+    ]
+  }
 }

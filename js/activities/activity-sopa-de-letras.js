@@ -1,4 +1,6 @@
 // js/activities/activity-sopa-de-letras.js - Nueva Lógica Pedagógica con Gramática Perfeccionada + DEBUG + CORRECCIONES
+import { actividadesDelBanco, nivelDeApoyo, ajustarConfiguracion, errorSinContenido } from '../banco-actividades.js';
+
 // ===============================================================================================================
 
 import { estadoGlobal, generarPromptHibrido } from '../config.js';
@@ -15,7 +17,7 @@ let gameInstance = null;
 
 // ==================== CONFIGURACIÓN ADAPTATIVA ====================
 function obtenerConfiguracionSopa() {
-    const nivel = estadoGlobal.perfil.dimensiones.razonamiento_logico;
+    const nivel = nivelDeApoyo() || estadoGlobal.perfil.dimensiones.razonamiento_logico;
     const configuraciones = {
         "bajo": { 
             gridSize: 10, 
@@ -39,7 +41,7 @@ function obtenerConfiguracionSopa() {
             descripcion: "Avanzado - Grid 14x14, + diagonales y reversa" 
         }
     };
-    return configuraciones[nivel] || configuraciones["medio"];
+    return ajustarConfiguracion(configuraciones[nivel] || configuraciones["medio"]);
 }
 
 // ==================== VALIDACIÓN DE COHERENCIA DE PISTAS ====================
@@ -470,6 +472,18 @@ export async function generarActividad() {
     try {
         const config = obtenerConfiguracionSopa();
         console.log(`Configuración para ${estadoGlobal.perfil.nombre_visible}: ${config.descripcion}`);
+
+        const delBanco = await actividadesDelBanco("sopa-de-letras", config);
+        if (delBanco) {
+            console.log("📚 Actividad armada con el banco de la clase");
+            return {
+                tipo: "sopa-de-letras",
+                actividades: delBanco.slice(0, config.cantidadPalabras),
+                configuracion: config,
+                instrucciones: "Encuentra las palabras ocultas en el tablero",
+                esBanco: true
+            };
+        }
         
         const actividadesIA = await generarPalabrasConIA();
         
@@ -488,7 +502,7 @@ export async function generarActividad() {
         
     } catch (error) {
         console.error("Error generando con IA:", error);
-        return generarActividadesFallback();
+        throw errorSinContenido(error);
     }
 }
 
@@ -500,87 +514,31 @@ async function generarPalabrasConIA() {
     
     console.log(`GENERANDO PALABRAS CON IA - Perfil: ${estadoGlobal.perfil.nombre_visible}`);
     
+    const nivelApoyo = nivelDeApoyo() || 'medio';
+    const maxPalabras = { bajo: 6, medio: 8, alto: 12 }[nivelApoyo];
+    const maxLetras = Math.min(config.gridSize - 1, nivelApoyo === 'bajo' ? 8 : 10);
+
     const prompt = `
-Eres un experto en educación inclusiva creando palabras para "Sopa de Letras" para ${estadoGlobal.perfil.nombre_visible}.
+Eres docente y armas una "Sopa de Letras" para estudiantes de secundaria.
 
-PERFIL DEL ESTUDIANTE: ${estadoGlobal.perfil.nombre_visible}
-${adaptaciones}
-
-EXPLICACIÓN EDUCATIVA:
+EXPLICACIÓN DE LA CLASE:
 """${explicacion}"""
 
-REGLAS CRÍTICAS PARA PISTAS COHERENTES Y ESPECÍFICAS:
+TAREA: elegí EXACTAMENTE ${cantidadRequerida} conceptos clave que aparezcan en la explicación y escribí una pista para cada uno.
 
-## EJEMPLOS OBLIGATORIOS DE PISTAS CORRECTAS:
-- PENTAGRAMA → "conjunto de cinco líneas paralelas"
-- NOTAS → "símbolos que representan sonidos musicales"
-- CLAVE → "símbolo que indica la altura musical"
-- COMPÁS → "organiza el tiempo en la música"
-- MELODÍA → "sucesión de sonidos musicales"
+REGLAS PARA LA PALABRA:
+- UNA sola palabra, en MAYÚSCULAS, sin tildes, sin espacios ni guiones (ejemplo: NUCLEO, MEMBRANA, FRACCION).
+- Entre 4 y ${maxLetras} letras.
+- Tiene que ser un concepto de la explicación, no una palabra suelta como "COSA" o "TEMA".
 
-## REGLAS GRAMATICALES OBLIGATORIAS:
-- La pista DEBE ser una descripción completa y coherente
-- NO usar fragmentos como "música sonidos" o "líneas notas"
-- SÍ usar oraciones completas: "símbolos musicales escritos en el pentagrama"
-- Cada pista debe hacer sentido gramaticalmente en español
+REGLAS PARA LA PISTA:
+- Es una definición corta y concreta de ESA palabra, de MÁXIMO ${maxPalabras} palabras.
+- Usa palabras simples y cotidianas. No uses la palabra buscada dentro de la pista.
+- Tiene que ser verdadera según la explicación y alcanzar para adivinar la palabra.
+- Ejemplos de buenas pistas: "Capa que rodea la célula" (MEMBRANA), "Número de arriba de una fracción" (NUMERADOR).
 
-## PATRONES CORRECTOS:
-✅ CORRECTO: "símbolos que representan sonidos musicales" (para NOTAS)
-❌ INCORRECTO: "música sonidos" (incoherente)
-
-✅ CORRECTO: "conjunto de cinco líneas paralelas" (para PENTAGRAMA)  
-❌ INCORRECTO: "cinco líneas música" (incompleto)
-
-✅ CORRECTO: "organiza el tiempo musical" (para COMPÁS)
-❌ INCORRECTO: "tiempo música" (incoherente)
-
-## LÍMITES DE PALABRAS POR NIVEL:
-- **N1: MÁXIMO 6 PALABRAS** por pista (ejemplo: "sonidos musicales que se escriben")
-- **N2: MÁXIMO 8 PALABRAS** por pista (ejemplo: "símbolos que representan sonidos musicales en el pentagrama")
-- **N3: SIN LÍMITE** pero mantener claridad
-
-## VERIFICACIÓN OBLIGATORIA ANTES DE GENERAR:
-1. ¿La pista describe correctamente la palabra?
-2. ¿Es gramaticalmente correcta en español?
-3. ¿Tiene sentido semántico completo?
-4. ¿Evita fragmentos confusos como "música sonidos"?
-5. ¿Respeta el límite de palabras para el nivel?
-
-## REGLAS ESPECIALES PARA NIVEL N1 (MÁXIMO 6 PALABRAS):
-- NOTAS → "sonidos musicales que se escriben" (5 palabras)
-- PENTAGRAMA → "cinco líneas para escribir música" (5 palabras)
-- CLAVE → "símbolo musical muy importante" (4 palabras)
-
-## REGLAS ESPECIALES PARA NIVEL N2 (MÁXIMO 8 PALABRAS):
-- NOTAS → "símbolos que representan sonidos musicales escritos" (6 palabras)
-- PENTAGRAMA → "conjunto de cinco líneas paralelas para música" (7 palabras)
-- CLAVE → "símbolo que indica la altura de notas" (7 palabras)
-
-INSTRUCCIONES CRÍTICAS:
-- Genera EXACTAMENTE ${cantidadRequerida} pares de "palabra":"pista" basados 100% en la explicación
-- La "palabra" debe ser un concepto CLAVE de la explicación educativa
-- La "pista" DEBE ser gramaticalmente correcta y semánticamente coherente
-- VERIFICAR 3 VECES que cada pista sea una descripción válida de la palabra
-- NO generar fragmentos incoherentes como "música sonidos"
-- RESPETAR LÍMITES DE PALABRAS POR NIVEL
-
-FORMATO DE RESPUESTA (JSON):
-\`\`\`json
-[
-${Array.from({length: cantidadRequerida}, (_, i) => 
-  `  {
-    "palabra": "CONCEPTO${i+1}",
-    "pista": "Descripción completa y coherente del concepto ${i+1}"
-  }`).join(',\n')}
-]
-\`\`\`
-
-IMPORTANTE: 
-- Responde SOLO con el JSON, sin texto adicional
-- TRIPLE verificación de coherencia gramatical y semántica
-- Evitar completamente fragmentos como "música sonidos", "líneas notas"
-- Usar descripciones completas y educativamente precisas
-- RESPETAR ESTRICTAMENTE LOS LÍMITES DE PALABRAS
+FORMATO: respondé SOLO con un arreglo JSON, sin texto adicional:
+[{"palabra": "EJEMPLO", "pista": "definición corta"}]
 `;
 
     try {

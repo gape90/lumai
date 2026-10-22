@@ -374,5 +374,29 @@
       "epigrafe": "Algunos de los principales recorridos migratorios del continente.",
       "descripcion": "Mapa de América con flechas curvas de colores: desde México y América Central hacia Estados Unidos; desde Paraguay, Bolivia, Perú y Venezuela hacia la Argentina; y una flecha interna en la Argentina desde el norte hacia las grandes ciudades. Leyenda simple. Estilo infografía clara."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "NATALIDAD",
+        "pista": "Cantidad de nacimientos en un período"
+      },
+      {
+        "palabra": "MORTALIDAD",
+        "pista": "Cantidad de muertes en un período"
+      },
+      {
+        "palabra": "MIGRACION",
+        "pista": "Desplazamiento de personas para vivir en otro lugar"
+      },
+      {
+        "palabra": "PIRAMIDE",
+        "pista": "Gráfico que muestra cuántas personas hay de cada edad"
+      },
+      {
+        "palabra": "POBLACION",
+        "pista": "Conjunto de personas que viven en un lugar"
+      }
+    ]
+  }
 }

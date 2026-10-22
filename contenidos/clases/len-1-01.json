@@ -399,5 +399,37 @@
       "epigrafe": "Escuchar el argumento del otro también es parte de discutir.",
       "descripcion": "Dos adolescentes en un aula, sentados frente a frente, conversando con gestos tranquilos y con globos de diálogo vacíos. Uno levanta la mano abierta, en gesto de explicar; el otro asiente. Estilo ilustración plana, diverso e inclusivo."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "TEMA",
+        "pista": "De qué se habla"
+      },
+      {
+        "palabra": "PROBLEMA",
+        "pista": "Pregunta sobre el tema que divide opiniones"
+      },
+      {
+        "palabra": "HECHO",
+        "pista": "Algo que se puede comprobar"
+      },
+      {
+        "palabra": "OPINION",
+        "pista": "Lo que alguien piensa o valora sobre algo"
+      },
+      {
+        "palabra": "ARGUMENTO",
+        "pista": "Razón que se da para sostener una posición"
+      },
+      {
+        "palabra": "POSICION",
+        "pista": "Lo que alguien defiende en una discusión"
+      },
+      {
+        "palabra": "CONVERSAR",
+        "pista": "Compartir ideas sobre un tema"
+      }
+    ]
+  }
 }

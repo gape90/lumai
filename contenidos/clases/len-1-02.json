@@ -309,5 +309,33 @@
       "epigrafe": "Palabras clave, abreviaturas y flechas: así se toman notas.",
       "descripcion": "Página de cuaderno con notas a mano bien legibles: un título \"Dulce de leche\", tres viñetas con palabras clave (\"origen\", \"cómo se hace\", \"usos\"), abreviaturas como \"x\" y \"q\" y flechas \"→\" que unen ideas. Estilo realista y simple, con resaltador naranja en las palabras clave."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "SUCESO",
+        "pista": "Acción que hace avanzar una historia"
+      },
+      {
+        "palabra": "CONECTOR",
+        "pista": "Palabra que relaciona ideas, como «después» o «porque»"
+      },
+      {
+        "palabra": "SUBTEMA",
+        "pista": "Cada parte en que se divide un tema"
+      },
+      {
+        "palabra": "INFERIR",
+        "pista": "Descubrir lo que no se dice usando pistas"
+      },
+      {
+        "palabra": "COMENTARIO",
+        "pista": "Opinión de quien cuenta sobre lo que pasó"
+      },
+      {
+        "palabra": "NOTAS",
+        "pista": "Lo importante, escrito con pocas palabras"
+      }
+    ]
+  }
 }

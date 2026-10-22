@@ -327,5 +327,33 @@
       "epigrafe": "El mismo número, 5, pero de lados opuestos del cero.",
       "descripcion": "Dos termómetros verticales lado a lado, con el cero bien marcado. Uno marca +5 °C (fondo con sol suave) y el otro −5 °C (fondo con nieve). Etiquetas grandes \"+5 °C\" y \"−5 °C\". Estilo plano, claro y sin detalles innecesarios."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "ENTERO",
+        "pista": "Natural, cero o natural con signo menos"
+      },
+      {
+        "palabra": "NEGATIVO",
+        "pista": "Número menor que cero"
+      },
+      {
+        "palabra": "POSITIVO",
+        "pista": "Número mayor que cero"
+      },
+      {
+        "palabra": "CERO",
+        "pista": "Punto de referencia de los números enteros"
+      },
+      {
+        "palabra": "RECTA",
+        "pista": "Línea donde cada número tiene su lugar"
+      },
+      {
+        "palabra": "SIGNO",
+        "pista": "El + o el − que indica de qué lado del cero está un número"
+      }
+    ]
+  }
 }

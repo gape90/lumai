@@ -334,5 +334,45 @@
       "epigrafe": "Las tres partes de una exposición.",
       "descripcion": "Diagrama horizontal de tres bloques conectados por flechas: \"Presentación\" (ícono de signo de pregunta, color azul), \"Desarrollo\" (ícono de lista numerada, color naranja) y \"Cierre\" (ícono de moño o bandera, color verde). Debajo de cada uno, una frase corta: \"atrapar y anunciar\", \"explicar en orden\", \"resumir\". Limpio y legible."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "EXPOSICION",
+        "pista": "Texto oral que explica un tema a un público"
+      },
+      {
+        "palabra": "PRESENTACION",
+        "pista": "Primera parte: capta la atención y anuncia el tema"
+      },
+      {
+        "palabra": "DESARROLLO",
+        "pista": "Parte central: explica los subtemas en orden"
+      },
+      {
+        "palabra": "CIERRE",
+        "pista": "Parte final: resume las ideas principales"
+      },
+      {
+        "palabra": "REFORMULACION",
+        "pista": "Decir lo mismo con otras palabras"
+      },
+      {
+        "palabra": "PUBLICO",
+        "pista": "Las personas que escuchan la exposición"
+      },
+      {
+        "palabra": "PAUSAS",
+        "pista": "Hacerlas al hablar ayuda a que el público entienda"
+      },
+      {
+        "palabra": "EJEMPLO",
+        "pista": "Ayuda a que el público entienda una idea"
+      },
+      {
+        "palabra": "VISUAL",
+        "pista": "El apoyo ___ muestra; vos explicás"
+      }
+    ]
+  }
 }

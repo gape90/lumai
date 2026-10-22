@@ -308,5 +308,29 @@
       "epigrafe": "Entre −4 y 6 hay 4 unidades hasta el cero y 6 más: 10 en total.",
       "descripcion": "Recta numérica horizontal de −5 a 7 con el cero destacado en naranja. Un arco verde va de −4 a 0 con la etiqueta \"4\" y un arco azul de 0 a 6 con la etiqueta \"6\". Debajo, una llave que abarca todo con \"4 + 6 = 10\". Diagrama limpio, tipografía grande."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "ABSOLUTO",
+        "pista": "Distancia de un número al cero: valor ___"
+      },
+      {
+        "palabra": "OPUESTOS",
+        "pista": "Números a la misma distancia del cero, en lados distintos"
+      },
+      {
+        "palabra": "DISTANCIA",
+        "pista": "Unidades que separan a dos números; nunca es negativa"
+      },
+      {
+        "palabra": "MAYOR",
+        "pista": "En la recta, el que está más a la derecha"
+      },
+      {
+        "palabra": "MENOR",
+        "pista": "En la recta, el que está más a la izquierda"
+      }
+    ]
+  }
 }

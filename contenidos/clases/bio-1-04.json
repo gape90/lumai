@@ -370,5 +370,33 @@
       "epigrafe": "En el acto reflejo, la médula espinal ordena el movimiento sin esperar al cerebro.",
       "descripcion": "Dibujo de una mano que se retira de una pava caliente. Una flecha sale de la mano, llega a la médula espinal (dibujada en un corte simple de la espalda) y vuelve al brazo, sin pasar por el cerebro. El cerebro aparece en gris con una pequeña flecha que llega después. Estilo esquemático claro."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "RECEPTOR",
+        "pista": "Detecta los estímulos, como las células de la retina"
+      },
+      {
+        "palabra": "NEURONA",
+        "pista": "Célula que transmite señales eléctricas"
+      },
+      {
+        "palabra": "EFECTOR",
+        "pista": "Músculo o glándula que ejecuta la respuesta"
+      },
+      {
+        "palabra": "HORMONA",
+        "pista": "Mensajero químico que viaja por la sangre"
+      },
+      {
+        "palabra": "REFLEJO",
+        "pista": "Respuesta rápida que ordena la médula, sin esperar al cerebro"
+      },
+      {
+        "palabra": "ENCEFALO",
+        "pista": "Parte del sistema nervioso central que está dentro del cráneo"
+      }
+    ]
+  }
 }

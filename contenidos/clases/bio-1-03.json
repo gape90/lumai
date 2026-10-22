@@ -369,5 +369,29 @@
       "epigrafe": "La mimosa púdica cierra sus hojas cuando se la toca.",
       "descripcion": "Dos dibujos de la misma planta mimosa púdica: a la izquierda, con sus hojitas abiertas; a la derecha, con un dedo tocándola y las hojitas cerradas y caídas. Una flecha entre los dos dibujos. Estilo botánico simple y claro."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "ESTIMULO",
+        "pista": "Cambio del ambiente que un ser vivo puede detectar"
+      },
+      {
+        "palabra": "RESPUESTA",
+        "pista": "Lo que hace un ser vivo frente a un estímulo"
+      },
+      {
+        "palabra": "HOMEOSTASIS",
+        "pista": "Mantener estables las condiciones internas del cuerpo"
+      },
+      {
+        "palabra": "TROPISMO",
+        "pista": "Respuesta de crecimiento de una planta frente a un estímulo"
+      },
+      {
+        "palabra": "TAXISMO",
+        "pista": "Desplazamiento de un organismo hacia un estímulo"
+      }
+    ]
+  }
 }

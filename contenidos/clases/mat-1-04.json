@@ -392,5 +392,45 @@
       "epigrafe": "Para lo muy grande y lo muy chico, la notación científica.",
       "descripcion": "Imagen dividida en dos: a la izquierda, la Tierra y el Sol con una flecha y la etiqueta \"150.000.000 km = 1,5 × 10⁸ km\"; a la derecha, una bacteria vista con lupa con la etiqueta \"0,000002 m = 2 × 10⁻⁶ m\". Estilo didáctico, claro, tipografía grande."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "EQUIVALENTES",
+        "pista": "Fracciones que se escriben distinto pero valen lo mismo"
+      },
+      {
+        "palabra": "DECIMAL",
+        "pista": "Número escrito con coma, como 0,75"
+      },
+      {
+        "palabra": "PORCENTAJE",
+        "pista": "Fracción con denominador 100"
+      },
+      {
+        "palabra": "CIENTIFICA",
+        "pista": "Notación ___: escribe números enormes con potencias de 10"
+      },
+      {
+        "palabra": "FRACCION",
+        "pista": "Número escrito como a/b"
+      },
+      {
+        "palabra": "CIEN",
+        "pista": "Denominador de un porcentaje"
+      },
+      {
+        "palabra": "DIVIDIR",
+        "pista": "Para pasar de fracción a decimal hay que ___"
+      },
+      {
+        "palabra": "COMA",
+        "pista": "Separa la parte entera de la decimal"
+      },
+      {
+        "palabra": "POTENCIAS",
+        "pista": "La notación científica usa ___ de 10"
+      }
+    ]
+  }
 }

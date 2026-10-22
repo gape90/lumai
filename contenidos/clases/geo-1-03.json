@@ -389,5 +389,33 @@
       "epigrafe": "Las tres escalas de los problemas ambientales.",
       "descripcion": "Diagrama de tres círculos concéntricos: en el centro un barrio con un basural (\"Local\"), en el anillo medio un río que cruza varias provincias (\"Regional\") y en el anillo exterior el planeta Tierra con un termómetro (\"Mundial\"). Etiquetas grandes y colores de LumAI."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "DEFORESTACION",
+        "pista": "Eliminación de bosques y selvas"
+      },
+      {
+        "palabra": "ESCALA",
+        "pista": "Tamaño del área que se analiza: local, regional o mundial"
+      },
+      {
+        "palabra": "HUMEDAL",
+        "pista": "Zona inundada gran parte del año, como los esteros"
+      },
+      {
+        "palabra": "CAUSA",
+        "pista": "Lo que origina un problema ambiental"
+      },
+      {
+        "palabra": "CONSECUENCIA",
+        "pista": "Efecto que produce un problema ambiental"
+      },
+      {
+        "palabra": "CONTAMINACION",
+        "pista": "Presencia de sustancias dañinas en el ambiente"
+      }
+    ]
+  }
 }

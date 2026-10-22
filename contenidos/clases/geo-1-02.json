@@ -370,5 +370,29 @@
       "epigrafe": "Salar de la Puna: allí se extrae el litio para las baterías.",
       "descripcion": "Paisaje de un salar blanco y extenso en la Puna, con montañas al fondo y piletones rectangulares de colores celeste y verde para la extracción de litio. En una esquina, el ícono de una batería de celular. Estilo ilustración realista suave."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "AMBIENTE",
+        "pista": "La naturaleza más lo que la sociedad hace con ella"
+      },
+      {
+        "palabra": "RECURSO",
+        "pista": "Elemento de la naturaleza que la sociedad valora y usa"
+      },
+      {
+        "palabra": "RENOVABLE",
+        "pista": "Recurso que se regenera naturalmente"
+      },
+      {
+        "palabra": "RELIEVE",
+        "pista": "Las formas de la superficie: montañas, llanuras, mesetas"
+      },
+      {
+        "palabra": "SUSTENTABLE",
+        "pista": "Forma de usar los recursos que cuida a las generaciones futuras"
+      }
+    ]
+  }
 }

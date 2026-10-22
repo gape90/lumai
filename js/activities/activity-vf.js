@@ -1,3 +1,5 @@
+import { actividadesDelBanco, nivelDeApoyo, ajustarConfiguracion, errorSinContenido } from '../banco-actividades.js';
+
 // ==================== IMPORTACIONES PARA Lumai ====================
 import { 
     estadoGlobal
@@ -16,7 +18,7 @@ import {
 // ==================== CONFIGURACION ADAPTATIVA DINAMICA ====================
 
 function obtenerConfiguracionVF() {
-    const nivel = estadoGlobal.perfil.dimensiones.procesamiento_informacion;
+    const nivel = nivelDeApoyo() || estadoGlobal.perfil.dimensiones.procesamiento_informacion;
     
     const configuraciones = {
         "bajo": {
@@ -36,7 +38,7 @@ function obtenerConfiguracionVF() {
         }
     };
     
-    return configuraciones[nivel] || configuraciones["medio"];
+    return ajustarConfiguracion(configuraciones[nivel] || configuraciones["medio"]);
 }
 
 // ==================== GENERACION DE ACTIVIDADES CON IA ====================
@@ -47,6 +49,18 @@ export async function generarActividad() {
     try {
         const config = obtenerConfiguracionVF();
         console.log(`🎮 Configuración para ${estadoGlobal.perfil.nombre_visible}: ${config.descripcion}`);
+
+        const delBanco = await actividadesDelBanco("verdadero-falso", config);
+        if (delBanco) {
+            console.log("📚 Actividad armada con el banco de la clase");
+            return {
+                tipo: "verdadero-falso",
+                actividades: delBanco.slice(0, config.cantidadPreguntas),
+                configuracion: config,
+                instrucciones: "Determina si cada afirmación es verdadera o falsa",
+                esBanco: true
+            };
+        }
         
         const actividadesIA = await generarPreguntasConIA();
         
@@ -65,7 +79,7 @@ export async function generarActividad() {
         
     } catch (error) {
         console.error("❌ Error generando con IA:", error);
-        return generarActividadFallback();
+        throw errorSinContenido(error);
     }
 }
 

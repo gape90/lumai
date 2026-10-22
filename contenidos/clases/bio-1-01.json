@@ -350,5 +350,29 @@
       "epigrafe": "Muy distintos, pero con las mismas funciones vitales.",
       "descripcion": "Tres figuras en fila: una bacteria (vista ampliada), un cactus en maceta y un adolescente. Debajo de las tres, tres íconos compartidos con su nombre: una manzana (nutrición), un ojo (relación) y un pollito saliendo del huevo (reproducción). Estilo plano, colores de LumAI."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "NUTRICION",
+        "pista": "Obtener materia y energía para vivir"
+      },
+      {
+        "palabra": "RELACION",
+        "pista": "Captar los cambios del ambiente y responder"
+      },
+      {
+        "palabra": "REPRODUCCION",
+        "pista": "Originar nuevos seres vivos"
+      },
+      {
+        "palabra": "PASTEUR",
+        "pista": "Demostró que todo ser vivo viene de otro ser vivo"
+      },
+      {
+        "palabra": "ESPONTANEA",
+        "pista": "La generación ___ decía que la vida surge sola"
+      }
+    ]
+  }
 }

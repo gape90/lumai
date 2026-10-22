@@ -1,3 +1,5 @@
+import { actividadesDelBanco, nivelDeApoyo, ajustarConfiguracion, errorSinContenido } from '../banco-actividades.js';
+
 // ==================== IMPORTACIONES PARA Lumai ====================
 import { 
     estadoGlobal
@@ -16,7 +18,7 @@ import {
 // ==================== CONFIGURACION ADAPTATIVA DINAMICA ====================
 
 function obtenerConfiguracionRace() {
-    const nivel = estadoGlobal.perfil.dimensiones.procesamiento_informacion;
+    const nivel = nivelDeApoyo() || estadoGlobal.perfil.dimensiones.procesamiento_informacion;
     
     const configuraciones = {
         "bajo": {
@@ -42,7 +44,7 @@ function obtenerConfiguracionRace() {
         }
     };
     
-    return configuraciones[nivel] || configuraciones["medio"];
+    return ajustarConfiguracion(configuraciones[nivel] || configuraciones["medio"]);
 }
 
 // ==================== FUNCIONES DE CORRECCIÓN GRAMATICAL ====================
@@ -322,6 +324,18 @@ export async function generarActividad() {
     try {
         const config = obtenerConfiguracionRace();
         console.log(`🎮 Configuración para ${estadoGlobal.perfil.nombre_visible}: ${config.descripcion}`);
+
+        const delBanco = await actividadesDelBanco("race", config);
+        if (delBanco) {
+            console.log("📚 Actividad armada con el banco de la clase");
+            return {
+                tipo: "race",
+                actividades: delBanco.slice(0, config.cantidadPreguntas),
+                configuracion: config,
+                instrucciones: "Muévete entre carriles y atraviesa la respuesta correcta",
+                esBanco: true
+            };
+        }
         
         const actividadesIA = await generarPreguntasConIA();
         
@@ -340,7 +354,7 @@ export async function generarActividad() {
         
     } catch (error) {
         console.error("❌ Error generando con IA:", error);
-        return generarActividadFallback();
+        throw errorSinContenido(error);
     }
 }
 

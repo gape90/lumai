@@ -371,5 +371,41 @@
       "epigrafe": "La célula vegetal tiene pared celular, cloroplastos y una vacuola grande.",
       "descripcion": "Dos células lado a lado: a la izquierda, una célula vegetal rectangular con pared celular gruesa (verde), cloroplastos verdes, una vacuola grande celeste y el núcleo; a la derecha, una célula animal redondeada con núcleo y mitocondrias. Etiquetas grandes en las estructuras diferentes. Estilo plano, claro."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "CELULA",
+        "pista": "La unidad más pequeña que está viva"
+      },
+      {
+        "palabra": "MEMBRANA",
+        "pista": "Capa que rodea la célula y controla qué entra y sale"
+      },
+      {
+        "palabra": "CITOPLASMA",
+        "pista": "Medio gelatinoso que llena la célula"
+      },
+      {
+        "palabra": "NUCLEO",
+        "pista": "Guarda el material genético de las células eucariotas"
+      },
+      {
+        "palabra": "PROCARIOTA",
+        "pista": "Célula sin núcleo, como las bacterias"
+      },
+      {
+        "palabra": "EUCARIOTA",
+        "pista": "Célula con núcleo"
+      },
+      {
+        "palabra": "MICROSCOPIO",
+        "pista": "Instrumento que permitió descubrir las células"
+      },
+      {
+        "palabra": "CLOROPLASTOS",
+        "pista": "Los tienen las células vegetales y no las animales"
+      }
+    ]
+  }
 }

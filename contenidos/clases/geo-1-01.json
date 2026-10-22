@@ -434,5 +434,37 @@
       "epigrafe": "Algunos territorios americanos todavía dependen de otros países.",
       "descripcion": "Mapa de América en gris claro con cuatro territorios destacados en naranja y con etiquetas: Groenlandia, Puerto Rico, Guayana Francesa e Islas Malvinas. Las Malvinas con la leyenda \"ocupadas por el Reino Unido – reclamo de soberanía argentino\". Estilo infografía escolar."
     }
-  ]
+  ],
+  "banco": {
+    "palabras": [
+      {
+        "palabra": "ESTADO",
+        "pista": "País con gobierno propio que manda sobre su territorio"
+      },
+      {
+        "palabra": "SOBERANIA",
+        "pista": "Derecho de un Estado a decidir sobre su territorio"
+      },
+      {
+        "palabra": "TERRITORIO",
+        "pista": "La tierra, el mar y el aire de un Estado"
+      },
+      {
+        "palabra": "LIMITE",
+        "pista": "Línea que separa a dos países"
+      },
+      {
+        "palabra": "FRONTERA",
+        "pista": "Zona alrededor del límite, donde la gente se relaciona"
+      },
+      {
+        "palabra": "DEPENDENCIA",
+        "pista": "Territorio que pertenece a otro país"
+      },
+      {
+        "palabra": "MERCOSUR",
+        "pista": "Organismo donde cooperan varios países de América del Sur"
+      }
+    ]
+  }
 }

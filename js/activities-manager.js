@@ -8,6 +8,7 @@
 // ================================================================
 
 import { estadoGlobal, obtenerActividadesParaPerfil } from './config.js';
+import { aplicarPerillasAJuego } from './banco-actividades.js';
 
 // ==================== CONFIGURACIÓN Y ESTADO ====================
 
@@ -46,6 +47,17 @@ function inicializarActividadesPorPerfil() {
     }
     
     actividadesDisponibles = obtenerActividadesParaPerfil(nombrePerfil);
+
+    // Perfil de 13 dimensiones: los juegos de movimiento y de reflejos (pelotas, carrera, skate) se
+    // quitan si el alumno necesita botones grandes (motricidad), sin tiempos (velocidad) o un entorno calmo.
+    const aj = estadoGlobal.ajustes;
+    if (aj && (aj.botones_grandes || aj.sin_tiempos || aj.calmo)) {
+        const quietos = actividadesDisponibles.filter(a => !['basketball', 'race', 'skater'].includes(a));
+        if (quietos.length > 0) {
+            console.log('🧩 Juegos de movimiento omitidos por el perfil:', actividadesDisponibles.filter(a => !quietos.includes(a)));
+            actividadesDisponibles = quietos;
+        }
+    }
     console.log(`🎯 Actividades configuradas para perfil ${nombrePerfil}:`, actividadesDisponibles);
     
     if (nombrePerfil === 'N0') {
@@ -107,7 +119,37 @@ export async function cargarActividad() {
                 <style>@keyframes lumaiGirar { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }</style>`;
         }
         
-        await cargarModuloActividad(tipoActividad);
+        try {
+            await cargarModuloActividad(tipoActividad);
+        } catch (errorModulo) {
+            if (errorModulo?.code !== 'SIN_CONTENIDO') throw errorModulo;
+            // Sin banco de la clase y sin respuesta de la IA: se avisa en vez de inventar preguntas
+            procesamientoEnCurso = false;
+            const pintarReintento = () => {
+                if (!contenedorEspera) return;
+                contenedorEspera.innerHTML = `
+                    <div style="text-align:center;padding:50px 20px;">
+                        <div style="font-size:3em;">🔄</div>
+                        <p style="font-size:1.3em;color:#00509e;font-weight:600;margin-top:15px;">No pude preparar esta actividad</p>
+                        <p style="color:#666;">Puede ser un problema de conexión. Probemos de nuevo.</p>
+                        <button id="lumai-reintentar" style="margin-top:15px;padding:14px 28px;font-size:1.2em;border:none;border-radius:12px;background:#00509e;color:#fff;cursor:pointer;">Reintentar</button>
+                    </div>`;
+                document.getElementById('lumai-reintentar')?.addEventListener('click', async () => {
+                    if (procesamientoEnCurso) return;
+                    procesamientoEnCurso = true;
+                    contenedorEspera.innerHTML = '<p style="text-align:center;padding:60px 20px;font-size:1.3em;color:#00509e;">⏳ Estoy preparando tu actividad...</p>';
+                    try {
+                        await cargarModuloActividad(tipoActividad);
+                    } catch (e) {
+                        console.error(e);
+                        pintarReintento();
+                    }
+                    procesamientoEnCurso = false;
+                });
+            };
+            pintarReintento();
+            return;
+        }
         
         procesamientoEnCurso = false;
         console.log(`✅ Actividad ${tipoActividad} cargada correctamente`);
@@ -211,6 +253,9 @@ async function cargarModuloActividad(tipo) {
         if (modulo.renderizar) {
             await modulo.renderizar();
         }
+
+        // Perillas del perfil (letra, mayúsculas, botones grandes, calmo, sin puntaje)
+        try { aplicarPerillasAJuego(); } catch (e) { console.warn('⚠️ No se pudieron aplicar las perillas al juego:', e); }
 
     } catch (error) {
         console.error(`❌ Error cargando módulo ${tipo}:`, error);
