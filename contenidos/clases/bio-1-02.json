@@ -202,7 +202,7 @@
       "titulo": "Células animales y vegetales",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última cápsula: una célula de hoja y una de tu brazo. ¿En qué se diferencian?",
+      "lumai": "Última actividad: una célula de hoja y una de tu brazo. ¿En qué se diferencian?",
       "pose": "saludo",
       "texto": "Las dos son eucariotas. Pero la célula vegetal tiene una **pared celular** rígida, que le da forma.\nTambién tiene **cloroplastos**, donde fabrica su alimento con la luz del sol. La célula animal no tiene ni pared ni cloroplastos.",
       "imagen": "bio-1-02-c",
@@ -343,7 +343,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a conocer la pieza con la que está armada toda la vida: la célula. Son 5 cápsulas. Para empezar, pensá en esto.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a conocer la pieza con la que está armada toda la vida: la célula. Son 5 actividades. Para empezar, pensá en esto.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya conocés la célula por dentro. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

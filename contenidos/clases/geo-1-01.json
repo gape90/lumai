@@ -171,7 +171,7 @@
       "interactivo": {
         "tipo": "revelar",
         "pregunta": "Si hay 35 países, ¿por qué en el mapa de América aparecen más nombres?",
-        "respuesta": "Porque también hay territorios que no son independientes. Aparecen con su nombre, pero pertenecen a otro país. Los vas a conocer en la próxima cápsula."
+        "respuesta": "Porque también hay territorios que no son independientes. Aparecen con su nombre, pero pertenecen a otro país. Los vas a conocer en la próxima actividad."
       },
       "idea_clave": "América tiene 35 países independientes. Casi todos fueron colonias europeas.",
       "chequeo": {
@@ -266,7 +266,7 @@
         ],
         "correcta": 0,
         "bien": "¡Correcto! Y la Argentina reclama su soberanía desde entonces.",
-        "mal": "No es ese. Volvé a leer el último párrafo de la cápsula."
+        "mal": "No es ese. Volvé a leer el último párrafo de la actividad."
       },
       "texto_simple": "Algunos lugares de América son de otro país. Por ejemplo, la Guayana Francesa es de Francia. El Reino Unido ocupa las islas Malvinas. La Argentina dice que son suyas."
     },
@@ -275,7 +275,7 @@
       "titulo": "Desacuerdos y acuerdos",
       "minutos": 3,
       "esencial": false,
-      "lumai": "Última cápsula. ¿Qué pasa cuando dos países no se ponen de acuerdo?",
+      "lumai": "Última actividad. ¿Qué pasa cuando dos países no se ponen de acuerdo?",
       "pose": "saludo",
       "texto": "A veces dos países discuten por un límite. Para resolver problemas así, los países se juntan en **organismos**: ahí conversan y cooperan.\nMirá algunos momentos importantes.",
       "idea_clave": "Los límites a veces traen conflictos. Para resolverlos, los países cooperan en organismos como la OEA o el Mercosur.",
@@ -406,7 +406,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a mirar el mapa de América con otros ojos. Son 5 cápsulas cortas y las vas a recorrer a tu ritmo. Para empezar, te propongo imaginar una escena.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a mirar el mapa de América con otros ojos. Son 5 actividades cortas y las vas a recorrer a tu ritmo. Para empezar, te propongo imaginar una escena.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés leer el mapa político de América. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

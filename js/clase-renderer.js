@@ -1167,7 +1167,7 @@ function parrafos(texto) {
 // Pregunta de comprobación: hay que acertar para seguir; las opciones erradas se tachan
 // Cómo se nombran las partes de la clase en cada materia (la estructura es la misma)
 const ROTULOS = {
-  general:    { capsula: 'Cápsula', recordar: 'Para recordar', iconoRecordar: '📌', chequeo: '✅ ¿Lo entendiste?', mision: 'Tu misión', iconoMision: '🎯', resuelta: 'La respuesta a tu misión', recorrido: '🗺️ El recorrido', resumen: '📌 Lo que te llevás', lugar: '📍 Pensá en tu lugar' },
+  general:    { capsula: 'Actividad', recordar: 'Para recordar', iconoRecordar: '📌', chequeo: '✅ ¿Lo entendiste?', mision: 'Tu misión', iconoMision: '🎯', resuelta: 'La respuesta a tu misión', recorrido: '🗺️ El recorrido', resumen: '📌 Lo que te llevás', lugar: '📍 Pensá en tu lugar' },
   lengua:     { capsula: 'Capítulo', recordar: 'Subrayá esto', iconoRecordar: '🖍️', chequeo: 'Pregunta de lectura', mision: 'Tu desafío de hoy', iconoMision: '📖', resuelta: 'Desafío resuelto', recorrido: '📑 Índice', resumen: '🖍️ Lo que subrayaste', lugar: '✍️ Escribí desde tu lugar' },
   matematica: { capsula: 'Paso', recordar: 'La regla', iconoRecordar: '📐', chequeo: 'Resolvé', mision: 'El problema de hoy', iconoMision: '🧮', resuelta: 'Problema resuelto', recorrido: '🧮 Plan de trabajo', resumen: '📐 Las reglas de hoy', lugar: '📍 Los números de tu lugar' },
   biologia:   { capsula: 'Observación', recordar: 'Hallazgo', iconoRecordar: '🔬', chequeo: '🧪 Comprobá', mision: 'Tu investigación', iconoMision: '🧪', resuelta: 'Conclusión de la investigación', recorrido: '📓 Bitácora', resumen: '🔬 Tus hallazgos', lugar: '🌿 Observá a tu alrededor' },
@@ -1436,7 +1436,7 @@ function renderizarCapsulas(clase, destino, opciones) {
   agenda.appendChild(el('ol', 'lc-agenda', capsulas.map(c => `<li><span>${fmt(c.titulo)}</span>${aj.sin_tiempos ? '' : `<small>${c.minutos || 2} min</small>`}</li>`).join('')));
   portada.appendChild(agenda);
   if (clase.vocabulario?.length) {
-    portada.appendChild(el('p', 'lc-tip', '💡 Las palabras <span class="lc-termino" style="cursor:default">subrayadas así</span> se pueden tocar para ver qué significan. Si algo no se entiende, cada cápsula tiene ayuda.'));
+    portada.appendChild(el('p', 'lc-tip', '💡 Las palabras <span class="lc-termino" style="cursor:default">subrayadas así</span> se pueden tocar para ver qué significan. Si algo no se entiende, cada actividad tiene ayuda.'));
   }
   pantallas.push({ nodo: portada, tipo: 'portada', lista: true, paso: '▶' });
 
@@ -1489,7 +1489,8 @@ function renderizarCapsulas(clase, destino, opciones) {
       const fila = el('div', 'lc-escuchar-fila');
       const bVoz = el('button', 'lc-btn lc-sec lc-btn-chico', '🔊 Escuchar');
       bVoz.type = 'button';
-      const paraLeer = [c.titulo, textoParaVoz, c.idea_clave].filter(Boolean).join('. ').replace(/\*+/g, '').replace(/\n+/g, ' ');
+      // La voz lee siempre la explicación completa (aunque en pantalla se muestre primero la versión fácil)
+      const paraLeer = [c.titulo, c.texto || textoParaVoz, c.idea_clave].filter(Boolean).join('. ').replace(/\*+/g, '').replace(/\n+/g, ' ');
       leer = () => leerEnVoz(paraLeer, bVoz);
       bVoz.addEventListener('click', () => { leer(); registrar('clase_escuchar', { clase: ctx.id, capsula: capId }); });
       if (!('speechSynthesis' in window)) bVoz.disabled = true;
@@ -1583,10 +1584,10 @@ function renderizarCapsulas(clase, destino, opciones) {
       if (valor === 'entendi') {
         respuesta.appendChild(el('p', '', '¡Genial! Ya estás listo para las actividades. Si querés, antes repasá las palabras clave.'));
       } else if (valor === 'mas_o_menos') {
-        respuesta.appendChild(el('p', '', `Está muy bien darse cuenta. Repasá las palabras clave de abajo${dificil ? ' y volvé a la cápsula donde más dudaste.' : '.'}`));
+        respuesta.appendChild(el('p', '', `Está muy bien darse cuenta. Repasá las palabras clave de abajo${dificil ? ' y volvé a la actividad donde más dudaste.' : '.'}`));
         if (dificil) respuesta.appendChild(botonVolver(dificil));
       } else {
-        respuesta.appendChild(el('p', '', 'Gracias por decirlo: así se aprende. Volvé a mirar la cápsula con calma y abrí "¿Te trabaste?" para leerla más fácil.'));
+        respuesta.appendChild(el('p', '', 'Gracias por decirlo: así se aprende. Volvé a mirar la actividad con calma y abrí "¿Te trabaste?" para leerla más fácil.'));
         respuesta.appendChild(botonVolver(dificil || pantallas[1]));
         if (conAsistente) respuesta.appendChild(botonPreguntar('💬 Preguntale a LumAI', { capsula: null, pregunta: `Me costó entender la clase "${clase.titulo}". ¿Me la explicás de otra forma?`, contexto: clase.idea_central || '' }));
       }

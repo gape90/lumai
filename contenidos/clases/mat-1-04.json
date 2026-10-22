@@ -240,7 +240,7 @@
       "titulo": "Elegir la forma más útil",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última cápsula. Ahora te toca elegir a vos.",
+      "lumai": "Última actividad. Ahora te toca elegir a vos.",
       "pose": "idea",
       "texto": "No hay una forma mejor que otra: hay una más útil para cada problema.\nFracciones para repartir. Decimales para la plata. Porcentajes para descuentos. Notación científica para la ciencia.",
       "interactivo": {
@@ -372,7 +372,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a ver que un número puede tener muchas caras. Son 5 cápsulas cortas. Para empezar, fijate en esto.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a ver que un número puede tener muchas caras. Son 5 actividades cortas. Para empezar, fijate en esto.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés escribir un número de muchas formas y elegir la mejor. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

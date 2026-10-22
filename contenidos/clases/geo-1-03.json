@@ -235,7 +235,7 @@
       "titulo": "¿Qué se puede hacer?",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última cápsula: hablemos de soluciones.",
+      "lumai": "Última actividad: hablemos de soluciones.",
       "pose": "idea",
       "texto": "Las **políticas ambientales** son decisiones de los gobiernos para prevenir o reparar daños. En la Argentina, la Ley de Bosques (2007) protege los bosques nativos.\nTambién hay acuerdos entre países. Y cada persona puede aportar con su consumo y su participación.",
       "presentacion": {
@@ -361,7 +361,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a investigar problemas ambientales como verdaderos geógrafos. Son 5 cápsulas. Para empezar, recordemos algo que pasó cerca de casa.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a investigar problemas ambientales como verdaderos geógrafos. Son 5 actividades. Para empezar, recordemos algo que pasó cerca de casa.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés analizar un problema ambiental. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

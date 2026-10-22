@@ -206,7 +206,7 @@
       "titulo": "Plantas y microbios también responden",
       "minutos": 3,
       "esencial": false,
-      "lumai": "Última cápsula: volvamos a la planta de la ventana.",
+      "lumai": "Última actividad: volvamos a la planta de la ventana.",
       "pose": "saludo",
       "texto": "Las plantas responden más lento, pero responden. Sus tallos crecen hacia la luz: es el **fototropismo**.\nAlgunas bacterias nadan hacia donde hay alimento. Esos desplazamientos se llaman taxismos.",
       "imagen": "bio-1-03-c",
@@ -341,7 +341,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir cómo los seres vivos se dan cuenta de lo que pasa y responden. Son 4 cápsulas. Para empezar, hacé esta prueba.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir cómo los seres vivos se dan cuenta de lo que pasa y responden. Son 4 actividades. Para empezar, hacé esta prueba.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés cómo funciona la relación con el ambiente. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

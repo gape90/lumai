@@ -314,7 +314,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! ¿Te pone nervioso hablar frente al curso? Es muy normal. En 5 cápsulas te doy las herramientas para una exposición que todos quieran escuchar.",
+    "saludo": "¡Hola, {NOMBRE}! ¿Te pone nervioso hablar frente al curso? Es muy normal. En 5 actividades te doy las herramientas para una exposición que todos quieran escuchar.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya tenés todo para armar tu propia exposición. Cuando quieras, pasamos a las actividades."
   },
   "imagenes": [

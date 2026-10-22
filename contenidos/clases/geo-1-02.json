@@ -230,7 +230,7 @@
       "titulo": "Formas de aprovechar los recursos",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última cápsula: ¿qué se hace con los recursos en cada lugar?",
+      "lumai": "Última actividad: ¿qué se hace con los recursos en cada lugar?",
       "pose": "idea",
       "texto": "Cada sociedad aprovecha los recursos de distinta manera: agricultura y ganadería en la Pampa, minería en los Andes, pesca en el mar Argentino, petróleo y gas en Vaca Muerta.\nAlgunas formas de uso cuidan los recursos. Otras los agotan o contaminan.",
       "presentacion": {
@@ -342,7 +342,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a recorrer los ambientes de América, del hielo a la selva. Son 5 cápsulas. Para empezar, mirá esto.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a recorrer los ambientes de América, del hielo a la selva. Son 5 actividades. Para empezar, mirá esto.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya conocés los ambientes de América y sus recursos. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

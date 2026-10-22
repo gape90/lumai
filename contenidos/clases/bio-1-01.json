@@ -322,7 +322,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a viajar al origen de la vida. Son 4 cápsulas. Para empezar, te cuento un misterio que duró siglos.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a viajar al origen de la vida. Son 4 actividades. Para empezar, te cuento un misterio que duró siglos.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés qué tienen en común todos los seres vivos. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

@@ -171,7 +171,7 @@
       "titulo": "Fracciones mayores que uno",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última cápsula: ¿qué pasa si hay más cosas que personas?",
+      "lumai": "Última actividad: ¿qué pasa si hay más cosas que personas?",
       "pose": "idea",
       "texto": "Si hay más cosas que personas, a cada una le toca más de un entero.\n7 tortas entre 2 personas: 7/2, o sea, 3 tortas y media para cada una.\nSi el numerador es mayor que el denominador, la fracción es mayor que 1.",
       "interactivo": {
@@ -295,7 +295,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir qué esconde una fracción. Son 4 cápsulas cortas. Para empezar, imaginate esta situación.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir qué esconde una fracción. Son 4 actividades cortas. Para empezar, imaginate esta situación.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés que una fracción es una división disfrazada. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

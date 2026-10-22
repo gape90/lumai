@@ -170,7 +170,7 @@
       "titulo": "Los enteros en la vida real",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última cápsula: ¿dónde más aparecen los negativos?",
+      "lumai": "Última actividad: ¿dónde más aparecen los negativos?",
       "pose": "saludo",
       "texto": "Temperaturas bajo cero, subsuelos, metros bajo el nivel del mar, deudas, la diferencia de gol.\nEn todos los casos hay un cero de referencia y dos sentidos opuestos: arriba y abajo, ganar y perder.",
       "presentacion": {
@@ -307,7 +307,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir los números que viven debajo del cero. Son 4 cápsulas cortas. Para empezar, mirá a tu alrededor.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir los números que viven debajo del cero. Son 4 actividades cortas. Para empezar, mirá a tu alrededor.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya conocés los números enteros. Cuando quieras, pasamos a las actividades."
   },
   "imagenes": [

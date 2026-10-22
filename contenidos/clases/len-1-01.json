@@ -249,7 +249,7 @@
       "titulo": "La voz y el cuerpo también hablan",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última cápsula: no solo importa lo que decís, sino cómo lo decís.",
+      "lumai": "Última actividad: no solo importa lo que decís, sino cómo lo decís.",
       "pose": "saludo",
       "texto": "El tono, el volumen y la velocidad de la voz son **recursos paraverbales**. Los gestos y la postura son recursos no verbales.\nUn mismo argumento puede sonar respetuoso o agresivo según cómo lo digas. Gritar no da la razón: hace que los demás dejen de escuchar.",
       "imagen": "len-1-01-b",
@@ -379,7 +379,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! ¿Alguna vez una charla terminó en pelea sin que nadie se diera cuenta? Son 5 cápsulas cortas para aprender a discutir sin pelear. Mirá lo que pasó en este grupo.",
+    "saludo": "¡Hola, {NOMBRE}! ¿Alguna vez una charla terminó en pelea sin que nadie se diera cuenta? Son 5 actividades cortas para aprender a discutir sin pelear. Mirá lo que pasó en este grupo.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés separar hechos de opiniones y defender tus ideas con argumentos. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

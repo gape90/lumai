@@ -225,7 +225,7 @@
       "titulo": "Un equipo integrado",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última cápsula: el sistema nervioso tiene un compañero de equipo.",
+      "lumai": "Última actividad: el sistema nervioso tiene un compañero de equipo.",
       "pose": "saludo",
       "texto": "El **sistema endocrino** libera **hormonas** a la sangre: mensajeros químicos más lentos, pero de efecto más duradero.\nAnte un susto, la adrenalina acelera el corazón. Por eso el cuerpo es un sistema integrado: todas sus partes trabajan coordinadas.",
       "presentacion": {
@@ -342,7 +342,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a ver cómo tu cuerpo trabaja en equipo, en tiempo real. Son 5 cápsulas. Para empezar, imaginate esta escena.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a ver cómo tu cuerpo trabaja en equipo, en tiempo real. Son 5 actividades. Para empezar, imaginate esta escena.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés cómo tu cuerpo capta, decide y responde. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

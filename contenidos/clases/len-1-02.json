@@ -289,7 +289,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a entrenar un superpoder que casi nadie practica: escuchar de verdad. Son 5 cápsulas, y en una te voy a contar una historia. Para empezar, probá esto.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a entrenar un superpoder que casi nadie practica: escuchar de verdad. Son 5 actividades, y en una te voy a contar una historia. Para empezar, probá esto.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Escuchar con atención te va a servir en todas las materias. Cuando quieras, seguimos con las actividades."
   },
   "imagenes": [

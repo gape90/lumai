@@ -234,7 +234,7 @@
       "titulo": "Condiciones de vida y de trabajo",
       "minutos": 2,
       "esencial": true,
-      "lumai": "Última cápsula, y una muy importante: no todos viven igual.",
+      "lumai": "Última actividad, y una muy importante: no todos viven igual.",
       "pose": "saludo",
       "texto": "En muchas ciudades de América conviven barrios con todos los servicios y asentamientos sin agua potable ni cloacas.\nMucha gente tiene trabajos **informales**: sin contrato, sin aportes para la jubilación y sin obra social. Estas desigualdades son un gran desafío del continente.",
       "presentacion": {
@@ -346,7 +346,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a conocer a la gente de América: dónde vive, cómo vive y por qué se muda. Son 5 cápsulas. Para empezar, imaginate esto.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a conocer a la gente de América: dónde vive, cómo vive y por qué se muda. Son 5 actividades. Para empezar, imaginate esto.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés cómo es la población de América. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

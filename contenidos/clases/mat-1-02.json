@@ -288,7 +288,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a comparar números y medir distancias en la recta. Son 4 cápsulas. Para empezar, viajemos a dos ciudades argentinas.",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a comparar números y medir distancias en la recta. Son 4 actividades. Para empezar, viajemos a dos ciudades argentinas.",
     "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés comparar enteros y medir distancias. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [

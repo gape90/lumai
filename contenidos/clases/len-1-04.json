@@ -324,7 +324,7 @@
     }
   ],
   "lumai": {
-    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a leer como detectives: buscando pistas antes, durante y después de leer. Son 5 cápsulas. ¿Listo para investigar?",
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a leer como detectives: buscando pistas antes, durante y después de leer. Son 5 actividades. ¿Listo para investigar?",
     "cierre": "¡Misión cumplida, detective! Estas estrategias te sirven para leer textos de cualquier materia. Cuando quieras, vamos a las actividades."
   },
   "imagenes": [
