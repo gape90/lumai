@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reportes de Estudiantes - LUMAI</title>
+    <script src="js/acceso-docente.js"></script>
     <!-- EmailJS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
@@ -716,6 +717,7 @@
     <div class="container">
         <div class="header">
             <a href="index.html" class="btn-volver">Volver a LUMAI</a>
+            <a href="perfiles.html" class="btn-volver btn-clave-ia">🧩 Perfiles de alumnos</a>
             <button type="button" class="btn-volver btn-clave-ia" onclick="borrarClaveIA()">🔑 Cambiar clave IA</button>
             <script>
                 // V91: borra la clave de Gemini guardada en ESTE navegador.
@@ -792,9 +794,8 @@
         };
 
         // SISTEMA DE AUTENTICACIÓN
-        const CORRECT_PASSWORD = 'lumaidocente20254';
-
-        function authenticateUser() {
+        // La contraseña ya no está escrita acá: se compara su huella (ver js/acceso-docente.js)
+        async function authenticateUser() {
             const passwordInput = document.getElementById('password-input');
             const errorDiv = document.getElementById('auth-error');
             const loginBtn = document.getElementById('login-btn');
@@ -810,8 +811,9 @@
             }
             
             // Validar contraseña
-            if (enteredPassword === CORRECT_PASSWORD) {
+            if (await window.LumaiDocente.verificar(enteredPassword)) {
                 // Contraseña correcta
+                window.LumaiDocente.marcar();
                 isAuthenticated = true;
                 hideAuthOverlay();
                 initializeApp();
@@ -869,7 +871,8 @@
                 }
             });
             
-            // Si ya está autenticado, ocultar overlay
+            // Si ya está autenticado (también desde Perfiles de alumnos), ocultar overlay
+            if (window.LumaiDocente && window.LumaiDocente.activo()) isAuthenticated = true;
             if (isAuthenticated) {
                 hideAuthOverlay();
                 initializeApp();
@@ -1338,8 +1341,12 @@
             }));
             const mostradas = eventos.filter(e => e.type === 'clase_mostrada');
             if (!mostradas.length) return '';
-            const info = mostradas[mostradas.length - 1].data || {};
-            const de = (tipo) => eventos.filter(e => e.type === tipo && e.data && e.data.clase === info.clase).map(e => e.data);
+            // Se muestra el último ingreso a la clase (sin mezclar con ingresos anteriores)
+            mostradas.sort((x, y) => String(x.timestamp).localeCompare(String(y.timestamp)));
+            const ultima = mostradas[mostradas.length - 1];
+            const info = ultima.data || {};
+            const desde = String(ultima.timestamp || '');
+            const de = (tipo) => eventos.filter(e => e.type === tipo && e.data && e.data.clase === info.clase && String(e.timestamp || '') >= desde).map(e => e.data);
 
             const vistas = new Set(de('clase_capsula_vista').map(x => x.capsula)).size;
             const ultimoPorCapsula = {};

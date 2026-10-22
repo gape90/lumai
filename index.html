@@ -602,10 +602,10 @@
     <div id="modal-error" class="modal-overlay">
         <div class="modal-container">
             <div class="modal-icon">🔒</div>
-            <h2 class="modal-title">Contraseña Incorrecta</h2>
+            <h2 class="modal-title">Código incorrecto</h2>
             <p class="modal-message">
-                Por favor, verifica tu contraseña con el docente.<br>
-                Las contraseñas válidas son proporcionadas en clase.
+                Revisá que esté bien escrito, con letras y números.<br>
+                Si sigue sin funcionar, pedíselo de nuevo a tu docente.
             </p>
             <button class="modal-btn" onclick="cerrarModal()">Aceptar</button>
         </div>
@@ -646,10 +646,10 @@
                     </div>
                     
                     <div class="input-group">
-                        <label class="input-label">🔑 Contraseña de Acceso</label>
-                        <input type="password" id="contrasena" class="input-field" placeholder="Ingresa tu contraseña">
+                        <label class="input-label" for="contrasena">🔑 Tu código</label>
+                        <input type="text" id="contrasena" class="input-field" placeholder="Ejemplo: K7QM-29XA-P" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="14" style="text-transform: uppercase; letter-spacing: 0.08em;">
                         <small style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 0.5rem; display: block;">
-                          Solicita tu contraseña al docente
+                          Te lo da tu docente
                         </small>
                     </div>
                 </div>
@@ -721,6 +721,7 @@
         </div>
     </div>
 
+    <script src="js/codigo-perfil.js"></script>
     <script>
         // ========== FUNCIONES DEL MODAL PERSONALIZADO ==========
         function mostrarModal() {
@@ -800,22 +801,31 @@
                 return;
             }
 
-            // VALIDACIÓN DE CONTRASEÑA CON MODAL PERSONALIZADO
+            // VALIDACIÓN DEL CÓDIGO
+            // Se aceptan los códigos de perfil que genera el docente (perfiles.html) y,
+            // por compatibilidad, las contraseñas anteriores por nivel.
             const contrasenasValidas = ['n012', 'n123', 'n234', 'n345'];
-            
-            // Verificar si la contraseña es válida
-            if (!contrasenasValidas.includes(contrasena)) {
-                // Mostrar modal personalizado en lugar de alert nativo
-                mostrarModal();
-                return;
-            }
-
-            // ✅ CORRECCIÓN: Agregar condición para N0 y guardar contraseña
+            const claveNivel = contrasena.toLowerCase();
             let perfil = 'N2'; // Por defecto
-            if (contrasena === 'n012') perfil = 'N0';        // ← ¡NUEVA LÍNEA!
-            else if (contrasena === 'n123') perfil = 'N1';
-            else if (contrasena === 'n234') perfil = 'N2';
-            else if (contrasena === 'n345') perfil = 'N3';
+            let perfilDimensiones = null;
+            let interes = '';
+
+            if (contrasenasValidas.includes(claveNivel)) {
+                if (claveNivel === 'n012') perfil = 'N0';
+                else if (claveNivel === 'n123') perfil = 'N1';
+                else if (claveNivel === 'n234') perfil = 'N2';
+                else if (claveNivel === 'n345') perfil = 'N3';
+            } else {
+                // El perfil está dentro del código: LumAI no lo busca en ninguna lista
+                const datosCodigo = window.LumaiCodigo ? window.LumaiCodigo.leer(contrasena) : null;
+                if (!datosCodigo) {
+                    mostrarModal();
+                    return;
+                }
+                perfilDimensiones = datosCodigo.perfil;
+                interes = datosCodigo.interes;
+                perfil = window.LumaiCodigo.nivelAproximado(datosCodigo.perfil);
+            }
 
             // ✅ CORRECCIÓN: Incluir contraseña en sessionStorage
             const datosSession = {
@@ -825,7 +835,10 @@
                 orientacion: orientacion || '',
                 materia: materia,
                 tema: tema,
-                contrasena: contrasena  // ← ¡NUEVA LÍNEA!
+                // Solo las contraseñas por nivel se guardan; el código de perfil no hace falta
+                contrasena: contrasenasValidas.includes(claveNivel) ? claveNivel : '',
+                perfilDimensiones: perfilDimensiones,
+                interes: interes
             };
 
             // Guardar con la clave que usa LUMAI

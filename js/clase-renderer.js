@@ -1686,10 +1686,11 @@ function renderizarCapsulas(clase, destino, opciones) {
   registrar('clase_mostrada', { clase: ctx.id, titulo: clase.titulo, materia: clase.materia, formato: 'capsulas', capsulas: capsulas.length, preguntas: conChequeo });
   const activos = Object.keys(aj).filter(k => k !== 'motivos' && aj[k] && aj[k] !== 'todas' && aj[k] !== 'completo' && !(k === 'opciones' && aj[k] === 3));
   if (activos.length) {
+    // Solo se registra QUÉ se adaptó, no las dimensiones del alumno: el reporte guarda
+    // el nombre, y el perfil no debe quedar junto a él.
     registrar('clase_adaptada', {
       clase: ctx.id,
       perillas: Object.fromEntries(activos.map(k => [k, aj[k]])),
-      motivos: (aj.motivos || []).map(m => `${m.dimension}: ${m.grado}`),
       capsulas_base: clase.capsulas.length
     });
   }

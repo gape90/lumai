@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LumAI · Perfiles de alumnos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azul:#00509e;--azul-osc:#003f7d;--azul-claro:#e8f1fb;--verde:#00a676;--verde-claro:#e6f7f1;--naranja:#f97316;--naranja-claro:#fff3e8;--texto:#1f2a37;--suave:#5b6675;--borde:#dbe3ec;--fondo:#eef3f9;--blanco:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Poppins',system-ui,sans-serif;background:var(--fondo);color:var(--texto);line-height:1.5}
+button{font-family:inherit}
+.barra{background:linear-gradient(135deg,var(--azul-osc),var(--azul));color:#fff}
+.barra-int{max-width:1180px;margin:0 auto;padding:14px max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.barra img{height:38px;background:#fff;border-radius:10px;padding:4px 8px}
+.barra h1{margin:0;font-size:1.25rem;flex:1}
+.barra a{color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;border:1.5px solid rgba(255,255,255,.6);border-radius:999px;padding:6px 14px}
+.barra a:hover{background:rgba(255,255,255,.15)}
+.contenedor{max-width:1180px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:20px;align-items:start}
+@media (max-width:900px){.contenedor{grid-template-columns:1fr}}
+.tarjeta{background:var(--blanco);border:1px solid var(--borde);border-radius:16px;padding:18px 20px}
+.tarjeta h2{margin:0 0 4px;font-size:1.05rem;color:var(--azul-osc)}
+.tarjeta>p.ayuda{margin:0 0 12px;color:var(--suave);font-size:.9rem}
+.privacidad{background:var(--verde-claro);border:1px solid #bfe9da;border-radius:14px;padding:12px 16px;font-size:.9rem;margin-bottom:16px}
+.privacidad b{color:#00805b}
+.columna{display:grid;gap:16px;min-width:0}
+label.campo{display:grid;gap:4px;font-weight:600;font-size:.92rem}
+label.campo small{font-weight:400;color:var(--suave)}
+input[type=text],select{font:inherit;font-size:.95rem;padding:9px 12px;border:1.5px solid var(--borde);border-radius:10px;background:#fff;color:var(--texto);width:100%}
+input[type=text]:focus,select:focus{outline:3px solid var(--azul-claro);border-color:var(--azul)}
+.botones{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--borde);background:#fff;color:var(--texto);border-radius:999px;padding:6px 14px;font-size:.86rem;cursor:pointer}
+.chip:hover{border-color:var(--azul);color:var(--azul)}
+.grupo{margin-top:6px}
+.grupo h3{margin:14px 0 6px;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--suave)}
+.dim{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:center;padding:10px 0;border-top:1px solid var(--borde)}
+.dim-nombre{font-weight:600}
+.dim-pregunta{font-size:.84rem;color:var(--suave)}
+.dim.cambiada .dim-nombre{color:var(--naranja)}
+.escala{display:flex;border:1.5px solid var(--borde);border-radius:10px;overflow:hidden;background:#fff}
+.escala label{position:relative}
+.escala input{position:absolute;opacity:0;pointer-events:none}
+.escala span{display:block;padding:7px 10px;font-size:.78rem;cursor:pointer;border-left:1px solid var(--borde);white-space:nowrap}
+.escala label:first-child span{border-left:none}
+.escala input:focus-visible+span{outline:3px solid var(--naranja);outline-offset:-3px}
+.escala input:checked+span{background:var(--azul);color:#fff;font-weight:600}
+.escala input[value=tipico]:checked+span{background:var(--suave)}
+.escala input[value=fortaleza]:checked+span{background:var(--verde)}
+@media (max-width:640px){.dim{grid-template-columns:1fr}.escala{flex-wrap:wrap}.escala label{flex:1 1 33%}.escala span{text-align:center}}
+.lateral{position:sticky;top:16px;display:grid;gap:16px}
+@media (max-width:900px){.lateral{position:static}}
+.codigo-caja{text-align:center}
+.codigo{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:2rem;font-weight:700;letter-spacing:.06em;color:var(--azul-osc);background:var(--azul-claro);border-radius:12px;padding:14px 10px;margin:8px 0 12px;user-select:all;word-break:break-all}
+.btn{border:none;border-radius:999px;padding:10px 18px;font-size:.95rem;font-weight:600;cursor:pointer;background:var(--azul);color:#fff}
+.btn:hover{filter:brightness(1.08)}
+.btn.sec{background:#fff;color:var(--azul);border:2px solid var(--azul)}
+.btn:focus-visible,.chip:focus-visible{outline:3px solid var(--naranja);outline-offset:2px}
+.aviso-ok{font-size:.86rem;color:#00805b;min-height:1.2em;margin-top:6px}
+.efectos ul{margin:6px 0 0;padding-left:18px;font-size:.9rem}
+.efectos li{margin-bottom:3px}
+.efectos .vacio{color:var(--suave);font-size:.9rem}
+.error{color:#b42318;font-size:.86rem;min-height:1.2em}
+/* Acceso */
+.acceso[hidden]{display:none}
+.acceso{position:fixed;inset:0;background:linear-gradient(135deg,var(--azul-osc),var(--azul));display:grid;place-items:center;padding:16px;z-index:10}
+.acceso form{background:#fff;border-radius:18px;padding:26px;max-width:380px;width:100%;display:grid;gap:12px;text-align:center}
+.acceso h2{margin:0;color:var(--azul-osc)}
+.acceso input{font:inherit;padding:11px 14px;border:1.5px solid var(--borde);border-radius:10px}
+/* Tarjeta para imprimir: solo nombre de referencia y código, nunca el perfil */
+.impresion{display:none}
+@media print{
+  body{background:#fff}
+  .barra,.contenedor,.acceso{display:none!important}
+  .impresion{display:block;border:2px dashed #555;border-radius:16px;padding:24px;max-width:420px;margin:20px auto;text-align:center;font-family:'Poppins',sans-serif}
+  .impresion img{height:46px}
+  .impresion .codigo{font-size:1.9rem;background:#eef3f9}
+}
+</style>
+</head>
+<body>
+<div class="acceso" id="acceso" hidden>
+  <form id="form-acceso">
+    <h2>Acceso docente</h2>
+    <p style="margin:0;color:var(--suave);font-size:.92rem">Ingresá la contraseña del panel docente.</p>
+    <input type="password" id="clave-docente" autocomplete="current-password" aria-label="Contraseña docente">
+    <div class="error" id="error-acceso" role="alert"></div>
+    <button class="btn" type="submit">Entrar</button>
+    <a href="index.html" style="font-size:.88rem;color:var(--azul)">Volver a LumAI</a>
+  </form>
+</div>
+
+<header class="barra">
+  <div class="barra-int">
+    <img src="img/logo-lumai.png" alt="LumAI">
+    <h1>Perfiles de alumnos</h1>
+    <a href="reportes.html">📊 Reportes</a>
+    <a href="index.html">Inicio</a>
+  </div>
+</header>
+
+<main class="contenedor">
+  <div class="columna">
+    <div class="privacidad">
+      🔒 <b>LumAI no guarda este perfil en ningún lado.</b> El perfil queda dentro del código que vas a entregarle al alumno: él entra con su nombre y ese código. Guardá la lista de qué código le diste a cada alumno solo en papel o en tu compu, nunca en el sitio. El perfil describe cómo aprende el alumno en el aula: no incluyas diagnósticos.
+    </div>
+
+    <section class="tarjeta">
+      <h2>1. Referencia del alumno</h2>
+      <p class="ayuda">Solo aparece en la tarjeta impresa, para que sepas a quién se la das. No forma parte del código. Podés usar iniciales.</p>
+      <label class="campo">Referencia (opcional)<input type="text" id="referencia" maxlength="40" placeholder="Por ejemplo: M. G. · 1.° A"></label>
+    </section>
+
+    <section class="tarjeta">
+      <h2>2. Punto de partida</h2>
+      <p class="ayuda">Elegí una plantilla y después ajustá solo las dimensiones que se apartan. Todas arrancan en "típico".</p>
+      <div class="botones" id="plantillas"></div>
+    </section>
+
+    <section class="tarjeta">
+      <h2>3. Dimensiones</h2>
+      <p class="ayuda">Marcá lo que observás en el aula. Pasá el mouse sobre cada grado para ver su nombre completo.</p>
+      <div id="dimensiones"></div>
+      <div class="grupo">
+        <h3>Intereses</h3>
+        <label class="campo">Un tema que lo motiva <small>Más adelante, LumAI va a ambientar los ejemplos en ese tema.</small>
+          <select id="interes"></select>
+        </label>
+      </div>
+    </section>
+  </div>
+
+  <aside class="lateral">
+    <section class="tarjeta codigo-caja">
+      <h2>Código del alumno</h2>
+      <div class="codigo" id="codigo" aria-live="polite">—</div>
+      <div class="botones" style="justify-content:center">
+        <button class="btn" type="button" id="copiar">📋 Copiar</button>
+        <button class="btn sec" type="button" id="imprimir">🖨️ Imprimir tarjeta</button>
+      </div>
+      <div class="aviso-ok" id="aviso-copia" role="status"></div>
+    </section>
+
+    <section class="tarjeta efectos">
+      <h2>Así va a ver las clases</h2>
+      <div id="efectos"></div>
+    </section>
+
+    <section class="tarjeta">
+      <h2>Modificar un perfil</h2>
+      <p class="ayuda">Escribí un código que ya entregaste para ver y cambiar su perfil. Al cambiarlo se genera un código nuevo.</p>
+      <div style="display:flex;gap:8px">
+        <input type="text" id="codigo-existente" maxlength="14" placeholder="XXXX-XXXX-X" aria-label="Código existente">
+        <button class="btn sec" type="button" id="cargar">Cargar</button>
+      </div>
+      <div class="error" id="error-carga" role="alert"></div>
+    </section>
+  </aside>
+</main>
+
+<div class="impresion" aria-hidden="true">
+  <img src="img/logo-lumai.png" alt="">
+  <p style="margin:10px 0 0;font-weight:600" id="imp-referencia"></p>
+  <p style="margin:12px 0 4px">Tu código de LumAI</p>
+  <div class="codigo" id="imp-codigo"></div>
+  <p style="font-size:.92rem;margin:0">Entrá a LumAI, escribí tu nombre y este código.<br>No se lo compartas a tus compañeros.</p>
+</div>
+
+<script src="js/acceso-docente.js"></script>
+<script src="js/codigo-perfil.js"></script>
+<script type="module">
+import { cargarReglas, calcularAjustes, describirAjustes, perfilDesdePlantilla } from './js/adaptacion.js';
+
+const C = window.LumaiCodigo;
+const GRUPOS = [
+  ['Cambian el contenido', ['lectoescritura', 'comprension_lectora', 'comprension_oral', 'razonamiento', 'memoria_trabajo']],
+  ['Cambian la pantalla', ['atencion', 'velocidad', 'motricidad', 'canal_acceso', 'tolerancia_frustracion']],
+  ['Necesidades específicas', ['sentido_numerico', 'sensibilidad_sensorial', 'previsibilidad']]
+];
+const CORTO = { generalizado: 'Generalizado', extenso: 'Extenso', limitado: 'Limitado', tipico: 'Típico', fortaleza: 'Fortaleza' };
+let reglas = null;
+let perfil = {};
+let codigoActual = '';
+
+function iniciarAcceso(alEntrar) {
+  if (LumaiDocente.activo()) { alEntrar(); return; }
+  const capa = document.getElementById('acceso');
+  capa.hidden = false;
+  document.getElementById('clave-docente').focus();
+  document.getElementById('form-acceso').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const ok = await LumaiDocente.verificar(document.getElementById('clave-docente').value);
+    if (!ok) { document.getElementById('error-acceso').textContent = 'Contraseña incorrecta.'; return; }
+    LumaiDocente.marcar();
+    capa.hidden = true;
+    alEntrar();
+  });
+}
+
+function armarDimensiones() {
+  const cont = document.getElementById('dimensiones');
+  cont.innerHTML = '';
+  const porId = Object.fromEntries(reglas.dimensiones.map(d => [d.id, d]));
+  GRUPOS.forEach(([titulo, ids]) => {
+    const g = document.createElement('div');
+    g.className = 'grupo';
+    g.innerHTML = `<h3>${titulo}</h3>`;
+    ids.forEach(id => {
+      const d = porId[id];
+      const fila = document.createElement('div');
+      fila.className = 'dim';
+      fila.dataset.dim = id;
+      const escala = reglas.grados.map(gr => `<label title="${gr.nombre}"><input type="radio" name="dim-${id}" value="${gr.id}"><span>${CORTO[gr.id]}</span></label>`).join('');
+      fila.innerHTML = `<div><div class="dim-nombre">${d.nombre}${d.solo_materias ? ' <small style="font-weight:400;color:var(--suave)">(solo ' + d.solo_materias.join(', ') + ')</small>' : ''}</div><div class="dim-pregunta">${d.pregunta}</div></div><div class="escala" role="radiogroup" aria-label="${d.nombre}">${escala}</div>`;
+      fila.querySelectorAll('input').forEach(r => r.addEventListener('change', () => {
+        if (r.value === 'tipico') delete perfil[id]; else perfil[id] = r.value;
+        actualizar(true);
+      }));
+      g.appendChild(fila);
+    });
+    cont.appendChild(g);
+  });
+}
+
+function pintarPerfil() {
+  document.querySelectorAll('.dim').forEach(fila => {
+    const valor = perfil[fila.dataset.dim] || 'tipico';
+    fila.querySelector(`input[value="${valor}"]`).checked = true;
+    fila.classList.toggle('cambiada', valor !== 'tipico');
+  });
+}
+
+function actualizar(nuevoCodigo) {
+  pintarPerfil();
+  const interes = document.getElementById('interes').value;
+  if (nuevoCodigo || !codigoActual) codigoActual = C.crear(perfil, interes);
+  document.getElementById('codigo').textContent = codigoActual;
+  document.getElementById('imp-codigo').textContent = codigoActual;
+  document.getElementById('imp-referencia').textContent = document.getElementById('referencia').value;
+  document.getElementById('aviso-copia').textContent = '';
+  // Vista de la adaptación (Matemática incluye "sentido numérico")
+  const general = calcularAjustes(perfil, reglas, '');
+  const mate = calcularAjustes(perfil, reglas, 'Matemática');
+  const efectos = describirAjustes(general);
+  const soloMate = describirAjustes(mate).filter(x => !efectos.includes(x));
+  const caja = document.getElementById('efectos');
+  caja.innerHTML = efectos.length || soloMate.length
+    ? `<ul>${efectos.map(e => `<li>${e}</li>`).join('')}${soloMate.map(e => `<li>${e} <small>(en Matemática)</small></li>`).join('')}</ul>`
+    : '<p class="vacio">Sin adaptación: verá las clases en su versión base.</p>';
+}
+
+async function iniciar() {
+  reglas = await cargarReglas();
+  armarDimensiones();
+  const sel = document.getElementById('interes');
+  C.INTERESES.forEach(i => { const o = document.createElement('option'); o.value = i; o.textContent = i; sel.appendChild(o); });
+  sel.addEventListener('change', () => actualizar(true));
+  document.getElementById('referencia').addEventListener('input', () => {
+    document.getElementById('imp-referencia').textContent = document.getElementById('referencia').value;
+  });
+  const pl = document.getElementById('plantillas');
+  Object.entries(reglas.plantillas).filter(([k]) => k !== 'descripcion').forEach(([nivel, t]) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.textContent = `${nivel} · ${t.nombre}`;
+    b.addEventListener('click', () => { perfil = perfilDesdePlantilla(reglas, nivel); actualizar(true); });
+    pl.appendChild(b);
+  });
+  const todo = document.createElement('button');
+  todo.type = 'button'; todo.className = 'chip'; todo.textContent = '↺ Todo típico';
+  todo.addEventListener('click', () => { perfil = {}; actualizar(true); });
+  pl.appendChild(todo);
+
+  document.getElementById('copiar').addEventListener('click', async () => {
+    const aviso = document.getElementById('aviso-copia');
+    try { await navigator.clipboard.writeText(codigoActual); aviso.textContent = 'Código copiado.'; }
+    catch (e) {
+      const r = document.createRange(); r.selectNodeContents(document.getElementById('codigo'));
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      aviso.textContent = 'Seleccioné el código: copialo con Ctrl+C.';
+    }
+  });
+  document.getElementById('imprimir').addEventListener('click', () => window.print());
+  document.getElementById('cargar').addEventListener('click', () => {
+    const datos = C.leer(document.getElementById('codigo-existente').value);
+    const err = document.getElementById('error-carga');
+    if (!datos) { err.textContent = 'Ese código no es válido. Revisá que esté bien escrito.'; return; }
+    err.textContent = '';
+    perfil = datos.perfil;
+    document.getElementById('interes').value = datos.interes;
+    codigoActual = C.normalizar(document.getElementById('codigo-existente').value).replace(/^(.{4})(.{4})(.)$/, '$1-$2-$3');
+    actualizar(false);
+  });
+  actualizar(true);
+}
+
+iniciarAcceso(iniciar);
+</script>
+</body>
+</html>

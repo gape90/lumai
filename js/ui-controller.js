@@ -319,12 +319,17 @@ function nivelDelAlumno() {
     }
 }
 
-// Perfil de 13 dimensiones del alumno. Mientras no exista la ficha que completa el
-// docente, se usa la plantilla de inicio que corresponde a su nivel (N0 a N3).
+// Perfil de 13 dimensiones del alumno. Viene dentro del código que le dio el docente
+// (perfiles.html). Si entró con una contraseña por nivel (n012...), se usa la plantilla
+// de inicio de ese nivel (N0 a N3).
 // Si en este navegador hay un perfil guardado para el alumno
 // (localStorage 'lumai_perfiles_dimensiones' = { "nombre del alumno": { dimension: grado } }),
 // ese perfil tiene prioridad. El perfil nunca se envía a la IA.
 function perfilDelAlumno(reglas) {
+    try {
+        const datos = JSON.parse(sessionStorage.getItem('datosLumai') || '{}');
+        if (datos.perfilDimensiones) return { perfil: datos.perfilDimensiones, origen: 'código del alumno' };
+    } catch (e) { /* sin código de perfil */ }
     try {
         const guardados = JSON.parse(localStorage.getItem('lumai_perfiles_dimensiones') || '{}');
         const clave = String(datosSession.nombreAlumno || '').trim().toLowerCase();
