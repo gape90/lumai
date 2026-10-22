@@ -383,7 +383,8 @@
           "SI",
           "CIÓN"
         ],
-        "emoji": "🎤"
+        "emoji": "🎤",
+        "explicacion": "Como vimos, una exposición es un texto oral que explica un tema a un público."
       },
       {
         "palabra": "PÚBLICO",
@@ -392,7 +393,8 @@
           "BLI",
           "CO"
         ],
-        "emoji": "👥"
+        "emoji": "👥",
+        "explicacion": "Como vimos, el público son las personas que escuchan la exposición."
       },
       {
         "palabra": "CIERRE",
@@ -400,14 +402,16 @@
           "CIE",
           "RRE"
         ],
-        "emoji": "🔚"
+        "emoji": "🔚",
+        "explicacion": "Como vimos, el cierre es la parte final, donde resumimos las ideas principales."
       },
       {
         "palabra": "VOZ",
         "silabas": [
           "VOZ"
         ],
-        "emoji": "🗣️"
+        "emoji": "🗣️",
+        "explicacion": "Como vimos, en una exposición hay que hablar claro y con buena voz."
       },
       {
         "palabra": "PAUSA",
@@ -415,7 +419,8 @@
           "PAU",
           "SA"
         ],
-        "emoji": "⏸️"
+        "emoji": "⏸️",
+        "explicacion": "Como vimos, las pausas ayudan a que el público entienda lo que decimos."
       }
     ],
     "frases": [

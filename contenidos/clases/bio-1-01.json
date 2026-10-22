@@ -381,7 +381,8 @@
           "VI",
           "DA"
         ],
-        "emoji": "🌱"
+        "emoji": "🌱",
+        "explicacion": "Como vimos, los seres vivos nacen, crecen, se reproducen y mueren."
       },
       {
         "palabra": "CÉLULA",
@@ -390,7 +391,8 @@
           "LU",
           "LA"
         ],
-        "emoji": "🔬"
+        "emoji": "🔬",
+        "explicacion": "Como vimos, la célula es la unidad más pequeña que está viva."
       },
       {
         "palabra": "ENERGÍA",
@@ -399,7 +401,8 @@
           "NER",
           "GÍA"
         ],
-        "emoji": "⚡"
+        "emoji": "⚡",
+        "explicacion": "Como vimos, los seres vivos necesitan energía para realizar sus funciones."
       },
       {
         "palabra": "PLANTA",
@@ -407,7 +410,8 @@
           "PLAN",
           "TA"
         ],
-        "emoji": "🌿"
+        "emoji": "🌿",
+        "explicacion": "Como vimos, las plantas son seres vivos que fabrican su propio alimento."
       },
       {
         "palabra": "ANIMAL",
@@ -416,7 +420,8 @@
           "NI",
           "MAL"
         ],
-        "emoji": "🐶"
+        "emoji": "🐶",
+        "explicacion": "Como vimos, los animales son seres vivos que se alimentan de otros seres vivos."
       }
     ],
     "frases": [

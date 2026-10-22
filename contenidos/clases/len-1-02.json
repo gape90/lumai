@@ -345,7 +345,8 @@
           "CE",
           "SO"
         ],
-        "emoji": "⚡"
+        "emoji": "⚡",
+        "explicacion": "Como vimos, un suceso es una acción que hace avanzar la historia."
       },
       {
         "palabra": "CONECTOR",
@@ -354,7 +355,8 @@
           "NEC",
           "TOR"
         ],
-        "emoji": "🔗"
+        "emoji": "🔗",
+        "explicacion": "Como vimos, los conectores son palabras que unen las ideas, como después o porque."
       },
       {
         "palabra": "IDEA",
@@ -363,7 +365,8 @@
           "DE",
           "A"
         ],
-        "emoji": "💡"
+        "emoji": "💡",
+        "explicacion": "Como vimos, al tomar notas anotamos las ideas importantes con pocas palabras."
       },
       {
         "palabra": "NOTAS",
@@ -371,7 +374,8 @@
           "NO",
           "TAS"
         ],
-        "emoji": "📝"
+        "emoji": "📝",
+        "explicacion": "Como vimos, las notas guardan lo importante escrito con pocas palabras."
       },
       {
         "palabra": "RELATO",
@@ -380,7 +384,8 @@
           "LA",
           "TO"
         ],
-        "emoji": "📖"
+        "emoji": "📖",
+        "explicacion": "Como vimos, en un relato los sucesos se cuentan en orden."
       }
     ],
     "frases": [

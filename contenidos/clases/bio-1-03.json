@@ -402,7 +402,8 @@
           "MU",
           "LO"
         ],
-        "emoji": "🔔"
+        "emoji": "🔔",
+        "explicacion": "Como vimos, un estímulo es un cambio del ambiente que un ser vivo puede detectar."
       },
       {
         "palabra": "RESPUESTA",
@@ -411,14 +412,16 @@
           "PUES",
           "TA"
         ],
-        "emoji": "🙋"
+        "emoji": "🙋",
+        "explicacion": "Como vimos, la respuesta es lo que hace un ser vivo frente a un estímulo."
       },
       {
         "palabra": "LUZ",
         "silabas": [
           "LUZ"
         ],
-        "emoji": "☀️"
+        "emoji": "☀️",
+        "explicacion": "Como vimos, las plantas responden a la luz creciendo hacia ella."
       },
       {
         "palabra": "FRÍO",
@@ -426,7 +429,8 @@
           "FRÍ",
           "O"
         ],
-        "emoji": "🥶"
+        "emoji": "🥶",
+        "explicacion": "Como vimos, el frío es un estímulo y el cuerpo responde para mantener su temperatura."
       },
       {
         "palabra": "CALOR",
@@ -434,7 +438,8 @@
           "CA",
           "LOR"
         ],
-        "emoji": "🔥"
+        "emoji": "🔥",
+        "explicacion": "Como vimos, frente al calor el cuerpo responde, por ejemplo, con sudor."
       }
     ],
     "frases": [

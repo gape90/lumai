@@ -9,6 +9,7 @@
 
 import { estadoGlobal, obtenerActividadesParaPerfil } from './config.js';
 import { aplicarPerillasAJuego } from './banco-actividades.js';
+import { detenerVoz } from './voz.js';
 
 // ==================== CONFIGURACIÓN Y ESTADO ====================
 
@@ -262,6 +263,21 @@ async function cargarModuloActividad(tipo) {
         throw error;
     }
 }
+
+// ==================== AVANCE DEL FLUJO (botón "Siguiente" de los juegos de N0) ====================
+
+// Lo usan los juegos con botón "Siguiente": registran la actividad como completada y cargan la que sigue.
+window.actividadCompletadaSecuencial = async function () {
+    try {
+        completarActividadCompleta(true);
+        if (estadoGlobal.perfil?.nombre_visible === 'N0') {
+            procesamientoEnCurso = false;
+            await cargarActividad();
+        }
+    } catch (error) {
+        console.error('❌ Error al pasar al siguiente juego:', error);
+    }
+};
 
 // ==================== COMPLETAR ACTIVIDADES ====================
 
@@ -651,6 +667,7 @@ function cerrarModal() {
 // ==================== FUNCIONES AUXILIARES ====================
 
 async function limpiarCompletamenteActividades() {
+    try { detenerVoz(); } catch (e) { /* sin voz */ }
     const actividadesContainer = estadoGlobal.elementosDOM?.actividadesEl || document.getElementById('actividades');
     if (actividadesContainer) {
         actividadesContainer.innerHTML = '';

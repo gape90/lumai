@@ -1,5 +1,6 @@
 // js/activities/activity-puente-palabras.js - Juego de memoria con cartas (fiel al original)
 import { actividadesDelBanco, configurarJuegoN0 } from '../banco-actividades.js';
+import { hablar } from '../voz.js';
 
 // ===============================================================================
 // Adaptación del HTML original manteniendo diseño, mecánica y síntesis de voz
@@ -716,14 +717,7 @@ function verificarPar() {
 
 // Función de síntesis de voz (igual que el original)
 function dictarFrase(texto, callback) {
-    synth.cancel(); // Cancela cualquier audio anterior
-    let utterThis = new SpeechSynthesisUtterance(texto);
-    utterThis.lang = 'es-ES';
-    utterThis.rate = 1.0;
-    if (callback) { 
-        utterThis.onend = callback; 
-    }
-    synth.speak(utterThis);
+    hablar(texto, { rate: 0.95, mostrar: String(texto).trim().split(/\s+/).length > 3, ajustes: estadoGlobal.ajustes, onend: callback || undefined });
 }
 
 // ==================== LIMPIAR RECURSOS ====================

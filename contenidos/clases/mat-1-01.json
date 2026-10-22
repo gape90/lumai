@@ -362,7 +362,8 @@
           "CE",
           "RO"
         ],
-        "emoji": "0️⃣"
+        "emoji": "0️⃣",
+        "explicacion": "Como vimos, el cero es el punto de referencia de la recta numérica."
       },
       {
         "palabra": "RECTA",
@@ -370,7 +371,8 @@
           "REC",
           "TA"
         ],
-        "emoji": "📏"
+        "emoji": "📏",
+        "explicacion": "Como vimos, en la recta numérica cada número tiene su lugar."
       },
       {
         "palabra": "SIGNO",
@@ -378,7 +380,8 @@
           "SIG",
           "NO"
         ],
-        "emoji": "➕"
+        "emoji": "➕",
+        "explicacion": "Como vimos, el signo nos dice de qué lado del cero está un número: más a la derecha, menos a la izquierda."
       },
       {
         "palabra": "NEGATIVO",
@@ -388,7 +391,8 @@
           "TI",
           "VO"
         ],
-        "emoji": "➖"
+        "emoji": "➖",
+        "explicacion": "Como vimos, un número negativo es menor que cero y se escribe con el signo menos."
       },
       {
         "palabra": "NÚMERO",
@@ -397,7 +401,8 @@
           "ME",
           "RO"
         ],
-        "emoji": "🔢"
+        "emoji": "🔢",
+        "explicacion": "Como vimos, los números enteros incluyen a los positivos, al cero y a los negativos."
       }
     ],
     "frases": [

@@ -4,6 +4,7 @@ import { actividadesDelBanco, configurarJuegoN0 } from '../banco-actividades.js'
 // ===============================================================================
 
 import { estadoGlobal, datosSession } from '../config.js';
+import { hablar, detenerVoz } from '../voz.js';
 import { llamarGeminiAPI } from '../ai-engine.js';
 
 // Importar base de datos de emojis
@@ -24,7 +25,6 @@ async function cargarEmojisBBDD() {
 }
 
 // Variables del juego
-const synth = window.speechSynthesis;
 let rondaActual = {};
 let palabrasPorRonda = 5;
 let palabrasCompletadas = 0;
@@ -106,6 +106,7 @@ INSTRUCCIONES:
 - Extrae EXACTAMENTE ${cantidadRequerida} palabras clave de la explicación
 - Cada palabra debe tener 2-4 sílabas para el juego
 - Proporciona las sílabas separadas y un emoji representativo
+- Agrega una "explicacion": una oración corta (máximo 20 palabras) que empiece con "Como vimos," y diga qué significa esa palabra en este tema, según la explicación
 - Las sílabas deben ser claras y pronunciables
 
 FORMATO DE RESPUESTA (JSON):
@@ -114,12 +115,14 @@ FORMATO DE RESPUESTA (JSON):
   {
     "palabra": "MÚSICA",
     "silabas": ["MÚ", "SI", "CA"],
-    "emoji": "🎵"
+    "emoji": "🎵",
+    "explicacion": "Como vimos, la música es el arte de combinar sonidos."
   },
   {
     "palabra": "COLOR",
     "silabas": ["CO", "LOR"],
-    "emoji": "🎨"
+    "emoji": "🎨",
+    "explicacion": "Como vimos, el color es lo que vemos cuando la luz llega a un objeto."
   }
 ]
 \`\`\`
@@ -159,7 +162,8 @@ IMPORTANTE: Responde SOLO con el JSON, sin texto adicional.
                 return {
                     palabra: palabra.palabra || 'PALABRA',
                     silabas: palabra.silabas || ['PA', 'LA', 'BRA'],
-                    emoji: emojiDefinitivo
+                    emoji: emojiDefinitivo,
+                    explicacion: palabra.explicacion || ''
                 };
             });
         } else {
@@ -500,6 +504,9 @@ function generarHTMLJuego() {
                 display: none;
             }
 
+            .sil-hecha { color: #22c55e; }
+            .sil-falta { color: rgba(255,255,255,.55); }
+            .sil-sep { margin: 0 6px; opacity: .6; }
             .correcto { color: var(--color-acento1-aventura); }
             .incorrecto { color: #ef4444; }
         </style>
@@ -523,42 +530,11 @@ function configurarEventosJuego() {
             botonSiguienteJuego.style.boxShadow = '0 4px 12px rgba(249, 115, 22, 0.4)';
         });
         
-        botonSiguienteJuego.addEventListener('click', async () => {
+        botonSiguienteJuego.addEventListener('click', () => {
             console.log('🎯 Botón SIGUIENTE presionado en Aventura Sílabas');
-            
-            // Detener audio
-            if (synth) {
-                synth.cancel();
-            }
-            if (window.speechSynthesis) {
-                window.speechSynthesis.cancel();
-            }
-            
-            // Detener intervalo de burbujas
-            if (intervaloBurbujas) {
-                clearInterval(intervaloBurbujas);
-            }
-            
-            try {
-                console.log('➡️ Cargando Supermercado...');
-                
-                estadoGlobal.actividadActual = 'supermercado';
-                
-                const moduloSupermercado = await import('./activity-supermercado.js');
-                
-                if (moduloSupermercado.generarActividad) {
-                    await moduloSupermercado.generarActividad();
-                }
-                
-                if (moduloSupermercado.renderizar) {
-                    await moduloSupermercado.renderizar();
-                }
-                
-                console.log('✅ Supermercado cargado correctamente');
-                
-            } catch (error) {
-                console.error('❌ Error al cargar siguiente juego:', error);
-            }
+            detenerVoz();
+            if (intervaloBurbujas) clearInterval(intervaloBurbujas);
+            avanzarAlSiguienteJuego();
         });
     }
     
@@ -609,126 +585,101 @@ function siguientePalabra() {
         return;
     }
     
-    // 🔧 LIMPIAR ZONA DE JUEGO antes de nueva palabra
-    const zonaJuego = document.getElementById('zona-de-juego');
-    if (zonaJuego) {
-        zonaJuego.innerHTML = '';
-    }
+    limpiarBurbujas();
     
     const palabraActual = actividadesGeneradas[palabrasCompletadas];
     rondaActual = {
         palabra: palabraActual.palabra,
         emoji: palabraActual.emoji,
+        explicacion: palabraActual.explicacion || '',
         silabas: palabraActual.silabas,
-        silabrasRestantes: [...palabraActual.silabas],
+        indice: 0,                                   // sílaba que toca ahora
         silabasDummy: generarSilabasDummy(palabraActual.silabas)
     };
     
     const desafioEmoji = document.querySelector('.desafio-emoji');
-    const desafioPalabra = document.querySelector('.desafio-palabra');
-    
-    if (desafioEmoji && desafioPalabra) {
-        desafioEmoji.textContent = rondaActual.emoji;
-        desafioPalabra.textContent = rondaActual.palabra;
-    }
+    if (desafioEmoji) desafioEmoji.textContent = rondaActual.emoji;
+    pintarProgresoPalabra();
     
     console.log("🎯 Iniciando palabra:", rondaActual.palabra);
     
-    // 🔧 PEQUEÑO DELAY antes de iniciar burbujas para nueva palabra
     setTimeout(() => {
         iniciarBurbujas();
     }, 800);
 }
 
-function generarSilabasDummy(silabrasCorrectas) {
-    const dummies = ['BA', 'CO', 'DE', 'FE', 'GI', 'HO', 'JU', 'KE', 'LI', 'MO', 'NE', 'ÑO', 'PA', 'QUE', 'RI', 'SO', 'TE', 'VU', 'WA', 'XI', 'YO', 'ZU'];
-    const resultado = [];
-    
-    while (resultado.length < 3) {
-        const dummy = dummies[Math.floor(Math.random() * dummies.length)];
-        if (!silabrasCorrectas.includes(dummy) && !resultado.includes(dummy)) {
-            resultado.push(dummy);
-        }
-    }
-    
-    return resultado;
+// Muestra la palabra que se va formando: sílabas ya atrapadas + guiones de las que faltan
+function pintarProgresoPalabra() {
+    const desafioPalabra = document.querySelector('.desafio-palabra');
+    if (!desafioPalabra) return;
+    const { silabas, indice } = rondaActual;
+    desafioPalabra.innerHTML = silabas.map((sil, i) =>
+        i < indice ? `<span class="sil-hecha">${sil}</span>` : `<span class="sil-falta">${'_'.repeat(Math.max(2, sil.length))}</span>`
+    ).join('<span class="sil-sep">·</span>');
 }
 
+function silabaActual() {
+    return rondaActual.silabas ? rondaActual.silabas[rondaActual.indice] : null;
+}
+
+function limpiarBurbujas() {
+    if (intervaloBurbujas) clearInterval(intervaloBurbujas);
+    const zona = document.getElementById('zona-de-juego');
+    if (zona) zona.innerHTML = '';
+}
+
+function generarSilabasDummy(silabrasCorrectas) {
+    const dummies = ['BA', 'CO', 'DE', 'FE', 'GI', 'HO', 'JU', 'LI', 'MO', 'NE', 'ÑO', 'PA', 'QUE', 'RI', 'SO', 'TE', 'VU', 'ZU', 'LA', 'MA', 'RO', 'TA', 'SE', 'DI'];
+    const usadas = silabrasCorrectas.map(s => s.toUpperCase());
+    return dummies.filter(d => !usadas.includes(d)).sort(() => Math.random() - 0.5).slice(0, 8);
+}
+
+// En pantalla hay siempre la sílaba que toca (una sola burbuja) mezclada con distractores.
+// Las sílabas que vienen después NO aparecen hasta que se atrapa la actual.
 function iniciarBurbujas() {
     const zonaJuego = document.getElementById('zona-de-juego');
-    
     if (!zonaJuego) return;
-    
     zonaJuego.innerHTML = '';
-    
+    if (intervaloBurbujas) clearInterval(intervaloBurbujas);
     console.log("🫧 Iniciando burbujas para:", rondaActual.palabra);
-    
-    const todasLasSilabas = [...rondaActual.silabrasRestantes, ...rondaActual.silabasDummy];
-    todasLasSilabas.sort(() => Math.random() - 0.5);
-    
-    let indiceSilaba = 0;
-    let burbujasActivas = 0;
+
     const maxBurbujas = 3;
-    
-    // 🔧 LIMPIAR INTERVALO ANTERIOR SI EXISTE
-    if (intervaloBurbujas) {
-        clearInterval(intervaloBurbujas);
-    }
-    
-    // 🔧 NUEVO: Crear las primeras 3 burbujas casi simultáneamente
-    const crearBurbujasIniciales = () => {
-        for (let i = 0; i < Math.min(3, todasLasSilabas.length); i++) {
-            setTimeout(() => {
-                if (indiceSilaba < todasLasSilabas.length && rondaActual.silabrasRestantes.length > 0) {
-                    crearBurbuja(todasLasSilabas[indiceSilaba], () => {
-                        burbujasActivas--;
-                    });
-                    burbujasActivas++;
-                    indiceSilaba++;
-                }
-            }, i * 800); // 0ms, 800ms, 1600ms para las primeras 3
-        }
+    const palabraDeEstaRonda = rondaActual.palabra;
+
+    const hayCorrectaEnPantalla = () =>
+        [...zonaJuego.querySelectorAll('.burbuja')].some(b => b.dataset.silaba === silabaActual() && !b.classList.contains('clicked'));
+
+    const generar = () => {
+        if (!rondaActual.silabas || rondaActual.palabra !== palabraDeEstaRonda || silabaActual() == null) return;
+        const enPantalla = zonaJuego.querySelectorAll('.burbuja:not(.clicked)').length;
+        if (enPantalla >= maxBurbujas) return;
+        // Si no hay una burbuja con la sílaba que toca, se crea esa; si no, un distractor
+        const sil = hayCorrectaEnPantalla()
+            ? rondaActual.silabasDummy[Math.floor(Math.random() * rondaActual.silabasDummy.length)]
+            : silabaActual();
+        crearBurbuja(sil);
     };
-    
-    // Crear las burbujas iniciales
-    crearBurbujasIniciales();
-    
-    // 🔧 INTERVALO MÁS RÁPIDO para mantener 3 burbujas en pantalla
-    intervaloBurbujas = setInterval(() => {
-        if (rondaActual.silabrasRestantes.length === 0) {
-            clearInterval(intervaloBurbujas);
-            return;
-        }
-        
-        // Solo crear nueva burbuja si hay espacio y quedan sílabas por mostrar
-        if (burbujasActivas < maxBurbujas && indiceSilaba < todasLasSilabas.length) {
-            crearBurbuja(todasLasSilabas[indiceSilaba], () => {
-                burbujasActivas--;
-            });
-            burbujasActivas++;
-            indiceSilaba++;
-        }
-        
-        // Si ya mostramos todas las sílabas, reiniciar para mostrar más
-        if (indiceSilaba >= todasLasSilabas.length && rondaActual.silabrasRestantes.length > 0) {
-            indiceSilaba = 0;
-            todasLasSilabas.sort(() => Math.random() - 0.5);
-        }
-        
-    }, 1200); // 🔧 MÁS RÁPIDO: 1.2 segundos entre burbujas
+
+    // las primeras burbujas casi juntas: la que toca sale primero o segunda, mezclada con distractores
+    generar();
+    setTimeout(generar, 500);
+    setTimeout(generar, 1000);
+    intervaloBurbujas = setInterval(generar, 1000);
 }
 
-function crearBurbuja(silaba, onDestroy) {
+function crearBurbuja(silaba) {
     const zonaJuego = document.getElementById('zona-de-juego');
+    if (!zonaJuego) return;
     const burbuja = document.createElement('div');
     
     burbuja.className = 'burbuja';
     burbuja.textContent = silaba;
+    burbuja.dataset.silaba = silaba;
     
     const posX = Math.random() * 80 + 10;
     burbuja.style.left = `${posX}%`;
     
-    const duracion = (Math.random() * 2 + 7) * (actividadAventuraFactor()); // 🔧 CAMBIAR: 7-9 segundos (era 8-11)
+    const duracion = (Math.random() * 2 + 7) * (actividadAventuraFactor());
     burbuja.style.animationDuration = `${duracion}s`;
     
     burbuja.addEventListener('click', () => manejarClicBurbuja(burbuja, silaba));
@@ -736,73 +687,60 @@ function crearBurbuja(silaba, onDestroy) {
     zonaJuego.appendChild(burbuja);
     
     setTimeout(() => {
-        if (burbuja.parentNode) {
-            burbuja.parentNode.removeChild(burbuja);
-        }
-        if (onDestroy) onDestroy(); // 🔧 LLAMAR CALLBACK AL DESTRUIR
+        if (burbuja.parentNode) burbuja.parentNode.removeChild(burbuja);
     }, duracion * 1000);
 }
 
-// 🔧 FUNCIÓN SIMPLIFICADA - Sin loops complejos
 function manejarClicBurbuja(burbuja, silaba) {
-    const esCorrecta = rondaActual.silabrasRestantes.includes(silaba);
-    
-    // EFECTO SIMPLE DE CLIC: Solo agregar clase para fade out gradual
+    if (burbuja.classList.contains('clicked') || !rondaActual.silabas) return;
+    const esCorrecta = silaba === silabaActual();
     burbuja.classList.add('clicked');
     
     if (esCorrecta) {
         burbuja.classList.add('correcta');
-        rondaActual.silabrasRestantes = rondaActual.silabrasRestantes.filter(s => s !== silaba);
+        rondaActual.indice++;
+        pintarProgresoPalabra();
+        console.log("✅ Sílaba correcta:", silaba, `(${rondaActual.indice}/${rondaActual.silabas.length})`);
         
-        // 🔧 NO DECIR LA SÍLABA POR VOZ (quitado dictarFrase(silaba))
-        
-        console.log("✅ Sílaba correcta:", silaba, "Restantes:", rondaActual.silabrasRestantes);
-        
-        // 🔧 SIMPLIFICADO: Solo verificar si completó la palabra
-        if (rondaActual.silabrasRestantes.length === 0) {
-            console.log("🎉 Palabra completada:", rondaActual.palabra);
-            clearInterval(intervaloBurbujas);
-            palabrasCompletadas++;
-            
-            console.log(`📊 Progreso: ${palabrasCompletadas}/${palabrasPorRonda} palabras completadas`);
-            
-            // 🔧 AGREGAR MENSAJE DE VOZ AL COMPLETAR PALABRA - TODO EN MAYÚSCULAS
-            const nombreAlumno = datosSession?.nombreAlumno || estadoGlobal.datosSession?.nombre || 'ESTUDIANTE';
-            let mensajeFelicitacion = '';
-            
-            if (palabrasCompletadas === 1) {
-                mensajeFelicitacion = `MUY BIEN ${nombreAlumno.toUpperCase()} COMPLETASTE LA PALABRA ${rondaActual.palabra}`;
-            } else if (palabrasCompletadas === 2) {
-                mensajeFelicitacion = `EXCELENTE ${nombreAlumno.toUpperCase()} COMPLETASTE LA PALABRA ${rondaActual.palabra}`;
-            } else {
-                mensajeFelicitacion = `FANTÁSTICO ${nombreAlumno.toUpperCase()} COMPLETASTE LA PALABRA ${rondaActual.palabra}`;
-            }
-            
-            // Reproducir mensaje de felicitación
-            dictarFrase(mensajeFelicitacion);
-            
-            // 🔧 TIMEOUT ÚNICO para evitar problemas de timing
-            setTimeout(() => {
-                if (palabrasCompletadas >= palabrasPorRonda) {
-                    console.log("🎉 ¡Todas las palabras completadas!");
-                    completarJuego();
-                } else {
-                    siguientePalabra();
-                }
-            }, 3000); // Dar más tiempo para el mensaje de felicitación
+        if (rondaActual.indice >= rondaActual.silabas.length) {
+            palabraCompletada();
+        } else {
+            // Se limpian las burbujas viejas y aparece la sílaba siguiente, mezclada con distractores
+            const zona = document.getElementById('zona-de-juego');
+            [...zona.querySelectorAll('.burbuja')].forEach(b => { if (b !== burbuja) b.remove(); });
+            setTimeout(() => { burbuja.remove(); }, 500);
+            setTimeout(() => iniciarBurbujas(), 600);
         }
     } else {
         burbuja.classList.add('incorrecta');
-        // 🔧 SIMPLIFICADO: Solo mensaje simple - TODO EN MAYÚSCULAS
-        dictarFrase("NO, ESA SÍLABA NO ES CORRECTA");
+        hablar('No, esa sílaba no va.', { mostrar: false, rate: 0.95 });
+        setTimeout(() => { if (burbuja.parentNode) burbuja.parentNode.removeChild(burbuja); }, 500);
     }
-    
-    // Remover después del fade out
-    setTimeout(() => {
-        if (burbuja.parentNode) {
-            burbuja.parentNode.removeChild(burbuja);
-        }
-    }, 500);
+}
+
+function palabraCompletada() {
+    console.log("🎉 Palabra completada:", rondaActual.palabra);
+    if (intervaloBurbujas) clearInterval(intervaloBurbujas);
+    palabrasCompletadas++;
+    console.log(`📊 Progreso: ${palabrasCompletadas}/${palabrasPorRonda} palabras completadas`);
+
+    setTimeout(limpiarBurbujas, 500);
+
+    // Mensaje simple + una mínima explicación de la palabra relacionada con el tema trabajado
+    const palabra = rondaActual.palabra.toLowerCase();
+    const explicacion = rondaActual.explicacion ? ` ${rondaActual.explicacion}` : '';
+    const mensaje = `Formaste la palabra ${palabra}.${explicacion}`;
+
+    let avanzo = false;
+    const avanzar = () => {
+        if (avanzo) return;
+        avanzo = true;
+        if (palabrasCompletadas >= palabrasPorRonda) completarJuego();
+        else siguientePalabra();
+    };
+    hablar(mensaje, { rate: 0.95, ajustes: estadoGlobal.ajustes, onend: () => setTimeout(avanzar, 600), onstop: avanzar });
+    // por si la voz no responde
+    setTimeout(avanzar, Math.max(6000, mensaje.length * 110));
 }
 
 function completarJuego() {
@@ -866,33 +804,25 @@ function mostrarMensajeFinal(mensaje) {
             });
             
             botonSiguiente.addEventListener('click', () => {
-                console.log('🎉 Botón Siguiente presionado en Aventura Sílabas');
                 console.log('🎉 Actividad Aventura de las Sílabas completada');
-                // 🔧 DETENER AUDIO ANTES DE CONTINUAR
-                if (synth) {
-                    synth.cancel();
-                }
-                if (window.speechSynthesis) {
-                    window.speechSynthesis.cancel();
-                }
-                // 🔧 CAMBIO 3: Usar callback secuencial en lugar del original
-                if (window.actividadCompletadaSecuencial) {
-                    window.actividadCompletadaSecuencial();
-                }
+                detenerVoz();
+                avanzarAlSiguienteJuego();
             });
         }
     }
 }
 
-function dictarFrase(texto, callback) {
-    synth.cancel();
-    let utterThis = new SpeechSynthesisUtterance(texto);
-    utterThis.lang = 'es-ES';
-    utterThis.rate = 1.0;
-    if (callback) { 
-        utterThis.onend = callback; 
+// Pasa al juego que sigue en el flujo (lo define activities-manager.js)
+function avanzarAlSiguienteJuego() {
+    if (typeof window.actividadCompletadaSecuencial === 'function') {
+        window.actividadCompletadaSecuencial();
+    } else {
+        console.warn('⚠️ actividadCompletadaSecuencial no está disponible');
     }
-    synth.speak(utterThis);
+}
+
+function dictarFrase(texto, callback) {
+    hablar(texto, { rate: 0.95, ajustes: estadoGlobal.ajustes, onend: callback });
 }
 
 // ==================== LIMPIAR RECURSOS ====================
@@ -900,9 +830,7 @@ function dictarFrase(texto, callback) {
 export function limpiarRecursos() {
     console.log("🧹 Limpiando recursos de Aventura de Sílabas");
     
-    if (synth) {
-        synth.cancel();
-    }
+    detenerVoz();
     
     if (intervaloBurbujas) {
         clearInterval(intervaloBurbujas);

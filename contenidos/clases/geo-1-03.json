@@ -424,7 +424,8 @@
           "BOS",
           "QUE"
         ],
-        "emoji": "🌲"
+        "emoji": "🌲",
+        "explicacion": "Como vimos, la deforestación elimina bosques y selvas."
       },
       {
         "palabra": "HUMEDAL",
@@ -433,7 +434,8 @@
           "ME",
           "DAL"
         ],
-        "emoji": "🦆"
+        "emoji": "🦆",
+        "explicacion": "Como vimos, un humedal es una zona inundada gran parte del año."
       },
       {
         "palabra": "BASURA",
@@ -442,7 +444,8 @@
           "SU",
           "RA"
         ],
-        "emoji": "🗑️"
+        "emoji": "🗑️",
+        "explicacion": "Como vimos, la basura es una de las causas de la contaminación."
       },
       {
         "palabra": "HUMO",
@@ -450,7 +453,8 @@
           "HU",
           "MO"
         ],
-        "emoji": "💨"
+        "emoji": "💨",
+        "explicacion": "Como vimos, el humo contamina el aire."
       },
       {
         "palabra": "RÍO",
@@ -458,7 +462,8 @@
           "RÍ",
           "O"
         ],
-        "emoji": "🏞️"
+        "emoji": "🏞️",
+        "explicacion": "Como vimos, la contaminación puede afectar a los ríos."
       }
     ],
     "frases": [

@@ -379,7 +379,8 @@
           "TEX",
           "TO"
         ],
-        "emoji": "📄"
+        "emoji": "📄",
+        "explicacion": "Como vimos, antes de leer un texto conviene mirar lo que lo rodea."
       },
       {
         "palabra": "TÍTULO",
@@ -388,7 +389,8 @@
           "TU",
           "LO"
         ],
-        "emoji": "🏷️"
+        "emoji": "🏷️",
+        "explicacion": "Como vimos, el título nos da pistas sobre de qué trata el texto."
       },
       {
         "palabra": "IMAGEN",
@@ -397,7 +399,8 @@
           "MA",
           "GEN"
         ],
-        "emoji": "🖼️"
+        "emoji": "🖼️",
+        "explicacion": "Como vimos, las imágenes y sus epígrafes también ayudan a entender el texto."
       },
       {
         "palabra": "FUENTE",
@@ -405,7 +408,8 @@
           "FUEN",
           "TE"
         ],
-        "emoji": "🔎"
+        "emoji": "🔎",
+        "explicacion": "Como vimos, la fuente nos dice de dónde viene la información."
       },
       {
         "palabra": "LEER",
@@ -413,7 +417,8 @@
           "LE",
           "ER"
         ],
-        "emoji": "👀"
+        "emoji": "👀",
+        "explicacion": "Como vimos, si no entendemos algo, podemos volver a leer."
       }
     ],
     "frases": [

@@ -406,7 +406,8 @@
           "RE",
           "BRO"
         ],
-        "emoji": "🧠"
+        "emoji": "🧠",
+        "explicacion": "Como vimos, el cerebro forma parte del sistema nervioso y procesa la información."
       },
       {
         "palabra": "NERVIO",
@@ -414,7 +415,8 @@
           "NER",
           "VIO"
         ],
-        "emoji": "⚡"
+        "emoji": "⚡",
+        "explicacion": "Como vimos, los nervios llevan mensajes eléctricos por el cuerpo."
       },
       {
         "palabra": "OJO",
@@ -422,7 +424,8 @@
           "O",
           "JO"
         ],
-        "emoji": "👁️"
+        "emoji": "👁️",
+        "explicacion": "Como vimos, el ojo tiene receptores que detectan la luz."
       },
       {
         "palabra": "MÚSCULO",
@@ -431,7 +434,8 @@
           "CU",
           "LO"
         ],
-        "emoji": "💪"
+        "emoji": "💪",
+        "explicacion": "Como vimos, los músculos son efectores: ejecutan la respuesta moviendo el cuerpo."
       },
       {
         "palabra": "REFLEJO",
@@ -440,7 +444,8 @@
           "FLE",
           "JO"
         ],
-        "emoji": "🔨"
+        "emoji": "🔨",
+        "explicacion": "Como vimos, un reflejo es una respuesta rápida que ordena la médula."
       }
     ],
     "frases": [

@@ -402,7 +402,8 @@
           "BIEN",
           "TE"
         ],
-        "emoji": "🌳"
+        "emoji": "🌳",
+        "explicacion": "Como vimos, el ambiente es la naturaleza más lo que la sociedad hace con ella."
       },
       {
         "palabra": "AGUA",
@@ -410,7 +411,8 @@
           "A",
           "GUA"
         ],
-        "emoji": "💧"
+        "emoji": "💧",
+        "explicacion": "Como vimos, el agua es un recurso natural que hay que cuidar."
       },
       {
         "palabra": "SUELO",
@@ -418,7 +420,8 @@
           "SUE",
           "LO"
         ],
-        "emoji": "🏞️"
+        "emoji": "🏞️",
+        "explicacion": "Como vimos, el suelo es un recurso natural que usamos, por ejemplo, para cultivar."
       },
       {
         "palabra": "MONTAÑA",
@@ -427,7 +430,8 @@
           "TA",
           "ÑA"
         ],
-        "emoji": "⛰️"
+        "emoji": "⛰️",
+        "explicacion": "Como vimos, las montañas forman parte del relieve."
       },
       {
         "palabra": "RECURSO",
@@ -436,7 +440,8 @@
           "CUR",
           "SO"
         ],
-        "emoji": "🪵"
+        "emoji": "🪵",
+        "explicacion": "Como vimos, un recurso es un elemento de la naturaleza que la sociedad valora y usa."
       }
     ],
     "frases": [

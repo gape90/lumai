@@ -350,7 +350,8 @@
           "FRAC",
           "CIÓN"
         ],
-        "emoji": "🍕"
+        "emoji": "🍕",
+        "explicacion": "Como vimos, una fracción es el resultado de repartir en partes iguales."
       },
       {
         "palabra": "PARTES",
@@ -358,7 +359,8 @@
           "PAR",
           "TES"
         ],
-        "emoji": "🧩"
+        "emoji": "🧩",
+        "explicacion": "Como vimos, el denominador dice en cuántas partes iguales se reparte."
       },
       {
         "palabra": "MITAD",
@@ -366,7 +368,8 @@
           "MI",
           "TAD"
         ],
-        "emoji": "🌗"
+        "emoji": "🌗",
+        "explicacion": "Como vimos, la mitad es repartir en dos partes iguales y quedarse con una."
       },
       {
         "palabra": "DIVIDIR",
@@ -375,7 +378,8 @@
           "VI",
           "DIR"
         ],
-        "emoji": "➗"
+        "emoji": "➗",
+        "explicacion": "Como vimos, dividir es repartir en partes iguales."
       },
       {
         "palabra": "REPARTIR",
@@ -384,7 +388,8 @@
           "PAR",
           "TIR"
         ],
-        "emoji": "🍰"
+        "emoji": "🍰",
+        "explicacion": "Como vimos, una fracción es repartir algo en partes iguales."
       }
     ],
     "frases": [

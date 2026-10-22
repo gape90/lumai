@@ -93,6 +93,9 @@
 //   renderizarClase(clase, document.getElementById('contenido'));
 // =============================================================================
 
+import { hablar, detenerVoz, vozDisponible } from './voz.js';
+
+let ajustesVoz = null;   // perillas del perfil (tamaño de letra, mayúsculas) para el texto que se muestra al leer
 const RUTA_CLASES = 'contenidos/clases/';
 
 // ---------------------------------------------------------------------------
@@ -167,18 +170,16 @@ function crearDesplegable(textoBoton, contenidoHtml, { abierto = false, claseExt
 }
 
 function leerEnVoz(texto, boton) {
-  if (!('speechSynthesis' in window)) return;
-  const sintesis = window.speechSynthesis;
-  if (sintesis.speaking) { sintesis.cancel(); boton.textContent = '🔊 Escuchar'; return; }
-  const frase = new SpeechSynthesisUtterance(texto.replace(/\*\*/g, ''));
-  frase.lang = 'es-AR';
-  const voces = sintesis.getVoices();
-  const voz = voces.find(v => v.lang === 'es-AR') || voces.find(v => v.lang?.startsWith('es'));
-  if (voz) frase.voice = voz;
-  frase.rate = 0.95;
-  frase.onend = () => { boton.textContent = '🔊 Escuchar'; };
+  if (!vozDisponible()) return;
+  if (window.speechSynthesis.speaking) { detenerVoz(); boton.textContent = '🔊 Escuchar'; return; }
   boton.textContent = '⏹️ Detener';
-  sintesis.speak(frase);
+  // Misma voz que los juegos; el texto se muestra en pantalla marcando la palabra que suena
+  hablar(texto, {
+    rate: 0.95,
+    ajustes: ajustesVoz,
+    onend: () => { boton.textContent = '🔊 Escuchar'; },
+    onstop: () => { boton.textContent = '🔊 Escuchar'; }
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -1324,6 +1325,7 @@ function renderizarCapsulas(clase, destino, opciones) {
   const imagenes = Object.fromEntries((clase.imagenes || []).map(d => [d.id, d]));
   const rotulos = ROTULOS[temaDe(clase)] || ROTULOS.general;
   const aj = { ...(opciones.ajustes || {}) };
+  ajustesVoz = aj;
   // Con 'esenciales' quedan solo las cápsulas marcadas como esenciales (nunca menos de 2)
   let capsulas = clase.capsulas;
   if (aj.capsulas === 'esenciales') {

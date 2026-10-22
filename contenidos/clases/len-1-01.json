@@ -438,7 +438,8 @@
           "TE",
           "MA"
         ],
-        "emoji": "📌"
+        "emoji": "📌",
+        "explicacion": "Como vimos, el tema es de qué estamos hablando en una conversación."
       },
       {
         "palabra": "PROBLEMA",
@@ -447,7 +448,8 @@
           "BLE",
           "MA"
         ],
-        "emoji": "❓"
+        "emoji": "❓",
+        "explicacion": "Como vimos, el problema es la pregunta sobre el tema que divide las opiniones."
       },
       {
         "palabra": "OPINIÓN",
@@ -456,7 +458,8 @@
           "PI",
           "NIÓN"
         ],
-        "emoji": "💭"
+        "emoji": "💭",
+        "explicacion": "Como vimos, una opinión es lo que cada uno piensa sobre un tema."
       },
       {
         "palabra": "ARGUMENTO",
@@ -466,7 +469,8 @@
           "MEN",
           "TO"
         ],
-        "emoji": "💬"
+        "emoji": "💬",
+        "explicacion": "Como vimos, un argumento es la razón que damos para defender lo que pensamos."
       },
       {
         "palabra": "HECHO",
@@ -474,7 +478,8 @@
           "HE",
           "CHO"
         ],
-        "emoji": "✅"
+        "emoji": "✅",
+        "explicacion": "Como vimos, un hecho es algo que se puede comprobar."
       }
     ],
     "frases": [

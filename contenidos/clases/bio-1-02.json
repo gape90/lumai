@@ -415,7 +415,8 @@
           "LU",
           "LA"
         ],
-        "emoji": "🔬"
+        "emoji": "🔬",
+        "explicacion": "Como vimos, todos los seres vivos están hechos de células."
       },
       {
         "palabra": "NÚCLEO",
@@ -424,7 +425,8 @@
           "CLE",
           "O"
         ],
-        "emoji": "🎯"
+        "emoji": "🎯",
+        "explicacion": "Como vimos, el núcleo guarda el material genético de las células eucariotas."
       },
       {
         "palabra": "MEMBRANA",
@@ -433,7 +435,8 @@
           "BRA",
           "NA"
         ],
-        "emoji": "🧱"
+        "emoji": "🧱",
+        "explicacion": "Como vimos, la membrana rodea la célula y controla qué entra y qué sale."
       },
       {
         "palabra": "BACTERIA",
@@ -442,7 +445,8 @@
           "TE",
           "RIA"
         ],
-        "emoji": "🦠"
+        "emoji": "🦠",
+        "explicacion": "Como vimos, las bacterias son células procariotas, es decir, sin núcleo."
       },
       {
         "palabra": "PLANTA",
@@ -450,7 +454,8 @@
           "PLAN",
           "TA"
         ],
-        "emoji": "🌿"
+        "emoji": "🌿",
+        "explicacion": "Como vimos, las células de las plantas tienen cloroplastos y pared celular."
       }
     ],
     "frases": [

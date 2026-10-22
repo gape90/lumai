@@ -339,7 +339,8 @@
           "MA",
           "YOR"
         ],
-        "emoji": "⬆️"
+        "emoji": "⬆️",
+        "explicacion": "Como vimos, en la recta el número que está más a la derecha es el mayor."
       },
       {
         "palabra": "MENOR",
@@ -347,7 +348,8 @@
           "ME",
           "NOR"
         ],
-        "emoji": "⬇️"
+        "emoji": "⬇️",
+        "explicacion": "Como vimos, en la recta el número que está más a la izquierda es el menor."
       },
       {
         "palabra": "OPUESTO",
@@ -356,7 +358,8 @@
           "PUES",
           "TO"
         ],
-        "emoji": "🔄"
+        "emoji": "🔄",
+        "explicacion": "Como vimos, los números opuestos están a la misma distancia del cero, pero en lados distintos."
       },
       {
         "palabra": "DISTANCIA",
@@ -365,7 +368,8 @@
           "TAN",
           "CIA"
         ],
-        "emoji": "↔️"
+        "emoji": "↔️",
+        "explicacion": "Como vimos, la distancia entre dos números nunca es negativa."
       },
       {
         "palabra": "CERO",
@@ -373,7 +377,8 @@
           "CE",
           "RO"
         ],
-        "emoji": "0️⃣"
+        "emoji": "0️⃣",
+        "explicacion": "Como vimos, el cero está en el medio, entre los positivos y los negativos."
       }
     ],
     "frases": [

@@ -5,6 +5,7 @@
 
 import { estadoGlobal, datosSession } from '../config.js';
 import { actividadesDelBanco, configurarJuegoN0 } from '../banco-actividades.js';
+import { hablar, vozDisponible } from '../voz.js';
 
 // ==================== CONFIGURACIÓN Y ESTADO ====================
 
@@ -908,34 +909,14 @@ function dictarFrase(frase, callback = null) {
         return;
     }
     
-    if (!window.speechSynthesis) {
-        console.warn('⚠️ Síntesis de voz no disponible');
-        if (callback) callback();
-        return;
-    }
-    
-    // Cancelar síntesis anterior
-    window.speechSynthesis.cancel();
-    
-    const utterance = new SpeechSynthesisUtterance(frase);
-    utterance.lang = 'es-ES';
-    utterance.rate = actividadExploradores.configuracion.velocidadVoz;
-    utterance.pitch = 1.0;
-    utterance.volume = 1.0;
-    
-    utterance.onend = function() {
-        console.log('📊 Síntesis completada');
-        if (callback && !actividadExploradores.detenida) {
-            callback();
-        }
-    };
-    
-    utterance.onerror = function(e) {
-        console.error('⚠️ Error en síntesis de voz:', e);
-        if (callback) callback();
-    };
-    
-    window.speechSynthesis.speak(utterance);
+    // La frase que hay que escribir NO se muestra en pantalla (es un dictado); el resto del texto sí
+    const esDictado = frase === actividadExploradores.fraseActual;
+    hablar(frase, {
+        rate: actividadExploradores.configuracion.velocidadVoz,
+        mostrar: !esDictado,
+        ajustes: estadoGlobal.ajustes,
+        onend: () => { if (callback && !actividadExploradores.detenida) callback(); }
+    });
 }
 
 // 🛑 FUNCIÓN PARA DETENER LA ACTIVIDAD EXTERNAMENTE

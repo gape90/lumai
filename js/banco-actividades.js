@@ -212,7 +212,7 @@ export async function actividadesDelBanco(tipo, config = {}) {
     case 'aventura-silabas': {
       const n = config.palabrasPorRonda || 5;
       const l = mezclar(clase.banco?.simples || []);
-      return l.length >= Math.min(3, n) ? l.slice(0, n).map(x => ({ palabra: x.palabra, silabas: x.silabas, emoji: x.emoji })) : null;
+      return l.length >= Math.min(3, n) ? l.slice(0, n).map(x => ({ palabra: x.palabra, silabas: x.silabas, emoji: x.emoji, explicacion: x.explicacion || '' })) : null;
     }
     case 'exploradores-sonido': {
       const n = config.maxFrases || 4;

@@ -473,7 +473,8 @@
           "PA",
           "ÍS"
         ],
-        "emoji": "🌎"
+        "emoji": "🌎",
+        "explicacion": "Como vimos, un Estado es un país con gobierno propio sobre su territorio."
       },
       {
         "palabra": "MAPA",
@@ -481,7 +482,8 @@
           "MA",
           "PA"
         ],
-        "emoji": "🗺️"
+        "emoji": "🗺️",
+        "explicacion": "Como vimos, en un mapa podemos ver los límites entre los países."
       },
       {
         "palabra": "LÍMITE",
@@ -490,7 +492,8 @@
           "MI",
           "TE"
         ],
-        "emoji": "🚧"
+        "emoji": "🚧",
+        "explicacion": "Como vimos, el límite es la línea que separa a dos países."
       },
       {
         "palabra": "FRONTERA",
@@ -499,7 +502,8 @@
           "TE",
           "RA"
         ],
-        "emoji": "🛂"
+        "emoji": "🛂",
+        "explicacion": "Como vimos, la frontera es la zona alrededor del límite, donde la gente se relaciona."
       },
       {
         "palabra": "BANDERA",
@@ -508,7 +512,8 @@
           "DE",
           "RA"
         ],
-        "emoji": "🏳️"
+        "emoji": "🏳️",
+        "explicacion": "Como vimos, la bandera es un símbolo que representa a un país."
       }
     ],
     "frases": [

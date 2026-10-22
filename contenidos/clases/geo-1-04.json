@@ -406,7 +406,8 @@
           "BLA",
           "CIÓN"
         ],
-        "emoji": "👥"
+        "emoji": "👥",
+        "explicacion": "Como vimos, la población es el conjunto de personas que viven en un lugar."
       },
       {
         "palabra": "CIUDAD",
@@ -414,7 +415,8 @@
           "CIU",
           "DAD"
         ],
-        "emoji": "🏙️"
+        "emoji": "🏙️",
+        "explicacion": "Como vimos, la mayoría de la gente vive en ciudades."
       },
       {
         "palabra": "NIÑO",
@@ -422,7 +424,8 @@
           "NI",
           "ÑO"
         ],
-        "emoji": "🧒"
+        "emoji": "🧒",
+        "explicacion": "Como vimos, la pirámide de población muestra cuántos niños y adultos hay."
       },
       {
         "palabra": "VIAJE",
@@ -430,7 +433,8 @@
           "VIA",
           "JE"
         ],
-        "emoji": "🧳"
+        "emoji": "🧳",
+        "explicacion": "Como vimos, migrar es viajar para vivir en otro lugar."
       },
       {
         "palabra": "CAMPO",
@@ -438,7 +442,8 @@
           "CAM",
           "PO"
         ],
-        "emoji": "🌾"
+        "emoji": "🌾",
+        "explicacion": "Como vimos, en el campo vive menos gente que en las ciudades."
       }
     ],
     "frases": [

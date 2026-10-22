@@ -440,7 +440,8 @@
           "CI",
           "MAL"
         ],
-        "emoji": "🔟"
+        "emoji": "🔟",
+        "explicacion": "Como vimos, un decimal es un número escrito con coma, como cero coma setenta y cinco."
       },
       {
         "palabra": "PORCENTAJE",
@@ -450,7 +451,8 @@
           "TA",
           "JE"
         ],
-        "emoji": "💯"
+        "emoji": "💯",
+        "explicacion": "Como vimos, un porcentaje es una fracción con denominador cien."
       },
       {
         "palabra": "MITAD",
@@ -458,7 +460,8 @@
           "MI",
           "TAD"
         ],
-        "emoji": "🌗"
+        "emoji": "🌗",
+        "explicacion": "Como vimos, la mitad se puede escribir como un medio, cincuenta por ciento o cero coma cinco."
       },
       {
         "palabra": "DOBLE",
@@ -466,7 +469,8 @@
           "DO",
           "BLE"
         ],
-        "emoji": "✌️"
+        "emoji": "✌️",
+        "explicacion": "Como vimos, dos fracciones equivalentes valen lo mismo aunque se escriban distinto."
       },
       {
         "palabra": "CUARTO",
@@ -474,7 +478,8 @@
           "CUAR",
           "TO"
         ],
-        "emoji": "🍰"
+        "emoji": "🍰",
+        "explicacion": "Como vimos, un cuarto es la fracción veinticinco centésimos, o sea el veinticinco por ciento."
       }
     ],
     "frases": [

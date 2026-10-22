@@ -6,6 +6,7 @@
 import { estadoGlobal, datosSession } from '../config.js';
 import { llamarGeminiAPI } from '../ai-engine.js';
 import { configurarJuegoN0 } from '../banco-actividades.js';
+import { hablar } from '../voz.js';
 
 // Importar base de datos de emojis
 let emojisBBDD = null;
@@ -72,26 +73,8 @@ function pluralizar(palabra, cantidad) {
 }
 
 function dictarFrase(texto, callback = null) {
-    if (!('speechSynthesis' in window)) {
-        console.warn('Síntesis de voz no disponible');
-        if (callback) callback();
-        return;
-    }
-    
-    speechSynthesis.cancel();
-    
-    const utterance = new SpeechSynthesisUtterance(texto);
-    utterance.lang = 'es-AR';
-    utterance.rate = 1.0;
-    utterance.pitch = 1.0;
-    utterance.volume = 1.0;
-    
-    if (callback) {
-        utterance.onend = callback;
-        utterance.onerror = callback;
-    }
-    
-    speechSynthesis.speak(utterance);
+    // Voz común de LumAI: en minúsculas (en mayúsculas algunas voces deletrean) y con el texto en pantalla
+    hablar(texto, { rate: 0.95, mostrar: String(texto).trim().split(/\s+/).length > 2, ajustes: estadoGlobal.ajustes, onend: callback || undefined });
 }
 
 // ==================== CONFIGURACIÓN Y ESTADO ====================
