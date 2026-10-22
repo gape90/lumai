@@ -11,7 +11,7 @@
 // =============================================================================
 (function () {
   const PREFIJO = 'lumai-docente-v1:';
-  const HUELLA = '01e2cd7bfdabbf9b2592e00edd69e05c77d58d40cc778065595c0b7b1767f86f';
+  const HUELLA = 'bb0bc7ce35ed55670120a63ebb258eacd4674dd01dac9e28e2eba05139357796';
   const MARCA = 'lumai_docente_activo';
 
   // SHA-256 en JavaScript puro (sirve también si la página se abre sin https)
