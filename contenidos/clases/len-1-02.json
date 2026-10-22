@@ -336,6 +336,58 @@
         "palabra": "NOTAS",
         "pista": "Lo importante, escrito con pocas palabras"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "SUCESO",
+        "silabas": [
+          "SU",
+          "CE",
+          "SO"
+        ],
+        "emoji": "⚡"
+      },
+      {
+        "palabra": "CONECTOR",
+        "silabas": [
+          "CO",
+          "NEC",
+          "TOR"
+        ],
+        "emoji": "🔗"
+      },
+      {
+        "palabra": "IDEA",
+        "silabas": [
+          "I",
+          "DE",
+          "A"
+        ],
+        "emoji": "💡"
+      },
+      {
+        "palabra": "NOTAS",
+        "silabas": [
+          "NO",
+          "TAS"
+        ],
+        "emoji": "📝"
+      },
+      {
+        "palabra": "RELATO",
+        "silabas": [
+          "RE",
+          "LA",
+          "TO"
+        ],
+        "emoji": "📖"
+      }
+    ],
+    "frases": [
+      "Un suceso es algo que pasa en la historia.",
+      "Los conectores unen las ideas.",
+      "Anoto solo lo importante.",
+      "El tema tiene varias partes."
     ]
   }
 }

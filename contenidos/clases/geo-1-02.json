@@ -393,6 +393,57 @@
         "palabra": "SUSTENTABLE",
         "pista": "Forma de usar los recursos que cuida a las generaciones futuras"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "AMBIENTE",
+        "silabas": [
+          "AM",
+          "BIEN",
+          "TE"
+        ],
+        "emoji": "🌳"
+      },
+      {
+        "palabra": "AGUA",
+        "silabas": [
+          "A",
+          "GUA"
+        ],
+        "emoji": "💧"
+      },
+      {
+        "palabra": "SUELO",
+        "silabas": [
+          "SUE",
+          "LO"
+        ],
+        "emoji": "🏞️"
+      },
+      {
+        "palabra": "MONTAÑA",
+        "silabas": [
+          "MON",
+          "TA",
+          "ÑA"
+        ],
+        "emoji": "⛰️"
+      },
+      {
+        "palabra": "RECURSO",
+        "silabas": [
+          "RE",
+          "CUR",
+          "SO"
+        ],
+        "emoji": "🪵"
+      }
+    ],
+    "frases": [
+      "Un recurso es algo que usamos de la naturaleza.",
+      "Algunos recursos vuelven a crecer.",
+      "Hay que cuidar el ambiente.",
+      "El relieve tiene montañas y llanuras."
     ]
   }
 }

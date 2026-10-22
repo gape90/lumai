@@ -1,4 +1,6 @@
 // js/activities/activity-aventura-silabas.js - La Aventura de las Sílabas (Solo 2 animaciones + fondo transparente)
+import { actividadesDelBanco, configurarJuegoN0 } from '../banco-actividades.js';
+
 // ===============================================================================
 
 import { estadoGlobal, datosSession } from '../config.js';
@@ -41,7 +43,7 @@ function obtenerConfiguracionAventura() {
         'N3': { palabrasPorRonda: 6, velocidadBurbujas: 4000, descripcion: 'Cazador de sílabas avanzado' }
     };
     
-    return configuracionesPorPerfil[perfil?.nombre_visible] || configuracionesPorPerfil['N2'];
+    return configurarJuegoN0('aventura-silabas', configuracionesPorPerfil[perfil?.nombre_visible] || configuracionesPorPerfil['N2']);
 }
 
 // ==================== GENERACIÓN DE ACTIVIDAD ====================
@@ -54,6 +56,14 @@ export async function generarActividad() {
         console.log(`🎮 Configuración para ${estadoGlobal.perfil.nombre_visible}: ${config.descripcion}`);
         
         await cargarEmojisBBDD();
+
+        const delBanco = await actividadesDelBanco('aventura-silabas', config);
+        if (delBanco) {
+            actividadesGeneradas = delBanco.slice(0, config.palabrasPorRonda);
+            console.log("📚 Palabras armadas con el banco de la clase");
+            return { tipo: "aventura-silabas", actividades: actividadesGeneradas, configuracion: config, instrucciones: "Caza las sílabas correctas para formar palabras", esBanco: true };
+        }
+
         const palabrasIA = await generarPalabrasConIA();
         
         if (palabrasIA && palabrasIA.length >= config.palabrasPorRonda) {
@@ -718,7 +728,7 @@ function crearBurbuja(silaba, onDestroy) {
     const posX = Math.random() * 80 + 10;
     burbuja.style.left = `${posX}%`;
     
-    const duracion = Math.random() * 2 + 7; // 🔧 CAMBIAR: 7-9 segundos (era 8-11)
+    const duracion = (Math.random() * 2 + 7) * (actividadAventuraFactor()); // 🔧 CAMBIAR: 7-9 segundos (era 8-11)
     burbuja.style.animationDuration = `${duracion}s`;
     
     burbuja.addEventListener('click', () => manejarClicBurbuja(burbuja, silaba));
@@ -908,3 +918,5 @@ export function limpiarRecursos() {
 console.log("🎯 activity-aventura-silabas.js COMPLETO Y FUNCIONAL cargado correctamente");
 console.log("✅ Funcionalidades: Generación + Renderización + Juego completo + Limpieza + Métricas");
 console.log("🎮 Auto-inicio en 2 segundos + Síntesis de voz + Progresión automática");
+
+function actividadAventuraFactor() { return obtenerConfiguracionAventura().factorTiempo || 1; }

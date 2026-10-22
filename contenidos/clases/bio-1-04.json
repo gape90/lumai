@@ -397,6 +397,57 @@
         "palabra": "ENCEFALO",
         "pista": "Parte del sistema nervioso central que está dentro del cráneo"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "CEREBRO",
+        "silabas": [
+          "CE",
+          "RE",
+          "BRO"
+        ],
+        "emoji": "🧠"
+      },
+      {
+        "palabra": "NERVIO",
+        "silabas": [
+          "NER",
+          "VIO"
+        ],
+        "emoji": "⚡"
+      },
+      {
+        "palabra": "OJO",
+        "silabas": [
+          "O",
+          "JO"
+        ],
+        "emoji": "👁️"
+      },
+      {
+        "palabra": "MÚSCULO",
+        "silabas": [
+          "MÚS",
+          "CU",
+          "LO"
+        ],
+        "emoji": "💪"
+      },
+      {
+        "palabra": "REFLEJO",
+        "silabas": [
+          "RE",
+          "FLE",
+          "JO"
+        ],
+        "emoji": "🔨"
+      }
+    ],
+    "frases": [
+      "El cerebro manda las órdenes.",
+      "Los nervios llevan mensajes.",
+      "Los músculos mueven el cuerpo.",
+      "Un reflejo es una respuesta rápida."
     ]
   }
 }

@@ -5,6 +5,7 @@
 
 import { estadoGlobal, datosSession } from '../config.js';
 import { llamarGeminiAPI } from '../ai-engine.js';
+import { configurarJuegoN0 } from '../banco-actividades.js';
 
 // Importar base de datos de emojis
 let emojisBBDD = null;
@@ -153,7 +154,7 @@ function obtenerConfiguracionSupermercado() {
         }
     };
     
-    return configuracionesPorPerfil[perfil?.nombre_visible] || configuracionesPorPerfil['N1'];
+    return configurarJuegoN0('supermercado', configuracionesPorPerfil[perfil?.nombre_visible] || configuracionesPorPerfil['N1']);
 }
 
 // ==================== GENERACIÓN DE ACTIVIDAD ====================

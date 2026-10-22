@@ -397,6 +397,55 @@
         "palabra": "POBLACION",
         "pista": "Conjunto de personas que viven en un lugar"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "POBLACIÓN",
+        "silabas": [
+          "PO",
+          "BLA",
+          "CIÓN"
+        ],
+        "emoji": "👥"
+      },
+      {
+        "palabra": "CIUDAD",
+        "silabas": [
+          "CIU",
+          "DAD"
+        ],
+        "emoji": "🏙️"
+      },
+      {
+        "palabra": "NIÑO",
+        "silabas": [
+          "NI",
+          "ÑO"
+        ],
+        "emoji": "🧒"
+      },
+      {
+        "palabra": "VIAJE",
+        "silabas": [
+          "VIA",
+          "JE"
+        ],
+        "emoji": "🧳"
+      },
+      {
+        "palabra": "CAMPO",
+        "silabas": [
+          "CAM",
+          "PO"
+        ],
+        "emoji": "🌾"
+      }
+    ],
+    "frases": [
+      "La población es la gente que vive en un lugar.",
+      "Migrar es cambiar de lugar para vivir.",
+      "Nacen y mueren personas todos los años.",
+      "La mayoría vive en ciudades."
     ]
   }
 }

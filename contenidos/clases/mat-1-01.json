@@ -354,6 +354,57 @@
         "palabra": "SIGNO",
         "pista": "El + o el − que indica de qué lado del cero está un número"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "CERO",
+        "silabas": [
+          "CE",
+          "RO"
+        ],
+        "emoji": "0️⃣"
+      },
+      {
+        "palabra": "RECTA",
+        "silabas": [
+          "REC",
+          "TA"
+        ],
+        "emoji": "📏"
+      },
+      {
+        "palabra": "SIGNO",
+        "silabas": [
+          "SIG",
+          "NO"
+        ],
+        "emoji": "➕"
+      },
+      {
+        "palabra": "NEGATIVO",
+        "silabas": [
+          "NE",
+          "GA",
+          "TI",
+          "VO"
+        ],
+        "emoji": "➖"
+      },
+      {
+        "palabra": "NÚMERO",
+        "silabas": [
+          "NÚ",
+          "ME",
+          "RO"
+        ],
+        "emoji": "🔢"
+      }
+    ],
+    "frases": [
+      "Hay números debajo del cero.",
+      "El signo menos va antes del número.",
+      "El cero está en el medio de la recta.",
+      "Los negativos están a la izquierda."
     ]
   }
 }

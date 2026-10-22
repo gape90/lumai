@@ -373,6 +373,57 @@
         "palabra": "ESPONTANEA",
         "pista": "La generación ___ decía que la vida surge sola"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "VIDA",
+        "silabas": [
+          "VI",
+          "DA"
+        ],
+        "emoji": "🌱"
+      },
+      {
+        "palabra": "CÉLULA",
+        "silabas": [
+          "CÉ",
+          "LU",
+          "LA"
+        ],
+        "emoji": "🔬"
+      },
+      {
+        "palabra": "ENERGÍA",
+        "silabas": [
+          "E",
+          "NER",
+          "GÍA"
+        ],
+        "emoji": "⚡"
+      },
+      {
+        "palabra": "PLANTA",
+        "silabas": [
+          "PLAN",
+          "TA"
+        ],
+        "emoji": "🌿"
+      },
+      {
+        "palabra": "ANIMAL",
+        "silabas": [
+          "A",
+          "NI",
+          "MAL"
+        ],
+        "emoji": "🐶"
+      }
+    ],
+    "frases": [
+      "Los seres vivos nacen, crecen y mueren.",
+      "Los seres vivos necesitan energía.",
+      "Un ser vivo viene de otro ser vivo.",
+      "Los seres vivos responden al ambiente."
     ]
   }
 }

@@ -431,6 +431,57 @@
         "palabra": "POTENCIAS",
         "pista": "La notación científica usa ___ de 10"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "DECIMAL",
+        "silabas": [
+          "DE",
+          "CI",
+          "MAL"
+        ],
+        "emoji": "🔟"
+      },
+      {
+        "palabra": "PORCENTAJE",
+        "silabas": [
+          "POR",
+          "CEN",
+          "TA",
+          "JE"
+        ],
+        "emoji": "💯"
+      },
+      {
+        "palabra": "MITAD",
+        "silabas": [
+          "MI",
+          "TAD"
+        ],
+        "emoji": "🌗"
+      },
+      {
+        "palabra": "DOBLE",
+        "silabas": [
+          "DO",
+          "BLE"
+        ],
+        "emoji": "✌️"
+      },
+      {
+        "palabra": "CUARTO",
+        "silabas": [
+          "CUAR",
+          "TO"
+        ],
+        "emoji": "🍰"
+      }
+    ],
+    "frases": [
+      "Una fracción se puede escribir con coma.",
+      "Para pasar a decimal, divido.",
+      "Un porcentaje es una fracción de cien.",
+      "Dos fracciones pueden valer lo mismo."
     ]
   }
 }

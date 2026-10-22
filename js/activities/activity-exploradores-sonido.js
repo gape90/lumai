@@ -4,6 +4,7 @@
 // ===============================================================================
 
 import { estadoGlobal, datosSession } from '../config.js';
+import { actividadesDelBanco, configurarJuegoN0 } from '../banco-actividades.js';
 
 // ==================== CONFIGURACIÓN Y ESTADO ====================
 
@@ -39,10 +40,15 @@ export async function generarActividad() {
         console.log('🎯 Generando actividad Exploradores del Sonido para N0...');
         
         // Configurar frases desde la explicación generada por IA
-        const frasesSeleccionadas = extraerFrasesDeExplicacion();
+        const cfgN0 = configurarJuegoN0('exploradores-sonido', { maxFrases: 4 });
+        const delBanco = await actividadesDelBanco('exploradores-sonido', cfgN0);
+        const frasesSeleccionadas = (delBanco || extraerFrasesDeExplicacion()).slice(0, cfgN0.maxFrases);
+        actividadExploradores.maxFrases = cfgN0.maxFrases;
+        actividadExploradores.frasesBanco = delBanco || null;
+        if (delBanco) console.log('📚 Frases armadas con el banco de la clase');
         
         actividadExploradores.frases = frasesSeleccionadas;
-        actividadExploradores.frasesDelJuego = frasesSeleccionadas.slice(0, 4); // Máximo 4 como el original
+        actividadExploradores.frasesDelJuego = frasesSeleccionadas;
         actividadExploradores.indiceFraseActual = 0;
         actividadExploradores.aciertosConsecutivos = 0;
         actividadExploradores.completada = false;
@@ -678,9 +684,9 @@ function iniciarActividad() {
     if (comparacionDiv) comparacionDiv.style.display = 'none';
     
     // Regenerar frases para nueva sesión
-    const frasesNuevas = extraerFrasesDeExplicacion();
+    const frasesNuevas = actividadExploradores.frasesBanco ? [...actividadExploradores.frasesBanco].sort(() => Math.random() - 0.5) : extraerFrasesDeExplicacion();
     actividadExploradores.frases = frasesNuevas;
-    actividadExploradores.frasesDelJuego = frasesNuevas.slice(0, 4);
+    actividadExploradores.frasesDelJuego = frasesNuevas.slice(0, actividadExploradores.maxFrases || 4);
     
     actividadExploradores.indiceFraseActual = 0;
     actividadExploradores.aciertosConsecutivos = 0;

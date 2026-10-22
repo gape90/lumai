@@ -331,6 +331,56 @@
         "palabra": "MENOR",
         "pista": "En la recta, el que está más a la izquierda"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "MAYOR",
+        "silabas": [
+          "MA",
+          "YOR"
+        ],
+        "emoji": "⬆️"
+      },
+      {
+        "palabra": "MENOR",
+        "silabas": [
+          "ME",
+          "NOR"
+        ],
+        "emoji": "⬇️"
+      },
+      {
+        "palabra": "OPUESTO",
+        "silabas": [
+          "O",
+          "PUES",
+          "TO"
+        ],
+        "emoji": "🔄"
+      },
+      {
+        "palabra": "DISTANCIA",
+        "silabas": [
+          "DIS",
+          "TAN",
+          "CIA"
+        ],
+        "emoji": "↔️"
+      },
+      {
+        "palabra": "CERO",
+        "silabas": [
+          "CE",
+          "RO"
+        ],
+        "emoji": "0️⃣"
+      }
+    ],
+    "frases": [
+      "En la recta, el de la derecha es mayor.",
+      "Los opuestos están a igual distancia del cero.",
+      "La distancia nunca es negativa.",
+      "El cero está entre los dos lados."
     ]
   }
 }

@@ -371,6 +371,56 @@
         "palabra": "RELEER",
         "pista": "Volver a leer cuando no se entiende"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "TEXTO",
+        "silabas": [
+          "TEX",
+          "TO"
+        ],
+        "emoji": "📄"
+      },
+      {
+        "palabra": "TÍTULO",
+        "silabas": [
+          "TÍ",
+          "TU",
+          "LO"
+        ],
+        "emoji": "🏷️"
+      },
+      {
+        "palabra": "IMAGEN",
+        "silabas": [
+          "I",
+          "MA",
+          "GEN"
+        ],
+        "emoji": "🖼️"
+      },
+      {
+        "palabra": "FUENTE",
+        "silabas": [
+          "FUEN",
+          "TE"
+        ],
+        "emoji": "🔎"
+      },
+      {
+        "palabra": "LEER",
+        "silabas": [
+          "LE",
+          "ER"
+        ],
+        "emoji": "👀"
+      }
+    ],
+    "frases": [
+      "Antes de leer miro el título.",
+      "Las imágenes dan pistas del texto.",
+      "Si no entiendo, vuelvo a leer.",
+      "La fuente dice de dónde viene el dato."
     ]
   }
 }

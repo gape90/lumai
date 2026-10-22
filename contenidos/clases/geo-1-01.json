@@ -465,6 +465,57 @@
         "palabra": "MERCOSUR",
         "pista": "Organismo donde cooperan varios países de América del Sur"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "PAÍS",
+        "silabas": [
+          "PA",
+          "ÍS"
+        ],
+        "emoji": "🌎"
+      },
+      {
+        "palabra": "MAPA",
+        "silabas": [
+          "MA",
+          "PA"
+        ],
+        "emoji": "🗺️"
+      },
+      {
+        "palabra": "LÍMITE",
+        "silabas": [
+          "LÍ",
+          "MI",
+          "TE"
+        ],
+        "emoji": "🚧"
+      },
+      {
+        "palabra": "FRONTERA",
+        "silabas": [
+          "FRON",
+          "TE",
+          "RA"
+        ],
+        "emoji": "🛂"
+      },
+      {
+        "palabra": "BANDERA",
+        "silabas": [
+          "BAN",
+          "DE",
+          "RA"
+        ],
+        "emoji": "🏳️"
+      }
+    ],
+    "frases": [
+      "Un Estado es un país con gobierno.",
+      "El límite separa a dos países.",
+      "La frontera es una zona de encuentro.",
+      "Un país manda en su territorio."
     ]
   }
 }

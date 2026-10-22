@@ -392,6 +392,56 @@
         "palabra": "TAXISMO",
         "pista": "Desplazamiento de un organismo hacia un estímulo"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "ESTÍMULO",
+        "silabas": [
+          "ES",
+          "TÍ",
+          "MU",
+          "LO"
+        ],
+        "emoji": "🔔"
+      },
+      {
+        "palabra": "RESPUESTA",
+        "silabas": [
+          "RES",
+          "PUES",
+          "TA"
+        ],
+        "emoji": "🙋"
+      },
+      {
+        "palabra": "LUZ",
+        "silabas": [
+          "LUZ"
+        ],
+        "emoji": "☀️"
+      },
+      {
+        "palabra": "FRÍO",
+        "silabas": [
+          "FRÍ",
+          "O"
+        ],
+        "emoji": "🥶"
+      },
+      {
+        "palabra": "CALOR",
+        "silabas": [
+          "CA",
+          "LOR"
+        ],
+        "emoji": "🔥"
+      }
+    ],
+    "frases": [
+      "Un estímulo es un cambio del ambiente.",
+      "La respuesta es lo que hace el ser vivo.",
+      "La planta crece hacia la luz.",
+      "El cuerpo mantiene su temperatura."
     ]
   }
 }

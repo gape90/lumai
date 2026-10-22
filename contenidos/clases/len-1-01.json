@@ -430,6 +430,58 @@
         "palabra": "CONVERSAR",
         "pista": "Compartir ideas sobre un tema"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "TEMA",
+        "silabas": [
+          "TE",
+          "MA"
+        ],
+        "emoji": "📌"
+      },
+      {
+        "palabra": "PROBLEMA",
+        "silabas": [
+          "PRO",
+          "BLE",
+          "MA"
+        ],
+        "emoji": "❓"
+      },
+      {
+        "palabra": "OPINIÓN",
+        "silabas": [
+          "O",
+          "PI",
+          "NIÓN"
+        ],
+        "emoji": "💭"
+      },
+      {
+        "palabra": "ARGUMENTO",
+        "silabas": [
+          "AR",
+          "GU",
+          "MEN",
+          "TO"
+        ],
+        "emoji": "💬"
+      },
+      {
+        "palabra": "HECHO",
+        "silabas": [
+          "HE",
+          "CHO"
+        ],
+        "emoji": "✅"
+      }
+    ],
+    "frases": [
+      "Conversar es charlar y contar cosas.",
+      "El tema es de qué hablamos.",
+      "Un hecho se puede comprobar.",
+      "Una opinión es lo que yo pienso."
     ]
   }
 }

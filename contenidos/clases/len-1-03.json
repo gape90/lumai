@@ -373,6 +373,56 @@
         "palabra": "VISUAL",
         "pista": "El apoyo ___ muestra; vos explicás"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "EXPOSICIÓN",
+        "silabas": [
+          "EX",
+          "PO",
+          "SI",
+          "CIÓN"
+        ],
+        "emoji": "🎤"
+      },
+      {
+        "palabra": "PÚBLICO",
+        "silabas": [
+          "PÚ",
+          "BLI",
+          "CO"
+        ],
+        "emoji": "👥"
+      },
+      {
+        "palabra": "CIERRE",
+        "silabas": [
+          "CIE",
+          "RRE"
+        ],
+        "emoji": "🔚"
+      },
+      {
+        "palabra": "VOZ",
+        "silabas": [
+          "VOZ"
+        ],
+        "emoji": "🗣️"
+      },
+      {
+        "palabra": "PAUSA",
+        "silabas": [
+          "PAU",
+          "SA"
+        ],
+        "emoji": "⏸️"
+      }
+    ],
+    "frases": [
+      "Una exposición tiene tres partes.",
+      "Primero digo de qué voy a hablar.",
+      "Hablo claro y con pausas.",
+      "Al final resumo lo principal."
     ]
   }
 }

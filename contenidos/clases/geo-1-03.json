@@ -416,6 +416,56 @@
         "palabra": "CONTAMINACION",
         "pista": "Presencia de sustancias dañinas en el ambiente"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "BOSQUE",
+        "silabas": [
+          "BOS",
+          "QUE"
+        ],
+        "emoji": "🌲"
+      },
+      {
+        "palabra": "HUMEDAL",
+        "silabas": [
+          "HU",
+          "ME",
+          "DAL"
+        ],
+        "emoji": "🦆"
+      },
+      {
+        "palabra": "BASURA",
+        "silabas": [
+          "BA",
+          "SU",
+          "RA"
+        ],
+        "emoji": "🗑️"
+      },
+      {
+        "palabra": "HUMO",
+        "silabas": [
+          "HU",
+          "MO"
+        ],
+        "emoji": "💨"
+      },
+      {
+        "palabra": "RÍO",
+        "silabas": [
+          "RÍ",
+          "O"
+        ],
+        "emoji": "🏞️"
+      }
+    ],
+    "frases": [
+      "Sacar bosques daña el ambiente.",
+      "Los humedales son zonas con mucha agua.",
+      "Toda causa tiene una consecuencia.",
+      "Hay que cuidar el ambiente."
     ]
   }
 }

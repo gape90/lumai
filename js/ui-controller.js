@@ -357,6 +357,7 @@ async function mostrarClaseBaseSiExiste() {
         ajustes = calcularAjustes(perfil, reglas, clase.materia);
         estadoGlobal.adaptacionClase = { origen, perfil, motivos: ajustes.motivos };
         estadoGlobal.ajustes = ajustes;   // los juegos también se adaptan con estas perillas
+        estadoGlobal.perfilDimensiones = perfil;
         console.log('🧩 Adaptación de la clase:', origen, ajustes);
     } catch (error) {
         console.warn('⚠️ No se pudo adaptar la clase; se muestra la versión base:', error);
@@ -410,6 +411,7 @@ async function generarContenidoEducativo() {
         const reglas = await cargarReglas();
         const { perfil } = perfilDelAlumno(reglas);
         estadoGlobal.ajustes = calcularAjustes(perfil, reglas, datosSession.materia);
+        estadoGlobal.perfilDimensiones = perfil;
     } catch (error) {
         console.warn('⚠️ No se pudieron calcular los ajustes para los juegos:', error);
     }

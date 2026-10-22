@@ -1,4 +1,6 @@
 // js/activities/activity-puente-palabras.js - Juego de memoria con cartas (fiel al original)
+import { actividadesDelBanco, configurarJuegoN0 } from '../banco-actividades.js';
+
 // ===============================================================================
 // Adaptación del HTML original manteniendo diseño, mecánica y síntesis de voz
 
@@ -45,7 +47,7 @@ function obtenerConfiguracionPuente() {
         'N3': { cantidadPares: 6, descripcion: 'Memory game avanzado con 6 pares' }
     };
     
-    return configuracionesPorPerfil[perfil?.nombre_visible] || configuracionesPorPerfil['N2'];
+    return configurarJuegoN0('puente-palabras', configuracionesPorPerfil[perfil?.nombre_visible] || configuracionesPorPerfil['N2']);
 }
 
 // ==================== GENERACIÓN DE ACTIVIDAD ====================
@@ -59,6 +61,13 @@ export async function generarActividad() {
         
         // Cargar base de datos de emojis
         await cargarEmojisBBDD();
+
+        const delBanco = await actividadesDelBanco('puente-palabras', config);
+        if (delBanco) {
+            actividadesGeneradas = delBanco.slice(0, config.cantidadPares);
+            console.log("📚 Parejas armadas con el banco de la clase");
+            return { tipo: "puente-palabras", actividades: actividadesGeneradas, configuracion: config, instrucciones: "Encuentra los pares volteando las cartas", esBanco: true };
+        }
         
         const parejasIA = await generarParejasConIA();
         

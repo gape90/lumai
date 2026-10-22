@@ -406,6 +406,58 @@
         "palabra": "CLOROPLASTOS",
         "pista": "Los tienen las células vegetales y no las animales"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "CÉLULA",
+        "silabas": [
+          "CÉ",
+          "LU",
+          "LA"
+        ],
+        "emoji": "🔬"
+      },
+      {
+        "palabra": "NÚCLEO",
+        "silabas": [
+          "NÚ",
+          "CLE",
+          "O"
+        ],
+        "emoji": "🎯"
+      },
+      {
+        "palabra": "MEMBRANA",
+        "silabas": [
+          "MEM",
+          "BRA",
+          "NA"
+        ],
+        "emoji": "🧱"
+      },
+      {
+        "palabra": "BACTERIA",
+        "silabas": [
+          "BAC",
+          "TE",
+          "RIA"
+        ],
+        "emoji": "🦠"
+      },
+      {
+        "palabra": "PLANTA",
+        "silabas": [
+          "PLAN",
+          "TA"
+        ],
+        "emoji": "🌿"
+      }
+    ],
+    "frases": [
+      "Todo ser vivo está hecho de células.",
+      "La membrana rodea a la célula.",
+      "Las bacterias no tienen núcleo.",
+      "Las células vegetales tienen cloroplastos."
     ]
   }
 }

@@ -342,6 +342,56 @@
         "palabra": "DIVISION",
         "pista": "Repartir en partes iguales"
       }
+    ],
+    "simples": [
+      {
+        "palabra": "FRACCIÓN",
+        "silabas": [
+          "FRAC",
+          "CIÓN"
+        ],
+        "emoji": "🍕"
+      },
+      {
+        "palabra": "PARTES",
+        "silabas": [
+          "PAR",
+          "TES"
+        ],
+        "emoji": "🧩"
+      },
+      {
+        "palabra": "MITAD",
+        "silabas": [
+          "MI",
+          "TAD"
+        ],
+        "emoji": "🌗"
+      },
+      {
+        "palabra": "DIVIDIR",
+        "silabas": [
+          "DI",
+          "VI",
+          "DIR"
+        ],
+        "emoji": "➗"
+      },
+      {
+        "palabra": "REPARTIR",
+        "silabas": [
+          "RE",
+          "PAR",
+          "TIR"
+        ],
+        "emoji": "🍰"
+      }
+    ],
+    "frases": [
+      "Una fracción es repartir en partes iguales.",
+      "El número de arriba es lo que reparto.",
+      "El número de abajo dice entre cuántos.",
+      "Dividir es repartir."
     ]
   }
 }

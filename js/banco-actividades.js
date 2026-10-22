@@ -204,6 +204,21 @@ export async function actividadesDelBanco(tipo, config = {}) {
       const elegidas = mezclar(lista).slice(0, n);
       return elegidas.length >= Math.min(3, n) ? elegidas : null;
     }
+    case 'puente-palabras': {
+      const n = config.cantidadPares || 4;
+      const l = mezclar((clase.banco?.simples || []).map(x => ({ palabra: x.palabra, emoji: x.emoji })));
+      return l.length >= Math.min(3, n) ? l.slice(0, n) : null;
+    }
+    case 'aventura-silabas': {
+      const n = config.palabrasPorRonda || 5;
+      const l = mezclar(clase.banco?.simples || []);
+      return l.length >= Math.min(3, n) ? l.slice(0, n).map(x => ({ palabra: x.palabra, silabas: x.silabas, emoji: x.emoji })) : null;
+    }
+    case 'exploradores-sonido': {
+      const n = config.maxFrases || 4;
+      const l = (clase.banco?.frases || []).map(f => limpiar(f).toUpperCase());
+      return l.length >= Math.min(2, n) ? l.slice(0, n) : null;
+    }
     default:
       return null;
   }
@@ -249,4 +264,26 @@ export function aplicarPerillasAJuego() {
     observador.observe(cont, { childList: true, subtree: true, characterData: true });
     ocultar();
   }
+}
+
+// ------------------------------------------------------ juegos de lectoescritura (N0)
+// Cantidades según el apoyo que necesita el alumno y su sentido numérico.
+export function configurarJuegoN0(tipo, config) {
+  const apoyo = nivelDeApoyo();
+  const a = ajustesActuales();
+  if (!apoyo || !a) return config;                   // sin perfil de 13 dimensiones: no se toca
+  const c = { ...config };
+  const i = { bajo: 0, medio: 1, alto: 2 }[apoyo];
+  if (tipo === 'aventura-silabas') c.palabrasPorRonda = [3, 4, 5][i];
+  if (tipo === 'puente-palabras') c.cantidadPares = [3, 4, 5][i];
+  if (tipo === 'exploradores-sonido') c.maxFrases = [2, 3, 4][i];
+  if (tipo === 'supermercado') {
+    c.maxProductos = [3, 4, 5][i];
+    const num = (estadoGlobal.perfilDimensiones || {}).sentido_numerico;
+    const tope = { generalizado: 5, extenso: 8, limitado: 12 }[num];
+    c.maxCantidad = Math.min(c.maxCantidad, tope || c.maxCantidad, [6, 10, 20][i]);
+  }
+  // los juegos con burbujas o tiempo: más lentos si el perfil lo pide
+  c.factorTiempo = a.sin_tiempos ? 2 : (a.calmo || apoyo === 'bajo') ? 1.4 : 1;
+  return c;
 }
