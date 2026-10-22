@@ -1253,12 +1253,13 @@
         <!-- Explicación generada por IA -->
         ${(explanationData.html || explanationData.text) ? `
         <div class="explanation-section">
-            <div class="explanation-title">Explicación Generada por IA</div>
+            <div class="explanation-title">${explanationData.titulo}</div>
             <div class="explanation-content">
                 ${explanationData.html || explanationData.text}
             </div>
         </div>
         ` : ''}
+        ${getRecorridoClaseBase(student, 'email')}
 
         <!-- Título de Actividades -->
         <div class="section-title">
@@ -1296,11 +1297,13 @@
         function getExplanationContent(student) {
             let explanationHTML = '';
             let explanationText = '';
+            let origen = 'ia';
             
             student.sessions.forEach(session => {
                 if (session.customEvents) {
                     session.customEvents.forEach(event => {
                         if (event.type === 'explanation_content_saved' && event.data) {
+                            origen = event.data.origen || 'ia';
                             if (event.data.explicacionHTML) {
                                 explanationHTML = event.data.explicacionHTML;
                             }
@@ -1314,8 +1317,85 @@
             
             return {
                 html: explanationHTML,
-                text: explanationText
+                text: explanationText,
+                origen: origen,
+                titulo: origen === 'clase_base' ? 'Clase base de LumAI' : 'Explicación Generada por IA'
             };
+        }
+
+        // Recorrido del alumno por una clase base en cápsulas (eventos clase_* del tracker)
+        function getRecorridoClaseBase(student, formato) {
+            const esc = (t) => String(t == null ? '' : t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+            // Las sesiones pueden guardarse más de una vez: se descartan los eventos repetidos
+            const eventos = [];
+            const vistos = new Set();
+            student.sessions.forEach(session => (session.customEvents || []).forEach(e => {
+                if (!e.type || e.type.indexOf('clase_') !== 0) return;
+                const clave = e.type + '|' + e.timestamp + '|' + JSON.stringify(e.data);
+                if (vistos.has(clave)) return;
+                vistos.add(clave);
+                eventos.push(e);
+            }));
+            const mostradas = eventos.filter(e => e.type === 'clase_mostrada');
+            if (!mostradas.length) return '';
+            const info = mostradas[mostradas.length - 1].data || {};
+            const de = (tipo) => eventos.filter(e => e.type === tipo && e.data && e.data.clase === info.clase).map(e => e.data);
+
+            const vistas = new Set(de('clase_capsula_vista').map(x => x.capsula)).size;
+            const ultimoPorCapsula = {};
+            de('clase_chequeo').forEach(c => { ultimoPorCapsula[c.capsula] = c; });
+            const chequeos = Object.values(ultimoPorCapsula);
+            const total = info.preguntas || chequeos.length;
+            const primera = chequeos.filter(c => c.primera).length;
+            const costaron = chequeos.filter(c => c.intentos > 1);
+            const ayudas = [...new Set(de('clase_ayuda').map(x => x.titulo || x.capsula))];
+            const palabras = [...new Set(de('clase_termino').map(x => x.palabra))];
+            const tiempos = {};
+            de('clase_capsula_tiempo').forEach(t => { const k = t.titulo || t.capsula; tiempos[k] = (tiempos[k] || 0) + (t.segundos || 0); });
+            const autos = de('clase_autoevaluacion');
+            const auto = autos.length ? autos[autos.length - 1] : null;
+            const completada = de('clase_completada').length > 0;
+            const contextos = de('clase_mi_lugar').length;
+            const textoAuto = { entendi: '😊 Lo entendí', mas_o_menos: '😐 Más o menos', me_costo: '😟 Me costó' };
+            const duracion = (seg) => seg < 60 ? `${seg} s` : `${Math.round(seg / 60)} min`;
+
+            let lectura = '';
+            if (auto && total) {
+                const proporcion = primera / total;
+                if (auto.respuesta === 'entendi' && proporcion < 0.6) lectura = 'Dice que entendió, pero respondió bien a la primera menos de 6 de cada 10 preguntas. Conviene repasar con el alumno las cápsulas que le costaron.';
+                else if (auto.respuesta === 'me_costo' && proporcion >= 0.8) lectura = 'Dice que le costó, aunque respondió bien casi todo a la primera. Puede necesitar más confianza que más explicación.';
+            }
+
+            const tarjeta = (valor, etiqueta) => `<div class="summary-card"><div class="summary-value">${valor}</div><div class="summary-label">${etiqueta}</div></div>`;
+            const detalle = `
+                <p><strong>Autoevaluación:</strong> ${auto ? textoAuto[auto.respuesta] || esc(auto.respuesta) : 'No la completó'}</p>
+                ${lectura ? `<p><strong>Para tener en cuenta:</strong> ${lectura}</p>` : ''}
+                ${costaron.length ? `<p><strong>Preguntas que le costaron:</strong> ${costaron.map(c => `${esc(c.titulo || c.capsula)} (${c.intentos} intentos)`).join(', ')}</p>` : ''}
+                ${ayudas.length ? `<p><strong>Pidió la versión más fácil en:</strong> ${ayudas.map(esc).join(', ')}</p>` : ''}
+                ${palabras.length ? `<p><strong>Palabras que consultó:</strong> ${palabras.map(esc).join(', ')}</p>` : ''}
+                ${contextos ? `<p><strong>Respondió preguntas sobre su propio lugar:</strong> ${contextos}</p>` : ''}
+                ${Object.keys(tiempos).length ? `<p><strong>Tiempo por cápsula:</strong> ${Object.entries(tiempos).map(([t, seg]) => `${esc(t)}: ${duracion(seg)}`).join(' · ')}</p>` : ''}`;
+            const tarjetas = `<div class="summary-stats">
+                    ${tarjeta(`${vistas}/${info.capsulas || '?'}`, 'Cápsulas vistas')}
+                    ${tarjeta(`${primera}/${total}`, 'Preguntas bien a la primera')}
+                    ${tarjeta(ayudas.length, 'Cápsulas con ayuda')}
+                    ${tarjeta(completada ? 'Sí' : 'No', 'Terminó la clase')}
+                </div>`;
+
+            if (formato === 'email') {
+                return `
+        <div class="explanation-section">
+            <div class="explanation-title">Recorrido de la clase base: ${esc(info.titulo || info.clase)}</div>
+            ${tarjetas}
+            <div class="explanation-content">${detalle}</div>
+        </div>`;
+            }
+            return `
+                <div class="ai-report-section" style="margin: 30px 0;">
+                    <h3 class="ai-report-title">Recorrido de la clase base: ${esc(info.titulo || info.clase)}</h3>
+                    ${tarjetas}
+                    <div class="ai-report-content">${detalle}</div>
+                </div>`;
         }
 
         console.log('Función enviarReporte definida en scope global');
@@ -1581,6 +1661,7 @@
                         <h2>Reporte: ${student.name}</h2>
                         <p style="color: #ff6b6b;">No hay datos de actividades para este estudiante.</p>
                     </div>
+                    ${getRecorridoClaseBase(student)}
                 `;
                 showTab('individual');
                 return;
@@ -1597,7 +1678,7 @@
             const explanationData = getExplanationContent(student);
             const explanationHtml = (explanationData.html || explanationData.text) ? `
                 <div class="ai-report-section" style="margin: 30px 0;">
-                    <h3 class="ai-report-title">Explicación Generada por IA</h3>
+                    <h3 class="ai-report-title">${explanationData.titulo}</h3>
                     <div class="ai-report-content">
                         ${explanationData.html || explanationData.text}
                     </div>
@@ -1754,6 +1835,7 @@
                 </div>
 
                 ${explanationHtml}
+                ${getRecorridoClaseBase(student)}
                 
                 <div style="text-align: center; margin: 40px 0 20px 0;">
                     <h2 style="color: #333; font-size: 1.8rem; font-weight: 600; border-bottom: 3px solid #007bff; display: inline-block; padding-bottom: 10px;">Actividades Realizadas</h2>

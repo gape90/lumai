@@ -1,0 +1,378 @@
+{
+  "id": "geo-1-04",
+  "formato": "capsulas",
+  "materia": "Geografía",
+  "anio": "1.° año",
+  "eje": "Sociedades y espacios geográficos",
+  "nap": "La comprensión de las características más relevantes de la población americana y la explicación de sus principales problemáticas, particularmente las vinculadas con la distribución, estructura y dinámica de la población; las migraciones y las condiciones de vida y de trabajo.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Ciencias Sociales, 1.°/2.° año",
+  "titulo": "Más de mil millones de historias: la población de América",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "Imaginate esto",
+    "texto": "Si todas las personas de América se tomaran de la mano, darían muchas veces la vuelta al mundo. Pero no viven repartidas de manera pareja: hay ciudades donde no queda lugar y zonas enormes casi vacías.",
+    "pregunta": "¿Por qué la gente se concentra en algunos lugares y no en otros?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **explicar dónde y cómo vive la población de América**, y por qué tanta gente se muda.",
+    "resuelta": "La gente se concentra donde hay trabajo, servicios y buen clima, sobre todo en las ciudades y las costas. La población cambia por los nacimientos, las muertes y las migraciones, y sus condiciones de vida son muy desiguales."
+  },
+  "idea_central": "La población de América está distribuida de forma muy desigual, crece a ritmos distintos y se mueve por migraciones. Sus condiciones de vida y de trabajo muestran grandes diferencias.",
+  "idea_central_simple": "En América vive mucha gente. Muchos viven en ciudades y algunos se mudan a otros lugares para buscar trabajo.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "Dónde vive la gente",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Empecemos con un número que impresiona.",
+      "pose": "saludo",
+      "texto": "En América viven más de 1.000 millones de personas. La mayoría vive cerca de las costas y en las grandes ciudades: es población **urbana**.\nMientras tanto, zonas enormes como la Amazonia o el norte de Canadá casi no tienen habitantes.",
+      "presentacion": {
+        "tipo": "cifra",
+        "numero": "8 de 10",
+        "leyenda": "personas de América Latina viven en ciudades",
+        "puntos": 10,
+        "destacados": 8,
+        "nota": "En la Argentina, son más de 9 de cada 10."
+      },
+      "interactivo": {
+        "tipo": "explorar",
+        "titulo": "📍 ¿Dónde vive la gente?",
+        "consigna": "Tocá cada zona.",
+        "elementos": [
+          {
+            "icono": "🏙️",
+            "nombre": "Grandes ciudades",
+            "texto": "Ciudad de México, San Pablo, Nueva York y Buenos Aires superan los 15 millones de habitantes con sus alrededores."
+          },
+          {
+            "icono": "🌊",
+            "nombre": "Costas",
+            "texto": "Mucha gente vive cerca del mar, por los puertos y el comercio."
+          },
+          {
+            "icono": "🌳",
+            "nombre": "Amazonia",
+            "texto": "Es enorme, pero tiene pocos habitantes, sobre todo cerca de los ríos."
+          },
+          {
+            "icono": "🧊",
+            "nombre": "Norte de Canadá",
+            "texto": "El frío extremo hace que esté casi despoblado."
+          }
+        ]
+      },
+      "idea_clave": "La población de América está muy concentrada en ciudades y costas.",
+      "texto_simple": "La mayoría de la gente vive en ciudades. Hay lugares donde casi no vive nadie.",
+      "chequeo": {
+        "pregunta": "¿Por qué la Amazonia tiene tan pocos habitantes, si es enorme?",
+        "opciones": [
+          "porque es selva y hay pocas ciudades y servicios",
+          "porque está prohibido vivir ahí",
+          "porque es un desierto"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! La gente se concentra donde hay trabajo y servicios.",
+        "mal": "Pensá en qué busca la gente para vivir: trabajo, escuelas, hospitales…"
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "Cómo es la población",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Hay una forma de \"dibujar\" a la población de un país: la pirámide.",
+      "pose": "idea",
+      "texto": "La **pirámide de población** muestra cuántas personas hay de cada edad.\nSi la base es ancha, hay muchos niños y jóvenes, como en Bolivia. Si la parte de arriba se ensancha, la población está envejeciendo, como en Uruguay.",
+      "imagen": "geo-1-04-b",
+      "presentacion": {
+        "tipo": "contraste",
+        "lados": [
+          {
+            "etiqueta": "Base ancha",
+            "nombre": "Población joven",
+            "texto": "Muchos niños y pocas personas mayores. Ejemplo: Bolivia."
+          },
+          {
+            "etiqueta": "Forma de columna",
+            "nombre": "Población envejecida",
+            "texto": "Pocos niños y muchas personas mayores. Ejemplo: Uruguay."
+          }
+        ]
+      },
+      "idea_clave": "La pirámide de población muestra cuántas personas hay de cada edad.",
+      "texto_simple": "Algunos países tienen muchos chicos. Otros tienen muchos abuelos.",
+      "chequeo": {
+        "pregunta": "Un país con muchos niños tiene una pirámide…",
+        "opciones": [
+          "con la base ancha",
+          "con la punta ancha",
+          "cuadrada"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Los más chicos están en la base.",
+        "mal": "En la pirámide, las edades más chicas van abajo."
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "Cómo cambia la población",
+      "minutos": 3,
+      "esencial": false,
+      "lumai": "La población cambia por tres motivos. Hagamos una cuenta.",
+      "pose": "saludo",
+      "texto": "La cantidad de habitantes cambia por los **nacimientos**, las muertes y las **migraciones**.\nHoy en casi toda América nacen menos bebés que hace 50 años, y la gente vive más. Por eso la población crece más despacio.",
+      "interactivo": {
+        "tipo": "error",
+        "titulo": "🕵️ Encontrá el error en la cuenta",
+        "consigna": "En un año, en un país nacen 100.000 personas, mueren 60.000, llegan 10.000 y se van 5.000. Un compañero calculó así. Tocá el paso equivocado.",
+        "pasos": [
+          {
+            "texto": "Nacimientos menos muertes: 100.000 − 60.000 = 40.000",
+            "error": false,
+            "explicacion": "Este paso está bien."
+          },
+          {
+            "texto": "Llegadas menos salidas: 10.000 − 5.000 = 5.000",
+            "error": false,
+            "explicacion": "Este paso también está bien."
+          },
+          {
+            "texto": "Total: 40.000 − 5.000 = 35.000",
+            "error": true,
+            "explicacion": "¡Ese es! Llegaron más de los que se fueron, así que hay que sumar: 40.000 + 5.000 = 45.000."
+          }
+        ]
+      },
+      "idea_clave": "La población cambia por nacimientos, muertes y migraciones.",
+      "texto_simple": "La gente aumenta cuando nacen bebés o llegan personas. Disminuye cuando mueren o se van.",
+      "chequeo": {
+        "pregunta": "Si llegan más inmigrantes de los que se van, la población…",
+        "opciones": [
+          "aumenta",
+          "disminuye",
+          "no cambia"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Hay más gente que antes.",
+        "mal": "Pensá: ¿hay más gente o menos?"
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "La gente que se mueve",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Seguramente en tu familia hay alguna historia de mudanza. Escuchá la de Camila.",
+      "pose": "idea",
+      "texto": "Las **migraciones** son desplazamientos de personas para vivir en otro lugar.\nPueden ser **internas**, como mudarse del campo a la ciudad, o **internacionales**, de un país a otro. Se migra por trabajo, estudio, familia o para escapar de conflictos.",
+      "imagen": "geo-1-04-c",
+      "presentacion": {
+        "tipo": "cita",
+        "texto": "Mi familia llegó al Gran Buenos Aires desde un pueblo de Santiago del Estero cuando yo tenía 5 años: mi papá consiguió trabajo en la construcción. Mi abuela, en cambio, había llegado desde Paraguay muchos años antes.",
+        "fuente": "Camila, 12 años. En una sola familia, una migración interna y otra internacional."
+      },
+      "ejemplo": {
+        "texto": "La familia de Camila llegó al Gran Buenos Aires desde Santiago del Estero por trabajo. Su abuela había llegado desde Paraguay muchos años antes.",
+        "intercambiable": true,
+        "mostrar": false,
+        "que_debe_mostrar": "La diferencia entre una migración interna y una internacional, y algunas de sus causas."
+      },
+      "interactivo": {
+        "tipo": "clasificar",
+        "titulo": "🧳 ¿Interna o internacional?",
+        "consigna": "Elegí el tipo de migración.",
+        "categorias": [
+          "Interna",
+          "Internacional"
+        ],
+        "items": [
+          {
+            "nombre": "La familia de Camila, de Santiago del Estero al Gran Buenos Aires",
+            "categoria": "Interna",
+            "pista": "No cambia de país."
+          },
+          {
+            "nombre": "La abuela de Camila, de Paraguay a la Argentina",
+            "categoria": "Internacional",
+            "pista": "Cruza un límite entre países."
+          },
+          {
+            "nombre": "Un estudiante de un pueblo de La Pampa que se muda a Córdoba para ir a la universidad",
+            "categoria": "Interna",
+            "pista": "Las dos ciudades están en la Argentina."
+          },
+          {
+            "nombre": "Una médica que viaja de Venezuela a la Argentina para vivir",
+            "categoria": "Internacional",
+            "pista": "Cambia de país."
+          }
+        ],
+        "cierre": "¡Muy bien! Lo que importa es si se cruza o no un límite entre países."
+      },
+      "idea_clave": "Las migraciones pueden ser internas o internacionales.",
+      "texto_simple": "Migrar es mudarse a otro lugar para vivir. Puede ser dentro del país o a otro país.",
+      "chequeo": {
+        "pregunta": "¿Cuál es el motivo más frecuente de las migraciones?",
+        "opciones": [
+          "el trabajo",
+          "las vacaciones",
+          "el clima"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! La gente se muda adonde hay más empleo.",
+        "mal": "Pensá en el papá de Camila: ¿por qué se mudaron?"
+      },
+      "mi_lugar": {
+        "pregunta": "¿Alguien de tu familia o de tu barrio vino de otro lugar? ¿De dónde y por qué? Si preferís no contar algo personal, pensá en la historia de tu ciudad.",
+        "ayuda": "Mi familia / mi ciudad…"
+      }
+    },
+    {
+      "id": "c5",
+      "titulo": "Condiciones de vida y de trabajo",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Última cápsula, y una muy importante: no todos viven igual.",
+      "pose": "saludo",
+      "texto": "En muchas ciudades de América conviven barrios con todos los servicios y asentamientos sin agua potable ni cloacas.\nMucha gente tiene trabajos **informales**: sin contrato, sin aportes para la jubilación y sin obra social. Estas desigualdades son un gran desafío del continente.",
+      "presentacion": {
+        "tipo": "contraste",
+        "lados": [
+          {
+            "etiqueta": "Trabajo formal",
+            "nombre": "Con derechos",
+            "texto": "Contrato, aportes para la jubilación, obra social y vacaciones pagas."
+          },
+          {
+            "etiqueta": "Trabajo informal",
+            "nombre": "Sin derechos",
+            "texto": "Sin contrato, sin aportes y sin obra social."
+          }
+        ]
+      },
+      "idea_clave": "Las condiciones de vida y de trabajo en América son muy desiguales.",
+      "texto_simple": "Algunas personas tienen todo lo que necesitan y otras no. Algunos trabajos no tienen derechos.",
+      "chequeo": {
+        "pregunta": "Un trabajo sin contrato ni obra social es…",
+        "opciones": [
+          "informal",
+          "formal",
+          "internacional"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! No tiene los derechos del trabajo formal.",
+        "mal": "Mirá la comparación de arriba."
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Población urbana",
+      "definicion": "Personas que viven en ciudades."
+    },
+    {
+      "palabra": "Pirámide de población",
+      "definicion": "Gráfico que muestra cuántas personas hay de cada edad y de cada sexo."
+    },
+    {
+      "palabra": "Natalidad",
+      "definicion": "Cantidad de nacimientos en una población durante un período."
+    },
+    {
+      "palabra": "Mortalidad",
+      "definicion": "Cantidad de muertes en una población durante un período."
+    },
+    {
+      "palabra": "Migración",
+      "definicion": "Desplazamiento de personas de un lugar a otro para vivir allí."
+    },
+    {
+      "palabra": "Trabajo informal",
+      "definicion": "Empleo sin contrato, sin aportes jubilatorios y sin obra social."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "La población de América está repartida de forma pareja.",
+      "aclaracion": "Está muy concentrada en ciudades y costas, y hay grandes zonas casi vacías."
+    },
+    {
+      "error": "La gente migra solo por falta de trabajo.",
+      "aclaracion": "Se migra por muchas razones: trabajo, estudio, familia, conflictos o desastres."
+    },
+    {
+      "error": "Migrar es siempre irse a otro país.",
+      "aclaracion": "También hay migraciones internas, como las que van del campo a la ciudad."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Preguntá en tu familia de dónde vinieron tus abuelos o bisabuelos y armá un mapa con sus recorridos. ¿Qué tipos de migraciones aparecen? ¿Por qué se mudaron?",
+    "conexion": "Con Matemática: las pirámides de población son gráficos de barras horizontales, y los cambios de población se calculan con sumas y restas, como en el desafío de esta clase."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Cómo está distribuida la población de América?",
+      "respuesta": "De forma muy desigual: concentrada en ciudades y costas."
+    },
+    {
+      "pregunta": "¿Qué es la población urbana?",
+      "respuesta": "La que vive en ciudades."
+    },
+    {
+      "pregunta": "¿Qué muestra una pirámide de población?",
+      "respuesta": "Cuántas personas hay de cada edad y de cada sexo."
+    },
+    {
+      "pregunta": "¿Por qué tres motivos cambia la cantidad de habitantes?",
+      "respuesta": "Por los nacimientos, las muertes y las migraciones."
+    },
+    {
+      "pregunta": "¿Qué es una migración interna?",
+      "respuesta": "Un desplazamiento dentro del mismo país, por ejemplo del campo a la ciudad."
+    },
+    {
+      "pregunta": "¿Qué es el trabajo informal?",
+      "respuesta": "Un empleo sin contrato, sin aportes jubilatorios y sin obra social."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "🏘️",
+      "texto": "En la Argentina, más de 9 de cada 10 personas viven en ciudades. Es uno de los porcentajes de población urbana más altos del mundo."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a conocer a la gente de América: dónde vive, cómo vive y por qué se muda. Son 5 cápsulas. Para empezar, imaginate esto.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés cómo es la población de América. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "geo-1-04-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Una ciudad llena de edificios y gente junto a una selva casi sin habitantes",
+      "epigrafe": "La población de América está repartida de forma muy desigual.",
+      "descripcion": "Imagen dividida en dos: a la izquierda, una gran ciudad densa con edificios altos, calles llenas de gente y autos; a la derecha, una selva extensa con un río y apenas un par de casas en la orilla. Estilo ilustración plana, colores de LumAI."
+    },
+    {
+      "id": "geo-1-04-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Dos pirámides de población: una con base ancha y otra con forma de columna",
+      "epigrafe": "Una población joven y una población envejecida.",
+      "descripcion": "Dos pirámides de población lado a lado, con barras horizontales por grupos de edad (varones a la izquierda en azul, mujeres a la derecha en naranja). La primera con base ancha y punta angosta (\"Población joven\"); la segunda con base angosta y parte superior ancha (\"Población envejecida\"). Ejes con edades legibles. Estilo gráfico escolar limpio."
+    },
+    {
+      "id": "geo-1-04-c",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Mapa de América con flechas que muestran las principales migraciones",
+      "epigrafe": "Algunos de los principales recorridos migratorios del continente.",
+      "descripcion": "Mapa de América con flechas curvas de colores: desde México y América Central hacia Estados Unidos; desde Paraguay, Bolivia, Perú y Venezuela hacia la Argentina; y una flecha interna en la Argentina desde el norte hacia las grandes ciudades. Leyenda simple. Estilo infografía clara."
+    }
+  ]
+}

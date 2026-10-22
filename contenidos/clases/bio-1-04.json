@@ -1,0 +1,374 @@
+{
+  "id": "bio-1-04",
+  "formato": "capsulas",
+  "materia": "Biología",
+  "anio": "1.° año",
+  "eje": "Seres vivos: diversidad, unidad, interrelaciones y cambios",
+  "nap": "El reconocimiento de la función de relación en el organismo humano a través del análisis de situaciones donde se evidencien procesos de captación y procesamiento de la información y elaboración de respuestas, que permitan avanzar en la construcción de la noción de organismo como sistema integrado y abierto.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Ciencias Naturales, 1.°/2.° año",
+  "titulo": "Tu cuerpo, un equipo que trabaja en tiempo real",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "Imaginate esto",
+    "texto": "Un arquero frente a un penal. La pelota sale disparada y, en menos de medio segundo, él tiene que verla, decidir hacia dónde tirarse y mover todo el cuerpo.",
+    "pregunta": "¿Qué partes del cuerpo trabajan juntas en esa fracción de segundo?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **explicar la atajada del arquero** paso a paso, desde los ojos hasta los músculos.",
+    "resuelta": "Los ojos captan la pelota (receptores), los nervios llevan la información al cerebro, que decide (sistema nervioso), y los músculos ejecutan el movimiento (efectores). El cuerpo funciona como un equipo integrado."
+  },
+  "idea_central": "El cuerpo humano capta información con los receptores, la procesa en el sistema nervioso y responde con músculos y glándulas, como un sistema integrado.",
+  "idea_central_simple": "El cuerpo siente con los sentidos, decide con el cerebro y se mueve con los músculos.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "Captar: los receptores",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Todo empieza con los receptores. Recorramos los sentidos.",
+      "pose": "saludo",
+      "texto": "Los **receptores** detectan estímulos. Muchos están en los órganos de los sentidos: los ojos captan la luz; los oídos, el sonido; la piel, el tacto y la temperatura.\nTambién hay receptores adentro del cuerpo, que detectan si falta agua.",
+      "interactivo": {
+        "tipo": "explorar",
+        "titulo": "👁️ Los sentidos y sus receptores",
+        "consigna": "Tocá cada sentido.",
+        "elementos": [
+          {
+            "icono": "👁️",
+            "nombre": "Vista",
+            "texto": "En la retina, al fondo del ojo, hay células que captan la luz y los colores."
+          },
+          {
+            "icono": "👂",
+            "nombre": "Oído",
+            "texto": "En el oído interno, células con pelitos detectan las vibraciones del sonido. También ayudan al equilibrio."
+          },
+          {
+            "icono": "👃",
+            "nombre": "Olfato",
+            "texto": "En la parte alta de la nariz hay receptores que captan sustancias del aire."
+          },
+          {
+            "icono": "👅",
+            "nombre": "Gusto",
+            "texto": "La lengua capta lo dulce, lo salado, lo ácido, lo amargo y el umami, un sabor intenso como el del queso."
+          },
+          {
+            "icono": "✋",
+            "nombre": "Tacto",
+            "texto": "La piel tiene receptores para la presión, la temperatura y el dolor."
+          }
+        ]
+      },
+      "idea_clave": "Los receptores detectan los estímulos, por ejemplo en los órganos de los sentidos.",
+      "texto_simple": "Los ojos, los oídos, la nariz, la lengua y la piel sienten lo que pasa.",
+      "chequeo": {
+        "pregunta": "En el penal, ¿qué receptores captan la pelota?",
+        "opciones": [
+          "los ojos",
+          "los músculos",
+          "el cerebro"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! La vista es el primer paso.",
+        "mal": "¿Con qué ve el arquero la pelota?"
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "Procesar: el sistema nervioso",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "La información viaja a toda velocidad. Mirá el penal en cámara lenta.",
+      "pose": "idea",
+      "texto": "La información viaja por los **nervios** como señales eléctricas hasta el sistema nervioso central: el **encéfalo** y la **médula espinal**.\nAhí se interpreta y se decide qué hacer. Las células que transmiten las señales son las **neuronas**.",
+      "imagen": "bio-1-04-b",
+      "interactivo": {
+        "tipo": "ordenar",
+        "titulo": "⚽ Ordená la atajada, en cámara lenta",
+        "consigna": "Tocá los pasos en el orden en que ocurren.",
+        "items": [
+          "La pelota sale disparada hacia el arco",
+          "Los ojos captan la pelota",
+          "El nervio óptico lleva la información al cerebro",
+          "El cerebro decide hacia dónde tirarse",
+          "Las órdenes viajan por la médula y los nervios",
+          "Los músculos se contraen: ¡ataja!"
+        ],
+        "cierre": "¡Atajada perfecta! Todo eso pasa en menos de medio segundo."
+      },
+      "idea_clave": "El sistema nervioso recibe la información, la interpreta y decide qué hacer.",
+      "texto_simple": "Los nervios llevan los mensajes al cerebro, y el cerebro decide.",
+      "chequeo": {
+        "pregunta": "¿Qué órgano decide hacia dónde se tira el arquero?",
+        "opciones": [
+          "el cerebro",
+          "los ojos",
+          "las piernas"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! El cerebro interpreta y decide.",
+        "mal": "Los ojos ven y las piernas se mueven. ¿Quién decide?"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "Responder: músculos y glándulas",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Las órdenes llegan a los encargados de ejecutarlas.",
+      "pose": "saludo",
+      "texto": "Los **efectores** ejecutan la respuesta.\nLos **músculos** producen movimientos, como patear o parpadear. Las **glándulas** fabrican sustancias, como las lágrimas, la saliva o el sudor.",
+      "presentacion": {
+        "tipo": "ecuacion",
+        "operador": "→",
+        "igual": "→",
+        "piezas": [
+          {
+            "icono": "👁️",
+            "nombre": "Receptor",
+            "texto": "Capta"
+          },
+          {
+            "icono": "🧠",
+            "nombre": "Sistema nervioso",
+            "texto": "Decide"
+          }
+        ],
+        "resultado": {
+          "icono": "💪",
+          "nombre": "Efector",
+          "texto": "Músculo o glándula: responde"
+        }
+      },
+      "interactivo": {
+        "tipo": "clasificar",
+        "titulo": "🗂️ ¿Receptor o efector?",
+        "consigna": "Elegí qué es cada uno.",
+        "categorias": [
+          "Receptor",
+          "Efector"
+        ],
+        "items": [
+          {
+            "nombre": "La retina del ojo",
+            "categoria": "Receptor",
+            "pista": "Capta la luz."
+          },
+          {
+            "nombre": "Los músculos de la pierna",
+            "categoria": "Efector",
+            "pista": "Ejecutan un movimiento."
+          },
+          {
+            "nombre": "La piel de la mano",
+            "categoria": "Receptor",
+            "pista": "Siente el calor o el frío."
+          },
+          {
+            "nombre": "Las glándulas del sudor",
+            "categoria": "Efector",
+            "pista": "Fabrican una sustancia como respuesta."
+          }
+        ],
+        "cierre": "¡Muy bien! Los receptores captan; los efectores responden."
+      },
+      "idea_clave": "Los músculos y las glándulas son los efectores: ejecutan la respuesta.",
+      "texto_simple": "Los músculos mueven el cuerpo. Las glándulas fabrican cosas como el sudor.",
+      "chequeo": {
+        "pregunta": "Cuando llorás, ¿qué efector está actuando?",
+        "opciones": [
+          "una glándula",
+          "un músculo",
+          "un receptor"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Las glándulas fabrican las lágrimas.",
+        "mal": "Las lágrimas son una sustancia. ¿Quién fabrica sustancias?"
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Respuestas sin pensar",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "¿Alguna vez sacaste la mano de algo caliente antes de sentir el dolor?",
+      "pose": "idea",
+      "texto": "Eso es un **acto reflejo**. La señal llega a la médula espinal y ella misma ordena el movimiento, sin esperar al cerebro.\nAsí se gana tiempo y se evitan daños. Recién después sentís el dolor.",
+      "imagen": "bio-1-04-c",
+      "interactivo": {
+        "tipo": "revelar",
+        "pregunta": "¿Por qué un acto reflejo es más rápido que una respuesta pensada?",
+        "pista": "Pensá en el recorrido de la señal.",
+        "respuesta": "Porque el camino es más corto: va del receptor a la médula y de ahí al músculo, sin pasar primero por el cerebro."
+      },
+      "idea_clave": "En un acto reflejo, la médula ordena la respuesta sin esperar al cerebro.",
+      "texto_simple": "Algunas cosas el cuerpo las hace solo, sin pensar, para protegerte.",
+      "chequeo": {
+        "pregunta": "En un acto reflejo, ¿quién ordena el movimiento?",
+        "opciones": [
+          "la médula espinal",
+          "el cerebro",
+          "el corazón"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Por eso es tan rápido.",
+        "mal": "La señal no espera al cerebro. ¿Dónde se resuelve?"
+      },
+      "mi_lugar": {
+        "pregunta": "Pensá en un deporte, un juego o una actividad que hagas. ¿Qué receptores usás, qué decide tu cerebro y qué músculos se mueven?",
+        "ayuda": "Cuando juego a…"
+      }
+    },
+    {
+      "id": "c5",
+      "titulo": "Un equipo integrado",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Última cápsula: el sistema nervioso tiene un compañero de equipo.",
+      "pose": "saludo",
+      "texto": "El **sistema endocrino** libera **hormonas** a la sangre: mensajeros químicos más lentos, pero de efecto más duradero.\nAnte un susto, la adrenalina acelera el corazón. Por eso el cuerpo es un sistema integrado: todas sus partes trabajan coordinadas.",
+      "presentacion": {
+        "tipo": "contraste",
+        "lados": [
+          {
+            "etiqueta": "Eléctrico",
+            "nombre": "Sistema nervioso",
+            "texto": "Mensajes por los nervios. Muy rápido y de efecto breve."
+          },
+          {
+            "etiqueta": "Químico",
+            "nombre": "Sistema endocrino",
+            "texto": "Hormonas por la sangre. Más lento y de efecto duradero."
+          }
+        ]
+      },
+      "ejemplo": {
+        "texto": "Cruzás la calle y escuchás una bocina. Tus oídos captan el sonido, tu cerebro reconoce el peligro y tus piernas aceleran. Al mismo tiempo, la adrenalina hace que tu corazón lata más rápido.",
+        "intercambiable": true,
+        "que_debe_mostrar": "El recorrido completo estímulo, receptor, sistema nervioso y efector, con una respuesta nerviosa y una hormonal."
+      },
+      "idea_clave": "El sistema nervioso y el endocrino trabajan en equipo.",
+      "texto_simple": "El cuerpo manda mensajes rápidos por los nervios y mensajes lentos por la sangre.",
+      "chequeo": {
+        "pregunta": "¿Qué sistema usa hormonas que viajan por la sangre?",
+        "opciones": [
+          "el endocrino",
+          "el nervioso",
+          "el digestivo"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Las hormonas son mensajeros químicos.",
+        "mal": "Mirá la comparación de arriba."
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Receptor",
+      "definicion": "Estructura que detecta estímulos, como las células de la retina del ojo."
+    },
+    {
+      "palabra": "Neurona",
+      "definicion": "Célula del sistema nervioso que transmite señales eléctricas."
+    },
+    {
+      "palabra": "Sistema nervioso central",
+      "definicion": "El encéfalo y la médula espinal: procesan la información y deciden las respuestas."
+    },
+    {
+      "palabra": "Efector",
+      "definicion": "Músculo o glándula que ejecuta una respuesta."
+    },
+    {
+      "palabra": "Acto reflejo",
+      "definicion": "Respuesta rápida e involuntaria que ordena la médula espinal sin esperar al cerebro."
+    },
+    {
+      "palabra": "Hormona",
+      "definicion": "Sustancia química que una glándula libera a la sangre como mensaje para otras partes del cuerpo."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "Pensamos con el corazón.",
+      "aclaracion": "Pensamos y decidimos con el encéfalo; el corazón bombea la sangre."
+    },
+    {
+      "error": "Todas las respuestas pasan por el cerebro.",
+      "aclaracion": "Los actos reflejos los ordena la médula espinal, sin esperar al cerebro."
+    },
+    {
+      "error": "Solo tenemos cinco sentidos.",
+      "aclaracion": "Además de los cinco clásicos, el cuerpo tiene receptores para el equilibrio, la posición del cuerpo, el dolor o la sed, entre otros."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Muchas personas ciegas desarrollan mucho la escucha y el tacto, por ejemplo para leer en sistema braille. ¿Qué te dice esto sobre la capacidad del cerebro para adaptarse? Investigá qué es la plasticidad cerebral.",
+    "conexion": "Con Educación Física: el entrenamiento mejora la coordinación entre el sistema nervioso y los músculos. Por eso un movimiento que al principio cuesta, con la práctica sale casi automático."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Qué hacen los receptores?",
+      "respuesta": "Detectan estímulos."
+    },
+    {
+      "pregunta": "¿Qué órganos forman el sistema nervioso central?",
+      "respuesta": "El encéfalo y la médula espinal."
+    },
+    {
+      "pregunta": "¿Qué son los efectores?",
+      "respuesta": "Los músculos y las glándulas, que ejecutan las respuestas."
+    },
+    {
+      "pregunta": "¿Qué es un acto reflejo?",
+      "respuesta": "Una respuesta rápida e involuntaria que ordena la médula espinal."
+    },
+    {
+      "pregunta": "¿Qué es una hormona?",
+      "respuesta": "Un mensajero químico que una glándula libera a la sangre."
+    },
+    {
+      "pregunta": "¿Por qué se dice que el organismo es un sistema abierto?",
+      "respuesta": "Porque intercambia información, materia y energía con el ambiente."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "🏎️",
+      "texto": "Las señales nerviosas más rápidas viajan a más de 100 metros por segundo, es decir, a más de 360 km/h: tanto como un auto de Fórmula 1 a toda velocidad."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a ver cómo tu cuerpo trabaja en equipo, en tiempo real. Son 5 cápsulas. Para empezar, imaginate esta escena.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés cómo tu cuerpo capta, decide y responde. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "bio-1-04-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Un arquero se estira en el aire para atajar una pelota",
+      "epigrafe": "Ver, decidir y moverse en menos de medio segundo.",
+      "descripcion": "Arquero de fútbol en pleno vuelo lateral, estirando los brazos hacia la pelota, con el arco detrás. Líneas de movimiento que muestran la velocidad. Estilo ilustración dinámica y plana, sin escudos ni marcas reales."
+    },
+    {
+      "id": "bio-1-04-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Esquema: ojo, nervio, cerebro, médula y músculo unidos por flechas",
+      "epigrafe": "El circuito de la función de relación: receptor, sistema nervioso y efector.",
+      "descripcion": "Silueta humana de perfil con un recorrido iluminado: el ojo (receptor) conectado por una línea amarilla al cerebro, de allí baja por la médula espinal y una línea naranja llega a los músculos de la pierna. Etiquetas grandes: \"Receptor\", \"Sistema nervioso central\", \"Efector\". Fondo claro, estilo infografía escolar."
+    },
+    {
+      "id": "bio-1-04-c",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Una mano que se aparta de una pava caliente, con el recorrido del reflejo marcado",
+      "epigrafe": "En el acto reflejo, la médula espinal ordena el movimiento sin esperar al cerebro.",
+      "descripcion": "Dibujo de una mano que se retira de una pava caliente. Una flecha sale de la mano, llega a la médula espinal (dibujada en un corte simple de la espalda) y vuelve al brazo, sin pasar por el cerebro. El cerebro aparece en gris con una pequeña flecha que llega después. Estilo esquemático claro."
+    }
+  ]
+}

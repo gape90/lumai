@@ -1,0 +1,313 @@
+{
+  "id": "len-1-02",
+  "formato": "capsulas",
+  "materia": "Lengua y Literatura",
+  "anio": "1.° año",
+  "eje": "Comprensión y producción oral",
+  "nap": "La escucha comprensiva y crítica de textos referidos a contenidos estudiados y a temas de interés general expresados por el docente, los compañeros, otros adultos y en programas radiales y televisivos (entrevistas, documentales, películas). Supone, en la narración, identificar sucesos, personajes, tiempo, espacio, relaciones temporales y causales y realizar inferencias; en la exposición, identificar el tema, los subtemas y los recursos, y tomar notas; en la argumentación, discriminar entre hechos y opiniones.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Lengua, 1.°/2.° año",
+  "titulo": "Escuchar es un superpoder que casi nadie entrena",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "Probá esto",
+    "texto": "Podés tener la radio prendida mientras chateás. Pero si después te preguntan qué dijeron, seguramente no lo sepas.",
+    "pregunta": "¿Sabías que oír y escuchar no son lo mismo?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **escuchar como un experto**: seguir un relato, entender una explicación y descubrir lo que no se dice.",
+    "resuelta": "Oír es percibir sonidos; escuchar es prestar atención para entender. Para escuchar bien seguís las preguntas del relato, detectás el tema y los subtemas, anotás palabras clave e inferís lo que no se dice."
+  },
+  "idea_central": "Escuchar es prestar atención con un propósito: entender qué se cuenta o se explica, y descubrir también lo que no se dice.",
+  "idea_central_simple": "Escuchar es prestar atención para entender lo que alguien cuenta.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "Las cinco preguntas de un relato",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Cuando alguien te cuenta una historia, hay cinco preguntas que te ayudan a no perderte.",
+      "pose": "idea",
+      "texto": "Para seguir un relato, preguntate: ¿qué pasó?, ¿a quién?, ¿dónde?, ¿cuándo? y ¿por qué?\nLos **sucesos** son las acciones que hacen avanzar la historia. Los **comentarios** son lo que opina quien la cuenta.",
+      "presentacion": {
+        "tipo": "ecuacion",
+        "piezas": [
+          {
+            "icono": "❓",
+            "nombre": "¿Qué?",
+            "texto": "Lo que pasó"
+          },
+          {
+            "icono": "🙋",
+            "nombre": "¿Quién?",
+            "texto": "Los personajes"
+          },
+          {
+            "icono": "📍",
+            "nombre": "¿Dónde y cuándo?",
+            "texto": "Lugar y tiempo"
+          },
+          {
+            "icono": "🔗",
+            "nombre": "¿Por qué?",
+            "texto": "Las causas"
+          }
+        ],
+        "resultado": {
+          "icono": "📖",
+          "nombre": "El relato",
+          "texto": "Entendido completo"
+        }
+      },
+      "idea_clave": "Para seguir un relato: qué pasó, a quién, dónde, cuándo y por qué.",
+      "texto_simple": "Cuando te cuentan algo, fijate qué pasó, a quién, dónde, cuándo y por qué.",
+      "chequeo": {
+        "pregunta": "En \"Para mí, fue el mejor partido del año\", quien cuenta está dando…",
+        "opciones": [
+          "un comentario",
+          "un suceso",
+          "un lugar"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Es una opinión de quien cuenta, no una acción de la historia.",
+        "mal": "Fijate en \"para mí\": ¿es algo que pasó o lo que alguien opina?"
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "Escuchá y reconstruí la historia",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Ahora te toca a vos. Tocá Escuchar y prestá atención: después vas a tener que ordenar la historia.",
+      "pose": "saludo",
+      "texto": "Algunas palabras ordenan los hechos en el tiempo: \"después\", \"mientras\", \"al día siguiente\".\nOtras muestran causas: \"porque\", \"por eso\", \"entonces\". Se llaman **conectores**.",
+      "interactivo": {
+        "tipo": "escuchar",
+        "titulo": "🎧 Escuchá el relato",
+        "consigna": "Tocá Escuchar. Intentá responder cada pregunta antes de abrir la respuesta.",
+        "texto": "El sábado a la tarde, Joaquín salió a andar en bici por la costanera. El cielo estaba gris, pero igual se fue sin campera. Mientras pedaleaba, se largó a llover tan fuerte que tuvo que refugiarse debajo del techo de un kiosco. El kiosquero lo vio temblando y le prestó una toalla. Media hora después, cuando paró la lluvia, Joaquín volvió a su casa y se prometió que la próxima vez iba a mirar el pronóstico.",
+        "preguntas": [
+          {
+            "pregunta": "¿Dónde y cuándo ocurre la historia?",
+            "respuesta": "En la costanera, un sábado a la tarde."
+          },
+          {
+            "pregunta": "¿Por qué Joaquín se refugió en el kiosco?",
+            "respuesta": "Porque se largó a llover muy fuerte. Es una relación de causa."
+          },
+          {
+            "pregunta": "¿Qué palabra indica que dos acciones pasan al mismo tiempo?",
+            "respuesta": "\"Mientras\": mientras pedaleaba, se largó a llover."
+          }
+        ]
+      },
+      "idea_clave": "Los conectores ordenan el relato en el tiempo y muestran causas.",
+      "texto_simple": "Palabras como \"después\" o \"porque\" te ayudan a saber el orden y el motivo de lo que pasa.",
+      "chequeo": {
+        "pregunta": "En \"Se largó a llover, por eso se refugió en el kiosco\", el conector \"por eso\" indica…",
+        "opciones": [
+          "una consecuencia",
+          "un lugar",
+          "una opinión"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Lo que pasó después, a causa de la lluvia.",
+        "mal": "Pensá: ¿qué pasó a causa de la lluvia?"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "Escuchar una explicación",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "No solo escuchamos historias: también explicaciones, como las de un video o un docente.",
+      "pose": "idea",
+      "texto": "En una explicación, primero detectá el **tema** general. Después, los **subtemas**: las partes en que se divide.\nQuien explica usa ayudas: definiciones (\"X es…\"), ejemplos, comparaciones (\"es como…\") y repeticiones (\"o sea…\").",
+      "presentacion": {
+        "tipo": "cita",
+        "texto": "El dulce de leche nació en nuestra región. Se hace calentando leche con azúcar durante horas. Hoy lo usamos en alfajores, panqueques y helados.",
+        "fuente": "Un video de un minuto: tema, el dulce de leche. Subtemas: de dónde viene, cómo se hace y en qué se usa."
+      },
+      "ejemplo": {
+        "texto": "En un video sobre el dulce de leche, la narradora explica primero de dónde viene, después cómo se fabrica y al final en qué comidas se usa. Si anotás esos tres subtemas con dos o tres palabras clave cada uno, tenés lo esencial del video.",
+        "intercambiable": true,
+        "mostrar": false,
+        "que_debe_mostrar": "Una explicación oral con un tema dividido en subtemas y la toma de notas con palabras clave."
+      },
+      "idea_clave": "Una explicación tiene un tema y se divide en subtemas.",
+      "texto_simple": "El tema es de qué trata la explicación. Los subtemas son sus partes.",
+      "chequeo": {
+        "pregunta": "En el video del dulce de leche, \"cómo se hace\" es…",
+        "opciones": [
+          "un subtema",
+          "el tema",
+          "un conector"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Es una de las partes en que se divide el tema.",
+        "mal": "El tema es el dulce de leche. ¿Qué es cada una de sus partes?"
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Tomar notas sin escribir todo",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Nadie puede anotar todo lo que escucha. El secreto está en elegir.",
+      "pose": "saludo",
+      "texto": "Tomar notas es elegir lo importante y escribirlo rápido.\nUsá palabras clave, abreviaturas (q = que, x = por) y flechas para unir causas y consecuencias. El mismo día, releé y completá.",
+      "imagen": "len-1-02-b",
+      "interactivo": {
+        "tipo": "ordenar",
+        "titulo": "🔢 Ordená los pasos para tomar notas",
+        "consigna": "Tocá los pasos en el orden en que conviene hacerlos.",
+        "items": [
+          "Pensar para qué voy a escuchar",
+          "Anotar solo palabras clave mientras escucho",
+          "Usar abreviaturas y flechas",
+          "Releer y completar las notas el mismo día"
+        ],
+        "cierre": "¡Perfecto! Antes, durante y después: así se toman notas que sirven."
+      },
+      "idea_clave": "Tomar notas es elegir lo importante y escribirlo con pocas palabras.",
+      "texto_simple": "No copies todo. Escribí solo las palabras más importantes.",
+      "chequeo": {
+        "pregunta": "Al tomar notas, ¿qué conviene escribir?",
+        "opciones": [
+          "palabras clave",
+          "todo lo que se dice",
+          "solo el título"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Pocas palabras, pero las importantes.",
+        "mal": "Hablamos mucho más rápido de lo que escribimos. ¿Se puede copiar todo?"
+      }
+    },
+    {
+      "id": "c5",
+      "titulo": "Inferir: entender lo que no se dice",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Último superpoder: descubrir lo que nadie dijo.",
+      "pose": "idea",
+      "texto": "Muchas veces, quien habla no dice todo.\nSi alguien cuenta \"Entró empapado y cerró el paraguas roto\", podemos **inferir** que llovía y que el paraguas no lo protegió.\nInferir es usar las pistas y lo que ya sabemos para completar el sentido.",
+      "interactivo": {
+        "tipo": "revelar",
+        "pregunta": "Un chico cuenta: \"Cuando llegué al cumpleaños, todos ya estaban comiendo la torta\". ¿Qué podés inferir?",
+        "respuesta": "Que llegó tarde, cuando la fiesta ya estaba avanzada. No lo dice, pero comer la torta suele ser de lo último en un cumpleaños."
+      },
+      "idea_clave": "Inferir es descubrir lo que no se dice usando pistas.",
+      "texto_simple": "A veces no te dicen todo. Con las pistas podés darte cuenta de lo que falta.",
+      "chequeo": {
+        "pregunta": "En la historia de Joaquín, el kiosquero lo vio temblando. ¿Qué podés inferir?",
+        "opciones": [
+          "que Joaquín tenía frío",
+          "que Joaquín estaba contento",
+          "que era de noche"
+        ],
+        "correcta": 0,
+        "bien": "¡Muy bien! Estaba mojado y sin campera: las pistas lo muestran.",
+        "mal": "Pensá: estaba empapado y sin campera. ¿Por qué temblaría?"
+      },
+      "mi_lugar": {
+        "pregunta": "Pensá en algo que alguien te contó hoy o ayer. ¿Qué pudiste inferir aunque no te lo dijeran directamente?",
+        "ayuda": "Me contaron que… y me di cuenta de que…"
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Suceso",
+      "definicion": "Acción que hace avanzar una historia."
+    },
+    {
+      "palabra": "Comentario",
+      "definicion": "Opinión de quien cuenta la historia sobre lo que pasó."
+    },
+    {
+      "palabra": "Conector",
+      "definicion": "Palabra que relaciona ideas: de tiempo (después, mientras) o de causa (porque, por eso)."
+    },
+    {
+      "palabra": "Subtema",
+      "definicion": "Cada una de las partes en que se divide el tema de una explicación."
+    },
+    {
+      "palabra": "Inferir",
+      "definicion": "Deducir algo que no se dice directamente, a partir de pistas."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "Escuchar es lo mismo que oír.",
+      "aclaracion": "Oír es percibir sonidos; escuchar es prestar atención para entender."
+    },
+    {
+      "error": "Tomar notas es copiar todo lo que se dice.",
+      "aclaracion": "Es elegir lo importante y escribirlo en pocas palabras."
+    },
+    {
+      "error": "Si no lo dijo, no se puede saber.",
+      "aclaracion": "Muchas cosas se infieren a partir de pistas, aunque no se digan directamente."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Escuchá un podcast o mirá un fragmento de documental de cinco minutos. Anotá el tema, los subtemas y un ejemplo que haya usado quien habla. ¿Hubo algo que dio a entender sin decirlo? ¿Cómo te diste cuenta?",
+    "conexion": "Con Ciencias Naturales y Sociales: los documentales usan las mismas herramientas que estudiamos acá: un tema, subtemas, definiciones, ejemplos y comparaciones."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Cuál es la diferencia entre oír y escuchar?",
+      "respuesta": "Oír es percibir sonidos; escuchar es prestar atención para entender."
+    },
+    {
+      "pregunta": "¿Qué es un suceso en un relato?",
+      "respuesta": "Una acción que hace avanzar la historia."
+    },
+    {
+      "pregunta": "¿Qué indica el conector \"por eso\"?",
+      "respuesta": "Una consecuencia."
+    },
+    {
+      "pregunta": "¿Qué es inferir?",
+      "respuesta": "Deducir algo que no se dice directamente, a partir de pistas."
+    },
+    {
+      "pregunta": "¿Qué es un subtema?",
+      "respuesta": "Una de las partes en que se divide el tema de una explicación."
+    },
+    {
+      "pregunta": "Al tomar notas, ¿conviene anotar todo?",
+      "respuesta": "No: conviene anotar palabras clave."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "✍️",
+      "texto": "Hablamos mucho más rápido de lo que escribimos a mano. Por eso tomar notas nunca puede ser copiar: siempre es seleccionar."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a entrenar un superpoder que casi nadie practica: escuchar de verdad. Son 5 cápsulas, y en una te voy a contar una historia. Para empezar, probá esto.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Escuchar con atención te va a servir en todas las materias. Cuando quieras, seguimos con las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "len-1-02-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Dos chicos con auriculares: uno distraído con el celular y otro atento, tomando notas",
+      "epigrafe": "Oír y escuchar no son lo mismo.",
+      "descripcion": "Escena dividida en dos: a la izquierda, un adolescente con auriculares mirando el celular, distraído, con notas musicales que pasan de largo; a la derecha, otro adolescente con auriculares, atento, tomando notas en un cuaderno, con una lamparita sobre la cabeza. Estilo plano, colores de LumAI."
+    },
+    {
+      "id": "len-1-02-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Cuaderno con notas breves, abreviaturas y flechas",
+      "epigrafe": "Palabras clave, abreviaturas y flechas: así se toman notas.",
+      "descripcion": "Página de cuaderno con notas a mano bien legibles: un título \"Dulce de leche\", tres viñetas con palabras clave (\"origen\", \"cómo se hace\", \"usos\"), abreviaturas como \"x\" y \"q\" y flechas \"→\" que unen ideas. Estilo realista y simple, con resaltador naranja en las palabras clave."
+    }
+  ]
+}

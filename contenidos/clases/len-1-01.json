@@ -1,0 +1,403 @@
+{
+  "id": "len-1-01",
+  "formato": "capsulas",
+  "materia": "Lengua y Literatura",
+  "anio": "1.° año",
+  "eje": "Comprensión y producción oral",
+  "nap": "La participación asidua en conversaciones y discusiones sobre diversos temas propios del área, del mundo de la cultura y de la vida ciudadana, a partir de informaciones y opiniones provenientes de diferentes fuentes. Supone, en la conversación, sostener el tema, realizar aportes y utilizar recursos paraverbales y no verbales adecuados; y en la discusión, discriminar entre tema y problema, hechos y opiniones, manifestar una posición y formular argumentos para defenderla.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Lengua, 1.°/2.° año",
+  "titulo": "Conversar no es lo mismo que discutir",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "¿Te pasó alguna vez?",
+    "texto": "El grupo del curso tiene 214 mensajes sin leer. Empezó con \"¿Quién trae la pelota mañana?\" y terminó en una pelea sobre el VAR. Nadie se acuerda de la pelota.",
+    "pregunta": "¿En qué momento la charla se convirtió en discusión?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **discutir sin pelear**: separar hechos de opiniones y defender lo que pensás con buenos argumentos.",
+    "resuelta": "La charla se volvió discusión cuando apareció un problema con posiciones distintas. Para discutir bien hay que acordar cuál es el problema, separar hechos de opiniones, dar razones y escuchar las del otro."
+  },
+  "idea_central": "Conversar es compartir ideas sobre un tema. Discutir es defender una posición con argumentos, separando los hechos de las opiniones.",
+  "idea_central_simple": "Conversar es compartir ideas. Discutir es dar razones para defender lo que pensás.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "Conversar y discutir",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Arranquemos por la diferencia más importante de hoy.",
+      "pose": "saludo",
+      "texto": "Cuando conversamos, compartimos ideas y sostenemos un tema entre todos. Es como el vóley: la pelota tiene que seguir en el aire.\nCuando discutimos, hay posiciones distintas. Cada uno defiende la suya con razones.",
+      "presentacion": {
+        "tipo": "contraste",
+        "lados": [
+          {
+            "etiqueta": "Compartir",
+            "nombre": "Conversación",
+            "texto": "Sostenemos un tema entre todos. El objetivo es entendernos y conocernos más."
+          },
+          {
+            "etiqueta": "Defender",
+            "nombre": "Discusión",
+            "texto": "Hay un problema con posiciones distintas. El objetivo es convencer o llegar a un acuerdo."
+          }
+        ]
+      },
+      "idea_clave": "Conversar es compartir ideas. Discutir es defender una posición con razones.",
+      "texto_simple": "Conversar es charlar y contar cosas. Discutir es decir qué pensás y explicar por qué.",
+      "chequeo": {
+        "pregunta": "Dos amigos se cuentan qué hicieron el fin de semana. ¿Qué están haciendo?",
+        "opciones": [
+          "conversando",
+          "discutiendo",
+          "argumentando"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Comparten experiencias: nadie defiende una posición.",
+        "mal": "Pensalo así: ¿hay posiciones distintas para defender, o solo se cuentan cosas?"
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "Tema y problema",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Para discutir bien, primero hay que saber de qué estamos discutiendo.",
+      "pose": "idea",
+      "texto": "El **tema** es de qué se habla. Por ejemplo, el VAR en el fútbol.\nEl **problema** es la pregunta que divide opiniones: ¿el VAR hace más justo al fútbol?\nSi no acuerdan cuál es el problema, cada uno termina discutiendo otra cosa.",
+      "interactivo": {
+        "tipo": "clasificar",
+        "titulo": "🗂️ ¿Tema o problema?",
+        "consigna": "Elegí la opción correcta para cada frase.",
+        "categorias": [
+          "Tema",
+          "Problema"
+        ],
+        "items": [
+          {
+            "nombre": "Los celulares en la escuela",
+            "categoria": "Tema",
+            "pista": "¿Es una pregunta que divide opiniones, o solo dice de qué se habla?"
+          },
+          {
+            "nombre": "¿Hay que prohibir los celulares en el aula?",
+            "categoria": "Problema",
+            "pista": "Es una pregunta: unos dirán que sí y otros que no."
+          },
+          {
+            "nombre": "Las mascotas",
+            "categoria": "Tema",
+            "pista": "Solo nombra de qué se habla."
+          },
+          {
+            "nombre": "¿Está bien tener un perro en un departamento?",
+            "categoria": "Problema",
+            "pista": "Hay opiniones a favor y en contra."
+          },
+          {
+            "nombre": "El uniforme escolar",
+            "categoria": "Tema",
+            "pista": "No es una pregunta: es de qué se habla."
+          },
+          {
+            "nombre": "¿El uniforme debería ser obligatorio?",
+            "categoria": "Problema",
+            "pista": "Es una pregunta que divide opiniones."
+          }
+        ],
+        "cierre": "¡Muy bien! Los problemas suelen ser preguntas que se pueden responder con un sí o un no, y que dividen opiniones."
+      },
+      "idea_clave": "El tema es de qué se habla. El problema es la pregunta que divide opiniones.",
+      "texto_simple": "El tema es de qué hablamos. El problema es una pregunta en la que no todos piensan igual.",
+      "chequeo": {
+        "pregunta": "\"¿Las vacaciones de invierno deberían durar un mes?\" es…",
+        "opciones": [
+          "un problema",
+          "un tema",
+          "un hecho"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Es una pregunta que divide opiniones.",
+        "mal": "Fijate: ¿todos responderían lo mismo a esa pregunta?"
+      },
+      "mi_lugar": {
+        "pregunta": "Pensá en un tema que se discuta en tu escuela, tu barrio o tu casa. ¿Cuál sería el problema, la pregunta que divide opiniones?",
+        "ayuda": "Por ejemplo: el tema es… y el problema es…"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "Hechos y opiniones",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Ahora, la herramienta que más te va a servir para discutir.",
+      "pose": "saludo",
+      "texto": "Un **hecho** se puede comprobar: \"El VAR se usa en los Mundiales desde 2018\".\nUna **opinión** dice lo que alguien piensa o siente: \"El VAR le quita emoción al fútbol\".\nLas opiniones no son verdaderas ni falsas. Pero pueden estar mejor o peor fundamentadas.",
+      "interactivo": {
+        "tipo": "texto_anotado",
+        "titulo": "🔍 ¿Hecho u opinión?",
+        "consigna": "Leé esta discusión y tocá las partes subrayadas.",
+        "segmentos": [
+          {
+            "texto": "Lucas: —"
+          },
+          {
+            "texto": "El VAR se usa en los Mundiales desde 2018",
+            "etiqueta": "Hecho",
+            "nota": "Se puede comprobar buscando información."
+          },
+          {
+            "texto": ", y "
+          },
+          {
+            "texto": "para mí le saca toda la emoción al fútbol",
+            "etiqueta": "Opinión",
+            "nota": "Dice lo que Lucas siente. \"Para mí\" es una marca típica de opinión."
+          },
+          {
+            "texto": ".\nSofía: —"
+          },
+          {
+            "texto": "Yo creo que es más justo",
+            "etiqueta": "Opinión",
+            "nota": "\"Yo creo\" anuncia una opinión: es la posición de Sofía."
+          },
+          {
+            "texto": ", porque "
+          },
+          {
+            "texto": "el árbitro puede revisar una jugada en video",
+            "etiqueta": "Hecho",
+            "nota": "Es un dato comprobable, y Sofía lo usa como argumento."
+          },
+          {
+            "texto": "."
+          }
+        ]
+      },
+      "idea_clave": "Un hecho se puede comprobar. Una opinión dice lo que alguien piensa.",
+      "texto_simple": "Un hecho es algo que pasó y se puede probar. Una opinión es lo que alguien piensa.",
+      "chequeo": {
+        "pregunta": "\"Para mí, el básquet es más divertido que el fútbol\" es…",
+        "opciones": [
+          "una opinión",
+          "un hecho",
+          "un tema"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! \"Para mí\" muestra que es lo que alguien piensa.",
+        "mal": "Fijate en \"para mí\": ¿se puede comprobar que algo es más divertido?"
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Posición y argumentos",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Escuchá cómo discuten Martina y Tomás en la asamblea del curso.",
+      "pose": "idea",
+      "texto": "Tu **posición** es lo que pensás sobre el problema. Los **argumentos** son las razones que la sostienen.\nLos argumentos más fuertes se apoyan en hechos. \"Porque sí\" no convence a nadie.",
+      "presentacion": {
+        "tipo": "cita",
+        "texto": "—Las sierras quedan más cerca, así que el micro sale más barato.\n—Entiendo lo del precio, pero en la costa hay más actividades para hacer todos juntos.",
+        "fuente": "Martina y Tomás discuten adónde ir de viaje. Ella da un argumento con un hecho; él lo reconoce antes de dar el suyo."
+      },
+      "ejemplo": {
+        "texto": "En una asamblea del curso se discute si el viaje de fin de año tiene que ser a las sierras de Córdoba o a la costa. Martina dice: \"Las sierras quedan más cerca, así que el micro sale más barato\". Tomás responde: \"Entiendo lo del precio, pero en la costa hay más actividades para hacer todos juntos\".",
+        "intercambiable": true,
+        "mostrar": false,
+        "que_debe_mostrar": "Una discusión con un problema claro, en la que alguien presenta una posición con un argumento basado en un hecho y otra persona reconoce ese argumento antes de dar el suyo."
+      },
+      "interactivo": {
+        "tipo": "error",
+        "titulo": "🕵️ ¿Cuál es el argumento débil?",
+        "consigna": "Las tres personas quieren limitar los celulares en clase. Tocá el argumento más débil.",
+        "pasos": [
+          {
+            "texto": "\"Porque las notificaciones interrumpen la atención durante la clase.\"",
+            "error": false,
+            "explicacion": "Este argumento está bien: se apoya en algo que se puede observar."
+          },
+          {
+            "texto": "\"Porque los odio.\"",
+            "error": true,
+            "explicacion": "¡Ese es! Solo expresa un sentimiento personal, y eso no convence a quien piensa distinto."
+          },
+          {
+            "texto": "\"Porque en escuelas que lo probaron, los estudiantes se concentraron más.\"",
+            "error": false,
+            "explicacion": "Este es fuerte: usa un hecho como prueba."
+          }
+        ]
+      },
+      "idea_clave": "Una posición se defiende con argumentos. Los más fuertes se apoyan en hechos.",
+      "texto_simple": "Tu posición es lo que pensás. Un argumento es la razón por la que lo pensás.",
+      "chequeo": {
+        "pregunta": "¿Cuál de estas razones es un buen argumento para pedir luces en la plaza?",
+        "opciones": [
+          "La plaza está oscura y de noche es peligroso cruzarla",
+          "Porque sí",
+          "Porque lo digo yo"
+        ],
+        "correcta": 0,
+        "bien": "¡Muy bien! Se apoya en un hecho que se puede comprobar.",
+        "mal": "Esa no da ninguna razón. Buscá la que explique por qué."
+      }
+    },
+    {
+      "id": "c5",
+      "titulo": "La voz y el cuerpo también hablan",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Última cápsula: no solo importa lo que decís, sino cómo lo decís.",
+      "pose": "saludo",
+      "texto": "El tono, el volumen y la velocidad de la voz son **recursos paraverbales**. Los gestos y la postura son recursos no verbales.\nUn mismo argumento puede sonar respetuoso o agresivo según cómo lo digas. Gritar no da la razón: hace que los demás dejen de escuchar.",
+      "imagen": "len-1-01-b",
+      "interactivo": {
+        "tipo": "explorar",
+        "titulo": "🗣️ La voz y el cuerpo",
+        "consigna": "Tocá cada recurso para ver qué comunica.",
+        "elementos": [
+          {
+            "icono": "🎵",
+            "nombre": "Entonación",
+            "texto": "Es la \"música\" de la frase. \"¿Ya llegaste?\" y \"¡Ya llegaste!\" tienen las mismas palabras y sentidos distintos."
+          },
+          {
+            "icono": "🔊",
+            "nombre": "Volumen",
+            "texto": "Muy fuerte puede sonar a enojo; muy bajo, a inseguridad. Adaptalo al lugar."
+          },
+          {
+            "icono": "⏱️",
+            "nombre": "Velocidad",
+            "texto": "Si hablás muy rápido, cuesta seguir la idea. Las pausas ayudan a que lo importante se escuche."
+          },
+          {
+            "icono": "✋",
+            "nombre": "Gestos",
+            "texto": "Acompañan lo que decís. Señalar con el dedo mientras discutís puede sentirse como un ataque."
+          },
+          {
+            "icono": "👂",
+            "nombre": "Señales de escucha",
+            "texto": "Asentir, mirar al otro y responder a lo que dijo muestran que lo estás escuchando."
+          }
+        ]
+      },
+      "idea_clave": "La voz y los gestos también comunican. Gritar no da la razón.",
+      "texto_simple": "Cómo hablás también importa. Si gritás, los demás dejan de escucharte.",
+      "chequeo": {
+        "pregunta": "En una discusión, hablar cada vez más fuerte…",
+        "opciones": [
+          "hace que los demás dejen de escuchar",
+          "te da la razón",
+          "es un buen argumento"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Convence quien tiene mejores argumentos, no quien grita más.",
+        "mal": "Pensá en cómo te sentís vos cuando alguien te grita."
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Tema",
+      "definicion": "Aquello de lo que se habla."
+    },
+    {
+      "palabra": "Problema",
+      "definicion": "La pregunta sobre el tema que divide opiniones."
+    },
+    {
+      "palabra": "Hecho",
+      "definicion": "Algo que se puede comprobar."
+    },
+    {
+      "palabra": "Opinión",
+      "definicion": "Lo que alguien piensa, cree o valora sobre algo."
+    },
+    {
+      "palabra": "Argumento",
+      "definicion": "Razón que se da para sostener una posición."
+    },
+    {
+      "palabra": "Recursos paraverbales",
+      "definicion": "El tono, el volumen y la velocidad de la voz."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "Una opinión es una mentira.",
+      "aclaracion": "Una opinión no es verdadera ni falsa: es lo que alguien piensa. Lo que se puede evaluar es si está bien fundamentada."
+    },
+    {
+      "error": "Discutir es pelear.",
+      "aclaracion": "Discutir es confrontar ideas con argumentos. Se puede discutir con respeto y hasta terminar de acuerdo."
+    },
+    {
+      "error": "Gana la discusión el que habla más fuerte.",
+      "aclaracion": "Convence quien tiene mejores argumentos. Levantar la voz suele hacer que los demás dejen de escuchar."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Elegí un tema que te interese y pensá un problema que divida opiniones. Escribí el mejor argumento a favor y el mejor argumento en contra. ¿Podés defender una posición con la que no estás de acuerdo? ¿Qué aprendés al hacerlo?",
+    "conexion": "Con Formación Ética y Ciudadana: en una democracia, muchas decisiones se toman discutiendo. Una sesión del Congreso es, en el fondo, una gran discusión con turnos para hablar, argumentos y una votación final."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Cuál es la diferencia entre conversar y discutir?",
+      "respuesta": "Al conversar se comparten ideas; al discutir se defienden posiciones distintas con argumentos."
+    },
+    {
+      "pregunta": "¿Qué es un hecho?",
+      "respuesta": "Algo que se puede comprobar."
+    },
+    {
+      "pregunta": "¿Qué es una opinión?",
+      "respuesta": "Lo que alguien piensa o valora sobre algo."
+    },
+    {
+      "pregunta": "\"El VAR se usa en los Mundiales desde 2018\", ¿es un hecho o una opinión?",
+      "respuesta": "Un hecho."
+    },
+    {
+      "pregunta": "¿Qué es un argumento?",
+      "respuesta": "Una razón que sostiene una posición."
+    },
+    {
+      "pregunta": "¿Qué son los recursos paraverbales?",
+      "respuesta": "El tono, el volumen y la velocidad de la voz."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "icono": "🏛️",
+      "texto": "En el Congreso, cada legislador tiene un tiempo fijo para hablar. Respetar los turnos es una regla básica de cualquier discusión.",
+      "ubicacion": "final"
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! ¿Alguna vez una charla terminó en pelea sin que nadie se diera cuenta? Son 5 cápsulas cortas para aprender a discutir sin pelear. Mirá lo que pasó en este grupo.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés separar hechos de opiniones y defender tus ideas con argumentos. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "len-1-01-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Pantalla de celular con un chat grupal lleno de mensajes",
+      "epigrafe": "Empezó con una pregunta simple y terminó en discusión.",
+      "descripcion": "Pantalla de celular con un chat grupal de adolescentes: arriba un mensaje \"¿Quién trae la pelota mañana?\" y más abajo varios mensajes con emojis de enojo y una pelota de fútbol con un ícono de video (VAR). Contador de \"214 mensajes sin leer\". Estilo plano, colorido, sin nombres reales."
+    },
+    {
+      "id": "len-1-01-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Dos estudiantes conversando con respeto en el aula, con globos de diálogo",
+      "epigrafe": "Escuchar el argumento del otro también es parte de discutir.",
+      "descripcion": "Dos adolescentes en un aula, sentados frente a frente, conversando con gestos tranquilos y con globos de diálogo vacíos. Uno levanta la mano abierta, en gesto de explicar; el otro asiente. Estilo ilustración plana, diverso e inclusivo."
+    }
+  ]
+}

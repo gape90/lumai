@@ -1,0 +1,374 @@
+{
+  "id": "geo-1-02",
+  "formato": "capsulas",
+  "materia": "Geografía",
+  "anio": "1.° año",
+  "eje": "Sociedades y espacios geográficos",
+  "nap": "El conocimiento de distintos ambientes del continente americano, la identificación de los principales recursos naturales y sus formas de aprovechamiento.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Ciencias Sociales, 1.°/2.° año",
+  "titulo": "Del hielo a la selva: los ambientes de América y sus recursos",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "¿Sabías que…?",
+    "texto": "En América está uno de los desiertos más secos del planeta, la selva tropical más grande del mundo, glaciares enormes y la cordillera más larga de la Tierra. Todo en un mismo continente.",
+    "pregunta": "¿Por qué un mismo continente tiene ambientes tan distintos?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **explicar por qué América tiene ambientes tan distintos** y qué recursos aprovechamos de cada uno.",
+    "resuelta": "América va casi de polo a polo: cada zona recibe distinto calor del Sol, y además influyen el relieve, el mar y las lluvias. En cada ambiente hay recursos naturales que las sociedades aprovechan de maneras distintas."
+  },
+  "idea_central": "Un ambiente es la relación entre las condiciones naturales de un lugar y la forma en que la sociedad lo usa. En cada ambiente hay recursos naturales que se aprovechan de maneras distintas.",
+  "idea_central_simple": "En América hay lugares muy distintos: selvas, desiertos, montañas y llanuras. De la naturaleza sacamos cosas que usamos todos los días.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "¿Qué es un ambiente?",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Empecemos por una palabra que parece fácil, pero tiene truco.",
+      "pose": "idea",
+      "texto": "Un **ambiente** no es solo la naturaleza. Es la combinación entre los elementos naturales de un lugar y lo que la sociedad hace con ellos.\nUna llanura con campos sembrados, rutas y pueblos es un ambiente tan real como una selva casi sin tocar.",
+      "presentacion": {
+        "tipo": "ecuacion",
+        "piezas": [
+          {
+            "icono": "⛰️",
+            "nombre": "Naturaleza",
+            "texto": "Clima, relieve, agua, suelos, plantas y animales"
+          },
+          {
+            "icono": "🏘️",
+            "nombre": "Sociedad",
+            "texto": "Lo que las personas hacen con ella"
+          }
+        ],
+        "resultado": {
+          "icono": "🌎",
+          "nombre": "Ambiente",
+          "texto": "Por ejemplo, la Pampa sembrada"
+        }
+      },
+      "idea_clave": "Un ambiente es la naturaleza más lo que la sociedad hace con ella.",
+      "texto_simple": "Un ambiente es un lugar con su naturaleza y con lo que la gente hizo ahí.",
+      "chequeo": {
+        "pregunta": "Una llanura con campos sembrados y rutas…",
+        "opciones": [
+          "también es un ambiente",
+          "no es un ambiente porque la cambiaron las personas",
+          "es solo naturaleza"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! El ambiente incluye lo que hace la sociedad.",
+        "mal": "Recordá: ambiente = naturaleza + sociedad."
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "Un viaje por los ambientes de América",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Subite: vamos a recorrer el continente de punta a punta.",
+      "pose": "saludo",
+      "texto": "América va desde muy cerca del Polo Norte hasta muy cerca de la Antártida. Cada zona recibe distinto calor del Sol.\nTambién influyen el relieve, la cercanía al mar y las lluvias. Por eso hay selvas, desiertos, montañas, llanuras, bosques y tundra.",
+      "imagen": "geo-1-02-b",
+      "interactivo": {
+        "tipo": "explorar",
+        "titulo": "🌎 Los ambientes de América",
+        "consigna": "Tocá cada ambiente para conocerlo.",
+        "elementos": [
+          {
+            "icono": "🌴",
+            "nombre": "Selva",
+            "texto": "Cálida y muy lluviosa. La Amazonia es la selva tropical más grande del mundo."
+          },
+          {
+            "icono": "🏜️",
+            "nombre": "Desierto",
+            "texto": "Llueve muy poco. Atacama, en Chile, es uno de los lugares más secos del planeta."
+          },
+          {
+            "icono": "🏔️",
+            "nombre": "Montaña",
+            "texto": "Los Andes recorren más de 7.000 km. Arriba hace frío y hay menos oxígeno."
+          },
+          {
+            "icono": "🌾",
+            "nombre": "Llanura",
+            "texto": "La Pampa tiene algunos de los suelos más fértiles del mundo."
+          },
+          {
+            "icono": "🌲",
+            "nombre": "Bosque",
+            "texto": "Fríos en Canadá y templados en la Patagonia andina."
+          },
+          {
+            "icono": "🧊",
+            "nombre": "Tundra",
+            "texto": "En el extremo norte: el suelo está congelado gran parte del año."
+          }
+        ]
+      },
+      "idea_clave": "América tiene ambientes muy distintos porque va casi de polo a polo.",
+      "texto_simple": "En América hay selvas, desiertos, montañas, llanuras y lugares helados.",
+      "chequeo": {
+        "pregunta": "¿En qué ambiente está la Pampa?",
+        "opciones": [
+          "llanura",
+          "selva",
+          "desierto"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Terrenos planos y suelos muy fértiles.",
+        "mal": "Volvé a tocar los ambientes de la actividad."
+      },
+      "mi_lugar": {
+        "pregunta": "¿En qué ambiente está tu ciudad o tu pueblo? ¿Qué recursos naturales se aprovechan cerca de donde vivís?",
+        "ayuda": "Vivo en un ambiente de…"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "¿Cuándo algo se vuelve recurso?",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "El viento sopló siempre en la Patagonia. Pero hace poco se volvió valioso. ¿Por qué?",
+      "pose": "idea",
+      "texto": "Un **recurso natural** es un elemento de la naturaleza que la sociedad usa para satisfacer sus necesidades: el agua, el suelo, los peces, el petróleo.\nAlgo se convierte en recurso cuando la sociedad lo valora y tiene la tecnología para usarlo.",
+      "imagen": "geo-1-02-c",
+      "interactivo": {
+        "tipo": "revelar",
+        "pregunta": "El viento sopló siempre en la Patagonia, pero recién en los últimos años se instalaron muchos parques eólicos. ¿Cuándo se convirtió el viento en un recurso?",
+        "respuesta": "Cuando la sociedad desarrolló los aerogeneradores y empezó a valorar las energías limpias. El viento ya estaba; lo que cambió fue la sociedad."
+      },
+      "ejemplo": {
+        "texto": "En la Puna hay grandes salares con litio, un mineral que se usa para las baterías de los celulares. Hace algunas décadas casi nadie lo buscaba; hoy es uno de los recursos más valorados del mundo.",
+        "intercambiable": true,
+        "que_debe_mostrar": "Que un elemento de la naturaleza se convierte en recurso cuando la sociedad lo valora y tiene la tecnología para usarlo."
+      },
+      "idea_clave": "Algo es recurso cuando la sociedad lo valora y puede usarlo.",
+      "texto_simple": "Un recurso es algo de la naturaleza que usamos, como el agua o el petróleo.",
+      "chequeo": {
+        "pregunta": "¿Por qué el litio se volvió tan valioso?",
+        "opciones": [
+          "porque cambió la tecnología y se usa en baterías",
+          "porque antes no existía",
+          "porque es muy lindo"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! El litio ya estaba; cambió la sociedad.",
+        "mal": "El litio siempre estuvo en la Puna. ¿Qué cambió?"
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Renovables y no renovables",
+      "minutos": 3,
+      "esencial": false,
+      "lumai": "Algunos recursos vuelven a aparecer. Otros, una vez que se usan, se terminan.",
+      "pose": "saludo",
+      "texto": "Los recursos **renovables** se regeneran en poco tiempo, como el agua, los bosques o los peces. Pero pueden agotarse si se usan más rápido de lo que se recuperan.\nLos **no renovables** tardan millones de años en formarse, como el petróleo o los minerales.",
+      "interactivo": {
+        "tipo": "clasificar",
+        "titulo": "♻️ ¿Renovable o no renovable?",
+        "consigna": "Elegí la opción correcta para cada recurso.",
+        "categorias": [
+          "Renovable",
+          "No renovable"
+        ],
+        "items": [
+          {
+            "icono": "💨",
+            "nombre": "El viento",
+            "categoria": "Renovable",
+            "pista": "Sigue soplando aunque lo usemos."
+          },
+          {
+            "icono": "🛢️",
+            "nombre": "El petróleo de Vaca Muerta",
+            "categoria": "No renovable",
+            "dato": "Tardó millones de años en formarse.",
+            "pista": "Tardó millones de años en formarse."
+          },
+          {
+            "icono": "🐟",
+            "nombre": "Los peces del mar Argentino",
+            "categoria": "Renovable",
+            "dato": "Se recuperan, siempre que no se pesque de más.",
+            "pista": "Se reproducen."
+          },
+          {
+            "icono": "🪨",
+            "nombre": "El cobre de los Andes",
+            "categoria": "No renovable",
+            "pista": "Es un mineral: hay una cantidad limitada."
+          },
+          {
+            "icono": "☀️",
+            "nombre": "La luz del sol",
+            "categoria": "Renovable",
+            "pista": "Llega todos los días."
+          }
+        ],
+        "cierre": "¡Muy bien! Usar los recursos con cuidado permite que también los tengan las próximas generaciones."
+      },
+      "idea_clave": "Los renovables se regeneran; los no renovables se agotan.",
+      "texto_simple": "Algunas cosas de la naturaleza vuelven a crecer. Otras, cuando se usan, se terminan.",
+      "chequeo": {
+        "pregunta": "El gas natural es un recurso…",
+        "opciones": [
+          "no renovable",
+          "renovable",
+          "que no se usa"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Tarda millones de años en formarse.",
+        "mal": "¿El gas vuelve a formarse rápido?"
+      }
+    },
+    {
+      "id": "c5",
+      "titulo": "Formas de aprovechar los recursos",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Última cápsula: ¿qué se hace con los recursos en cada lugar?",
+      "pose": "idea",
+      "texto": "Cada sociedad aprovecha los recursos de distinta manera: agricultura y ganadería en la Pampa, minería en los Andes, pesca en el mar Argentino, petróleo y gas en Vaca Muerta.\nAlgunas formas de uso cuidan los recursos. Otras los agotan o contaminan.",
+      "presentacion": {
+        "tipo": "contraste",
+        "lados": [
+          {
+            "etiqueta": "Uso sustentable",
+            "nombre": "Cuidar",
+            "texto": "Pescar sin superar lo que se recupera. Plantar árboles donde se tala."
+          },
+          {
+            "etiqueta": "Uso que agota",
+            "nombre": "Dañar",
+            "texto": "Talar sin control. Tirar desechos de una mina en un río."
+          }
+        ]
+      },
+      "idea_clave": "Hay formas de usar los recursos que los cuidan y otras que los agotan.",
+      "texto_simple": "Podemos usar la naturaleza cuidándola, o dañándola.",
+      "chequeo": {
+        "pregunta": "¿Cuál es un uso sustentable de un bosque?",
+        "opciones": [
+          "talar y volver a plantar",
+          "talar todo de una vez",
+          "quemarlo para sembrar"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Así el bosque se recupera.",
+        "mal": "Buscá la opción que permite que el bosque siga existiendo."
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Ambiente",
+      "definicion": "Relación entre los elementos naturales de un lugar y la sociedad que vive y trabaja allí."
+    },
+    {
+      "palabra": "Recurso natural",
+      "definicion": "Elemento de la naturaleza que una sociedad usa para satisfacer sus necesidades."
+    },
+    {
+      "palabra": "Recurso renovable",
+      "definicion": "Recurso que se regenera naturalmente, si no se lo usa más rápido de lo que se recupera."
+    },
+    {
+      "palabra": "Recurso no renovable",
+      "definicion": "Recurso que existe en cantidad limitada y tarda millones de años en formarse."
+    },
+    {
+      "palabra": "Relieve",
+      "definicion": "Las formas de la superficie terrestre: montañas, llanuras, mesetas, valles."
+    },
+    {
+      "palabra": "Sustentable",
+      "definicion": "Forma de usar los recursos que permite que también puedan usarlos las generaciones futuras."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "Un ambiente es solo la naturaleza.",
+      "aclaracion": "Es la relación entre la naturaleza y la sociedad que vive y trabaja allí."
+    },
+    {
+      "error": "Los recursos renovables no se acaban nunca.",
+      "aclaracion": "Pueden agotarse si se usan más rápido de lo que se regeneran, como pasa con la pesca excesiva."
+    },
+    {
+      "error": "Toda América tiene un clima parecido.",
+      "aclaracion": "Por su enorme extensión de norte a sur y por su relieve, tiene climas muy distintos."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Elegí un objeto que uses todos los días, como tu celular o tus zapatillas, e investigá de qué recursos naturales está hecho y de qué ambientes salen. ¿Cuántos lugares de América y del mundo hay detrás de un solo objeto?",
+    "conexion": "Con Biología: la enorme variedad de seres vivos de la Amazonia se llama biodiversidad, y también es un recurso: de muchas plantas de la selva se obtienen sustancias para fabricar medicamentos."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Qué es un ambiente?",
+      "respuesta": "La relación entre los elementos naturales de un lugar y la sociedad que vive allí."
+    },
+    {
+      "pregunta": "¿Qué es un recurso natural?",
+      "respuesta": "Un elemento de la naturaleza que una sociedad usa para satisfacer sus necesidades."
+    },
+    {
+      "pregunta": "¿Cuál es la selva tropical más grande del mundo?",
+      "respuesta": "La Amazonia."
+    },
+    {
+      "pregunta": "¿El petróleo es un recurso renovable?",
+      "respuesta": "No: es no renovable."
+    },
+    {
+      "pregunta": "¿Qué recurso se aprovecha principalmente en la Pampa?",
+      "respuesta": "El suelo fértil, para la agricultura y la ganadería."
+    },
+    {
+      "pregunta": "¿Para qué se usa el litio?",
+      "respuesta": "Para fabricar baterías de celulares y autos eléctricos."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "🔭",
+      "texto": "En el desierto de Atacama hay zonas donde casi nunca llueve. Gracias a su cielo limpio y seco, allí se instalaron algunos de los observatorios astronómicos más importantes del mundo."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a recorrer los ambientes de América, del hielo a la selva. Son 5 cápsulas. Para empezar, mirá esto.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya conocés los ambientes de América y sus recursos. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "geo-1-02-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Collage de cuatro paisajes: selva, desierto, montaña nevada y llanura sembrada",
+      "epigrafe": "Cuatro de los grandes ambientes de América.",
+      "descripcion": "Imagen dividida en cuatro cuadros: una selva tropical con río y vegetación densa, un desierto con suelo agrietado y cielo despejado, una montaña nevada de los Andes, y una llanura con campos sembrados y un molino. Estilo ilustración con colores vivos, coherente entre los cuatro cuadros."
+    },
+    {
+      "id": "geo-1-02-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Mapa de América con los grandes ambientes pintados de distintos colores",
+      "epigrafe": "Los grandes ambientes del continente.",
+      "descripcion": "Mapa físico simplificado de América con zonas coloreadas y referencias: tundra (blanco celeste), bosques fríos (verde oscuro), desiertos (amarillo), selvas (verde intenso), llanuras (verde claro) y la cordillera de los Andes marcada en marrón. Leyenda clara al costado. Estilo atlas escolar."
+    },
+    {
+      "id": "geo-1-02-c",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Un salar blanco en la Puna con piletones de extracción de litio",
+      "epigrafe": "Salar de la Puna: allí se extrae el litio para las baterías.",
+      "descripcion": "Paisaje de un salar blanco y extenso en la Puna, con montañas al fondo y piletones rectangulares de colores celeste y verde para la extracción de litio. En una esquina, el ícono de una batería de celular. Estilo ilustración realista suave."
+    }
+  ]
+}

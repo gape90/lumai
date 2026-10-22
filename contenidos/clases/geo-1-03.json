@@ -1,0 +1,393 @@
+{
+  "id": "geo-1-03",
+  "formato": "capsulas",
+  "materia": "Geografía",
+  "anio": "1.° año",
+  "eje": "Sociedades y espacios geográficos",
+  "nap": "La comprensión de los principales problemas ambientales en América, reconociendo sus causas y consecuencias, las políticas ambientales más relevantes y las distintas escalas geográficas implicadas.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Ciencias Sociales, 1.°/2.° año",
+  "titulo": "Problemas ambientales: causas, consecuencias y escalas",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "¿Te acordás?",
+    "texto": "En 2020, los incendios en las islas del Delta del Paraná llenaron de humo ciudades como Rosario y Buenos Aires. Mucha gente que nunca había pisado esas islas sintió el olor a quemado desde su casa.",
+    "pregunta": "¿Por qué un problema que ocurre en un lugar afecta a personas que viven lejos?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **explicar por qué el humo del Delta llegó a ciudades lejanas** y analizar cualquier problema ambiental.",
+    "resuelta": "Los problemas ambientales no respetan límites: el humo viaja con el viento y el agua contaminada baja por los ríos. Por eso se analizan sus causas, sus consecuencias y sus escalas: local, regional y mundial."
+  },
+  "idea_central": "Un problema ambiental surge cuando el uso que una sociedad hace de la naturaleza la daña y afecta la vida de las personas. Para entenderlo hay que analizar causas, consecuencias, escalas y políticas.",
+  "idea_central_simple": "Cuando las personas dañan la naturaleza, aparecen problemas que también nos dañan a nosotros.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "¿Qué es un problema ambiental?",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Arranquemos por la definición. Ojo: no es un \"problema de la naturaleza\".",
+      "pose": "idea",
+      "texto": "Un **problema ambiental** aparece cuando el uso que una sociedad hace de la naturaleza la daña y perjudica la vida de las personas.\nEl agua se contamina, los suelos se empobrecen, los bosques desaparecen. Es un problema de la relación entre la sociedad y la naturaleza.",
+      "presentacion": {
+        "tipo": "ecuacion",
+        "igual": "→",
+        "piezas": [
+          {
+            "icono": "🏭",
+            "nombre": "Uso de la sociedad",
+            "texto": "Talar, quemar, tirar desechos"
+          },
+          {
+            "icono": "🌳",
+            "nombre": "Daño a la naturaleza",
+            "texto": "Agua, aire, suelos, bosques"
+          }
+        ],
+        "resultado": {
+          "icono": "😷",
+          "nombre": "Problema ambiental",
+          "texto": "Afecta la vida de las personas"
+        }
+      },
+      "idea_clave": "Un problema ambiental nace de la relación entre la sociedad y la naturaleza.",
+      "texto_simple": "Cuando las personas dañan la naturaleza, aparecen problemas que también nos dañan a nosotros.",
+      "chequeo": {
+        "pregunta": "¿Por qué se dice que no es un \"problema de la naturaleza\"?",
+        "opciones": [
+          "porque lo causa la forma en que la sociedad usa la naturaleza",
+          "porque la naturaleza no cambia",
+          "porque solo pasa en las ciudades"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Es un problema de la relación entre los dos.",
+        "mal": "Mirá la presentación: ¿qué hay al principio de la cadena?"
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "Causas y consecuencias",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Todo problema ambiental es una cadena. Armemos la de la deforestación.",
+      "pose": "saludo",
+      "texto": "Todo problema ambiental tiene **causas** (por qué ocurre) y **consecuencias** (qué provoca).\nLa deforestación se produce para ganar tierras para cultivos o ganado. Sus consecuencias son la pérdida de especies, la erosión de los suelos y más inundaciones.",
+      "imagen": "geo-1-03-b",
+      "interactivo": {
+        "tipo": "ordenar",
+        "titulo": "🌳 Armá la cadena de la deforestación",
+        "consigna": "Tocá los eslabones en orden, de la causa a la consecuencia más lejana.",
+        "items": [
+          "Se talan árboles para ganar tierras para cultivos",
+          "Los animales pierden su hogar",
+          "Sin raíces, el suelo se erosiona",
+          "El agua de lluvia escurre más rápido",
+          "Aumentan las inundaciones río abajo"
+        ],
+        "cierre": "¡Muy bien! Una sola causa puede provocar muchas consecuencias encadenadas."
+      },
+      "ejemplo": {
+        "texto": "En un barrio tiran basura en un terreno baldío. Aparecen roedores y malos olores, y cuando llueve la basura tapa los desagües y la calle se inunda.",
+        "intercambiable": true,
+        "que_debe_mostrar": "Un problema ambiental local con sus causas y sus consecuencias encadenadas."
+      },
+      "idea_clave": "Todo problema ambiental tiene causas y consecuencias encadenadas.",
+      "texto_simple": "La causa es por qué pasa. La consecuencia es lo que provoca.",
+      "chequeo": {
+        "pregunta": "En la deforestación, \"ganar tierras para el ganado\" es…",
+        "opciones": [
+          "una causa",
+          "una consecuencia",
+          "una escala"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Es el motivo por el que se talan los árboles.",
+        "mal": "¿Es el porqué o lo que se provoca después?"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "De lo local a lo mundial",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Acá está la clave de tu misión: las escalas.",
+      "pose": "idea",
+      "texto": "Un basural afecta a un barrio: es un problema **local**.\nUn río contaminado que cruza varias provincias es **regional**.\nEl cambio climático, causado por gases de todo el planeta, es **mundial**.",
+      "imagen": "geo-1-03-c",
+      "interactivo": {
+        "tipo": "clasificar",
+        "titulo": "🔍 ¿Local, regional o mundial?",
+        "consigna": "Elegí la escala de cada problema.",
+        "categorias": [
+          "Local",
+          "Regional",
+          "Mundial"
+        ],
+        "items": [
+          {
+            "icono": "🗑️",
+            "nombre": "Un basural en un baldío del barrio",
+            "categoria": "Local",
+            "pista": "Afecta a pocas cuadras."
+          },
+          {
+            "icono": "🔥",
+            "nombre": "El humo de los incendios del Delta",
+            "categoria": "Regional",
+            "dato": "Llegó a ciudades de varias provincias.",
+            "pista": "Llegó a varias ciudades y provincias."
+          },
+          {
+            "icono": "🌡️",
+            "nombre": "El cambio climático",
+            "categoria": "Mundial",
+            "pista": "Afecta a todo el planeta."
+          },
+          {
+            "icono": "🏭",
+            "nombre": "Una fábrica ruidosa",
+            "categoria": "Local",
+            "pista": "La escuchan los vecinos."
+          },
+          {
+            "icono": "🧴",
+            "nombre": "El plástico en los océanos",
+            "categoria": "Mundial",
+            "dato": "Los océanos están todos conectados.",
+            "pista": "Los océanos conectan todo el mundo."
+          }
+        ],
+        "cierre": "¡Excelente! Por eso se dice \"pensar globalmente y actuar localmente\"."
+      },
+      "idea_clave": "Los problemas ambientales se analizan en escala local, regional y mundial.",
+      "texto_simple": "Algunos problemas afectan a un barrio, otros a una región y otros a todo el mundo.",
+      "chequeo": {
+        "pregunta": "El humo del Delta llegó a ciudades lejanas porque…",
+        "opciones": [
+          "los problemas ambientales no respetan límites",
+          "esas ciudades están en las islas",
+          "el humo no se mueve"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Resolviste la misión: el humo viaja con el viento.",
+        "mal": "Pensá en cómo se mueve el humo."
+      },
+      "mi_lugar": {
+        "pregunta": "¿Hay algún problema ambiental en tu barrio, tu ciudad o tu región? ¿Es local, regional o mundial? ¿Cuál creés que es su causa?",
+        "ayuda": "En mi lugar hay…"
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Problemas ambientales de América",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Recorramos el mapa de los grandes problemas del continente.",
+      "pose": "saludo",
+      "texto": "En América se destacan la deforestación de la Amazonia y del Gran Chaco, la contaminación del Riachuelo, los incendios de humedales y el retroceso de los glaciares andinos.",
+      "interactivo": {
+        "tipo": "explorar",
+        "titulo": "🗺️ Problemas ambientales de América",
+        "consigna": "Tocá cada lugar para conocer su problema.",
+        "elementos": [
+          {
+            "icono": "🌳",
+            "nombre": "Amazonia",
+            "texto": "Deforestación para la ganadería, la agricultura y la minería. Se pierde biodiversidad."
+          },
+          {
+            "icono": "🪵",
+            "nombre": "Gran Chaco",
+            "texto": "Uno de los bosques más deforestados del continente, en la Argentina, Paraguay y Bolivia."
+          },
+          {
+            "icono": "🏭",
+            "nombre": "Riachuelo",
+            "texto": "Durante décadas recibió desechos de industrias. Desde 2008 hay un plan obligatorio para sanearlo."
+          },
+          {
+            "icono": "🔥",
+            "nombre": "Delta del Paraná",
+            "texto": "Los incendios de humedales dañaron la biodiversidad y la salud de la población cercana."
+          },
+          {
+            "icono": "🧊",
+            "nombre": "Glaciares andinos",
+            "texto": "Se achican por el aumento de la temperatura. Son reservas de agua dulce."
+          }
+        ]
+      },
+      "idea_clave": "La deforestación, la contaminación y los incendios son grandes problemas de América.",
+      "texto_simple": "En América hay bosques que se talan, ríos sucios e incendios.",
+      "chequeo": {
+        "pregunta": "¿Por qué preocupa que los glaciares se achiquen?",
+        "opciones": [
+          "porque son reservas de agua dulce",
+          "porque son lindos para sacar fotos",
+          "porque enfrían las ciudades"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Muchas ciudades y cultivos dependen de esa agua.",
+        "mal": "Volvé a tocar \"Glaciares andinos\"."
+      }
+    },
+    {
+      "id": "c5",
+      "titulo": "¿Qué se puede hacer?",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Última cápsula: hablemos de soluciones.",
+      "pose": "idea",
+      "texto": "Las **políticas ambientales** son decisiones de los gobiernos para prevenir o reparar daños. En la Argentina, la Ley de Bosques (2007) protege los bosques nativos.\nTambién hay acuerdos entre países. Y cada persona puede aportar con su consumo y su participación.",
+      "presentacion": {
+        "tipo": "linea_tiempo",
+        "titulo": "⏳ Algunas decisiones para cuidar el ambiente",
+        "hitos": [
+          {
+            "anio": "2007",
+            "titulo": "Ley de Bosques",
+            "texto": "Protege los bosques nativos de la Argentina.",
+            "tipo": "acuerdo"
+          },
+          {
+            "anio": "2008",
+            "titulo": "Fallo por el Riachuelo",
+            "texto": "La Corte Suprema ordenó sanear la cuenca Matanza-Riachuelo.",
+            "tipo": "acuerdo"
+          },
+          {
+            "anio": "2015",
+            "titulo": "Acuerdo de París",
+            "texto": "Casi todos los países se comprometieron a frenar el cambio climático.",
+            "tipo": "acuerdo"
+          }
+        ]
+      },
+      "interactivo": {
+        "tipo": "revelar",
+        "pregunta": "¿Qué podés hacer vos, desde tu casa o tu escuela?",
+        "respuesta": "Separar los residuos, reducir los plásticos descartables, no derrochar agua ni electricidad, cuidar los espacios verdes y participar en proyectos de tu escuela o tu barrio."
+      },
+      "idea_clave": "Las políticas ambientales y las acciones de cada persona ayudan a resolver los problemas.",
+      "texto_simple": "Los gobiernos hacen leyes para cuidar el ambiente. Vos también podés ayudar.",
+      "chequeo": {
+        "pregunta": "La Ley de Bosques es un ejemplo de…",
+        "opciones": [
+          "una política ambiental",
+          "un problema ambiental",
+          "una escala mundial"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Es una decisión del gobierno para proteger los bosques.",
+        "mal": "¿Es un problema o una decisión para resolverlo?"
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Problema ambiental",
+      "definicion": "Daño a la naturaleza, causado por la forma en que la usa una sociedad, que afecta la vida de las personas."
+    },
+    {
+      "palabra": "Deforestación",
+      "definicion": "Eliminación de bosques y selvas, generalmente para usar esas tierras en otras actividades."
+    },
+    {
+      "palabra": "Escala geográfica",
+      "definicion": "El tamaño del área que se analiza: local, regional o mundial."
+    },
+    {
+      "palabra": "Política ambiental",
+      "definicion": "Decisión o ley de un gobierno para prevenir o reparar daños ambientales."
+    },
+    {
+      "palabra": "Humedal",
+      "definicion": "Zona que está inundada o con el suelo empapado durante gran parte del año, como los esteros o los deltas."
+    },
+    {
+      "palabra": "Cambio climático",
+      "definicion": "Cambio del clima de la Tierra a largo plazo, relacionado con los gases que emiten las actividades humanas."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "Los problemas ambientales son culpa de la naturaleza.",
+      "aclaracion": "Surgen de la forma en que la sociedad usa la naturaleza."
+    },
+    {
+      "error": "Si el problema está lejos, no me afecta.",
+      "aclaracion": "El humo, el agua y los gases viajan: muchos problemas cruzan los límites."
+    },
+    {
+      "error": "Lo que hace una sola persona no cambia nada.",
+      "aclaracion": "Las acciones individuales suman, y además las personas pueden participar y reclamar políticas ambientales."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Elegí un problema ambiental de tu localidad. Identificá sus causas, sus consecuencias y quiénes están involucrados (vecinos, empresas, gobierno). ¿Qué solución propondrías y quién debería llevarla adelante?",
+    "conexion": "Con Formación Ética y Ciudadana: la Constitución Nacional, en su artículo 41, reconoce el derecho de todos los habitantes a un ambiente sano y el deber de preservarlo."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Qué es un problema ambiental?",
+      "respuesta": "Un daño a la naturaleza, causado por el uso que hace la sociedad, que afecta la vida de las personas."
+    },
+    {
+      "pregunta": "Nombrá una causa de la deforestación.",
+      "respuesta": "Ganar tierras para la agricultura o la ganadería, o extraer madera."
+    },
+    {
+      "pregunta": "Nombrá una consecuencia de la deforestación.",
+      "respuesta": "Pérdida de especies, erosión del suelo o más inundaciones."
+    },
+    {
+      "pregunta": "¿En qué escala se analiza el cambio climático?",
+      "respuesta": "En la escala mundial."
+    },
+    {
+      "pregunta": "¿Qué protege la Ley de Bosques de 2007?",
+      "respuesta": "Los bosques nativos de la Argentina."
+    },
+    {
+      "pregunta": "¿Qué es una política ambiental?",
+      "respuesta": "Una decisión o ley de un gobierno para prevenir o reparar daños ambientales."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "🧽",
+      "texto": "Los humedales, como los del Delta del Paraná, funcionan como esponjas: absorben agua durante las crecidas y la liberan de a poco durante las sequías."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a investigar problemas ambientales como verdaderos geógrafos. Son 5 cápsulas. Para empezar, recordemos algo que pasó cerca de casa.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés analizar un problema ambiental. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "geo-1-03-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Una ciudad junto al río cubierta por una nube de humo que viene de las islas",
+      "epigrafe": "El humo de los incendios del Delta llegó a las ciudades cercanas.",
+      "descripcion": "Vista de una ciudad costera junto a un río ancho, con edificios y un puente, bajo un cielo gris anaranjado. Del otro lado del río, en las islas, se ven columnas de humo que el viento empuja hacia la ciudad. Estilo ilustración realista suave, sin dramatismo excesivo."
+    },
+    {
+      "id": "geo-1-03-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Bosque nativo a la izquierda y terreno talado con cultivos a la derecha",
+      "epigrafe": "La deforestación cambia el ambiente y sus consecuencias se encadenan.",
+      "descripcion": "Paisaje dividido por una línea: a la izquierda, bosque nativo denso con aves; a la derecha, troncos cortados, suelo desnudo con surcos de erosión y un campo de cultivo al fondo. Estilo ilustración clara, colores naturales."
+    },
+    {
+      "id": "geo-1-03-c",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Tres círculos concéntricos: barrio, región y planeta",
+      "epigrafe": "Las tres escalas de los problemas ambientales.",
+      "descripcion": "Diagrama de tres círculos concéntricos: en el centro un barrio con un basural (\"Local\"), en el anillo medio un río que cruza varias provincias (\"Regional\") y en el anillo exterior el planeta Tierra con un termómetro (\"Mundial\"). Etiquetas grandes y colores de LumAI."
+    }
+  ]
+}

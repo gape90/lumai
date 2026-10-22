@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" font-family="Arial, Helvetica, sans-serif">
+  <title>Puente entre Posadas (Argentina) y Encarnación (Paraguay)</title>
+  <defs>
+    <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9d8ff"/><stop offset="1" stop-color="#e9f6ff"/></linearGradient>
+    <linearGradient id="rio" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5aa9dc"/><stop offset="1" stop-color="#2f7fb8"/></linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#cielo)"/>
+  <circle cx="1090" cy="80" r="38" fill="#ffe08a"/>
+  <g fill="#fff" opacity=".9"><ellipse cx="190" cy="90" rx="60" ry="18"/><ellipse cx="235" cy="78" rx="40" ry="16"/><ellipse cx="760" cy="120" rx="70" ry="16"/><ellipse cx="810" cy="108" rx="40" ry="14"/></g>
+  <path d="M0 360 C150 320 260 345 380 330 S640 300 780 325 1050 310 1200 330 V400 H0Z" fill="#a8d5ad"/>
+  <rect y="380" width="1200" height="340" fill="url(#rio)"/>
+  <g stroke="#cfe9fb" stroke-width="3" stroke-linecap="round" opacity=".7"><path d="M420 470h60M520 520h80M650 480h50M700 600h90M450 640h70M560 690h60"/></g>
+  <!-- bote (no es pista) -->
+  <g transform="translate(560 560)"><path d="M0 0h90l-14 22H14Z" fill="#7a4b2a"/><rect x="40" y="-40" width="4" height="40" fill="#5b3a21"/><path d="M44 -38 L76 -6 H44Z" fill="#fff"/></g>
+  <!-- orillas -->
+  <path d="M0 380 H300 L370 720 H0Z" fill="#8cc98a"/>
+  <path d="M900 380 H1200 V720 H830Z" fill="#8cc98a"/>
+  <path d="M300 380 L370 720" stroke="#6fae6d" stroke-width="6"/><path d="M900 380 L830 720" stroke="#6fae6d" stroke-width="6"/>
+  <!-- Posadas -->
+  <g>
+    <rect x="18" y="250" width="70" height="130" fill="#f4d6a0"/><rect x="92" y="200" width="60" height="180" fill="#cfd8e3"/><rect x="156" y="270" width="80" height="110" fill="#e8b4a0"/><rect x="60" y="300" width="60" height="80" fill="#b9d7c9"/>
+    <g fill="#fff" opacity=".85"><rect x="100" y="215" width="12" height="14"/><rect x="128" y="215" width="12" height="14"/><rect x="100" y="245" width="12" height="14"/><rect x="128" y="245" width="12" height="14"/><rect x="100" y="275" width="12" height="14"/><rect x="128" y="275" width="12" height="14"/><rect x="28" y="265" width="12" height="14"/><rect x="58" y="265" width="12" height="14"/><rect x="168" y="285" width="14" height="14"/><rect x="196" y="285" width="14" height="14"/><rect x="168" y="315" width="14" height="14"/><rect x="196" y="315" width="14" height="14"/></g>
+    <rect x="262" y="250" width="5" height="130" fill="#6b7280"/>
+    <rect x="267" y="252" width="54" height="12" fill="#74acdf"/><rect x="267" y="264" width="54" height="12" fill="#fff"/><rect x="267" y="276" width="54" height="12" fill="#74acdf"/><circle cx="294" cy="270" r="4" fill="#f6b40e"/>
+    <rect x="30" y="398" width="200" height="56" rx="6" fill="#fff" stroke="#00509e" stroke-width="3"/><rect x="60" y="454" width="6" height="30" fill="#6b7280"/><rect x="194" y="454" width="6" height="30" fill="#6b7280"/>
+    <text x="130" y="424" text-anchor="middle" font-size="22" font-weight="700" fill="#00509e">POSADAS</text>
+    <text x="130" y="446" text-anchor="middle" font-size="15" fill="#1f2a37">Misiones · Argentina</text>
+    <g fill="#374151"><circle cx="70" cy="520" r="8"/><rect x="64" y="528" width="12" height="26" rx="4"/><circle cx="250" cy="560" r="8"/><rect x="244" y="568" width="12" height="26" rx="4"/></g>
+  </g>
+  <!-- Encarnación -->
+  <g>
+    <rect x="950" y="230" width="70" height="150" fill="#cfd8e3"/><rect x="1024" y="270" width="54" height="110" fill="#f4d6a0"/><rect x="1150" y="240" width="50" height="140" fill="#e8b4a0"/>
+    <g fill="#fff" opacity=".85"><rect x="960" y="245" width="12" height="14"/><rect x="990" y="245" width="12" height="14"/><rect x="960" y="275" width="12" height="14"/><rect x="990" y="275" width="12" height="14"/><rect x="1034" y="285" width="12" height="14"/><rect x="1056" y="285" width="12" height="14"/><rect x="1160" y="255" width="12" height="14"/><rect x="1160" y="285" width="12" height="14"/></g>
+    <!-- casa de cambio (pista) -->
+    <rect x="1080" y="300" width="70" height="80" fill="#fff4d6"/>
+    <path d="M1076 300 h78 l-6 16 h-66Z" fill="#00a676"/><path d="M1086 300 l-4 16M1100 300 l-2 16M1114 300v16M1128 300l2 16M1142 300l4 16" stroke="#fff" stroke-width="5"/>
+    <rect x="1084" y="320" width="62" height="22" rx="3" fill="#0f5132"/>
+    <text x="1115" y="336" text-anchor="middle" font-size="12" font-weight="700" fill="#ffe08a">CAMBIO</text>
+    <text x="1115" y="356" text-anchor="middle" font-size="9.5" fill="#1f2a37">Pesos ⇄ Guaraníes</text>
+    <rect x="1100" y="362" width="30" height="18" fill="#9ca3af"/>
+    <rect x="935" y="250" width="5" height="130" fill="#6b7280"/>
+    <rect x="881" y="252" width="54" height="12" fill="#d52b1e"/><rect x="881" y="264" width="54" height="12" fill="#fff"/><rect x="881" y="276" width="54" height="12" fill="#0038a8"/><circle cx="908" cy="270" r="3.5" fill="#f6b40e"/>
+    <rect x="990" y="398" width="200" height="56" rx="6" fill="#fff" stroke="#d52b1e" stroke-width="3"/><rect x="1020" y="454" width="6" height="30" fill="#6b7280"/><rect x="1154" y="454" width="6" height="30" fill="#6b7280"/>
+    <text x="1090" y="424" text-anchor="middle" font-size="20" font-weight="700" fill="#d52b1e">ENCARNACIÓN</text>
+    <text x="1090" y="446" text-anchor="middle" font-size="15" fill="#1f2a37">Itapúa · Paraguay</text>
+    <!-- cartel en guaraní (pista) -->
+    <rect x="880" y="500" width="120" height="48" rx="6" fill="#fef3c7" stroke="#92400e" stroke-width="2"/><rect x="936" y="548" width="6" height="26" fill="#6b7280"/>
+    <text x="940" y="520" text-anchor="middle" font-size="13" font-weight="700" fill="#92400e">Tereguahẽ porãite</text>
+    <text x="940" y="538" text-anchor="middle" font-size="11" fill="#1f2a37">¡Bienvenidos!</text>
+    <g fill="#374151"><circle cx="1120" cy="540" r="8"/><rect x="1114" y="548" width="12" height="26" rx="4"/></g>
+  </g>
+  <!-- puente atirantado -->
+  <g>
+    <rect x="474" y="352" width="14" height="140" fill="#9aa5b1"/><rect x="712" y="352" width="14" height="140" fill="#9aa5b1"/>
+    <rect x="474" y="170" width="12" height="182" fill="#b8c2cc"/><rect x="714" y="170" width="12" height="182" fill="#b8c2cc"/>
+    <g stroke="#cbd5df" stroke-width="2"><path d="M480 178 L360 334M480 178 L400 334M480 178 L440 334M480 178 L520 334M480 178 L560 334M480 178 L600 334"/><path d="M720 178 L600 334M720 178 L640 334M720 178 L680 334M720 178 L760 334M720 178 L800 334M720 178 L840 334"/></g>
+    <rect x="230" y="334" width="740" height="20" fill="#6b7785"/>
+    <rect x="230" y="326" width="740" height="5" fill="#9aa5b1"/>
+    <path d="M240 344 H960" stroke="#fff" stroke-width="2" stroke-dasharray="14 12" opacity=".7"/>
+    <!-- límite en la mitad del puente (pista) -->
+    <rect x="598" y="300" width="4" height="34" fill="#374151"/>
+    <rect x="566" y="290" width="68" height="20" rx="3" fill="#fff" stroke="#374151" stroke-width="1.5"/>
+    <text x="583" y="304" text-anchor="middle" font-size="8.5" font-weight="700" fill="#00509e">ARG</text>
+    <line x1="600" y1="292" x2="600" y2="308" stroke="#374151" stroke-width="1.5"/>
+    <text x="617" y="304" text-anchor="middle" font-size="8.5" font-weight="700" fill="#d52b1e">PAR</text>
+    <line x1="600" y1="334" x2="600" y2="354" stroke="#ffd60a" stroke-width="4"/>
+    <!-- colectivo internacional (pista) -->
+    <g transform="translate(330 296)">
+      <rect width="124" height="36" rx="8" fill="#f2c94c"/><rect y="24" width="124" height="6" fill="#00509e"/>
+      <g fill="#dbeafe"><rect x="10" y="6" width="18" height="12" rx="2"/><rect x="32" y="6" width="18" height="12" rx="2"/><rect x="54" y="6" width="18" height="12" rx="2"/><rect x="76" y="6" width="18" height="12" rx="2"/><rect x="100" y="6" width="18" height="16" rx="2"/></g>
+      <text x="56" y="-4" text-anchor="middle" font-size="9" font-weight="700" fill="#1f2a37">POSADAS – ENCARNACIÓN</text>
+      <circle cx="26" cy="38" r="7" fill="#1f2937"/><circle cx="98" cy="38" r="7" fill="#1f2937"/>
+    </g>
+    <!-- control de migraciones (pista) -->
+    <rect x="904" y="276" width="56" height="50" fill="#e5e7eb" stroke="#4b5563" stroke-width="2"/>
+    <rect x="896" y="266" width="72" height="12" fill="#00509e"/>
+    <text x="932" y="275.5" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff">MIGRACIONES</text>
+    <rect x="914" y="288" width="36" height="18" fill="#bfdbfe"/>
+    <rect x="884" y="312" width="5" height="16" fill="#4b5563"/><rect x="820" y="310" width="68" height="5" fill="#dc2626"/><rect x="836" y="310" width="10" height="5" fill="#fff"/><rect x="856" y="310" width="10" height="5" fill="#fff"/>
+    <!-- caminantes -->
+    <g fill="#374151"><circle cx="760" cy="306" r="6"/><rect x="755" y="312" width="10" height="20" rx="3"/><circle cx="780" cy="308" r="5"/><rect x="776" y="313" width="8" height="18" rx="3"/></g>
+  </g>
+  <!-- pájaros -->
+  <g stroke="#475569" stroke-width="2.5" fill="none" stroke-linecap="round"><path d="M600 90 q8 -8 16 0 q8 -8 16 0"/><path d="M650 120 q6 -6 12 0 q6 -6 12 0"/></g>
+</svg>

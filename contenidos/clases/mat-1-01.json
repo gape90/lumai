@@ -1,0 +1,331 @@
+{
+  "id": "mat-1-01",
+  "formato": "capsulas",
+  "materia": "Matemática",
+  "anio": "1.° año",
+  "eje": "Número y operaciones",
+  "nap": "Interpretar, registrar, comunicar y comparar números enteros en diferentes contextos: como número relativo (temperaturas, nivel del mar) y a partir de la resta de dos naturales (juegos de cartas, pérdidas y ganancias).",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Matemática, 1.°/2.° año",
+  "titulo": "Los números que viven debajo del cero",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "Mirá a tu alrededor",
+    "texto": "En el ascensor de un edificio con cochera hay un botón que dice −1. Nadie se confunde: todos saben que lleva al subsuelo.",
+    "pregunta": "Si estás en el piso 2 y bajás 3 pisos, ¿a qué piso llegás?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **resolver el problema del ascensor** y usar los números que viven debajo del cero.",
+    "resuelta": "Llegás al −1, el primer subsuelo: 2 − 3 = −1. Los números enteros (los naturales, el cero y los negativos) resuelven las restas que antes no tenían respuesta."
+  },
+  "idea_central": "Los números enteros son los naturales, el cero y los negativos. Sirven para contar lo que está por encima o por debajo de un punto de referencia: el cero.",
+  "idea_central_simple": "Hay números debajo del cero. Se escriben con el signo menos: −1, −2, −3.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "El cero es un punto de partida",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Primero, una idea que cambia todo: el cero no siempre significa \"nada\".",
+      "pose": "idea",
+      "texto": "El cero puede marcar el lugar desde donde se mide. En el ascensor, es la planta baja. En el termómetro, la temperatura a la que se congela el agua.\nLo que está por encima del cero son los números **positivos**. Lo que está por debajo, los **negativos**.",
+      "interactivo": {
+        "tipo": "recta",
+        "titulo": "🌡️ Un termómetro acostado",
+        "consigna": "La recta numérica es como un termómetro de costado. Tocá cada punto.",
+        "modo": "explorar",
+        "min": -10,
+        "max": 10,
+        "marcas": 1,
+        "puntos": [
+          {
+            "valor": -8,
+            "etiqueta": "−8 °C",
+            "nota": "Una noche de invierno en la Puna: 8 grados bajo cero."
+          },
+          {
+            "valor": -1,
+            "etiqueta": "−1",
+            "nota": "El primer subsuelo: un piso por debajo de la planta baja."
+          },
+          {
+            "valor": 0,
+            "etiqueta": "0",
+            "nota": "El punto de referencia: no es positivo ni negativo."
+          },
+          {
+            "valor": 3,
+            "etiqueta": "+3",
+            "nota": "Ganaste 3 puntos en un juego."
+          },
+          {
+            "valor": 7,
+            "etiqueta": "7 °C",
+            "nota": "Una mañana fresca de otoño: 7 grados sobre cero."
+          }
+        ]
+      },
+      "idea_clave": "El cero es el punto de referencia: arriba están los positivos y abajo, los negativos.",
+      "texto_simple": "Hay números debajo del cero. Se escriben con el signo menos: −1, −2, −3.",
+      "chequeo": {
+        "pregunta": "En un termómetro, una temperatura 4 grados bajo cero se escribe…",
+        "opciones": [
+          "−4 °C",
+          "4 °C",
+          "+4 °C"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! El signo menos indica que está debajo del cero.",
+        "mal": "Si está debajo del cero, ¿qué signo lleva?"
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "El signo dice de qué lado estás",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Mismo número, historias opuestas. Mirá.",
+      "pose": "saludo",
+      "texto": "+5 °C y −5 °C tienen el mismo número, pero cuentan historias opuestas.\nA los positivos se los puede escribir sin el +. El signo − nunca se omite: sin él, el número cambia de lado.",
+      "presentacion": {
+        "tipo": "contraste",
+        "lados": [
+          {
+            "etiqueta": "+5 °C",
+            "nombre": "Cinco arriba",
+            "texto": "Un día fresco: 5 grados por encima del cero."
+          },
+          {
+            "etiqueta": "−5 °C",
+            "nombre": "Cinco abajo",
+            "texto": "Un día helado: 5 grados por debajo del cero."
+          }
+        ]
+      },
+      "imagen": "mat-1-01-b",
+      "idea_clave": "El signo + o − indica de qué lado del cero está el número.",
+      "texto_simple": "El signo menos significa debajo del cero. Si no tiene signo, está arriba.",
+      "chequeo": {
+        "pregunta": "¿Qué número es igual a +6?",
+        "opciones": [
+          "6",
+          "−6",
+          "0,6"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! A los positivos se les puede sacar el +.",
+        "mal": "Recordá: el + se puede omitir; el − no."
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "Restas que antes no tenían respuesta",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "¿Te acordás de que 3 − 7 \"no se podía\"? Ahora sí se puede.",
+      "pose": "idea",
+      "texto": "Con los números enteros, 3 − 7 = −4.\nPasa en un juego de cartas: si tenías 3 puntos y perdés 7, quedás en −4. Es decir, debés 4 puntos.\nLos negativos aparecen cuando lo que se quita es más que lo que había.",
+      "interactivo": {
+        "tipo": "error",
+        "titulo": "🕵️ ¿Qué cuenta está mal?",
+        "consigna": "Una de estas restas tiene un error. Tocala.",
+        "pasos": [
+          {
+            "texto": "2 − 5 = −3",
+            "error": false,
+            "explicacion": "Está bien: desde 2 bajás 5 y llegás a −3."
+          },
+          {
+            "texto": "0 − 4 = −4",
+            "error": false,
+            "explicacion": "Está bien: desde el cero bajás 4."
+          },
+          {
+            "texto": "3 − 7 = 4",
+            "error": true,
+            "explicacion": "¡Esa es! Se quita más de lo que había: el resultado es −4. Olvidar el signo menos cambia todo."
+          },
+          {
+            "texto": "6 − 6 = 0",
+            "error": false,
+            "explicacion": "Está bien: si quitás todo lo que había, quedás en cero."
+          }
+        ]
+      },
+      "idea_clave": "Cuando se quita más de lo que había, el resultado es negativo: 3 − 7 = −4.",
+      "texto_simple": "Si tenés 3 y sacás 7, te faltan 4. Eso es −4.",
+      "chequeo": {
+        "pregunta": "Tenías 5 puntos y perdiste 8. ¿Con cuántos quedás?",
+        "opciones": [
+          "−3",
+          "3",
+          "13"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! 5 − 8 = −3: debés 3 puntos.",
+        "mal": "Perdiste más de lo que tenías. ¿El resultado queda arriba o abajo del cero?"
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Los enteros en la vida real",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Última cápsula: ¿dónde más aparecen los negativos?",
+      "pose": "saludo",
+      "texto": "Temperaturas bajo cero, subsuelos, metros bajo el nivel del mar, deudas, la diferencia de gol.\nEn todos los casos hay un cero de referencia y dos sentidos opuestos: arriba y abajo, ganar y perder.",
+      "presentacion": {
+        "tipo": "cifra",
+        "numero": "−105",
+        "leyenda": "metros: la altura de la Laguna del Carbón, en Santa Cruz",
+        "nota": "Es el punto más bajo de toda América: está por debajo del nivel del mar."
+      },
+      "interactivo": {
+        "tipo": "explorar",
+        "titulo": "🌎 ¿Dónde está el cero?",
+        "consigna": "En cada situación, el cero significa algo distinto. Tocá cada una.",
+        "elementos": [
+          {
+            "icono": "🌡️",
+            "nombre": "Termómetro",
+            "texto": "El cero es la temperatura a la que se congela el agua."
+          },
+          {
+            "icono": "🛗",
+            "nombre": "Ascensor",
+            "texto": "El cero es la planta baja. El −2 es el segundo subsuelo."
+          },
+          {
+            "icono": "🏔️",
+            "nombre": "Altura",
+            "texto": "El cero es el nivel del mar. Las montañas tienen alturas positivas."
+          },
+          {
+            "icono": "💳",
+            "nombre": "Cuenta de banco",
+            "texto": "El cero es no tener plata ni deber. Un saldo de −1.500 significa que debés $1.500."
+          },
+          {
+            "icono": "⚽",
+            "nombre": "Diferencia de gol",
+            "texto": "Un equipo que hizo 8 goles y recibió 11 tiene 8 − 11 = −3."
+          }
+        ]
+      },
+      "ejemplo": {
+        "texto": "En un torneo, la diferencia de gol es goles a favor menos goles en contra. Un equipo que hizo 8 goles y recibió 11 tiene 8 − 11 = −3.",
+        "intercambiable": true,
+        "mostrar": false,
+        "que_debe_mostrar": "Un contexto con un cero de referencia y dos sentidos opuestos, donde una resta da un resultado negativo."
+      },
+      "idea_clave": "Los enteros sirven siempre que hay un cero de referencia y dos sentidos opuestos.",
+      "texto_simple": "Usamos números negativos para el frío, los subsuelos y las deudas.",
+      "chequeo": {
+        "pregunta": "Un buzo está 20 metros debajo del nivel del mar. Su posición es…",
+        "opciones": [
+          "−20 m",
+          "20 m",
+          "0 m"
+        ],
+        "correcta": 0,
+        "bien": "¡Muy bien! Debajo del nivel del mar, signo menos.",
+        "mal": "El cero es el nivel del mar. ¿El buzo está arriba o abajo?"
+      },
+      "mi_lugar": {
+        "pregunta": "¿Dónde aparecen números negativos en tu lugar? Pensá en el invierno, en un edificio con subsuelo o en un mapa de alturas.",
+        "ayuda": "En mi ciudad…"
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Número entero",
+      "definicion": "Cualquier número natural, el cero o un natural con signo menos: …, −2, −1, 0, 1, 2, …"
+    },
+    {
+      "palabra": "Número negativo",
+      "definicion": "Número menor que cero. Se escribe siempre con el signo −."
+    },
+    {
+      "palabra": "Punto de referencia",
+      "definicion": "El lugar desde donde se mide. En los números enteros, es el cero."
+    },
+    {
+      "palabra": "Recta numérica",
+      "definicion": "Línea donde cada número tiene su lugar, ordenados de menor a mayor de izquierda a derecha."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "El cero es un número positivo.",
+      "aclaracion": "El cero no es positivo ni negativo: es el punto que separa a unos de otros."
+    },
+    {
+      "error": "Si una resta da negativo, la cuenta está mal.",
+      "aclaracion": "Un resultado negativo puede ser correcto: indica que lo que se quitó era más que lo que había."
+    },
+    {
+      "error": "−5 °C es más calor que −2 °C, porque 5 es más que 2.",
+      "aclaracion": "Es al revés: −5 está más lejos del cero hacia abajo. A −5 °C hace más frío que a −2 °C."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "En nuestro calendario no existe el año 0: se pasa directamente del año 1 antes de Cristo al año 1 después de Cristo. Julio César murió en el año 44 a. C. y el emperador Augusto, en el 14 d. C. ¿Cuántos años pasaron entre las dos muertes? Cuidado: no es tan simple como sumar.",
+    "conexion": "Con Historia: las líneas de tiempo usan la misma idea que la recta numérica, con un año de referencia y dos sentidos opuestos, antes y después."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Qué son los números enteros?",
+      "respuesta": "Los números naturales, el cero y los números negativos."
+    },
+    {
+      "pregunta": "¿Qué indica el signo menos en una temperatura?",
+      "respuesta": "Que está por debajo de cero."
+    },
+    {
+      "pregunta": "¿Cuánto es 3 − 7?",
+      "respuesta": "−4"
+    },
+    {
+      "pregunta": "¿A qué piso lleva el botón −2 de un ascensor?",
+      "respuesta": "Al segundo subsuelo, dos pisos debajo de la planta baja."
+    },
+    {
+      "pregunta": "¿El cero es positivo o negativo?",
+      "respuesta": "Ninguno de los dos: es el punto de referencia."
+    },
+    {
+      "pregunta": "Si un equipo hizo 5 goles y recibió 9, ¿cuál es su diferencia de gol?",
+      "respuesta": "−4"
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "icono": "🌡️",
+      "texto": "El −40 es el único número en el que las escalas Celsius y Fahrenheit coinciden: −40 °C es lo mismo que −40 °F.",
+      "ubicacion": "final"
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir los números que viven debajo del cero. Son 4 cápsulas cortas. Para empezar, mirá a tu alrededor.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya conocés los números enteros. Cuando quieras, pasamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "mat-1-01-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Botonera de ascensor con los botones −2, −1, PB, 1, 2 y 3",
+      "epigrafe": "El −1 y el −2 son los subsuelos: pisos que están por debajo de la planta baja.",
+      "descripcion": "Ilustración frontal y simple de la botonera de un ascensor, con botones grandes y legibles: 3, 2, 1, PB, −1, −2. Los botones negativos en un color distinto (verde) y PB destacado en naranja. Estilo plano, colores de LumAI (azul, naranja, verde), fondo claro."
+    },
+    {
+      "id": "mat-1-01-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Dos termómetros: uno marca 5 grados y el otro, menos 5 grados",
+      "epigrafe": "El mismo número, 5, pero de lados opuestos del cero.",
+      "descripcion": "Dos termómetros verticales lado a lado, con el cero bien marcado. Uno marca +5 °C (fondo con sol suave) y el otro −5 °C (fondo con nieve). Etiquetas grandes \"+5 °C\" y \"−5 °C\". Estilo plano, claro y sin detalles innecesarios."
+    }
+  ]
+}

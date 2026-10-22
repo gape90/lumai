@@ -1,0 +1,375 @@
+{
+  "id": "bio-1-02",
+  "formato": "capsulas",
+  "materia": "Biología",
+  "anio": "1.° año",
+  "eje": "Seres vivos: diversidad, unidad, interrelaciones y cambios",
+  "nap": "La construcción del modelo de célula como unidad estructural y funcional de los seres vivos propuesto por la Teoría Celular y la aproximación a la idea de diversidad celular (procariota-eucariota, vegetal-animal).",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Ciencias Naturales, 1.°/2.° año",
+  "titulo": "La célula: la pieza con la que está armada toda la vida",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "Ahora mismo",
+    "texto": "Mientras leés esto, en tu cuerpo hay unos 30 billones de células trabajando. Ninguna sabe que vos existís. Y sin embargo, vos sos el resultado de todas ellas juntas.",
+    "pregunta": "Si son tan importantes, ¿por qué nadie las vio hasta hace unos 360 años?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **explicar qué es una célula** y por qué nadie las vio durante miles de años.",
+    "resuelta": "Las células son diminutas: no se ven a simple vista. Recién con el microscopio se pudieron observar. Hoy sabemos que todos los seres vivos están hechos de células, y que toda célula nace de otra célula."
+  },
+  "idea_central": "La célula es la unidad más pequeña que está viva: todos los seres vivos están formados por una o muchas células, y toda célula nace de otra célula.",
+  "idea_central_simple": "Todos los seres vivos están hechos de células. Las células son muy chiquitas y están vivas.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "Un descubrimiento con microscopio",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Viajemos a 1665, al día en que alguien vio una célula por primera vez.",
+      "pose": "saludo",
+      "texto": "Robert Hooke miró una lámina finísima de corcho con un microscopio. Vio pequeñas cavidades, como las celdas de un panal.\nLas llamó **células**: \"celdas pequeñas\".",
+      "presentacion": {
+        "tipo": "cifra",
+        "numero": "0,1",
+        "leyenda": "milímetro: lo que mide, como máximo, la mayoría de las células",
+        "nota": "Por eso no se ven sin microscopio."
+      },
+      "imagen": "bio-1-02-a",
+      "idea_clave": "Las células se descubrieron gracias al microscopio.",
+      "texto_simple": "Las células son tan chiquitas que se vieron recién cuando se inventó el microscopio.",
+      "chequeo": {
+        "pregunta": "¿Por qué no se veían las células antes de 1665?",
+        "opciones": [
+          "porque son demasiado pequeñas",
+          "porque no existían",
+          "porque son transparentes y rápidas"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Hacía falta un microscopio.",
+        "mal": "Mirá la cifra de arriba: ¿cuánto mide una célula?"
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "Tres ideas que cambiaron la biología",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Unos años después, tres científicos juntaron todo lo que se sabía en una teoría.",
+      "pose": "idea",
+      "texto": "La **teoría celular** afirma tres cosas.\nTodos los seres vivos están formados por una o más células. La célula es la unidad más pequeña que está viva. Y toda célula proviene de otra célula.",
+      "presentacion": {
+        "tipo": "ecuacion",
+        "piezas": [
+          {
+            "icono": "🧩",
+            "nombre": "Todos",
+            "texto": "Los seres vivos están hechos de células"
+          },
+          {
+            "icono": "🔬",
+            "nombre": "La unidad",
+            "texto": "La célula es lo más pequeño que vive"
+          },
+          {
+            "icono": "🔁",
+            "nombre": "El origen",
+            "texto": "Toda célula viene de otra célula"
+          }
+        ],
+        "resultado": {
+          "icono": "📘",
+          "nombre": "Teoría celular",
+          "texto": "Schleiden, Schwann y Virchow"
+        }
+      },
+      "ejemplo": {
+        "texto": "Si te raspás la rodilla, en pocos días la herida se cierra: las células de la piel se dividen y forman células nuevas que cubren el hueco. Toda célula nace de otra célula.",
+        "intercambiable": true,
+        "que_debe_mostrar": "Que las células nuevas se originan a partir de la división de otras células."
+      },
+      "idea_clave": "Todos los seres vivos están hechos de células, y toda célula nace de otra célula.",
+      "texto_simple": "Todo ser vivo está hecho de células. Las células nuevas salen de otras células.",
+      "chequeo": {
+        "pregunta": "¿De dónde salen las células nuevas que cierran una herida?",
+        "opciones": [
+          "de otras células que se dividen",
+          "del aire",
+          "de la sangre seca"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Toda célula proviene de otra célula.",
+        "mal": "Recordá la tercera idea de la teoría celular."
+      },
+      "mi_lugar": {
+        "pregunta": "Pensá en alguna vez que te lastimaste. ¿Cuánto tardó en curarse la herida? ¿Qué estaban haciendo tus células mientras tanto?",
+        "ayuda": "Una vez me lastimé…"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "Las tres partes de toda célula",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Entremos a una célula. Tocá cada parte para descubrir qué hace.",
+      "pose": "saludo",
+      "texto": "Toda célula tiene una **membrana**, que la rodea y controla qué entra y qué sale.\nTiene un **citoplasma**, un medio gelatinoso donde trabaja.\nY tiene **material genético** (ADN), con las instrucciones para funcionar y reproducirse.",
+      "imagen": "bio-1-02-b",
+      "interactivo": {
+        "tipo": "explorar",
+        "titulo": "🔬 Recorré una célula por dentro",
+        "consigna": "Tocá cada parte.",
+        "elementos": [
+          {
+            "icono": "🛡️",
+            "nombre": "Membrana",
+            "texto": "Rodea la célula y decide qué entra y qué sale, como la puerta de un edificio con control de ingreso."
+          },
+          {
+            "icono": "💧",
+            "nombre": "Citoplasma",
+            "texto": "Medio gelatinoso que llena la célula. Ahí ocurre la mayor parte de su trabajo."
+          },
+          {
+            "icono": "🧬",
+            "nombre": "Material genético",
+            "texto": "El ADN: las instrucciones para que la célula funcione y se reproduzca."
+          },
+          {
+            "icono": "⚡",
+            "nombre": "Mitocondria",
+            "texto": "Una organela que obtiene energía del alimento."
+          },
+          {
+            "icono": "🌿",
+            "nombre": "Cloroplasto",
+            "texto": "Solo en las células vegetales: capta la luz del sol y fabrica alimento."
+          }
+        ]
+      },
+      "idea_clave": "Toda célula tiene membrana, citoplasma y material genético.",
+      "texto_simple": "La célula tiene una capa que la rodea, un líquido adentro y las instrucciones para vivir.",
+      "chequeo": {
+        "pregunta": "¿Qué parte de la célula controla qué entra y qué sale?",
+        "opciones": [
+          "la membrana",
+          "el citoplasma",
+          "el ADN"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Funciona como una puerta con control.",
+        "mal": "Volvé a tocar las partes en la actividad."
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Con núcleo o sin núcleo",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Hay dos grandes tipos de células. La diferencia está en dónde guardan el ADN.",
+      "pose": "idea",
+      "texto": "En las células **procariotas**, como las bacterias, el ADN está suelto en el citoplasma.\nEn las **eucariotas**, como las de animales, plantas y hongos, el ADN está guardado en un **núcleo**.",
+      "presentacion": {
+        "tipo": "contraste",
+        "lados": [
+          {
+            "etiqueta": "Sin núcleo",
+            "nombre": "Procariota",
+            "texto": "El ADN está suelto. Es muy pequeña. Ejemplo: las bacterias."
+          },
+          {
+            "etiqueta": "Con núcleo",
+            "nombre": "Eucariota",
+            "texto": "El ADN está en un núcleo. Tiene organelas. Ejemplo: tus células."
+          }
+        ]
+      },
+      "idea_clave": "Las procariotas no tienen núcleo; las eucariotas, sí.",
+      "texto_simple": "Algunas células guardan sus instrucciones en una cajita llamada núcleo. Otras no.",
+      "chequeo": {
+        "pregunta": "Las células de tu piel son…",
+        "opciones": [
+          "eucariotas",
+          "procariotas",
+          "bacterias"
+        ],
+        "correcta": 0,
+        "bien": "¡Muy bien! Las células de los animales tienen núcleo.",
+        "mal": "¿Las células de los animales tienen núcleo?"
+      }
+    },
+    {
+      "id": "c5",
+      "titulo": "Células animales y vegetales",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Última cápsula: una célula de hoja y una de tu brazo. ¿En qué se diferencian?",
+      "pose": "saludo",
+      "texto": "Las dos son eucariotas. Pero la célula vegetal tiene una **pared celular** rígida, que le da forma.\nTambién tiene **cloroplastos**, donde fabrica su alimento con la luz del sol. La célula animal no tiene ni pared ni cloroplastos.",
+      "imagen": "bio-1-02-c",
+      "interactivo": {
+        "tipo": "clasificar",
+        "titulo": "🗂️ ¿Vegetal, animal o las dos?",
+        "consigna": "Elegí dónde se encuentra cada parte.",
+        "categorias": [
+          "Vegetal",
+          "Animal",
+          "Las dos"
+        ],
+        "items": [
+          {
+            "nombre": "Pared celular",
+            "categoria": "Vegetal",
+            "dato": "Le da forma y sostén a la célula vegetal.",
+            "pista": "Es rígida, como una caja."
+          },
+          {
+            "nombre": "Cloroplastos",
+            "categoria": "Vegetal",
+            "dato": "Fabrican alimento con la luz del sol.",
+            "pista": "¿Quién fabrica su propio alimento con luz?"
+          },
+          {
+            "nombre": "Núcleo",
+            "categoria": "Las dos",
+            "dato": "Las dos son eucariotas: tienen núcleo.",
+            "pista": "Las dos células son eucariotas."
+          },
+          {
+            "nombre": "Membrana",
+            "categoria": "Las dos",
+            "dato": "Toda célula tiene membrana.",
+            "pista": "Es una de las tres partes de toda célula."
+          },
+          {
+            "nombre": "Mitocondrias",
+            "categoria": "Las dos",
+            "dato": "Las dos necesitan obtener energía.",
+            "pista": "Las dos necesitan energía."
+          }
+        ],
+        "cierre": "¡Excelente! La pared celular y los cloroplastos son exclusivos de las plantas."
+      },
+      "idea_clave": "La célula vegetal tiene pared celular y cloroplastos; la animal, no.",
+      "texto_simple": "Las células de las plantas tienen una pared dura y fabrican su comida con el sol.",
+      "chequeo": {
+        "pregunta": "¿Qué tiene la célula vegetal que la animal no tiene?",
+        "opciones": [
+          "cloroplastos",
+          "núcleo",
+          "membrana"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Con ellos fabrica su alimento.",
+        "mal": "El núcleo y la membrana están en las dos."
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Célula",
+      "definicion": "La unidad más pequeña que está viva. Todos los seres vivos están formados por células."
+    },
+    {
+      "palabra": "Membrana",
+      "definicion": "Capa que rodea la célula y controla qué entra y qué sale."
+    },
+    {
+      "palabra": "Citoplasma",
+      "definicion": "Medio gelatinoso que llena la célula, donde ocurre gran parte de su trabajo."
+    },
+    {
+      "palabra": "Núcleo",
+      "definicion": "Estructura de las células eucariotas que guarda el material genético."
+    },
+    {
+      "palabra": "Procariota",
+      "definicion": "Célula sin núcleo, como las bacterias."
+    },
+    {
+      "palabra": "Eucariota",
+      "definicion": "Célula con núcleo, como las de animales, plantas y hongos."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "Las plantas no tienen células.",
+      "aclaracion": "Las plantas, los hongos y todos los seres vivos están formados por células."
+    },
+    {
+      "error": "Las células vegetales no tienen membrana porque tienen pared.",
+      "aclaracion": "Tienen las dos: la pared celular está por fuera de la membrana."
+    },
+    {
+      "error": "Todas las células son iguales.",
+      "aclaracion": "Hay muchos tipos: una neurona y un glóbulo rojo tienen formas y funciones muy distintas."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Los glóbulos rojos maduros de las personas no tienen núcleo. ¿Eso los convierte en células procariotas? Pensá qué otras características habría que tener en cuenta antes de responder.",
+    "conexion": "Con Matemática: las células se miden en micrómetros, la millonésima parte de un metro. Una célula de la superficie de tu piel mide alrededor de 30 micrómetros, es decir, 3 × 10⁻⁵ metros."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Qué es una célula?",
+      "respuesta": "La unidad más pequeña que está viva."
+    },
+    {
+      "pregunta": "¿Quién usó por primera vez la palabra \"célula\"?",
+      "respuesta": "Robert Hooke, en 1665, al observar corcho con un microscopio."
+    },
+    {
+      "pregunta": "¿Qué dice la teoría celular?",
+      "respuesta": "Que todos los seres vivos están formados por células, que la célula es la unidad más pequeña con funciones vitales y que toda célula proviene de otra célula."
+    },
+    {
+      "pregunta": "¿Qué tres partes tiene toda célula?",
+      "respuesta": "Membrana, citoplasma y material genético."
+    },
+    {
+      "pregunta": "¿Qué diferencia a una célula procariota de una eucariota?",
+      "respuesta": "La eucariota tiene núcleo; la procariota, no."
+    },
+    {
+      "pregunta": "¿Qué tiene la célula vegetal que no tiene la animal?",
+      "respuesta": "Pared celular, cloroplastos y una vacuola grande."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "📏",
+      "texto": "Algunas neuronas son larguísimas: hay neuronas que van desde la parte baja de la columna vertebral hasta el pie y miden cerca de un metro."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a conocer la pieza con la que está armada toda la vida: la célula. Son 5 cápsulas. Para empezar, pensá en esto.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya conocés la célula por dentro. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "bio-1-02-a",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Robert Hooke mirando por un microscopio antiguo, y al lado lo que vio: celdas como las de un panal",
+      "epigrafe": "En 1665, Hooke observó corcho y vio pequeñas celdas: las llamó células.",
+      "descripcion": "Escena dividida en dos: a la izquierda, un científico del siglo XVII con peluca mirando por un microscopio antiguo de bronce; a la derecha, un círculo que representa la vista del microscopio con celdas rectangulares parecidas a un panal (corcho). Estilo ilustración histórica suave, colores cálidos."
+    },
+    {
+      "id": "bio-1-02-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Esquema de una célula animal con la membrana, el citoplasma, el núcleo y las mitocondrias señalados",
+      "epigrafe": "Las partes de una célula animal.",
+      "descripcion": "Esquema didáctico de una célula animal redondeada, en corte, con colores diferenciados y etiquetas grandes: membrana, citoplasma, núcleo (con ADN), mitocondrias. Fondo blanco, estilo lámina escolar moderna, líneas claras."
+    },
+    {
+      "id": "bio-1-02-c",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Una célula vegetal rectangular y una célula animal redondeada, una al lado de la otra",
+      "epigrafe": "La célula vegetal tiene pared celular, cloroplastos y una vacuola grande.",
+      "descripcion": "Dos células lado a lado: a la izquierda, una célula vegetal rectangular con pared celular gruesa (verde), cloroplastos verdes, una vacuola grande celeste y el núcleo; a la derecha, una célula animal redondeada con núcleo y mitocondrias. Etiquetas grandes en las estructuras diferentes. Estilo plano, claro."
+    }
+  ]
+}

@@ -1,0 +1,373 @@
+{
+  "id": "bio-1-03",
+  "formato": "capsulas",
+  "materia": "Biología",
+  "anio": "1.° año",
+  "eje": "Seres vivos: diversidad, unidad, interrelaciones y cambios",
+  "nap": "La caracterización de la función de relación en los seres vivos, autorregulación y control, asociada con los cambios en los ambientes interno y externo.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Ciencias Naturales, 1.°/2.° año",
+  "titulo": "Darse cuenta y responder: la función de relación",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "Hacé la prueba",
+    "texto": "Dejá una planta cerca de una ventana durante una semana. Vas a ver que sus tallos se inclinan hacia la luz.",
+    "pregunta": "¿Cómo puede una planta \"saber\" de dónde viene el sol, si no tiene ojos?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **explicar cómo la planta encuentra la luz** y cómo tu cuerpo se mantiene en equilibrio.",
+    "resuelta": "Las células de la planta detectan la luz y hacen crecer más el lado del tallo que está en sombra: así se curva hacia la luz. Todos los seres vivos captan estímulos y responden a ellos: es la función de relación."
+  },
+  "idea_central": "Todos los seres vivos captan los cambios de su ambiente y responden a ellos. Gracias a esa función de relación mantienen estables sus condiciones internas y sobreviven.",
+  "idea_central_simple": "Los seres vivos se dan cuenta de lo que cambia y hacen algo para estar bien.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "Estímulo y respuesta",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Dos palabras que vas a usar toda la clase: estímulo y respuesta.",
+      "pose": "idea",
+      "texto": "Un **estímulo** es cualquier cambio que un ser vivo puede detectar: la luz, el frío, un sonido.\nLa **respuesta** es lo que hace frente a ese estímulo: moverse, crecer hacia un lado, transpirar.\nCaptar estímulos y responder es la **función de relación**.",
+      "presentacion": {
+        "tipo": "ecuacion",
+        "igual": "→",
+        "operador": "→",
+        "piezas": [
+          {
+            "icono": "🌙",
+            "nombre": "Estímulo",
+            "texto": "De golpe se hace de noche"
+          },
+          {
+            "icono": "👁️",
+            "nombre": "Captación",
+            "texto": "Los ojos detectan el cambio"
+          },
+          {
+            "icono": "🧠",
+            "nombre": "Procesamiento",
+            "texto": "El sistema nervioso interpreta"
+          }
+        ],
+        "resultado": {
+          "icono": "🐱",
+          "nombre": "Respuesta",
+          "texto": "El gato agranda sus pupilas"
+        }
+      },
+      "idea_clave": "Un estímulo es un cambio que se detecta; la respuesta es lo que el ser vivo hace.",
+      "texto_simple": "Algo cambia y el ser vivo hace algo. Eso es estímulo y respuesta.",
+      "chequeo": {
+        "pregunta": "Escuchás un trueno y te tapás los oídos. ¿Cuál es el estímulo?",
+        "opciones": [
+          "el trueno",
+          "taparte los oídos",
+          "tus manos"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! El trueno es el cambio que detectás.",
+        "mal": "El estímulo es lo que cambia; la respuesta, lo que hacés."
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "Afuera y adentro",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Los estímulos no solo vienen de afuera. Tu cuerpo también te avisa cosas.",
+      "pose": "saludo",
+      "texto": "Los estímulos pueden venir del **ambiente externo**: una tormenta, el calor, un perro que ladra.\nO del **ambiente interno**, de adentro del cuerpo: falta de agua, demasiada temperatura. La sed es tu cuerpo avisándote un cambio interno.",
+      "interactivo": {
+        "tipo": "clasificar",
+        "titulo": "🗂️ ¿Externo o interno?",
+        "consigna": "Elegí de dónde viene cada estímulo.",
+        "categorias": [
+          "Externo",
+          "Interno"
+        ],
+        "items": [
+          {
+            "icono": "⛈️",
+            "nombre": "Una tormenta",
+            "categoria": "Externo",
+            "pista": "Pasa afuera del cuerpo."
+          },
+          {
+            "icono": "🥤",
+            "nombre": "La sed",
+            "categoria": "Interno",
+            "dato": "Tu cuerpo detecta que le falta agua.",
+            "pista": "La sentís desde adentro."
+          },
+          {
+            "icono": "🐕",
+            "nombre": "Un perro que ladra",
+            "categoria": "Externo",
+            "pista": "Lo escuchás desde afuera."
+          },
+          {
+            "icono": "🍽️",
+            "nombre": "El hambre",
+            "categoria": "Interno",
+            "dato": "El cuerpo detecta que necesita energía. Igual, un olor rico (externo) también puede despertar las ganas de comer.",
+            "pista": "Es un aviso de tu propio cuerpo."
+          },
+          {
+            "icono": "☀️",
+            "nombre": "El calor del sol",
+            "categoria": "Externo",
+            "pista": "Viene del ambiente."
+          }
+        ],
+        "cierre": "¡Muy bien! Los seres vivos responden a lo que pasa afuera y adentro de su cuerpo."
+      },
+      "idea_clave": "Los estímulos pueden venir del ambiente externo o del interno.",
+      "texto_simple": "Algunos cambios pasan afuera, como la lluvia. Otros pasan adentro, como la sed.",
+      "chequeo": {
+        "pregunta": "El cansancio después de correr es un estímulo…",
+        "opciones": [
+          "interno",
+          "externo",
+          "vegetal"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Viene de adentro de tu cuerpo.",
+        "mal": "¿Viene del ambiente o de tu propio cuerpo?"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "Mantener el equilibrio",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Haga frío o calor afuera, tu cuerpo se mantiene a unos 36,5 grados. ¿Cómo lo logra?",
+      "pose": "idea",
+      "texto": "Los seres vivos necesitan que sus condiciones internas se mantengan estables.\nSi tu temperatura sube, transpirás: el sudor te enfría. Si baja, temblás: los músculos generan calor.\nMantener ese equilibrio se llama **autorregulación** u homeostasis.",
+      "presentacion": {
+        "tipo": "cifra",
+        "numero": "36,5",
+        "leyenda": "grados: tu temperatura interna, haga frío o calor afuera",
+        "nota": "Tu cuerpo la mantiene casi igual todo el año."
+      },
+      "imagen": "bio-1-03-b",
+      "interactivo": {
+        "tipo": "explorar",
+        "titulo": "🌡️ Tu cuerpo se autorregula",
+        "consigna": "Tocá cada situación para ver cómo responde tu cuerpo.",
+        "elementos": [
+          {
+            "icono": "☀️",
+            "nombre": "Calor",
+            "texto": "Transpirás: el sudor se evapora y te enfría."
+          },
+          {
+            "icono": "❄️",
+            "nombre": "Frío",
+            "texto": "Temblás: los músculos se contraen rápido y generan calor."
+          },
+          {
+            "icono": "💧",
+            "nombre": "Falta de agua",
+            "texto": "Sentís sed, y los riñones producen menos orina."
+          },
+          {
+            "icono": "🏃",
+            "nombre": "Ejercicio",
+            "texto": "El corazón late más rápido para llevar más oxígeno a los músculos."
+          }
+        ]
+      },
+      "ejemplo": {
+        "texto": "Un día de enero salís a jugar al fútbol al mediodía. Transpirás, tenés la cara colorada y mucha sed: tres respuestas de tu cuerpo para no recalentarse.",
+        "intercambiable": true,
+        "mostrar": false,
+        "que_debe_mostrar": "Un estímulo que altera el equilibrio interno y varias respuestas del organismo para recuperarlo."
+      },
+      "idea_clave": "La autorregulación mantiene estables las condiciones internas del cuerpo.",
+      "texto_simple": "Tu cuerpo se cuida solo: si tenés calor, transpirás; si tenés frío, temblás.",
+      "chequeo": {
+        "pregunta": "¿Para qué transpiramos cuando hace calor?",
+        "opciones": [
+          "para enfriar el cuerpo",
+          "para tomar agua",
+          "para crecer"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! El sudor, al evaporarse, te enfría.",
+        "mal": "Pensá qué sentís cuando el sudor se seca en la piel."
+      },
+      "mi_lugar": {
+        "pregunta": "¿Cómo es el clima donde vivís en verano y en invierno? ¿Qué hace tu cuerpo para adaptarse en cada estación?",
+        "ayuda": "En verano… y en invierno…"
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Plantas y microbios también responden",
+      "minutos": 3,
+      "esencial": false,
+      "lumai": "Última cápsula: volvamos a la planta de la ventana.",
+      "pose": "saludo",
+      "texto": "Las plantas responden más lento, pero responden. Sus tallos crecen hacia la luz: es el **fototropismo**.\nAlgunas bacterias nadan hacia donde hay alimento. Esos desplazamientos se llaman taxismos.",
+      "imagen": "bio-1-03-c",
+      "interactivo": {
+        "tipo": "clasificar",
+        "titulo": "🗂️ ¿Tropismo o taxismo?",
+        "consigna": "Tropismo: crecer hacia un lado. Taxismo: moverse hacia un lado. Elegí para cada caso.",
+        "categorias": [
+          "Tropismo",
+          "Taxismo"
+        ],
+        "items": [
+          {
+            "icono": "🌱",
+            "nombre": "Un tallo crece hacia la ventana",
+            "categoria": "Tropismo",
+            "pista": "La planta no se mueve de lugar: crece."
+          },
+          {
+            "icono": "🦠",
+            "nombre": "Una bacteria nada hacia el alimento",
+            "categoria": "Taxismo",
+            "pista": "Se desplaza."
+          },
+          {
+            "icono": "🌿",
+            "nombre": "Una raíz crece hacia abajo",
+            "categoria": "Tropismo",
+            "dato": "Sigue la gravedad: se llama gravitropismo.",
+            "pista": "La raíz crece, no nada."
+          },
+          {
+            "icono": "🐛",
+            "nombre": "Un gusano se aleja de la luz",
+            "categoria": "Taxismo",
+            "pista": "Se mueve de lugar."
+          }
+        ],
+        "cierre": "¡Muy bien! Los dos son formas de la función de relación."
+      },
+      "idea_clave": "Las plantas responden creciendo; los microorganismos, desplazándose.",
+      "texto_simple": "Las plantas crecen hacia la luz. Algunos bichitos se mueven hacia la comida.",
+      "chequeo": {
+        "pregunta": "¿Por qué el tallo de la planta se curva hacia la ventana?",
+        "opciones": [
+          "porque el lado en sombra crece más",
+          "porque la planta tiene ojos",
+          "porque el viento la empuja"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Así resolviste la misión.",
+        "mal": "Las células detectan la luz y hacen crecer más un lado del tallo. ¿Cuál?"
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Estímulo",
+      "definicion": "Cambio del ambiente, externo o interno, que un ser vivo puede detectar."
+    },
+    {
+      "palabra": "Respuesta",
+      "definicion": "Lo que hace un ser vivo frente a un estímulo."
+    },
+    {
+      "palabra": "Función de relación",
+      "definicion": "Captar estímulos y responder a ellos."
+    },
+    {
+      "palabra": "Homeostasis",
+      "definicion": "Capacidad de mantener estables las condiciones internas. También se llama autorregulación."
+    },
+    {
+      "palabra": "Tropismo",
+      "definicion": "Respuesta de crecimiento de una planta hacia un estímulo o en contra de él."
+    },
+    {
+      "palabra": "Taxismo",
+      "definicion": "Desplazamiento de un organismo hacia un estímulo o en contra de él."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "Solo los animales tienen función de relación.",
+      "aclaracion": "Todos los seres vivos la tienen: las plantas, los hongos y las bacterias también captan estímulos y responden."
+    },
+    {
+      "error": "La temperatura del cuerpo cambia según el clima.",
+      "aclaracion": "La de la piel sí cambia, pero la temperatura interna se mantiene cerca de los 36,5 °C gracias a la autorregulación."
+    },
+    {
+      "error": "Transpirar es algo malo.",
+      "aclaracion": "Es una respuesta del cuerpo para enfriarse. Lo importante es reponer el agua que se pierde."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Las lagartijas no regulan su temperatura con su propio cuerpo como nosotros: dependen del ambiente. ¿Qué creés que hacen para no enfriarse ni recalentarse? Pensá en cómo se comportan una mañana fría y un mediodía de verano.",
+    "conexion": "Con Física: el sudor enfría porque, al evaporarse, el agua se lleva calor de la piel. Por el mismo motivo sentís frío al salir de la pileta, aunque haga calor."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Qué es un estímulo?",
+      "respuesta": "Un cambio del ambiente, externo o interno, que un ser vivo puede detectar."
+    },
+    {
+      "pregunta": "¿Qué es la función de relación?",
+      "respuesta": "Captar estímulos y responder a ellos."
+    },
+    {
+      "pregunta": "¿Qué es la homeostasis?",
+      "respuesta": "La capacidad de mantener estables las condiciones internas."
+    },
+    {
+      "pregunta": "¿Para qué transpiramos?",
+      "respuesta": "Para enfriar el cuerpo: el sudor, al evaporarse, se lleva calor."
+    },
+    {
+      "pregunta": "¿Qué es el fototropismo?",
+      "respuesta": "El crecimiento de una planta hacia la luz."
+    },
+    {
+      "pregunta": "El hambre, ¿es un estímulo interno o externo?",
+      "respuesta": "Interno: viene del propio cuerpo."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "🌻",
+      "texto": "Los girasoles jóvenes siguen al sol durante el día: miran al este a la mañana y al oeste a la tarde. Cuando maduran, dejan de moverse y quedan mirando hacia el este."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir cómo los seres vivos se dan cuenta de lo que pasa y responden. Son 4 cápsulas. Para empezar, hacé esta prueba.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés cómo funciona la relación con el ambiente. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "bio-1-03-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Una planta en maceta junto a una ventana, con el tallo inclinado hacia la luz",
+      "epigrafe": "El tallo se curva hacia la luz: es el fototropismo.",
+      "descripcion": "Planta en maceta apoyada en el borde de una ventana soleada, con el tallo y las hojas claramente inclinados hacia el vidrio. Rayos de sol entrando en diagonal. Estilo ilustración plana, cálido, colores de LumAI."
+    },
+    {
+      "id": "bio-1-03-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Un chico transpirando bajo el sol y otro temblando con frío",
+      "epigrafe": "Transpirar y temblar: dos respuestas para mantener la temperatura.",
+      "descripcion": "Imagen dividida: a la izquierda, un adolescente bajo el sol con gotas de sudor y un termómetro alto; a la derecha, el mismo adolescente abrigado en la nieve, temblando, con un termómetro bajo. En el centro, un termómetro que marca 36,5 °C con la palabra \"equilibrio\". Estilo plano y claro."
+    },
+    {
+      "id": "bio-1-03-c",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Una mimosa púdica antes y después de ser tocada: con las hojas abiertas y cerradas",
+      "epigrafe": "La mimosa púdica cierra sus hojas cuando se la toca.",
+      "descripcion": "Dos dibujos de la misma planta mimosa púdica: a la izquierda, con sus hojitas abiertas; a la derecha, con un dedo tocándola y las hojitas cerradas y caídas. Una flecha entre los dos dibujos. Estilo botánico simple y claro."
+    }
+  ]
+}

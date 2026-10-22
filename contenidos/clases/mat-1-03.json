@@ -1,0 +1,319 @@
+{
+  "id": "mat-1-03",
+  "formato": "capsulas",
+  "materia": "Matemática",
+  "anio": "1.° año",
+  "eje": "Número y operaciones",
+  "nap": "Interpretar el número racional como cociente.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Matemática, 1.°/2.° año",
+  "titulo": "Una fracción es una división disfrazada",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "Imaginate esto",
+    "texto": "Tres amigas piden 2 pizzas y se las quieren repartir en partes iguales. La cuenta 2 dividido 3 \"no da\"… y sin embargo, ninguna se queda sin comer.",
+    "pregunta": "¿Cuánta pizza le toca a cada una?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **resolver el reparto de las pizzas** y descubrir qué esconde una fracción.",
+    "resuelta": "A cada amiga le tocan 2/3 de pizza. Una fracción es el resultado de una división: 2 ÷ 3 = 2/3."
+  },
+  "idea_central": "Una fracción es el resultado de una división: a/b es lo que se obtiene al repartir a en b partes iguales.",
+  "idea_central_simple": "Una fracción es repartir. 2 pizzas para 3 amigas: a cada una le toca 2/3.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "Repartir es dividir",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Resolvamos el problema de las pizzas paso a paso.",
+      "pose": "saludo",
+      "texto": "Cada vez que repartimos en partes iguales, dividimos. 12 alfajores entre 4 personas: 12 ÷ 4 = 3.\nPero 3 alfajores entre 4 personas no da un número natural. Igual se puede repartir: a cada una le tocan 3/4 de alfajor.",
+      "imagen": "mat-1-03-b",
+      "interactivo": {
+        "tipo": "pasos",
+        "titulo": "🍕 El reparto de las pizzas",
+        "pasos": [
+          {
+            "titulo": "El problema",
+            "texto": "Hay 2 pizzas para 3 amigas. La cuenta 2 ÷ 3 no da un número natural."
+          },
+          {
+            "titulo": "Cortar en partes iguales",
+            "texto": "Cortamos cada pizza en 3 porciones iguales. Cada porción es 1/3 de pizza."
+          },
+          {
+            "titulo": "Contar las porciones",
+            "texto": "Hay 6 porciones. Repartidas entre 3 amigas, tocan 2 a cada una."
+          },
+          {
+            "titulo": "El resultado",
+            "texto": "Cada amiga come 2 porciones de 1/3: 2/3 de pizza. Entonces, **2 ÷ 3 = 2/3**."
+          }
+        ]
+      },
+      "idea_clave": "Repartir en partes iguales es dividir, aunque la cuenta no dé un número natural.",
+      "texto_simple": "Una fracción es repartir. 2 pizzas para 3 amigas: a cada una le toca 2/3.",
+      "chequeo": {
+        "pregunta": "1 alfajor entre 2 personas. ¿Cuánto le toca a cada una?",
+        "opciones": [
+          "1/2",
+          "2",
+          "2/1"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Medio alfajor: 1 ÷ 2 = 1/2.",
+        "mal": "Se reparte 1 alfajor entre 2. ¿Qué va arriba y qué abajo?"
+      },
+      "mi_lugar": {
+        "pregunta": "Pensá en una situación de tu casa o de tus amigos en la que tuvieron que repartir algo que no daba justo. ¿Cómo lo resolvieron?",
+        "ayuda": "Teníamos… y éramos…"
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "La raya es un signo de dividir",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Te cuento el secreto de las fracciones.",
+      "pose": "idea",
+      "texto": "En una fracción, el **numerador** (arriba) es lo que se reparte. El **denominador** (abajo) es entre cuántas partes.\nPor eso 3/4 significa \"tres dividido cuatro\". Y 8/2 es lo mismo que 8 ÷ 2, o sea, 4.",
+      "presentacion": {
+        "tipo": "ecuacion",
+        "operador": "÷",
+        "piezas": [
+          {
+            "icono": "🍫",
+            "nombre": "3 alfajores",
+            "texto": "Numerador: lo que se reparte"
+          },
+          {
+            "icono": "👥",
+            "nombre": "4 personas",
+            "texto": "Denominador: entre cuántos"
+          }
+        ],
+        "resultado": {
+          "icono": "➗",
+          "nombre": "3/4",
+          "texto": "Para cada una"
+        }
+      },
+      "idea_clave": "Numerador: lo que se reparte. Denominador: entre cuántos. La raya significa dividir.",
+      "texto_simple": "El número de arriba es lo que repartís. El de abajo, entre cuántos.",
+      "chequeo": {
+        "pregunta": "¿Qué número es 10/2?",
+        "opciones": [
+          "5",
+          "12",
+          "8"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! 10 ÷ 2 = 5.",
+        "mal": "Recordá que la raya es dividir: ¿cuánto es 10 dividido 2?"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "La misma cantidad, en decimal",
+      "minutos": 3,
+      "esencial": false,
+      "lumai": "¿Y si hacemos la división con la calculadora?",
+      "pose": "saludo",
+      "texto": "Si hacés 3 ÷ 4 con la calculadora, aparece 0,75. Es el mismo número que 3/4, escrito de otra forma.\nAlgunas divisiones terminan (1/4 = 0,25). Otras repiten cifras para siempre (1/3 = 0,333…).",
+      "interactivo": {
+        "tipo": "error",
+        "titulo": "🕵️ ¿Qué igualdad está mal?",
+        "consigna": "Una de estas igualdades tiene un error. Hacé la división y tocala.",
+        "pasos": [
+          {
+            "texto": "1/4 = 0,25",
+            "error": false,
+            "explicacion": "Está bien: 1 ÷ 4 = 0,25."
+          },
+          {
+            "texto": "3/4 = 0,75",
+            "error": false,
+            "explicacion": "Está bien: 3 ÷ 4 = 0,75."
+          },
+          {
+            "texto": "1/2 = 0,2",
+            "error": true,
+            "explicacion": "¡Esa es! 1 ÷ 2 = 0,5. El error es pensar que el 2 de abajo se \"pasa\" al decimal."
+          },
+          {
+            "texto": "1/3 = 0,333…",
+            "error": false,
+            "explicacion": "Está bien: el 3 se repite para siempre."
+          }
+        ]
+      },
+      "ejemplo": {
+        "texto": "Cuatro amigos compran 3 kilos de helado. A cada uno le tocan 3/4 de kilo: 3 ÷ 4 = 0,75 kg, es decir, 750 gramos.",
+        "intercambiable": true,
+        "que_debe_mostrar": "Un reparto en partes iguales en el que la división no da un número natural, con el resultado expresado como fracción y como decimal."
+      },
+      "idea_clave": "Una fracción también se puede escribir como decimal: se hace la división.",
+      "texto_simple": "Para pasar una fracción a decimal, dividí el de arriba por el de abajo.",
+      "chequeo": {
+        "pregunta": "¿Qué número es mayor: 5/8 o 0,6?",
+        "opciones": [
+          "5/8",
+          "0,6",
+          "son iguales"
+        ],
+        "correcta": 0,
+        "bien": "¡Muy bien! 5 ÷ 8 = 0,625, que es mayor que 0,600.",
+        "mal": "Hacé la división 5 ÷ 8 y compará con 0,6."
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Fracciones mayores que uno",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Última cápsula: ¿qué pasa si hay más cosas que personas?",
+      "pose": "idea",
+      "texto": "Si hay más cosas que personas, a cada una le toca más de un entero.\n7 tortas entre 2 personas: 7/2, o sea, 3 tortas y media para cada una.\nSi el numerador es mayor que el denominador, la fracción es mayor que 1.",
+      "interactivo": {
+        "tipo": "recta",
+        "titulo": "📍 Cada reparto tiene su lugar",
+        "consigna": "Tocá cada punto para ver qué reparto representa.",
+        "modo": "explorar",
+        "min": 0,
+        "max": 4,
+        "marcas": 0.5,
+        "puntos": [
+          {
+            "valor": 0.5,
+            "etiqueta": "1/2",
+            "nota": "1 alfajor entre 2: medio para cada una (0,5)."
+          },
+          {
+            "valor": 1.5,
+            "etiqueta": "3/2",
+            "nota": "3 pizzas entre 2: una y media para cada una (1,5)."
+          },
+          {
+            "valor": 2,
+            "etiqueta": "8/4",
+            "nota": "8 empanadas entre 4: 2 para cada una."
+          },
+          {
+            "valor": 3.5,
+            "etiqueta": "7/2",
+            "nota": "7 tortas entre 2: tres y media para cada una (3,5)."
+          }
+        ]
+      },
+      "idea_clave": "Si el numerador es mayor que el denominador, la fracción es mayor que 1.",
+      "texto_simple": "Si hay más cosas que personas, a cada uno le toca más de una.",
+      "chequeo": {
+        "pregunta": "¿Cuál de estas fracciones es mayor que 1?",
+        "opciones": [
+          "5/3",
+          "2/5",
+          "1/4"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! 5 es mayor que 3: a cada uno le toca más de un entero.",
+        "mal": "Buscá la que tenga el número de arriba más grande que el de abajo."
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Fracción",
+      "definicion": "Número escrito como a/b. Indica el resultado de dividir a entre b."
+    },
+    {
+      "palabra": "Numerador",
+      "definicion": "El número de arriba de la fracción: lo que se reparte."
+    },
+    {
+      "palabra": "Denominador",
+      "definicion": "El número de abajo: en cuántas partes iguales se reparte. Nunca puede ser cero."
+    },
+    {
+      "palabra": "Número racional",
+      "definicion": "Todo número que se puede escribir como una división entre dos enteros, con divisor distinto de cero."
+    },
+    {
+      "palabra": "Cociente",
+      "definicion": "El resultado de una división."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "3/4 y 4/3 son lo mismo.",
+      "aclaracion": "No: 3/4 es 3 repartido entre 4 (menos de 1 para cada uno) y 4/3 es 4 repartido entre 3 (más de 1). El orden importa, como en cualquier división."
+    },
+    {
+      "error": "Una fracción siempre es menor que 1.",
+      "aclaracion": "Si el numerador es mayor que el denominador, la fracción es mayor que 1: 7/2 = 3,5."
+    },
+    {
+      "error": "Si una división no es exacta, no tiene resultado.",
+      "aclaracion": "Siempre tiene resultado, salvo que se divida por cero: puede escribirse como fracción o como decimal."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "¿Por qué nunca se puede dividir por cero? Pensalo como un reparto: ¿qué significaría repartir 5 caramelos entre 0 personas? Pensalo también al revés: ¿cuántas veces entra el 0 en el 5?",
+    "conexion": "Con Educación Física: muchas estadísticas deportivas son cocientes. Un equipo que hizo 18 goles en 8 partidos tiene un promedio de 18/8 = 2,25 goles por partido."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Qué operación representa la fracción 3/4?",
+      "respuesta": "Tres dividido cuatro."
+    },
+    {
+      "pregunta": "Si se reparten 2 pizzas entre 3 personas, ¿cuánto le toca a cada una?",
+      "respuesta": "2/3 de pizza."
+    },
+    {
+      "pregunta": "¿Qué número decimal es igual a 3/4?",
+      "respuesta": "0,75"
+    },
+    {
+      "pregunta": "¿Qué indica el denominador de una fracción?",
+      "respuesta": "En cuántas partes iguales se reparte."
+    },
+    {
+      "pregunta": "¿7/2 es mayor o menor que 1?",
+      "respuesta": "Mayor: vale 3,5."
+    },
+    {
+      "pregunta": "¿Puede el denominador ser cero?",
+      "respuesta": "No, porque no se puede dividir por cero."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "📜",
+      "texto": "La palabra \"fracción\" viene del latín *fractio*, que significa \"quebrar\" o \"romper\". Por eso a las fracciones también se las llama \"números quebrados\"."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir qué esconde una fracción. Son 4 cápsulas cortas. Para empezar, imaginate esta situación.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés que una fracción es una división disfrazada. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "mat-1-03-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Tres amigas frente a dos pizzas",
+      "epigrafe": "2 pizzas para 3 amigas: ¿cuánto le toca a cada una?",
+      "descripcion": "Tres chicas adolescentes sonrientes alrededor de una mesa con dos pizzas enteras. Estilo ilustración plana, amigable, diversa, con los colores de LumAI. Sin texto en la imagen."
+    },
+    {
+      "id": "mat-1-03-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Dos pizzas cortadas en tercios, con las porciones pintadas de tres colores",
+      "epigrafe": "Cada amiga recibe 2 porciones de 1/3: en total, 2/3 de pizza.",
+      "descripcion": "Dos pizzas vistas desde arriba, cada una cortada en 3 porciones iguales. Las 6 porciones están coloreadas de a pares con tres colores (azul, naranja, verde), uno por amiga. Al costado, la expresión \"2 ÷ 3 = 2/3\". Diagrama claro, sin elementos decorativos."
+    }
+  ]
+}

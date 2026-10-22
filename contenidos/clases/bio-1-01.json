@@ -1,0 +1,354 @@
+{
+  "id": "bio-1-01",
+  "formato": "capsulas",
+  "materia": "Biología",
+  "anio": "1.° año",
+  "eje": "Seres vivos: diversidad, unidad, interrelaciones y cambios",
+  "nap": "La aproximación a las teorías que explican el origen de la vida y su relación con las funciones vitales, como expresión de la unidad de los seres vivos.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Ciencias Naturales, 1.°/2.° año",
+  "titulo": "¿Cómo empezó la vida? Una pregunta con muchas respuestas",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "¿Sabías que…?",
+    "texto": "Durante siglos, mucha gente creyó que si dejabas un pedazo de carne al aire libre, de la carne misma \"nacían\" gusanos. Parecía obvio: nadie veía de dónde venían.",
+    "pregunta": "¿De dónde salían, en realidad, esos gusanos?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **resolver el misterio de los gusanos** y explicar qué tienen en común todos los seres vivos.",
+    "resuelta": "Los gusanos salían de huevos de moscas: todo ser vivo proviene de otro ser vivo. Y todos los seres vivos, desde una bacteria hasta una persona, se nutren, se relacionan con el ambiente y se reproducen."
+  },
+  "idea_central": "Todos los seres vivos comparten las mismas funciones vitales: nutrirse, relacionarse con el ambiente y reproducirse. La ciencia busca explicar cómo surgió esa vida en la Tierra.",
+  "idea_central_simple": "Todos los seres vivos se alimentan, reaccionan a lo que pasa a su alrededor y se reproducen.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "Una idea que duró siglos",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Empecemos por una idea antigua que parecía tener mucho sentido.",
+      "pose": "saludo",
+      "texto": "Durante mucho tiempo se pensó que algunos seres vivos aparecían solos, a partir de materia sin vida. Ratones de trapos sucios, gusanos de carne podrida.\nEsta idea se llamó **generación espontánea**. Parecía lógica porque nadie veía los huevos ni los microorganismos.",
+      "imagen": "bio-1-01-a",
+      "interactivo": {
+        "tipo": "revelar",
+        "titulo": "🧪 El experimento de Redi (1668)",
+        "pregunta": "Redi puso carne en varios frascos. A algunos los tapó con tela y a otros los dejó abiertos. ¿En cuáles creés que aparecieron gusanos?",
+        "respuesta": "Solo en los frascos abiertos, donde las moscas podían llegar y poner huevos. En los tapados, la carne se pudrió pero no aparecieron gusanos."
+      },
+      "idea_clave": "La generación espontánea decía que la vida surge sola de materia sin vida.",
+      "texto_simple": "Antes se creía que los bichos nacían solos de la basura o la carne.",
+      "chequeo": {
+        "pregunta": "¿Qué demostró el experimento de Redi?",
+        "opciones": [
+          "que los gusanos venían de huevos de moscas",
+          "que los gusanos nacían de la carne",
+          "que la carne no se pudre"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Donde no llegaban moscas, no había gusanos.",
+        "mal": "Pensá en qué pasó con los frascos tapados."
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "El frasco que cambió todo",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Casi 200 años después, un científico francés diseñó un frasco muy especial.",
+      "pose": "idea",
+      "texto": "Alrededor de 1860, Louis Pasteur usó frascos con un cuello largo y curvo, como el de un cisne.\nEl caldo hervido de adentro no se llenaba de microbios: el polvo del aire quedaba atrapado en la curva.\nConclusión: **todo ser vivo proviene de otro ser vivo**.",
+      "imagen": "bio-1-01-b",
+      "interactivo": {
+        "tipo": "ordenar",
+        "titulo": "🔢 Ordená el experimento de Pasteur",
+        "consigna": "Tocá los pasos en el orden en que los hizo Pasteur.",
+        "items": [
+          "Puso caldo nutritivo en frascos de vidrio",
+          "Estiró el cuello del frasco en forma de S",
+          "Hirvió el caldo para eliminar los microbios",
+          "Esperó: el caldo se mantuvo limpio",
+          "Rompió el cuello y el caldo se descompuso"
+        ],
+        "cierre": "¡Muy bien! La vida no aparecía sola: llegaba desde el aire."
+      },
+      "idea_clave": "Pasteur demostró que todo ser vivo proviene de otro ser vivo.",
+      "texto_simple": "Pasteur probó que los seres vivos no aparecen solos: vienen de otros seres vivos.",
+      "chequeo": {
+        "pregunta": "¿Por qué el caldo del frasco con cuello de cisne no se descomponía?",
+        "opciones": [
+          "porque los microbios del aire quedaban atrapados en la curva",
+          "porque el frasco estaba cerrado",
+          "porque el caldo tenía sal"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! El aire entraba, pero los microbios no llegaban al caldo.",
+        "mal": "El frasco estaba abierto. ¿Qué pasaba en la curva del cuello?"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "¿Cómo apareció el primer ser vivo?",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Si la vida viene de la vida… ¿de dónde salió la primera?",
+      "pose": "saludo",
+      "texto": "La explicación con más apoyo científico es la **teoría quimiosintética**, de Oparin y Haldane.\nEn la Tierra primitiva, con rayos y volcanes, sustancias simples se combinaron en otras cada vez más complejas. Así se formaron las primeras células, hace más de 3.500 millones de años.",
+      "presentacion": {
+        "tipo": "ecuacion",
+        "igual": "→",
+        "piezas": [
+          {
+            "icono": "⚗️",
+            "nombre": "Sustancias simples",
+            "texto": "Agua, gases de la Tierra primitiva"
+          },
+          {
+            "icono": "⚡",
+            "nombre": "Mucha energía",
+            "texto": "Rayos y volcanes"
+          },
+          {
+            "icono": "⏳",
+            "nombre": "Millones de años",
+            "texto": "Un proceso muy lento"
+          }
+        ],
+        "resultado": {
+          "icono": "🦠",
+          "nombre": "Primeras células",
+          "texto": "Hace más de 3.500 millones de años"
+        }
+      },
+      "interactivo": {
+        "tipo": "comparar",
+        "titulo": "🔬 Tres explicaciones sobre el origen de la vida",
+        "columnas": [
+          {
+            "nombre": "Generación espontánea",
+            "puntos": [
+              "La vida surge de materia sin vida",
+              "Fue refutada por Redi y Pasteur"
+            ]
+          },
+          {
+            "nombre": "Panspermia",
+            "puntos": [
+              "La vida habría llegado desde el espacio",
+              "Tiene poca evidencia"
+            ]
+          },
+          {
+            "nombre": "Teoría quimiosintética",
+            "puntos": [
+              "La vida surgió en la Tierra de sustancias simples",
+              "Es la de mayor consenso científico"
+            ]
+          }
+        ],
+        "boton_conclusion": "🔗 ¿Qué nos enseña esta historia?",
+        "conclusion": "Las explicaciones científicas cambian cuando aparecen nuevas pruebas. La ciencia es una forma de investigar."
+      },
+      "idea_clave": "Según la teoría quimiosintética, la vida surgió en la Tierra a partir de sustancias simples.",
+      "texto_simple": "Hace muchísimo tiempo, en la Tierra, sustancias simples se unieron y formaron las primeras células.",
+      "chequeo": {
+        "pregunta": "¿Qué explicación sobre el origen de la vida tiene más apoyo científico?",
+        "opciones": [
+          "la teoría quimiosintética",
+          "la generación espontánea",
+          "la panspermia"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Es la de mayor consenso.",
+        "mal": "La generación espontánea ya fue refutada. Mirá la comparación de arriba."
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Lo que todos los seres vivos hacen",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Una bacteria, un cactus y vos. ¿Qué tienen en común?",
+      "pose": "idea",
+      "texto": "Todos cumplen las mismas **funciones vitales**: la **nutrición** (obtener materia y energía), la **relación** (captar lo que pasa y responder) y la **reproducción** (originar nuevos seres vivos).\nQue todos las compartan muestra la unidad de la vida.",
+      "imagen": "bio-1-01-c",
+      "interactivo": {
+        "tipo": "clasificar",
+        "titulo": "🗂️ ¿Está vivo?",
+        "consigna": "Elegí la opción correcta para cada uno.",
+        "categorias": [
+          "Ser vivo",
+          "No vivo"
+        ],
+        "items": [
+          {
+            "icono": "🍄",
+            "nombre": "El moho del pan viejo",
+            "categoria": "Ser vivo",
+            "dato": "Es un hongo: absorbe sustancias del pan y se reproduce.",
+            "pista": "Crece, se alimenta del pan y se reproduce."
+          },
+          {
+            "icono": "🧂",
+            "nombre": "Un cristal de sal que crece",
+            "categoria": "No vivo",
+            "dato": "Crece porque se le acumula sal, pero no se nutre ni se reproduce.",
+            "pista": "Crecer no alcanza: ¿se nutre? ¿se reproduce?"
+          },
+          {
+            "icono": "🥬",
+            "nombre": "Una planta de lechuga",
+            "categoria": "Ser vivo",
+            "dato": "Fabrica su alimento con la luz del sol.",
+            "pista": "Pensá si se nutre y se reproduce."
+          },
+          {
+            "icono": "🔥",
+            "nombre": "El fuego",
+            "categoria": "No vivo",
+            "dato": "Se \"alimenta\" y se extiende, pero no está formado por células.",
+            "pista": "No está formado por células."
+          },
+          {
+            "icono": "🦠",
+            "nombre": "Una bacteria",
+            "categoria": "Ser vivo",
+            "dato": "Tiene una sola célula y cumple las tres funciones vitales.",
+            "pista": "Es diminuta, pero está formada por una célula."
+          }
+        ],
+        "cierre": "¡Muy bien! Un ser vivo cumple las tres funciones vitales y está formado por células."
+      },
+      "ejemplo": {
+        "texto": "Un perro, una lechuga y el moho del pan parecen no tener nada en común. Sin embargo, los tres se nutren, responden al ambiente y se reproducen.",
+        "intercambiable": true,
+        "mostrar": false,
+        "que_debe_mostrar": "Seres vivos muy diferentes entre sí que cumplen las tres funciones vitales."
+      },
+      "idea_clave": "Todos los seres vivos se nutren, se relacionan y se reproducen.",
+      "texto_simple": "Todos los seres vivos se alimentan, reaccionan a lo que pasa y tienen crías.",
+      "chequeo": {
+        "pregunta": "Una planta se inclina hacia la ventana. ¿Qué función vital está cumpliendo?",
+        "opciones": [
+          "relación",
+          "nutrición",
+          "reproducción"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Capta la luz y responde.",
+        "mal": "Está reaccionando a algo del ambiente. ¿Qué función es esa?"
+      },
+      "mi_lugar": {
+        "pregunta": "Mirá a tu alrededor: nombrá tres seres vivos que haya cerca de tu casa o tu escuela. ¿Cómo se nutre cada uno?",
+        "ayuda": "Cerca de mi casa hay…"
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Generación espontánea",
+      "definicion": "Antigua idea de que algunos seres vivos aparecen solos a partir de materia sin vida."
+    },
+    {
+      "palabra": "Teoría quimiosintética",
+      "definicion": "Explicación científica según la cual la vida surgió en la Tierra a partir de sustancias simples que se fueron combinando."
+    },
+    {
+      "palabra": "Funciones vitales",
+      "definicion": "Nutrición, relación y reproducción: lo que hacen todos los seres vivos."
+    },
+    {
+      "palabra": "Nutrición",
+      "definicion": "Obtener la materia y la energía necesarias para vivir."
+    },
+    {
+      "palabra": "Relación",
+      "definicion": "Captar los cambios del ambiente y responder a ellos."
+    },
+    {
+      "palabra": "Reproducción",
+      "definicion": "Originar nuevos seres vivos."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "La ciencia ya sabe exactamente cómo empezó la vida.",
+      "aclaracion": "Hay teorías con mucho apoyo, pero el origen de la vida se sigue investigando. La ciencia avanza a medida que aparecen nuevas pruebas."
+    },
+    {
+      "error": "Las plantas no se relacionan con el ambiente porque no caminan.",
+      "aclaracion": "Sí lo hacen: crecen hacia la luz, cierran sus hojas o florecen en ciertas estaciones. Responden más lento, pero responden."
+    },
+    {
+      "error": "Si algo crece, está vivo.",
+      "aclaracion": "Un cristal de sal o una nube pueden crecer y no están vivos. Lo que define a la vida son las células y las funciones vitales."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Los virus no tienen células y solo pueden multiplicarse dentro de las células de otros seres vivos. Por sí mismos, no se nutren ni responden al ambiente. ¿Los considerarías seres vivos? Armá un argumento a favor y otro en contra.",
+    "conexion": "Con Historia: la idea de la generación espontánea se sostuvo durante más de dos mil años, desde Aristóteles, en la Antigua Grecia, hasta Pasteur. Preguntarse por qué una idea equivocada dura tanto tiempo también es pensar históricamente."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Qué es la generación espontánea?",
+      "respuesta": "La antigua idea de que algunos seres vivos aparecen solos a partir de materia sin vida."
+    },
+    {
+      "pregunta": "¿Qué demostró Redi con su experimento?",
+      "respuesta": "Que los gusanos de la carne venían de huevos de moscas."
+    },
+    {
+      "pregunta": "¿Qué conclusión obtuvo Pasteur?",
+      "respuesta": "Que todo ser vivo proviene de otro ser vivo."
+    },
+    {
+      "pregunta": "¿Qué teoría sobre el origen de la vida tiene mayor consenso científico?",
+      "respuesta": "La teoría quimiosintética."
+    },
+    {
+      "pregunta": "¿Cuáles son las tres funciones vitales?",
+      "respuesta": "Nutrición, relación y reproducción."
+    },
+    {
+      "pregunta": "Un cristal de sal crece en un vaso con agua salada. ¿Está vivo?",
+      "respuesta": "No: no está formado por células ni cumple las funciones vitales."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "🪨",
+      "texto": "Los fósiles más antiguos que se conocen son rastros de comunidades de microorganismos de hace unos 3.500 millones de años. Durante la mayor parte de la historia de la Tierra, los únicos seres vivos fueron organismos de una sola célula."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a viajar al origen de la vida. Son 4 cápsulas. Para empezar, te cuento un misterio que duró siglos.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés qué tienen en común todos los seres vivos. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "bio-1-01-a",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Dos frascos con carne: uno abierto con moscas alrededor y otro tapado con tela",
+      "epigrafe": "El experimento de Redi: solo aparecieron gusanos donde las moscas podían llegar.",
+      "descripcion": "Ilustración didáctica de dos frascos de vidrio con un trozo de carne adentro. El de la izquierda está abierto y tiene moscas volando alrededor y pequeños gusanos sobre la carne; el de la derecha está tapado con una tela fina y la carne no tiene gusanos. Estilo plano, claro, sin elementos desagradables en exceso."
+    },
+    {
+      "id": "bio-1-01-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Frasco de vidrio con cuello largo y curvo en forma de S, con caldo adentro",
+      "epigrafe": "El frasco con cuello de cisne de Pasteur.",
+      "descripcion": "Dibujo científico de un matraz de vidrio con cuello largo curvado en forma de S (cuello de cisne), con caldo amarillento adentro. Pequeños puntos que representan polvo y microbios quedan atrapados en la curva del cuello. Flechas que muestran el aire entrando. Fondo claro, estilo de lámina escolar."
+    },
+    {
+      "id": "bio-1-01-c",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Una bacteria, un cactus y una persona, unidos por los íconos de nutrición, relación y reproducción",
+      "epigrafe": "Muy distintos, pero con las mismas funciones vitales.",
+      "descripcion": "Tres figuras en fila: una bacteria (vista ampliada), un cactus en maceta y un adolescente. Debajo de las tres, tres íconos compartidos con su nombre: una manzana (nutrición), un ojo (relación) y un pollito saliendo del huevo (reproducción). Estilo plano, colores de LumAI."
+    }
+  ]
+}

@@ -28,6 +28,9 @@ import {
 
 import './lumai-metrics-tracker.js';
 
+import { renderizarClase, claseATexto } from './clase-renderer.js';
+import { buscarClaseBase } from './clases-base.js';
+
 // ==================== ESTADO Y CONFIGURACIÓN ====================
 
 let explicacionGenerada = '';
@@ -120,7 +123,8 @@ function validarDatosSessionConDebug() {
         materia: datosEncontrados.materia || datosEncontrados.subject || '',
         tema: datosEncontrados.tema || datosEncontrados.topic || '',
         nombreAlumno: datosEncontrados.nombreAlumno || datosEncontrados.studentName || '',
-        perfilSeleccionado: datosEncontrados.perfilSeleccionado || datosEncontrados.profile || 'N2'
+        perfilSeleccionado: datosEncontrados.perfilSeleccionado || datosEncontrados.profile || 'N2',
+        ciclo: datosEncontrados.ciclo || ''
     });
     
     console.log('📊 Datos de sesión configurados:', datosSession);
@@ -303,8 +307,57 @@ function mostrarBotonLectura() {
 
 // ==================== GENERACIÓN DE CONTENIDO ====================
 
+// Si hay una clase base (contenidos/clases) para la materia y el tema, se muestra
+// esa clase en cápsulas y no se le pide la explicación a la IA.
+async function mostrarClaseBaseSiExiste() {
+    const clase = await buscarClaseBase({
+        materia: datosSession.materia,
+        tema: datosSession.tema,
+        ciclo: datosSession.ciclo
+    });
+    if (!clase || !estadoGlobal.elementosDOM.explicacionEl) return false;
+
+    // El nombre del alumno se usa solo acá, en el navegador: nunca se envía a la IA
+    renderizarClase(clase, estadoGlobal.elementosDOM.explicacionEl, {
+        nombreAlumno: datosSession.nombreAlumno,
+        rutaImagenes: 'img/',
+        rutaImagenesClase: 'img/clases/',
+        mostrarTitulo: false   // el tema ya se muestra en el encabezado de LumAI
+    });
+
+    // Las actividades, la lectura en voz alta y el chat usan el texto de la clase
+    const texto = claseATexto(clase);
+    explicacionGenerada = texto;
+    estadoGlobal.explicacionGenerada = texto;
+    estadoGlobal.claseBase = clase.id;
+
+    if (estadoGlobal.elementosDOM.tituloTemaEl) {
+        estadoGlobal.elementosDOM.tituloTemaEl.textContent = clase.titulo;
+    }
+
+    if (window.lumaiTracker && window.lumaiTracker.isSessionActive) {
+        const resumen = (clase.capsulas || []).map(c => `<li><strong>${c.titulo}</strong>: ${String(c.idea_clave || '').replace(/\*\*/g, '')}</li>`).join('');
+        window.lumaiTracker.recordCustomEvent('explanation_content_saved', {
+            origen: 'clase_base',
+            claseId: clase.id,
+            explicacion: texto,
+            explicacionHTML: `<p><strong>Clase base:</strong> ${clase.titulo}</p><ol>${resumen}</ol>`,
+            materia: datosSession.materia || 'N/A',
+            tema: datosSession.tema || 'N/A',
+            contentLength: texto.length
+        });
+    }
+    console.log('📘 Clase base mostrada:', clase.id);
+    return true;
+}
+
 async function generarContenidoEducativo() {
     mostrarCargando(true);
+
+    if (await mostrarClaseBaseSiExiste()) {
+        mostrarCargando(false);
+        return;
+    }
     
     try {
         console.log('🤖 Generando contenido educativo con IA...');

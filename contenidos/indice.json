@@ -1,0 +1,292 @@
+{
+  "version": "1.0",
+  "descripcion": "Clases base de LumAI (prototipo): 4 contenidos de 1.° año por espacio curricular, tomados de los NAP. palabras_clave: temas que el alumno puede escribir para llegar a cada clase (sin tildes, en minúscula).",
+  "clases": [
+    {
+      "id": "len-1-01",
+      "materia": "Lengua y Literatura",
+      "anio": "1.° año",
+      "eje": "Comprensión y producción oral",
+      "titulo": "Conversar no es lo mismo que discutir",
+      "archivo": "clases/len-1-01.json",
+      "palabras_clave": [
+        "conversar",
+        "conversacion",
+        "discutir",
+        "discusion",
+        "argumento",
+        "argumentos",
+        "argumentacion",
+        "hecho y opinion",
+        "hechos y opiniones",
+        "opinion",
+        "debate"
+      ]
+    },
+    {
+      "id": "len-1-02",
+      "materia": "Lengua y Literatura",
+      "anio": "1.° año",
+      "eje": "Comprensión y producción oral",
+      "titulo": "Escuchar es un superpoder que casi nadie entrena",
+      "archivo": "clases/len-1-02.json",
+      "palabras_clave": [
+        "escuchar",
+        "escucha",
+        "escucha comprensiva",
+        "oir",
+        "inferir",
+        "inferencia",
+        "inferencias",
+        "tomar notas",
+        "toma de notas",
+        "conectores",
+        "relato oral"
+      ]
+    },
+    {
+      "id": "len-1-03",
+      "materia": "Lengua y Literatura",
+      "anio": "1.° año",
+      "eje": "Comprensión y producción oral",
+      "titulo": "Hablar frente a otros: cómo armar una exposición que nadie olvide",
+      "archivo": "clases/len-1-03.json",
+      "palabras_clave": [
+        "exposicion",
+        "exposicion oral",
+        "exposiciones orales",
+        "hablar en publico",
+        "exponer",
+        "oralidad"
+      ]
+    },
+    {
+      "id": "len-1-04",
+      "materia": "Lengua y Literatura",
+      "anio": "1.° año",
+      "eje": "Lectura y producción escrita",
+      "titulo": "Leer como un detective: estrategias para textos que explican el mundo",
+      "archivo": "clases/len-1-04.json",
+      "palabras_clave": [
+        "lectura",
+        "estrategias de lectura",
+        "paratexto",
+        "texto de divulgacion",
+        "textos de divulgacion",
+        "divulgacion",
+        "epigrafe",
+        "leer textos"
+      ]
+    },
+    {
+      "id": "mat-1-01",
+      "materia": "Matemática",
+      "anio": "1.° año",
+      "eje": "Número y operaciones",
+      "titulo": "Los números que viven debajo del cero",
+      "archivo": "clases/mat-1-01.json",
+      "palabras_clave": [
+        "enteros",
+        "numeros enteros",
+        "negativos",
+        "numeros negativos",
+        "bajo cero"
+      ]
+    },
+    {
+      "id": "mat-1-02",
+      "materia": "Matemática",
+      "anio": "1.° año",
+      "eje": "Número y operaciones",
+      "titulo": "¿Quién es mayor? Comparar y medir distancias en la recta",
+      "archivo": "clases/mat-1-02.json",
+      "palabras_clave": [
+        "recta numerica",
+        "comparar enteros",
+        "comparacion de enteros",
+        "valor absoluto",
+        "distancia en la recta",
+        "orden de los enteros",
+        "numeros opuestos"
+      ]
+    },
+    {
+      "id": "mat-1-03",
+      "materia": "Matemática",
+      "anio": "1.° año",
+      "eje": "Número y operaciones",
+      "titulo": "Una fracción es una división disfrazada",
+      "archivo": "clases/mat-1-03.json",
+      "palabras_clave": [
+        "fraccion",
+        "fracciones",
+        "racionales",
+        "numeros racionales",
+        "reparto",
+        "repartos",
+        "fraccion como division"
+      ]
+    },
+    {
+      "id": "mat-1-04",
+      "materia": "Matemática",
+      "anio": "1.° año",
+      "eje": "Número y operaciones",
+      "titulo": "Un número, muchas caras",
+      "archivo": "clases/mat-1-04.json",
+      "palabras_clave": [
+        "porcentaje",
+        "porcentajes",
+        "decimales",
+        "numeros decimales",
+        "fracciones equivalentes",
+        "notacion cientifica",
+        "representaciones de un numero"
+      ]
+    },
+    {
+      "id": "bio-1-01",
+      "materia": "Biología",
+      "anio": "1.° año",
+      "eje": "Seres vivos: diversidad, unidad, interrelaciones y cambios",
+      "titulo": "¿Cómo empezó la vida? Una pregunta con muchas respuestas",
+      "archivo": "clases/bio-1-01.json",
+      "palabras_clave": [
+        "origen de la vida",
+        "generacion espontanea",
+        "funciones vitales",
+        "seres vivos",
+        "pasteur",
+        "redi",
+        "teoria quimiosintetica",
+        "caracteristicas de los seres vivos"
+      ]
+    },
+    {
+      "id": "bio-1-02",
+      "materia": "Biología",
+      "anio": "1.° año",
+      "eje": "Seres vivos: diversidad, unidad, interrelaciones y cambios",
+      "titulo": "La célula: la pieza con la que está armada toda la vida",
+      "archivo": "clases/bio-1-02.json",
+      "palabras_clave": [
+        "celula",
+        "celulas",
+        "la celula",
+        "teoria celular",
+        "procariota",
+        "eucariota",
+        "procariotas y eucariotas",
+        "celula animal",
+        "celula vegetal"
+      ]
+    },
+    {
+      "id": "bio-1-03",
+      "materia": "Biología",
+      "anio": "1.° año",
+      "eje": "Seres vivos: diversidad, unidad, interrelaciones y cambios",
+      "titulo": "Darse cuenta y responder: la función de relación",
+      "archivo": "clases/bio-1-03.json",
+      "palabras_clave": [
+        "funcion de relacion",
+        "estimulo",
+        "estimulos",
+        "estimulo y respuesta",
+        "homeostasis",
+        "autorregulacion",
+        "tropismo",
+        "tropismos"
+      ]
+    },
+    {
+      "id": "bio-1-04",
+      "materia": "Biología",
+      "anio": "1.° año",
+      "eje": "Seres vivos: diversidad, unidad, interrelaciones y cambios",
+      "titulo": "Tu cuerpo, un equipo que trabaja en tiempo real",
+      "archivo": "clases/bio-1-04.json",
+      "palabras_clave": [
+        "sistema nervioso",
+        "receptores",
+        "los sentidos",
+        "sentidos",
+        "reflejo",
+        "acto reflejo",
+        "efectores",
+        "sistema endocrino",
+        "hormonas",
+        "relacion en el ser humano"
+      ]
+    },
+    {
+      "id": "geo-1-01",
+      "materia": "Geografía",
+      "anio": "1.° año",
+      "eje": "Sociedades y espacios geográficos",
+      "titulo": "El mapa político de América: líneas que cuentan historias",
+      "archivo": "clases/geo-1-01.json",
+      "palabras_clave": [
+        "mapa politico",
+        "mapa politico de america",
+        "limites",
+        "limite",
+        "frontera",
+        "fronteras",
+        "estados de america",
+        "paises de america",
+        "dependencias",
+        "organizacion politica de america"
+      ]
+    },
+    {
+      "id": "geo-1-02",
+      "materia": "Geografía",
+      "anio": "1.° año",
+      "eje": "Sociedades y espacios geográficos",
+      "titulo": "Del hielo a la selva: los ambientes de América y sus recursos",
+      "archivo": "clases/geo-1-02.json",
+      "palabras_clave": [
+        "ambientes",
+        "ambientes de america",
+        "recursos naturales",
+        "recursos renovables",
+        "renovables y no renovables",
+        "biomas"
+      ]
+    },
+    {
+      "id": "geo-1-03",
+      "materia": "Geografía",
+      "anio": "1.° año",
+      "eje": "Sociedades y espacios geográficos",
+      "titulo": "Problemas ambientales: causas, consecuencias y escalas",
+      "archivo": "clases/geo-1-03.json",
+      "palabras_clave": [
+        "problemas ambientales",
+        "problema ambiental",
+        "contaminacion",
+        "deforestacion",
+        "cambio climatico",
+        "cuidado del ambiente"
+      ]
+    },
+    {
+      "id": "geo-1-04",
+      "materia": "Geografía",
+      "anio": "1.° año",
+      "eje": "Sociedades y espacios geográficos",
+      "titulo": "Más de mil millones de historias: la población de América",
+      "archivo": "clases/geo-1-04.json",
+      "palabras_clave": [
+        "poblacion",
+        "poblacion de america",
+        "migraciones",
+        "migracion",
+        "demografia",
+        "piramide de poblacion",
+        "distribucion de la poblacion"
+      ]
+    }
+  ]
+}

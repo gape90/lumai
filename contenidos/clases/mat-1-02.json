@@ -1,0 +1,312 @@
+{
+  "id": "mat-1-02",
+  "formato": "capsulas",
+  "materia": "Matemática",
+  "anio": "1.° año",
+  "eje": "Número y operaciones",
+  "nap": "Comparar números enteros y hallar distancias entre ellos, representándolos en la recta numérica.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Matemática, 1.°/2.° año",
+  "titulo": "¿Quién es mayor? Comparar y medir distancias en la recta",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "Un día de invierno",
+    "texto": "Una mañana de julio, el termómetro marca −6 °C en La Quiaca, en Jujuy, y 14 °C en Posadas, en Misiones. Mismo país, mismo día.",
+    "pregunta": "¿Cuántos grados de diferencia hay entre las dos ciudades?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **comparar números negativos y medir distancias** en la recta, sin caer en la trampa del 8.",
+    "resuelta": "Hay 20 grados de diferencia: 6 desde −6 hasta el cero y 14 más hasta 14. Cuando dos números están en lados opuestos del cero, sus distancias al cero se suman."
+  },
+  "idea_central": "En la recta numérica, un número es mayor cuanto más a la derecha está. La distancia entre dos números es la cantidad de unidades que los separan, y nunca es negativa.",
+  "idea_central_simple": "En la recta, el número de la derecha es más grande. −2 es más grande que −9.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "La recta ordena todo",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "En la recta numérica hay una regla que no tiene excepciones.",
+      "pose": "idea",
+      "texto": "Los números van de menor a mayor, de izquierda a derecha.\nPor eso cualquier positivo es mayor que cualquier negativo. Y el cero queda en el medio.",
+      "interactivo": {
+        "tipo": "ordenar",
+        "titulo": "🔢 Ordená de menor a mayor",
+        "consigna": "Tocá los números empezando por el más chico.",
+        "items": [
+          "−10",
+          "−7",
+          "−1",
+          "0",
+          "4"
+        ],
+        "cierre": "¡Perfecto! Primero los negativos, del más lejano al más cercano al cero; después el cero y al final los positivos."
+      },
+      "idea_clave": "En la recta, el número que está más a la derecha es el mayor.",
+      "texto_simple": "En la recta, los números crecen hacia la derecha.",
+      "chequeo": {
+        "pregunta": "¿Cuál es mayor: −1 o 3?",
+        "opciones": [
+          "3",
+          "−1",
+          "son iguales"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Todo positivo es mayor que cualquier negativo.",
+        "mal": "Pensalos en la recta: ¿cuál está más a la derecha?"
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "Entre negativos, gana el más cercano al cero",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Acá aparece la trampa más común. Mirá con atención.",
+      "pose": "saludo",
+      "texto": "−2 es mayor que −9, aunque 9 sea más grande que 2.\nPensalo con temperaturas: a −2 °C hace menos frío que a −9 °C. Se escribe **−9 < −2**.",
+      "presentacion": {
+        "tipo": "contraste",
+        "lados": [
+          {
+            "etiqueta": "−2 °C",
+            "nombre": "Menos frío",
+            "texto": "Está más cerca del cero. Es el número mayor."
+          },
+          {
+            "etiqueta": "−9 °C",
+            "nombre": "Más frío",
+            "texto": "Está más lejos del cero. Es el número menor."
+          }
+        ]
+      },
+      "idea_clave": "Entre dos negativos, el mayor es el que está más cerca del cero.",
+      "texto_simple": "−2 es más grande que −9 porque está más cerca del cero.",
+      "chequeo": {
+        "pregunta": "¿Cuál es mayor: −3 o −8?",
+        "opciones": [
+          "−3",
+          "−8",
+          "son iguales"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! −3 está más cerca del cero.",
+        "mal": "Pensá en temperaturas: ¿a cuál hace menos frío?"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "La distancia al cero",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Algunos números son \"gemelos\": están a la misma distancia del cero.",
+      "pose": "idea",
+      "texto": "La distancia de un número al cero se llama **valor absoluto**. Se escribe entre barras: |−7| = 7 y |7| = 7.\nEl −7 y el 7 están a la misma distancia del cero, pero de lados opuestos. Son **números opuestos**.",
+      "presentacion": {
+        "tipo": "ecuacion",
+        "operador": "y",
+        "igual": "→",
+        "piezas": [
+          {
+            "icono": "⬅️",
+            "nombre": "|−7| = 7",
+            "texto": "7 lugares a la izquierda"
+          },
+          {
+            "icono": "➡️",
+            "nombre": "|7| = 7",
+            "texto": "7 lugares a la derecha"
+          }
+        ],
+        "resultado": {
+          "icono": "🪞",
+          "nombre": "Opuestos",
+          "texto": "Misma distancia, lados distintos"
+        }
+      },
+      "interactivo": {
+        "tipo": "revelar",
+        "pregunta": "¿Qué número está a la misma distancia del cero que −12, pero del otro lado?",
+        "respuesta": "El 12. Son números opuestos: |−12| = |12| = 12."
+      },
+      "idea_clave": "El valor absoluto es la distancia al cero. 7 y −7 son opuestos.",
+      "texto_simple": "−7 y 7 están igual de lejos del cero, uno de cada lado.",
+      "chequeo": {
+        "pregunta": "¿Cuánto es |−15|?",
+        "opciones": [
+          "15",
+          "−15",
+          "0"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Una distancia nunca es negativa.",
+        "mal": "El valor absoluto es una distancia. ¿Una distancia puede ser negativa?"
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "La distancia entre dos números",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Ahora, a medir. Tocá dos ciudades en la recta y mirá cuántos grados las separan.",
+      "pose": "saludo",
+      "texto": "Para saber cuánto separa a dos números, contá las unidades que hay entre ellos.\nSi están del mismo lado del cero, se restan sus distancias al cero: entre −8 y −3 hay 5.\nSi están en lados opuestos, se suman: entre −4 y 6 hay 4 + 6 = 10.",
+      "imagen": "mat-1-02-b",
+      "interactivo": {
+        "tipo": "recta",
+        "titulo": "📏 Medí distancias entre ciudades",
+        "consigna": "Cada punto es la temperatura de una ciudad a las 7 de la mañana.",
+        "modo": "distancia",
+        "unidad": "grados",
+        "min": -8,
+        "max": 8,
+        "marcas": 1,
+        "puntos": [
+          {
+            "valor": -6,
+            "corta": "La Quiaca",
+            "etiqueta": "La Quiaca (−6 °C)"
+          },
+          {
+            "valor": -3,
+            "corta": "Ushuaia",
+            "etiqueta": "Ushuaia (−3 °C)"
+          },
+          {
+            "valor": -1,
+            "corta": "Bariloche",
+            "etiqueta": "Bariloche (−1 °C)"
+          },
+          {
+            "valor": 3,
+            "corta": "Rosario",
+            "etiqueta": "Rosario (3 °C)"
+          },
+          {
+            "valor": 5,
+            "corta": "Córdoba",
+            "etiqueta": "Córdoba (5 °C)"
+          },
+          {
+            "valor": 8,
+            "corta": "Posadas",
+            "etiqueta": "Posadas (8 °C)"
+          }
+        ]
+      },
+      "ejemplo": {
+        "texto": "El Aconcagua mide unos 6.960 metros y la Laguna del Carbón está a −105 m. Entre los dos puntos hay 105 + 6.960 = 7.065 metros de desnivel.",
+        "intercambiable": true,
+        "mostrar": false,
+        "que_debe_mostrar": "La distancia entre un número negativo y uno positivo, que se obtiene sumando las distancias de cada uno al cero."
+      },
+      "idea_clave": "Si están en lados opuestos del cero, las distancias se suman. Una distancia nunca es negativa.",
+      "texto_simple": "Para medir, contá los saltos de uno en uno entre los dos números.",
+      "chequeo": {
+        "pregunta": "¿Cuántos grados hay entre −6 °C y 14 °C?",
+        "opciones": [
+          "20",
+          "8",
+          "−20"
+        ],
+        "correcta": 0,
+        "bien": "¡Muy bien! 6 hasta el cero y 14 más: ¡resolviste la misión!",
+        "mal": "Cuidado con la trampa: están en lados opuestos del cero. ¿Se restan o se suman?"
+      },
+      "mi_lugar": {
+        "pregunta": "¿Cuál es la temperatura más baja y la más alta que recordás en tu ciudad o tu pueblo? ¿Cuántos grados de diferencia hay entre las dos?",
+        "ayuda": "La más baja fue… y la más alta…"
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Signos < y >",
+      "definicion": "< se lee \"es menor que\" y > se lee \"es mayor que\". La punta siempre señala al número más chico: −5 < 2."
+    },
+    {
+      "palabra": "Valor absoluto",
+      "definicion": "La distancia de un número al cero. Se escribe entre barras: |−3| = 3."
+    },
+    {
+      "palabra": "Números opuestos",
+      "definicion": "Dos números a la misma distancia del cero, en lados opuestos: 5 y −5."
+    },
+    {
+      "palabra": "Distancia",
+      "definicion": "Cantidad de unidades que separan a dos números en la recta. Nunca es negativa."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "−9 es mayor que −2, porque 9 es mayor que 2.",
+      "aclaracion": "Entre negativos es al revés: −2 está más cerca del cero, así que es mayor. −9 < −2."
+    },
+    {
+      "error": "La distancia entre −4 y 6 es 2, porque 6 − 4 = 2.",
+      "aclaracion": "Hay que contar todas las unidades: 4 hasta el cero y 6 más. La distancia es 10."
+    },
+    {
+      "error": "Una distancia puede ser negativa.",
+      "aclaracion": "Las distancias siempre son positivas o cero: miden cuánto separa, no hacia qué lado."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Buscá todos los números enteros que estén a distancia 3 del −1. Después, buscá el número que esté, a la vez, a distancia 3 del −1 y a distancia 5 del 1. ¿Hay uno solo?",
+    "conexion": "Con Geografía: los mapas físicos usan una escala de colores para las alturas sobre el nivel del mar y para las profundidades del océano, que se expresan con números negativos."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Cuál es mayor, −3 o −8?",
+      "respuesta": "−3, porque está más cerca del cero."
+    },
+    {
+      "pregunta": "¿Qué es el valor absoluto de un número?",
+      "respuesta": "Su distancia al cero."
+    },
+    {
+      "pregunta": "¿Cuánto es |−12|?",
+      "respuesta": "12"
+    },
+    {
+      "pregunta": "¿Qué distancia hay entre −4 y 6?",
+      "respuesta": "10"
+    },
+    {
+      "pregunta": "¿Qué distancia hay entre −8 y −3?",
+      "respuesta": "5"
+    },
+    {
+      "pregunta": "¿Cuál es el opuesto de 7?",
+      "respuesta": "−7"
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "🤿",
+      "texto": "Los buzos y los pilotos de avión usan la misma recta: la altura de un avión es positiva y la profundidad de un buzo, negativa. Un buzo a −30 m y un avión a 10.000 m están separados por 10.030 metros."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a comparar números y medir distancias en la recta. Son 4 cápsulas. Para empezar, viajemos a dos ciudades argentinas.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés comparar enteros y medir distancias. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "mat-1-02-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Mapa de la Argentina con La Quiaca a −6 grados y Posadas a 14 grados",
+      "epigrafe": "El mismo día, dos ciudades del país con 20 grados de diferencia.",
+      "descripcion": "Mapa simplificado de la Argentina con dos marcadores: La Quiaca (Jujuy) con un termómetro que marca −6 °C y un gorro de lana, y Posadas (Misiones) con un termómetro que marca 14 °C. Estilo plano, colores suaves, nombres de las ciudades legibles."
+    },
+    {
+      "id": "mat-1-02-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Recta numérica con una flecha de −4 a 0 y otra de 0 a 6",
+      "epigrafe": "Entre −4 y 6 hay 4 unidades hasta el cero y 6 más: 10 en total.",
+      "descripcion": "Recta numérica horizontal de −5 a 7 con el cero destacado en naranja. Un arco verde va de −4 a 0 con la etiqueta \"4\" y un arco azul de 0 a 6 con la etiqueta \"6\". Debajo, una llave que abarca todo con \"4 + 6 = 10\". Diagrama limpio, tipografía grande."
+    }
+  ]
+}

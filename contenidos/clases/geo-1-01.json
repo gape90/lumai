@@ -1,0 +1,438 @@
+{
+  "id": "geo-1-01",
+  "formato": "capsulas",
+  "materia": "Geografía",
+  "anio": "1.° año",
+  "eje": "Sociedades y espacios geográficos",
+  "nap": "El conocimiento del mapa político de América teniendo en cuenta las distintas formas de organización política (estados nacionales, colonias y dependencias), las principales áreas de conflicto y tensión y el papel de los organismos interamericanos e internacionales de cooperación.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Ciencias Sociales, 1.°/2.° año",
+  "titulo": "El mapa político de América: líneas que cuentan historias",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "Imaginate esto",
+    "texto": "Vas en avión sobre la cordillera de los Andes y mirás por la ventanilla. Abajo hay montañas, nieve y ríos… pero ninguna raya entre la Argentina y Chile.",
+    "pregunta": "¿Sabías que las líneas del mapa no están pintadas en el suelo?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder responder esta pregunta: **¿quién dibujó las líneas del mapa de América, y por qué están ahí?**",
+    "resuelta": "Las líneas las dibujaron las personas, a lo largo de la historia. Algunas salieron de acuerdos entre países y otras, de guerras. Por eso el mapa político cambia, y a veces trae conflictos."
+  },
+  "idea_central": "El mapa político muestra cómo se divide América en países. Esas divisiones las armaron las personas a lo largo de la historia. Por eso a veces cambian y a veces generan conflictos.",
+  "idea_central_simple": "América está dividida en países. Cada país tiene su territorio, su gobierno y sus límites.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "¿Qué es un país para la Geografía?",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Arranquemos por lo básico. Cuando decimos \"país\", en Geografía usamos otra palabra: **Estado**.",
+      "pose": "saludo",
+      "texto": "En Geografía, a un país organizado lo llamamos **Estado**. Para que exista un Estado hacen falta tres cosas.\nEl derecho de un Estado a decidir sobre su territorio se llama **soberanía**.",
+      "idea_clave": "Estado = gobierno propio + territorio + población.",
+      "chequeo": {
+        "pregunta": "Uruguay tiene su propio gobierno, que decide sobre su tierra, su mar y su gente. Para la Geografía, Uruguay es…",
+        "opciones": [
+          "un Estado",
+          "una frontera",
+          "una dependencia"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Gobierno propio, territorio y población: es un Estado.",
+        "mal": "Mirá de nuevo: tiene gobierno propio y manda sobre su territorio. ¿Cómo se llama eso?"
+      },
+      "texto_simple": "Un Estado es un país. Tiene un gobierno. El gobierno manda en su tierra, su mar y su aire.",
+      "presentacion": {
+        "tipo": "ecuacion",
+        "piezas": [
+          {
+            "icono": "🏛️",
+            "nombre": "Gobierno propio",
+            "texto": "Toma las decisiones del país"
+          },
+          {
+            "icono": "🗺️",
+            "nombre": "Territorio",
+            "texto": "Su tierra, su mar y su aire"
+          },
+          {
+            "icono": "👥",
+            "nombre": "Población",
+            "texto": "La gente que vive ahí"
+          }
+        ],
+        "resultado": {
+          "icono": "🇦🇷",
+          "nombre": "Estado",
+          "texto": "Por ejemplo, la Argentina"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "La línea y la zona",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Ahora, dos palabras que parecen iguales, pero no lo son. Y después te toca ser detective.",
+      "pose": "idea",
+      "texto": "Hay dos palabras que se confunden mucho: **límite** y **frontera**. Mirá la diferencia.",
+      "ejemplo": {
+        "texto": "Entre Posadas (Argentina) y Encarnación (Paraguay) hay un río y un puente. El río es el **límite**. La gente cruza todos los días: las dos ciudades forman una **frontera**.",
+        "intercambiable": true,
+        "que_debe_mostrar": "La diferencia entre el límite (una línea) y la frontera (una zona donde la gente se relaciona).",
+        "mostrar": false
+      },
+      "interactivo": {
+        "tipo": "lupa",
+        "imagen": "geo-1-01-b",
+        "titulo": "🔍 Detective de fronteras",
+        "consigna": "Este es el puente entre Posadas (Argentina) y Encarnación (Paraguay). Hay **5 pistas escondidas** que muestran cómo se vive en una frontera. Tocá la imagen para encontrarlas.",
+        "hallazgos": [
+          {
+            "x": 50,
+            "y": 41.7,
+            "r": 4.5,
+            "titulo": "El límite, en la mitad del puente",
+            "texto": "El cartel marca dónde termina la Argentina y empieza Paraguay. Esa línea invisible es el **límite**."
+          },
+          {
+            "x": 32.7,
+            "y": 43.6,
+            "r": 6,
+            "titulo": "Un colectivo internacional",
+            "texto": "Cruza de una ciudad a la otra todo el día. Mucha gente vive en un país y trabaja o estudia en el otro."
+          },
+          {
+            "x": 77.7,
+            "y": 41.1,
+            "r": 5,
+            "titulo": "El control de migraciones",
+            "texto": "Al entrar a otro país hay que mostrar el documento. Cada Estado controla quién entra a su territorio: eso también es **soberanía**."
+          },
+          {
+            "x": 92.9,
+            "y": 46.9,
+            "r": 5,
+            "titulo": "Una casa de cambio",
+            "texto": "Cada país tiene su moneda: en la Argentina, el peso; en Paraguay, el guaraní. En la frontera la gente cambia dinero para comprar del otro lado."
+          },
+          {
+            "x": 78.3,
+            "y": 72.8,
+            "r": 6,
+            "titulo": "Un cartel en guaraní",
+            "texto": "\"Tereguahẽ porãite\" significa \"¡Bienvenidos!\". El guaraní es uno de los dos idiomas oficiales de Paraguay, y también se habla en Misiones y Corrientes."
+          }
+        ],
+        "cierre": "¡Encontraste las 5 pistas! Un límite separa, pero una frontera está llena de gente que cruza, compra, trabaja y habla otros idiomas."
+      },
+      "idea_clave": "Límite = una línea. Frontera = la zona alrededor, donde la gente se relaciona.",
+      "chequeo": {
+        "pregunta": "En la imagen, el cartel en la mitad del puente marca…",
+        "opciones": [
+          "el límite",
+          "la frontera",
+          "un Estado"
+        ],
+        "correcta": 0,
+        "bien": "¡Muy bien! Esa línea que separa a los dos países es el límite.",
+        "mal": "Casi. La frontera es toda la zona. ¿Cómo se llama la línea que separa?"
+      },
+      "texto_simple": "El límite es una línea entre dos países. La frontera es el lugar cerca de esa línea, donde la gente va y viene.",
+      "presentacion": {
+        "tipo": "contraste",
+        "lados": [
+          {
+            "etiqueta": "Una línea",
+            "nombre": "Límite",
+            "dibujo": "linea",
+            "texto": "Separa a dos países. Lo fijan los países con acuerdos y se dibuja en el mapa."
+          },
+          {
+            "etiqueta": "Una zona",
+            "nombre": "Frontera",
+            "dibujo": "zona",
+            "texto": "Es el lugar alrededor del límite. Ahí la gente cruza, compra, trabaja y hace amigos."
+          }
+        ]
+      },
+      "mi_lugar": {
+        "pregunta": "¿Vivís cerca de un límite entre provincias o entre países? ¿Qué pasa en esa zona? Si no, ¿cuál es el límite más cercano a tu ciudad o tu pueblo?",
+        "ayuda": "El límite más cercano es…"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "Treinta y cinco países",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "¿Cuántos países creés que tiene América? Leé y descubrilo.",
+      "pose": "saludo",
+      "texto": "Desde Canadá, en el norte, hasta la Argentina y Chile, en el sur.\nCasi todos fueron colonias de países europeos, como España o Portugal. La mayoría se independizó hace unos 200 años. La Argentina, en 1816.",
+      "interactivo": {
+        "tipo": "revelar",
+        "pregunta": "Si hay 35 países, ¿por qué en el mapa de América aparecen más nombres?",
+        "respuesta": "Porque también hay territorios que no son independientes. Aparecen con su nombre, pero pertenecen a otro país. Los vas a conocer en la próxima cápsula."
+      },
+      "idea_clave": "América tiene 35 países independientes. Casi todos fueron colonias europeas.",
+      "chequeo": {
+        "pregunta": "¿En qué año declaró su independencia la Argentina?",
+        "opciones": [
+          "1816",
+          "1810",
+          "1853"
+        ],
+        "correcta": 0,
+        "bien": "¡Eso! El 9 de julio de 1816, en Tucumán.",
+        "mal": "Ojo: 1810 es la Revolución de Mayo, cuando se formó el primer gobierno patrio. La independencia se declaró unos años después."
+      },
+      "texto_simple": "En América hay 35 países. Antes eran de países de Europa. Después se hicieron libres. La Argentina, en 1816.",
+      "presentacion": {
+        "tipo": "cifra",
+        "numero": "35",
+        "leyenda": "países independientes tiene América hoy",
+        "puntos": 35,
+        "nota": "Cada punto es un país."
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Lugares que no son independientes",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Acá viene lo que acabás de descubrir: no todo el mapa son países independientes.",
+      "pose": "idea",
+      "texto": "Algunos territorios de América todavía pertenecen a otro país. Se llaman **dependencias**.\nLas **islas Malvinas** son un caso especial. El Reino Unido las ocupa desde 1833, y la Argentina reclama su soberanía.",
+      "interactivo": {
+        "tipo": "clasificar",
+        "titulo": "🗂️ ¿Independiente o dependencia?",
+        "consigna": "Elegí la opción correcta para cada territorio.",
+        "categorias": [
+          "País independiente",
+          "Dependencia"
+        ],
+        "items": [
+          {
+            "icono": "🧊",
+            "nombre": "Groenlandia",
+            "categoria": "Dependencia",
+            "dato": "Es la isla más grande del mundo. Tiene gobierno propio, pero forma parte del Reino de Dinamarca.",
+            "pista": "Tiene su propio gobierno, pero pertenece a un país de Europa."
+          },
+          {
+            "icono": "🚀",
+            "nombre": "Guayana Francesa",
+            "categoria": "Dependencia",
+            "dato": "Es parte de Francia. Desde ahí Europa lanza sus cohetes al espacio.",
+            "pista": "Fijate en su nombre: ¿de qué país te hace acordar?"
+          },
+          {
+            "icono": "🏖️",
+            "nombre": "Puerto Rico",
+            "categoria": "Dependencia",
+            "dato": "Está asociado a Estados Unidos. Sus habitantes son ciudadanos estadounidenses, pero no votan al presidente de ese país.",
+            "pista": "Depende de Estados Unidos."
+          },
+          {
+            "icono": "🌿",
+            "nombre": "Paraguay",
+            "categoria": "País independiente",
+            "dato": "Se independizó en 1811. Es uno de los dos países de América del Sur sin salida al mar.",
+            "pista": "Tiene gobierno propio y nadie lo gobierna desde afuera."
+          },
+          {
+            "icono": "🍁",
+            "nombre": "Canadá",
+            "categoria": "País independiente",
+            "dato": "Es el país más grande de América. Se fue independizando del Reino Unido de a poco.",
+            "pista": "Es el país más grande del continente."
+          },
+          {
+            "icono": "🥁",
+            "nombre": "Haití",
+            "categoria": "País independiente",
+            "dato": "Fue el primer país de América Latina en independizarse, en 1804.",
+            "pista": "Fue el primero de América Latina en ser libre."
+          }
+        ],
+        "cierre": "¡Excelente! Ya sabés distinguir un país independiente de una dependencia."
+      },
+      "idea_clave": "Las dependencias son territorios que pertenecen a otro país. Las Malvinas están ocupadas por el Reino Unido y la Argentina reclama su soberanía.",
+      "chequeo": {
+        "pregunta": "¿Qué país ocupa las islas Malvinas desde 1833?",
+        "opciones": [
+          "el Reino Unido",
+          "Francia",
+          "Chile"
+        ],
+        "correcta": 0,
+        "bien": "¡Correcto! Y la Argentina reclama su soberanía desde entonces.",
+        "mal": "No es ese. Volvé a leer el último párrafo de la cápsula."
+      },
+      "texto_simple": "Algunos lugares de América son de otro país. Por ejemplo, la Guayana Francesa es de Francia. El Reino Unido ocupa las islas Malvinas. La Argentina dice que son suyas."
+    },
+    {
+      "id": "c5",
+      "titulo": "Desacuerdos y acuerdos",
+      "minutos": 3,
+      "esencial": false,
+      "lumai": "Última cápsula. ¿Qué pasa cuando dos países no se ponen de acuerdo?",
+      "pose": "saludo",
+      "texto": "A veces dos países discuten por un límite. Para resolver problemas así, los países se juntan en **organismos**: ahí conversan y cooperan.\nMirá algunos momentos importantes.",
+      "idea_clave": "Los límites a veces traen conflictos. Para resolverlos, los países cooperan en organismos como la OEA o el Mercosur.",
+      "chequeo": {
+        "pregunta": "¿Qué países fundaron el Mercosur?",
+        "opciones": [
+          "Argentina, Brasil, Paraguay y Uruguay",
+          "Argentina, Chile, Bolivia y Perú",
+          "Estados Unidos, Canadá y México"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Los cuatro fundadores, en 1991.",
+        "mal": "Esos no. Tocá \"Mercosur\" en la actividad de arriba y fijate."
+      },
+      "texto_simple": "A veces los países se pelean por un límite. Para ponerse de acuerdo, se juntan en grupos como la OEA o el Mercosur.",
+      "presentacion": {
+        "tipo": "linea_tiempo",
+        "titulo": "⏳ Conflictos y acuerdos en América",
+        "hitos": [
+          {
+            "anio": "1833",
+            "titulo": "El Reino Unido ocupa las islas Malvinas",
+            "texto": "La Argentina reclama su soberanía hasta hoy.",
+            "tipo": "conflicto"
+          },
+          {
+            "anio": "1879",
+            "titulo": "Guerra del Pacífico",
+            "texto": "Bolivia pierde su salida al mar frente a Chile y todavía la reclama.",
+            "tipo": "conflicto"
+          },
+          {
+            "anio": "1948",
+            "titulo": "Se crea la OEA",
+            "texto": "La Organización de los Estados Americanos reúne a los países del continente.",
+            "tipo": "acuerdo"
+          },
+          {
+            "anio": "1991",
+            "titulo": "Nace el Mercosur",
+            "texto": "La Argentina, Brasil, Paraguay y Uruguay se unen para comerciar más fácil.",
+            "tipo": "acuerdo"
+          }
+        ],
+        "leyenda": {
+          "conflicto": "Conflicto",
+          "acuerdo": "Acuerdo"
+        }
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Estado",
+      "definicion": "País organizado, con gobierno propio, que manda sobre un territorio y su gente."
+    },
+    {
+      "palabra": "Soberanía",
+      "definicion": "Derecho de un Estado a decidir sobre su territorio."
+    },
+    {
+      "palabra": "Territorio",
+      "definicion": "La tierra, el mar y el aire de un Estado."
+    },
+    {
+      "palabra": "Límite",
+      "definicion": "Línea que separa a dos países."
+    },
+    {
+      "palabra": "Frontera",
+      "definicion": "Zona alrededor del límite, donde la gente se relaciona."
+    },
+    {
+      "palabra": "Dependencia",
+      "definicion": "Territorio que pertenece a otro país."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "Los límites son naturales y existieron siempre.",
+      "aclaracion": "Los fijaron las personas a lo largo de la historia, y pueden cambiar."
+    },
+    {
+      "error": "Límite y frontera son lo mismo.",
+      "aclaracion": "El límite es una línea. La frontera es la zona que la rodea."
+    },
+    {
+      "error": "Todo el mapa de América son países independientes.",
+      "aclaracion": "También hay dependencias, como la Guayana Francesa o Groenlandia."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Mirá un mapa de América. Muchos límites siguen ríos o montañas, pero otros son líneas rectas. ¿Por qué algunos se habrán trazado con regla? Pensá en qué se conocía de esos lugares cuando se dibujaron.",
+    "conexion": "Con Historia: el mapa de América es el resultado de las independencias del siglo XIX y de las guerras y tratados que vinieron después."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Qué es un Estado?",
+      "respuesta": "Un país organizado, con gobierno propio, que manda sobre un territorio y su población."
+    },
+    {
+      "pregunta": "¿Qué diferencia hay entre límite y frontera?",
+      "respuesta": "El límite es una línea; la frontera es la zona que lo rodea, donde la gente se relaciona."
+    },
+    {
+      "pregunta": "¿Cuántos Estados independientes hay en América?",
+      "respuesta": "35"
+    },
+    {
+      "pregunta": "¿Qué país ocupa las islas Malvinas desde 1833?",
+      "respuesta": "El Reino Unido. La Argentina reclama su soberanía."
+    },
+    {
+      "pregunta": "¿Qué es una dependencia?",
+      "respuesta": "Un territorio que pertenece a otro país, como la Guayana Francesa."
+    },
+    {
+      "pregunta": "¿Qué países fundaron el Mercosur en 1991?",
+      "respuesta": "La Argentina, Brasil, Paraguay y Uruguay."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "🍁",
+      "texto": "La frontera entre Estados Unidos y Canadá mide casi 9.000 km. Es la frontera terrestre más larga del mundo entre dos países."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a mirar el mapa de América con otros ojos. Son 5 cápsulas cortas y las vas a recorrer a tu ritmo. Para empezar, te propongo imaginar una escena.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés leer el mapa político de América. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "geo-1-01-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Mapa político de América con cada país de un color",
+      "epigrafe": "El mapa político de América: 35 Estados independientes y varias dependencias.",
+      "descripcion": "Mapa político completo del continente americano, cada país de un color pastel distinto, con los nombres de los países grandes legibles. Las dependencias (Groenlandia, Guayana Francesa) con un rayado. Las islas Malvinas incluidas con la leyenda \"Islas Malvinas (Arg.)\" según la cartografía oficial argentina. Estilo escolar moderno y limpio."
+    },
+    {
+      "id": "geo-1-01-b",
+      "ubicacion": "lupa",
+      "archivo": "geo-1-01-b.svg",
+      "alt": "Puente sobre el río Paraná que une Posadas y Encarnación",
+      "epigrafe": "El río es el límite; las dos ciudades forman una frontera viva.",
+      "descripcion": "Vista aérea ilustrada de un largo puente sobre un río ancho que une dos ciudades: a un lado el cartel \"Posadas – Argentina\" y al otro \"Encarnación – Paraguay\". Autos y personas cruzando. Estilo plano, colores cálidos. (Ilustración provisoria en SVG con las 5 pistas de la actividad de lupa: si se reemplaza, mantener cartel del límite en la mitad del puente, colectivo, migraciones, casa de cambio y cartel en guaraní en las mismas posiciones.)"
+    },
+    {
+      "id": "geo-1-01-c",
+      "ubicacion": "idea:3",
+      "archivo": null,
+      "alt": "Mapa de América con las islas Malvinas, la Guayana Francesa, Puerto Rico y Groenlandia destacadas",
+      "epigrafe": "Algunos territorios americanos todavía dependen de otros países.",
+      "descripcion": "Mapa de América en gris claro con cuatro territorios destacados en naranja y con etiquetas: Groenlandia, Puerto Rico, Guayana Francesa e Islas Malvinas. Las Malvinas con la leyenda \"ocupadas por el Reino Unido – reclamo de soberanía argentino\". Estilo infografía escolar."
+    }
+  ]
+}

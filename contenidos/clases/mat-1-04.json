@@ -1,0 +1,396 @@
+{
+  "id": "mat-1-04",
+  "formato": "capsulas",
+  "materia": "Matemática",
+  "anio": "1.° año",
+  "eje": "Número y operaciones",
+  "nap": "Usar diferentes representaciones de un número racional (expresiones fraccionarias y decimales, notación científica, punto de la recta numérica, etc.), argumentando sobre su equivalencia y eligiendo la representación más adecuada en función del problema a resolver.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Matemática, 1.°/2.° año",
+  "titulo": "Un número, muchas caras",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "¿Te diste cuenta?",
+    "texto": "Una receta pide \"½ taza de leche\", un cartel del súper anuncia \"50 % de descuento\" y la calculadora muestra 0,5.",
+    "pregunta": "¿Sabías que son tres formas de escribir el mismo número?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **pasar un número de una forma a otra** y elegir la más útil para cada situación.",
+    "resuelta": "½, 0,5 y 50 % son el mismo número. Cada forma es más cómoda en una situación: fracciones para repartir, decimales para la plata, porcentajes para descuentos y notación científica para números enormes o diminutos."
+  },
+  "idea_central": "Un mismo número puede escribirse de muchas formas: fracción, decimal, porcentaje o notación científica. Conviene elegir la que hace más fácil cada problema.",
+  "idea_central_simple": "Un mismo número se puede escribir de varias formas: 1/2, 0,5 y 50 % son lo mismo.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "Distinta escritura, misma cantidad",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Arranquemos con fracciones que parecen distintas, pero no lo son.",
+      "pose": "idea",
+      "texto": "1/2, 2/4 y 50/100 representan la misma cantidad. Se llaman **fracciones equivalentes**.\nSi multiplicás o dividís arriba y abajo por el mismo número, la fracción cambia de aspecto pero no de valor.",
+      "presentacion": {
+        "tipo": "ecuacion",
+        "operador": "=",
+        "igual": "→",
+        "piezas": [
+          {
+            "icono": "🍕",
+            "nombre": "1/2",
+            "texto": "Media pizza"
+          },
+          {
+            "icono": "🍕",
+            "nombre": "2/4",
+            "texto": "2 porciones de 4"
+          },
+          {
+            "icono": "💯",
+            "nombre": "50/100",
+            "texto": "50 de cada 100"
+          }
+        ],
+        "resultado": {
+          "icono": "⚖️",
+          "nombre": "La misma cantidad",
+          "texto": "Fracciones equivalentes"
+        }
+      },
+      "idea_clave": "Las fracciones equivalentes se escriben distinto pero valen lo mismo.",
+      "texto_simple": "1/2 y 2/4 son lo mismo: la mitad.",
+      "chequeo": {
+        "pregunta": "¿Qué fracción es equivalente a 1/3?",
+        "opciones": [
+          "2/6",
+          "3/1",
+          "1/6"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Multiplicaste arriba y abajo por 2.",
+        "mal": "Probá multiplicar el 1 y el 3 por el mismo número."
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "De fracción a decimal, y de vuelta",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Te enseño un truco para pasar de una forma a otra.",
+      "pose": "saludo",
+      "texto": "Para pasar de fracción a decimal, se divide: 3/5 = 3 ÷ 5 = 0,6.\nPara pasar de decimal a fracción, se lee en voz alta: 0,6 es \"seis décimos\", o sea 6/10. Y 0,25 es \"veinticinco centésimos\": 25/100.",
+      "interactivo": {
+        "tipo": "error",
+        "titulo": "🕵️ Encontrá el error de Tomi",
+        "consigna": "Tomi pasó estos decimales a fracción. Uno está mal: tocalo.",
+        "pasos": [
+          {
+            "texto": "0,6 = 6/10",
+            "error": false,
+            "explicacion": "Está bien: \"seis décimos\"."
+          },
+          {
+            "texto": "0,25 = 25/10",
+            "error": true,
+            "explicacion": "¡Esa es! 0,25 se lee \"veinticinco centésimos\": 25/100."
+          },
+          {
+            "texto": "0,5 = 5/10 = 1/2",
+            "error": false,
+            "explicacion": "Está bien: cinco décimos es la mitad."
+          },
+          {
+            "texto": "0,75 = 75/100 = 3/4",
+            "error": false,
+            "explicacion": "Está bien: dividiste 75 y 100 por 25."
+          }
+        ]
+      },
+      "idea_clave": "De fracción a decimal: se divide. De decimal a fracción: se lee en voz alta.",
+      "texto_simple": "Para pasar a decimal, dividí. Para pasar a fracción, leé el número: 0,6 son seis décimos.",
+      "chequeo": {
+        "pregunta": "¿Qué decimal es 1/4?",
+        "opciones": [
+          "0,25",
+          "0,4",
+          "1,4"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! 1 ÷ 4 = 0,25.",
+        "mal": "Hacé la división: 1 dividido 4."
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "El porcentaje",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Ahora, la forma favorita de los carteles de descuento.",
+      "pose": "idea",
+      "texto": "\"Por ciento\" significa \"de cada cien\". 25 % es 25/100, es decir, 1/4 o 0,25.\nPor eso un descuento del 25 % sobre $8.000 es la cuarta parte del precio: $2.000.",
+      "interactivo": {
+        "tipo": "representaciones",
+        "titulo": "🔄 Un número, muchas caras",
+        "consigna": "Elegí un número para verlo de todas sus formas y ubicado en la recta.",
+        "min": 0,
+        "max": 2,
+        "marcas": 0.25,
+        "numeros": [
+          {
+            "nombre": "La mitad",
+            "fraccion": "1/2",
+            "decimal": "0,5",
+            "porcentaje": "50 %",
+            "valor": 0.5,
+            "contexto": "Media taza de leche, o un 50 % de descuento."
+          },
+          {
+            "nombre": "Un cuarto",
+            "fraccion": "1/4",
+            "decimal": "0,25",
+            "porcentaje": "25 %",
+            "valor": 0.25,
+            "contexto": "Un cuarto kilo de pan, o 25 de cada 100 personas."
+          },
+          {
+            "nombre": "Tres cuartos",
+            "fraccion": "3/4",
+            "decimal": "0,75",
+            "porcentaje": "75 %",
+            "valor": 0.75,
+            "contexto": "Tres cuartos de hora son 45 minutos."
+          },
+          {
+            "nombre": "Un tercio",
+            "fraccion": "1/3",
+            "decimal": "0,333…",
+            "porcentaje": "33,3… %",
+            "valor": 0.3333,
+            "contexto": "Su decimal nunca termina: la fracción es la forma más precisa."
+          },
+          {
+            "nombre": "Uno y medio",
+            "fraccion": "3/2",
+            "decimal": "1,5",
+            "porcentaje": "150 %",
+            "valor": 1.5,
+            "contexto": "Una botella de 1,5 litros."
+          }
+        ]
+      },
+      "ejemplo": {
+        "texto": "En una encuesta del curso, 18 de 24 estudiantes prefieren el básquet. Eso es 18/24 = 3/4 = 0,75 = 75 %. Para el diario escolar, lo más claro es: \"Al 75 % del curso le gusta el básquet\".",
+        "intercambiable": true,
+        "mostrar": false,
+        "que_debe_mostrar": "Un mismo número expresado como fracción, decimal y porcentaje, y la elección de la representación más adecuada para comunicarlo."
+      },
+      "idea_clave": "Un porcentaje es una fracción con denominador 100.",
+      "texto_simple": "50 % es la mitad. 25 % es la cuarta parte.",
+      "chequeo": {
+        "pregunta": "Unas zapatillas cuestan $10.000 y tienen 50 % de descuento. ¿Cuánto descuentan?",
+        "opciones": [
+          "$5.000",
+          "$50",
+          "$500"
+        ],
+        "correcta": 0,
+        "bien": "¡Muy bien! El 50 % es la mitad.",
+        "mal": "50 % es lo mismo que 1/2. ¿Cuánto es la mitad de $10.000?"
+      },
+      "mi_lugar": {
+        "pregunta": "Buscá un cartel de descuento en un negocio de tu barrio o en internet. ¿Qué porcentaje dice? ¿Qué fracción del precio te descuentan?",
+        "ayuda": "El cartel dice… es como…"
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Números gigantes y diminutos",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "¿Cómo escribís un número con muchísimos ceros sin equivocarte?",
+      "pose": "saludo",
+      "texto": "La distancia de la Tierra al Sol es de unos 150.000.000 km. Con tantos ceros es fácil equivocarse.\nLa **notación científica** lo escribe con una potencia de 10: 1,5 × 10⁸ km. El exponente indica cuántos lugares se corre la coma.",
+      "presentacion": {
+        "tipo": "cifra",
+        "numero": "10⁸",
+        "leyenda": "La distancia de la Tierra al Sol: 1,5 × 10⁸ km",
+        "nota": "Son 150.000.000 de kilómetros: 8 lugares de coma."
+      },
+      "imagen": "mat-1-04-b",
+      "interactivo": {
+        "tipo": "revelar",
+        "pregunta": "En el mundo viven unas 8.000.000.000 de personas. ¿Cómo se escribe en notación científica?",
+        "pista": "Contá cuántos ceros tiene el número.",
+        "respuesta": "8 × 10⁹. Hay 9 ceros después del 8, así que el exponente es 9."
+      },
+      "idea_clave": "La notación científica escribe números enormes o diminutos con potencias de 10.",
+      "texto_simple": "Para no escribir tantos ceros, usamos 10 con un numerito arriba.",
+      "chequeo": {
+        "pregunta": "¿Cuántos ceros tiene 10⁶?",
+        "opciones": [
+          "6",
+          "10",
+          "1"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! 10⁶ = 1.000.000.",
+        "mal": "El numerito de arriba indica cuántos ceros van después del 1."
+      }
+    },
+    {
+      "id": "c5",
+      "titulo": "Elegir la forma más útil",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Última cápsula. Ahora te toca elegir a vos.",
+      "pose": "idea",
+      "texto": "No hay una forma mejor que otra: hay una más útil para cada problema.\nFracciones para repartir. Decimales para la plata. Porcentajes para descuentos. Notación científica para la ciencia.",
+      "interactivo": {
+        "tipo": "clasificar",
+        "titulo": "🧰 ¿Qué forma conviene?",
+        "consigna": "Elegí la forma más cómoda para cada situación.",
+        "categorias": [
+          "Fracción",
+          "Decimal",
+          "Porcentaje"
+        ],
+        "items": [
+          {
+            "nombre": "Repartir 3 pizzas entre 4 amigos",
+            "categoria": "Fracción",
+            "dato": "3/4 de pizza para cada uno.",
+            "pista": "Es un reparto en partes iguales."
+          },
+          {
+            "nombre": "El precio de un alfajor",
+            "categoria": "Decimal",
+            "dato": "Los precios se escriben con coma: $1.250,50.",
+            "pista": "Pensá en cómo aparecen los precios."
+          },
+          {
+            "nombre": "Un descuento en zapatillas",
+            "categoria": "Porcentaje",
+            "dato": "Los carteles dicen \"30 % off\".",
+            "pista": "¿Cómo lo anuncian los carteles?"
+          },
+          {
+            "nombre": "Una receta que pide media taza",
+            "categoria": "Fracción",
+            "dato": "½ taza: en la cocina se mide en mitades y cuartos.",
+            "pista": "En la cocina se habla de mitades y cuartos."
+          },
+          {
+            "nombre": "El resultado de una encuesta",
+            "categoria": "Porcentaje",
+            "dato": "\"Al 75 % del curso le gusta el básquet.\"",
+            "pista": "Sirve para comparar de cada cien."
+          }
+        ],
+        "cierre": "¡Excelente! Elegir bien cómo escribir un número es parte de resolver bien un problema."
+      },
+      "idea_clave": "Hay que elegir la forma de escribir un número según el problema.",
+      "texto_simple": "Usá la forma que te resulte más fácil para cada situación.",
+      "chequeo": {
+        "pregunta": "Para anunciar un descuento, lo más claro suele ser…",
+        "opciones": [
+          "un porcentaje",
+          "una fracción",
+          "la notación científica"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Por eso los carteles dicen \"30 % off\".",
+        "mal": "Pensá en los carteles de las vidrieras."
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Fracciones equivalentes",
+      "definicion": "Fracciones que se escriben distinto pero valen lo mismo: 1/2 = 2/4 = 3/6."
+    },
+    {
+      "palabra": "Expresión decimal",
+      "definicion": "Número escrito con coma, como 0,75 o 2,5."
+    },
+    {
+      "palabra": "Porcentaje",
+      "definicion": "Fracción con denominador 100. 30 % = 30/100."
+    },
+    {
+      "palabra": "Notación científica",
+      "definicion": "Forma de escribir números muy grandes o muy chicos con potencias de 10: 3 × 10⁶ = 3.000.000."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "0,5 es menor que 0,25, porque 5 es menor que 25.",
+      "aclaracion": "Para comparar decimales, igualá la cantidad de cifras: 0,50 y 0,25. Ahora se ve que 0,50 es mayor."
+    },
+    {
+      "error": "1/3 es igual a 0,3.",
+      "aclaracion": "0,3 es 3/10. Un tercio es 0,333…, con el 3 repitiéndose sin fin: 0,3 es solo una aproximación."
+    },
+    {
+      "error": "Un porcentaje no puede ser mayor que 100.",
+      "aclaracion": "Puede: si este año hay 150 alumnos donde el año pasado había 100, la matrícula actual es el 150 % de la anterior."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Un comercio ofrece \"30 % de descuento\" y otro, \"llevá 3 y pagá 2\". Si querés comprar 3 remeras del mismo precio, ¿qué oferta conviene? Expresá las dos ofertas como fracción y como porcentaje para compararlas.",
+    "conexion": "Con Biología: las células se miden en micrómetros, la millonésima parte de un metro (10⁻⁶ m). Sin la notación científica sería muy difícil escribir esas medidas."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Qué número decimal es igual a 1/4?",
+      "respuesta": "0,25"
+    },
+    {
+      "pregunta": "¿Qué porcentaje es 3/4?",
+      "respuesta": "75 %"
+    },
+    {
+      "pregunta": "¿1/2 y 2/4 valen lo mismo?",
+      "respuesta": "Sí, son fracciones equivalentes."
+    },
+    {
+      "pregunta": "¿Cómo se escribe 150.000.000 en notación científica?",
+      "respuesta": "1,5 × 10⁸"
+    },
+    {
+      "pregunta": "¿Qué forma de escribir un número conviene para un descuento?",
+      "respuesta": "El porcentaje."
+    },
+    {
+      "pregunta": "¿Cuál es mayor, 0,5 o 0,25?",
+      "respuesta": "0,5"
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "✍️",
+      "texto": "El símbolo % nació de abreviar la expresión italiana *per cento* (\"por ciento\"). Con el tiempo, quienes copiaban textos a mano la fueron simplificando hasta llegar al dibujo actual."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a ver que un número puede tener muchas caras. Son 5 cápsulas cortas. Para empezar, fijate en esto.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés escribir un número de muchas formas y elegir la mejor. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "mat-1-04-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Una taza medidora con media taza de leche, un cartel de 50 % de descuento y una calculadora que muestra 0,5",
+      "epigrafe": "Tres formas de escribir el mismo número.",
+      "descripcion": "Tres objetos en fila conectados por signos \"=\": una taza medidora llena hasta la marca ½, un cartel de supermercado que dice \"50 % OFF\" y una calculadora cuya pantalla muestra 0,5. Estilo plano, colores de LumAI, fondo claro."
+    },
+    {
+      "id": "mat-1-04-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "La Tierra y el Sol con la distancia en notación científica, y una bacteria con su tamaño",
+      "epigrafe": "Para lo muy grande y lo muy chico, la notación científica.",
+      "descripcion": "Imagen dividida en dos: a la izquierda, la Tierra y el Sol con una flecha y la etiqueta \"150.000.000 km = 1,5 × 10⁸ km\"; a la derecha, una bacteria vista con lupa con la etiqueta \"0,000002 m = 2 × 10⁻⁶ m\". Estilo didáctico, claro, tipografía grande."
+    }
+  ]
+}

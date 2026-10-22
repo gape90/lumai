@@ -306,7 +306,11 @@ class LumaiMetricsTracker {
                 'response_recorded', 
                 'activity_completed', 
                 'session_started',
-                'explanation_content_saved'
+                'explanation_content_saved',
+                'clase_mostrada',
+                'clase_chequeo',
+                'clase_completada',
+                'clase_autoevaluacion'
             ];
             
             if (criticalEvents.includes(eventType)) {

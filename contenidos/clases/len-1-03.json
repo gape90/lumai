@@ -1,0 +1,338 @@
+{
+  "id": "len-1-03",
+  "formato": "capsulas",
+  "materia": "Lengua y Literatura",
+  "anio": "1.° año",
+  "eje": "Comprensión y producción oral",
+  "nap": "La producción de textos orales referidos a contenidos estudiados y a temas de interés general, elaborados en pequeños grupos y/o de manera individual. Supone, en la exposición, seleccionar y jerarquizar la información, usar recursos propios de la exposición (definiciones, ejemplos, comparaciones, reformulaciones, recapitulaciones), tener en cuenta sus partes (presentación, desarrollo, cierre), utilizar soportes gráficos, elaborar un inicio atractivo y una síntesis, y responder las preguntas del auditorio.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Lengua, 1.°/2.° año",
+  "titulo": "Hablar frente a otros: cómo armar una exposición que nadie olvide",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "Pensá en esto",
+    "texto": "Los primeros segundos de un video deciden si lo seguís mirando o pasás al siguiente. Con una exposición oral pasa lo mismo.",
+    "pregunta": "¿Qué hace que alguien quiera seguir escuchándote?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **armar una exposición que nadie olvide**: con un comienzo que atrape, un desarrollo ordenado y un buen cierre.",
+    "resuelta": "Una exposición que atrapa empieza con una pregunta, un dato o una historia; explica los subtemas en orden con definiciones, ejemplos y comparaciones; y cierra resumiendo lo importante."
+  },
+  "idea_central": "Una buena exposición oral tiene un inicio que atrapa, un desarrollo ordenado en partes y un cierre que resume lo importante, y usa recursos que ayudan al público a entender.",
+  "idea_central_simple": "Para hablar frente a otros: un comienzo que atrape, la explicación ordenada y un final que resuma.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "Un comienzo que atrape",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Leé estos dos comienzos. ¿Cuál te da más ganas de seguir escuchando?",
+      "pose": "saludo",
+      "texto": "Un buen comienzo despierta curiosidad antes de anunciar el tema.\nPuede ser una pregunta, un dato sorprendente, una imagen o una historia breve.",
+      "presentacion": {
+        "tipo": "contraste",
+        "lados": [
+          {
+            "etiqueta": "Comienzo A",
+            "nombre": "Aburrido",
+            "texto": "\"Hoy les voy a hablar de las abejas.\""
+          },
+          {
+            "etiqueta": "Comienzo B",
+            "nombre": "Atrapante",
+            "texto": "\"Si las abejas desaparecieran, muchas frutas que comemos estarían en peligro. Hoy les cuento por qué.\""
+          }
+        ]
+      },
+      "idea_clave": "Un comienzo atractivo despierta curiosidad: una pregunta, un dato o una historia.",
+      "texto_simple": "Empezá con algo que sorprenda, así todos quieren escucharte.",
+      "chequeo": {
+        "pregunta": "¿Cuál de estos comienzos atrapa más?",
+        "opciones": [
+          "\"¿Sabían que el pulpo tiene tres corazones?\"",
+          "\"Mi tema es el pulpo.\"",
+          "\"Voy a leer lo que encontré.\""
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Una pregunta con un dato sorprendente despierta curiosidad.",
+        "mal": "Buscá el que te haría querer saber más."
+      },
+      "mi_lugar": {
+        "pregunta": "Si tuvieras que exponer sobre algo de tu lugar (una comida, una fiesta, un paisaje, un club), ¿con qué pregunta o dato sorprendente arrancarías?",
+        "ayuda": "¿Sabían que…?"
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "Las tres partes",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Toda exposición tiene tres partes, como una buena película.",
+      "pose": "idea",
+      "texto": "En la **presentación** captás la atención y anunciás el tema.\nEn el **desarrollo** explicás los subtemas en orden, como los capítulos de una serie.\nEn el **cierre** resumís lo importante y, si querés, dejás una pregunta.",
+      "imagen": "len-1-03-b",
+      "interactivo": {
+        "tipo": "ordenar",
+        "titulo": "🔢 Armá la exposición sobre el río Paraná",
+        "consigna": "Tocá las partes en el orden en que irían.",
+        "items": [
+          "\"¿Sabían que el río Paraná nace en Brasil y recorre miles de kilómetros hasta el Río de la Plata?\"",
+          "Dónde nace el río y por qué provincias pasa",
+          "Los problemas ambientales que enfrenta",
+          "\"En resumen: un río largo, importante y que hay que cuidar.\""
+        ],
+        "cierre": "¡Muy bien! Presentación, desarrollo en dos subtemas y cierre que resume."
+      },
+      "ejemplo": {
+        "texto": "Un grupo expone sobre el río Paraná. Arrancan con una pregunta: \"¿Sabían que el Paraná nace en Brasil y recorre miles de kilómetros hasta el Río de la Plata?\". Después explican por dónde pasa y qué problemas ambientales enfrenta. Al final resumen esas partes.",
+        "intercambiable": true,
+        "mostrar": false,
+        "que_debe_mostrar": "Una exposición con un inicio atractivo, un desarrollo en subtemas ordenados y un cierre que resume."
+      },
+      "idea_clave": "Presentación, desarrollo y cierre: las tres partes de una exposición.",
+      "texto_simple": "Primero contás de qué vas a hablar. Después lo explicás. Al final resumís.",
+      "chequeo": {
+        "pregunta": "\"En resumen, las abejas son clave para que haya frutas\" va en…",
+        "opciones": [
+          "el cierre",
+          "la presentación",
+          "el desarrollo"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! \"En resumen\" es una marca típica del cierre.",
+        "mal": "Fijate en \"en resumen\": ¿al principio o al final?"
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "Recursos para que te entiendan",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Para explicar bien hay herramientas. Encontralas en este fragmento sobre las abejas.",
+      "pose": "saludo",
+      "texto": "Para explicar se usan **definiciones** (\"una abeja obrera es…\"), ejemplos y comparaciones (\"funciona como…\").\nTambién reformulaciones: decir lo mismo con otras palabras (\"o sea…\"). No es repetir de más: ayuda a que la idea se fije.",
+      "interactivo": {
+        "tipo": "texto_anotado",
+        "titulo": "🔍 Los recursos de una exposición",
+        "consigna": "Tocá las partes subrayadas.",
+        "segmentos": [
+          {
+            "texto": "En una colmena pueden vivir miles de abejas. "
+          },
+          {
+            "texto": "Una abeja obrera es una hembra que hace casi todo el trabajo de la colmena",
+            "etiqueta": "Definición",
+            "nota": "Explica qué es algo. Suele aparecer con el verbo \"es\"."
+          },
+          {
+            "texto": ": limpia, cuida a las crías y busca alimento. "
+          },
+          {
+            "texto": "La colmena funciona como una ciudad con tareas repartidas",
+            "etiqueta": "Comparación",
+            "nota": "Relaciona algo nuevo con algo conocido."
+          },
+          {
+            "texto": ". Al ir de flor en flor, las abejas llevan polen, y eso permite que muchas plantas den frutos. "
+          },
+          {
+            "texto": "Por ejemplo, los manzanos necesitan insectos polinizadores para dar manzanas",
+            "etiqueta": "Ejemplo",
+            "nota": "Muestra un caso concreto de una idea general."
+          },
+          {
+            "texto": ". "
+          },
+          {
+            "texto": "O sea, sin abejas habría muchas menos frutas en la verdulería",
+            "etiqueta": "Reformulación",
+            "nota": "Dice lo mismo con otras palabras. Suele empezar con \"o sea\" o \"es decir\"."
+          },
+          {
+            "texto": "."
+          }
+        ]
+      },
+      "idea_clave": "Definiciones, ejemplos, comparaciones y reformulaciones ayudan a que el público entienda.",
+      "texto_simple": "Para explicar, decí qué es, da un ejemplo o compará con algo conocido.",
+      "chequeo": {
+        "pregunta": "\"La colmena funciona como una ciudad\" es…",
+        "opciones": [
+          "una comparación",
+          "una definición",
+          "un ejemplo"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Relaciona la colmena con algo conocido.",
+        "mal": "Fijate en \"funciona como\": ¿qué hace esa frase?"
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Apoyos visuales",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "Una imagen ayuda mucho… si la usás bien.",
+      "pose": "idea",
+      "texto": "Un esquema, una imagen o una presentación con pocas palabras ayudan al público a seguirte.\nPero si leés todo lo que dice la pantalla, el público se aburre. El apoyo visual muestra; vos explicás.",
+      "interactivo": {
+        "tipo": "error",
+        "titulo": "🕵️ ¿Qué diapositiva está mal?",
+        "consigna": "Tocá la diapositiva que no conviene usar.",
+        "pasos": [
+          {
+            "texto": "Una foto grande de una colmena con el título \"La colmena\".",
+            "error": false,
+            "explicacion": "Esta está bien: muestra y deja que vos expliques."
+          },
+          {
+            "texto": "Un párrafo de diez renglones copiado de internet, para leerlo en voz alta.",
+            "error": true,
+            "explicacion": "¡Esa es! Demasiado texto: el público lee en vez de escucharte."
+          },
+          {
+            "texto": "Un esquema con tres palabras: \"obreras\", \"zánganos\", \"reina\".",
+            "error": false,
+            "explicacion": "Esta está bien: pocas palabras que ordenan la explicación."
+          }
+        ]
+      },
+      "idea_clave": "El apoyo visual muestra; vos explicás.",
+      "texto_simple": "Usá imágenes y pocas palabras. No leas la pantalla.",
+      "chequeo": {
+        "pregunta": "Una buena diapositiva tiene…",
+        "opciones": [
+          "pocas palabras y una imagen",
+          "todo el texto que voy a decir",
+          "muchos colores y nada más"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Ayuda al público sin reemplazarte.",
+        "mal": "Si el público lee todo, ¿para qué te escucharía?"
+      }
+    },
+    {
+      "id": "c5",
+      "titulo": "La voz y las preguntas del público",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Último paso: el momento de hablar y de responder.",
+      "pose": "saludo",
+      "texto": "Hablá con un volumen que llegue al fondo del aula, sin apurarte. Hacé pausas después de las ideas importantes.\nAl final, invitá a hacer preguntas. Si no sabés una respuesta, decilo con sinceridad: \"No lo sé, lo voy a averiguar\".",
+      "imagen": "len-1-03-a",
+      "interactivo": {
+        "tipo": "revelar",
+        "pregunta": "Estás exponiendo y un compañero te hace una pregunta que no sabés responder. ¿Qué podés hacer?",
+        "respuesta": "Reconocerlo con tranquilidad: \"Buena pregunta, no lo sé. Lo averiguo y te cuento\". También podés preguntar si alguien del curso sabe. Inventar una respuesta es peor que admitir que no la sabés."
+      },
+      "idea_clave": "Hablá claro, hacé pausas y respondé las preguntas con sinceridad.",
+      "texto_simple": "Hablá fuerte y despacio. Si no sabés algo, decilo.",
+      "chequeo": {
+        "pregunta": "Si no sabés responder una pregunta del público, lo mejor es…",
+        "opciones": [
+          "decir que no lo sabés y que lo vas a averiguar",
+          "inventar una respuesta",
+          "hacer como que no la escuchaste"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! La sinceridad también es una buena respuesta.",
+        "mal": "Pensá qué pasaría si después descubren que inventaste."
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Exposición oral",
+      "definicion": "Texto oral que explica un tema a un público."
+    },
+    {
+      "palabra": "Presentación",
+      "definicion": "Primera parte de la exposición: capta la atención y anuncia el tema."
+    },
+    {
+      "palabra": "Desarrollo",
+      "definicion": "Parte central: explica los subtemas en orden."
+    },
+    {
+      "palabra": "Cierre",
+      "definicion": "Parte final: resume las ideas principales."
+    },
+    {
+      "palabra": "Reformulación",
+      "definicion": "Decir lo mismo con otras palabras para que se entienda mejor. Suele empezar con \"o sea\" o \"es decir\"."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "Exponer es leer en voz alta lo que investigué.",
+      "aclaracion": "Exponer es explicar con tus palabras. Podés tener una ayuda escrita, pero el público quiere escucharte a vos, no a la hoja."
+    },
+    {
+      "error": "Cuanta más información, mejor.",
+      "aclaracion": "Es mejor poca información bien explicada que mucha y desordenada."
+    },
+    {
+      "error": "Si me trabo, la exposición salió mal.",
+      "aclaracion": "A todos les pasa. Hacé una pausa, retomá la idea y seguí."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Prepará una exposición de un minuto sobre algo que te apasione, con tres condiciones: un inicio con un dato sorprendente, un solo subtema bien explicado y un cierre con una pregunta para el público. ¿Qué tuviste que dejar afuera para que entrara en un minuto?",
+    "conexion": "Con todas las materias: las exposiciones orales se usan en Ciencias, Historia o Geografía. Y fuera de la escuela, en entrevistas de trabajo, reuniones y presentaciones de proyectos."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Cuáles son las tres partes de una exposición?",
+      "respuesta": "Presentación, desarrollo y cierre."
+    },
+    {
+      "pregunta": "¿Para qué sirve un inicio atractivo?",
+      "respuesta": "Para captar la atención del público."
+    },
+    {
+      "pregunta": "¿Qué recurso es \"una colmena funciona como una ciudad\"?",
+      "respuesta": "Una comparación."
+    },
+    {
+      "pregunta": "¿Qué es una reformulación?",
+      "respuesta": "Decir lo mismo con otras palabras para que se entienda mejor."
+    },
+    {
+      "pregunta": "¿Conviene leer todo lo que dice la presentación en pantalla?",
+      "respuesta": "No: el apoyo visual muestra y el expositor explica."
+    },
+    {
+      "pregunta": "¿Qué hacer si no sabés responder una pregunta del público?",
+      "respuesta": "Reconocerlo con sinceridad y ofrecer averiguarlo."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "😅",
+      "texto": "Sentir nervios antes de hablar en público es muy común, incluso entre personas con mucha experiencia. Ensayar en voz alta es una de las mejores formas de bajarlos."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! ¿Te pone nervioso hablar frente al curso? Es muy normal. En 5 cápsulas te doy las herramientas para una exposición que todos quieran escuchar.",
+    "cierre": "¡Misión cumplida, {NOMBRE}! Ya tenés todo para armar tu propia exposición. Cuando quieras, pasamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "len-1-03-a",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Una estudiante expone frente a su curso con una lámina de abejas detrás",
+      "epigrafe": "Un buen comienzo hace que todos quieran escuchar.",
+      "descripcion": "Una adolescente de pie frente a sus compañeros, hablando con seguridad y gesticulando. Detrás, una lámina con el dibujo de una abeja y una flor. Los compañeros miran con interés. Estilo ilustración plana, diverso, colores de LumAI."
+    },
+    {
+      "id": "len-1-03-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Esquema de tres bloques: presentación, desarrollo y cierre",
+      "epigrafe": "Las tres partes de una exposición.",
+      "descripcion": "Diagrama horizontal de tres bloques conectados por flechas: \"Presentación\" (ícono de signo de pregunta, color azul), \"Desarrollo\" (ícono de lista numerada, color naranja) y \"Cierre\" (ícono de moño o bandera, color verde). Debajo de cada uno, una frase corta: \"atrapar y anunciar\", \"explicar en orden\", \"resumir\". Limpio y legible."
+    }
+  ]
+}

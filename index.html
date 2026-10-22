@@ -588,6 +588,13 @@
         .character-switching .character-2 {
             animation: character-switch-alt 6s infinite;
         }
+        /* Clases base listas (contenidos/indice.json) */
+        .clases-listas { margin-top: 12px; }
+        .clases-listas-titulo { display: block; color: rgba(255,255,255,0.92); font-size: 0.95rem; margin-bottom: 8px; }
+        .clases-listas-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip-clase { border: 2px solid rgba(255,255,255,0.85); background: rgba(255,255,255,0.14); color: #fff; border-radius: 999px; padding: 8px 14px; font: inherit; font-size: 0.92rem; cursor: pointer; text-align: left; transition: all 0.2s ease; }
+        .chip-clase:hover, .chip-clase:focus-visible { background: rgba(255,255,255,0.3); outline: none; }
+        .chip-clase[aria-pressed="true"] { background: #fff; color: #00509e; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -686,7 +693,12 @@
                 <div class="form-row">
                     <div class="input-group">
                         <label class="input-label">🎯 ¿Qué tema quieres aprender hoy?</label>
-                        <input type="text" id="tema" class="input-field" placeholder="Ejemplo: Suma y resta, Células, Guerra de Independencia..." maxlength="100">
+                        <input type="text" id="tema" class="input-field" placeholder="Ejemplo: Suma y resta, Células, Guerra de Independencia..." maxlength="100" list="temas-sugeridos" autocomplete="off">
+                        <datalist id="temas-sugeridos"></datalist>
+                        <div id="clases-listas" class="clases-listas" style="display: none;">
+                            <span class="clases-listas-titulo">✨ Clases listas de LumAI para esta materia. Tocá una o escribí otro tema:</span>
+                            <div class="clases-listas-chips"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -827,6 +839,51 @@
                 window.location.href = 'explicacion.html';
             }, 1000);
         }
+
+        // ========== CLASES BASE LISTAS ==========
+        // Si hay clases base para la materia elegida (Ciclo Básico), se ofrecen como sugerencias.
+        let indiceClases = null;
+        function actualizarClasesListas() {
+            const contenedor = document.getElementById('clases-listas');
+            const datalist = document.getElementById('temas-sugeridos');
+            const campoTema = document.getElementById('tema');
+            if (!contenedor || !indiceClases) return;
+            const ciclo = document.getElementById('ciclo').value;
+            const materia = document.getElementById('materia').value;
+            const lista = ciclo === 'basico' ? (indiceClases.clases || []).filter(c => c.materia === materia) : [];
+            const chips = contenedor.querySelector('.clases-listas-chips');
+            chips.innerHTML = '';
+            datalist.innerHTML = '';
+            lista.forEach(c => {
+                const boton = document.createElement('button');
+                boton.type = 'button';
+                boton.className = 'chip-clase';
+                boton.textContent = c.titulo;
+                boton.setAttribute('aria-pressed', String(campoTema.value === c.titulo));
+                boton.addEventListener('click', () => {
+                    campoTema.value = c.titulo;
+                    chips.querySelectorAll('.chip-clase').forEach(b => b.setAttribute('aria-pressed', String(b === boton)));
+                });
+                chips.appendChild(boton);
+                const opcion = document.createElement('option');
+                opcion.value = c.titulo;
+                datalist.appendChild(opcion);
+            });
+            contenedor.style.display = lista.length ? 'block' : 'none';
+        }
+        fetch('contenidos/indice.json')
+            .then(r => r.ok ? r.json() : null)
+            .then(datos => { indiceClases = datos; actualizarClasesListas(); })
+            .catch(() => { /* sin clases base, el formulario funciona igual */ });
+        document.addEventListener('DOMContentLoaded', () => {
+            // Después de que se recarguen las materias del ciclo elegido
+            document.getElementById('ciclo').addEventListener('change', () => setTimeout(actualizarClasesListas, 0));
+            document.getElementById('materia').addEventListener('change', actualizarClasesListas);
+            document.getElementById('tema').addEventListener('input', () => {
+                const valor = document.getElementById('tema').value;
+                document.querySelectorAll('#clases-listas .chip-clase').forEach(b => b.setAttribute('aria-pressed', String(b.textContent === valor)));
+            });
+        });
 
         // ========== LÓGICA DEL FORMULARIO CON MATERIAS COMPLETAS ==========
         document.addEventListener('DOMContentLoaded', function() {

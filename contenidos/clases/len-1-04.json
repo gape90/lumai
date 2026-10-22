@@ -1,0 +1,348 @@
+{
+  "id": "len-1-04",
+  "formato": "capsulas",
+  "materia": "Lengua y Literatura",
+  "anio": "1.° año",
+  "eje": "Lectura y producción escrita",
+  "nap": "La participación asidua en taller de lectura de textos que divulguen temas específicos del área y del mundo de la cultura, con propósitos diversos (leer para informarse, para construir opinión, para hacer, para averiguar un dato, para compartir con otros lo leído, para confrontar datos y opiniones). Supone poner en juego estrategias de lectura adecuadas al género y al propósito, consultar el paratexto, inferir el significado de palabras desconocidas, reconocer procedimientos (definiciones, reformulaciones, citas, comparaciones, ejemplos) y monitorear los propios procesos de comprensión.",
+  "fuente": "NAP Ciclo Básico Educación Secundaria, Lengua, 1.°/2.° año",
+  "titulo": "Leer como un detective: estrategias para textos que explican el mundo",
+  "nivel_base": "alumno típico de 1.° año",
+  "gancho": {
+    "rotulo": "¿Sabías que…?",
+    "texto": "Un artículo dice que los pulpos tienen tres corazones. Antes de contárselo a alguien, un buen lector se pregunta: ¿quién lo escribió?, ¿de dónde sale el dato?",
+    "pregunta": "¿Cómo podés saber de qué trata un texto antes de leerlo completo?"
+  },
+  "mision": {
+    "texto": "Al terminar vas a poder **leer como un detective**: anticipar de qué trata un texto, descifrar palabras nuevas y darte cuenta de cuándo no entendés.",
+    "resuelta": "Un texto se anticipa mirando su paratexto: título, subtítulos, imágenes, epígrafes y fuente. Después se lee con un propósito, se buscan pistas para las palabras nuevas y se relee cuando algo no se entiende."
+  },
+  "idea_central": "Leer bien un texto de divulgación es usar estrategias: leer con un propósito, anticipar con el paratexto, descubrir el significado de las palabras nuevas, reconocer cómo explica el autor y darse cuenta de cuándo no estamos entendiendo.",
+  "idea_central_simple": "Antes de leer, mirá el título y las imágenes. Te ayudan a saber de qué trata el texto.",
+  "capsulas": [
+    {
+      "id": "c1",
+      "titulo": "Leer con un propósito",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "Antes de leer, un detective se pregunta: ¿qué estoy buscando?",
+      "pose": "idea",
+      "texto": "No se lee igual para buscar un dato que para estudiar.\nSi buscás un dato, recorrés el texto rápido hasta encontrarlo. Si estudiás, leés despacio y volvés atrás cuando hace falta.",
+      "presentacion": {
+        "tipo": "contraste",
+        "lados": [
+          {
+            "etiqueta": "Rápido",
+            "nombre": "Buscar un dato",
+            "texto": "Recorrés el texto con la vista hasta encontrar lo que necesitás."
+          },
+          {
+            "etiqueta": "Despacio",
+            "nombre": "Estudiar",
+            "texto": "Leés todo con atención, subrayás y volvés atrás cuando algo no se entiende."
+          }
+        ]
+      },
+      "idea_clave": "Antes de leer, preguntate para qué leés: eso define cómo leer.",
+      "texto_simple": "Si buscás un dato, leé rápido. Si estudiás, leé despacio.",
+      "chequeo": {
+        "pregunta": "Querés saber a qué hora empieza una película en la cartelera. ¿Cómo leés?",
+        "opciones": [
+          "rápido, buscando el dato",
+          "despacio, todo el texto",
+          "dos veces completo"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! Solo necesitás un dato.",
+        "mal": "Pensá: ¿necesitás leer todo, o solo encontrar algo?"
+      },
+      "mi_lugar": {
+        "pregunta": "¿Qué leés en tu día a día: mensajes, carteles, recetas, noticias? Elegí uno: ¿para qué lo leés?",
+        "ayuda": "Leo… para…"
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "Las pistas del paratexto",
+      "minutos": 3,
+      "esencial": true,
+      "lumai": "Todo lo que rodea al texto son pistas. Vamos a revisarlas una por una.",
+      "pose": "saludo",
+      "texto": "El título, los subtítulos, las imágenes, los **epígrafes** y la fuente forman el **paratexto**.\nMirarlos antes de leer te permite anticipar el tema y organizar la lectura.",
+      "imagen": "len-1-04-b",
+      "interactivo": {
+        "tipo": "explorar",
+        "titulo": "🧭 Las pistas del paratexto",
+        "consigna": "Tocá cada pista para ver qué te cuenta.",
+        "elementos": [
+          {
+            "icono": "🏷️",
+            "nombre": "Título",
+            "texto": "Anuncia el tema. A veces es una pregunta o un juego de palabras."
+          },
+          {
+            "icono": "📑",
+            "nombre": "Subtítulos",
+            "texto": "Muestran cómo se divide el texto. Es como mirar el índice de un libro."
+          },
+          {
+            "icono": "🖼️",
+            "nombre": "Imágenes y epígrafes",
+            "texto": "Muestran lo que el texto explica. El epígrafe dice qué se ve en la imagen."
+          },
+          {
+            "icono": "🖍️",
+            "nombre": "Palabras destacadas",
+            "texto": "Las palabras en negrita suelen ser los conceptos más importantes."
+          },
+          {
+            "icono": "🔗",
+            "nombre": "Fuente",
+            "texto": "Dice quién lo escribió y dónde se publicó. Ayuda a decidir si es confiable."
+          }
+        ]
+      },
+      "ejemplo": {
+        "texto": "Para un trabajo sobre volcanes, Valentina encuentra un artículo larguísimo. Lee el título y los subtítulos y descubre que solo la sección \"Volcanes de la Argentina\" le sirve. Lee esa parte con atención y anota los datos importantes.",
+        "intercambiable": true,
+        "mostrar": false,
+        "que_debe_mostrar": "El uso del propósito de lectura y del paratexto para decidir qué leer y cómo leerlo."
+      },
+      "idea_clave": "El paratexto son las pistas alrededor del texto: títulos, imágenes, epígrafes y fuente.",
+      "texto_simple": "Antes de leer, mirá el título y las imágenes. Te dicen de qué trata el texto.",
+      "chequeo": {
+        "pregunta": "El texto corto que aparece debajo de una foto se llama…",
+        "opciones": [
+          "epígrafe",
+          "subtítulo",
+          "fuente"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! El epígrafe explica qué muestra la imagen.",
+        "mal": "Volvé a tocar \"Imágenes y epígrafes\" en la actividad."
+      }
+    },
+    {
+      "id": "c3",
+      "titulo": "Palabras desconocidas",
+      "minutos": 2,
+      "esencial": true,
+      "lumai": "¿Apareció una palabra que no conocés? No corras al diccionario: primero buscá pistas.",
+      "pose": "idea",
+      "texto": "Mirá las oraciones de alrededor: eso es el **contexto**. ¿Se parece a otra palabra que ya conocés?\nSi leés \"los cefalópodos, como el pulpo y el calamar…\", ya sabés que es un tipo de animal parecido a ellos.\nSi las pistas no alcanzan, usá el diccionario.",
+      "interactivo": {
+        "tipo": "revelar",
+        "pregunta": "Leés: \"El ornitorrinco es un mamífero ovíparo: no se forma dentro de su madre, como un perro, sino que sale de un huevo\". ¿Qué significa \"ovíparo\"?",
+        "pista": "Fijate qué dice el texto justo después de los dos puntos.",
+        "respuesta": "Que nace de un huevo. El propio texto lo explica después de los dos puntos."
+      },
+      "idea_clave": "Ante una palabra nueva, primero buscá pistas en el contexto.",
+      "texto_simple": "Si no entendés una palabra, leé lo que está alrededor. Muchas veces te da la respuesta.",
+      "chequeo": {
+        "pregunta": "\"Los felinos, como el gato y el león, son cazadores.\" Un felino es…",
+        "opciones": [
+          "un animal parecido al gato y al león",
+          "un tipo de planta",
+          "un cazador de peces"
+        ],
+        "correcta": 0,
+        "bien": "¡Muy bien! Las pistas estaban en la misma oración.",
+        "mal": "Mirá los ejemplos que da la oración: \"como el gato y el león\"."
+      }
+    },
+    {
+      "id": "c4",
+      "titulo": "Cómo explica el autor",
+      "minutos": 3,
+      "esencial": false,
+      "lumai": "Los textos de divulgación usan trucos para que entiendas. Descubrilos en este texto sobre pulpos.",
+      "pose": "saludo",
+      "texto": "Para explicar, los textos usan definiciones (\"X es…\"), ejemplos, comparaciones (\"es como…\") y reformulaciones (\"es decir…\").\nReconocerlos te ayuda a separar la idea principal de lo que sirve para explicarla.",
+      "interactivo": {
+        "tipo": "texto_anotado",
+        "titulo": "🔍 Detectá los procedimientos",
+        "consigna": "Tocá las partes subrayadas.",
+        "segmentos": [
+          {
+            "texto": "Los pulpos son animales sorprendentes. "
+          },
+          {
+            "texto": "Pertenecen a los cefalópodos, moluscos marinos con los brazos unidos a la cabeza",
+            "etiqueta": "Definición",
+            "nota": "Explica qué son los cefalópodos."
+          },
+          {
+            "texto": ". Tienen tres corazones. "
+          },
+          {
+            "texto": "Su piel funciona como una pantalla que cambia de color",
+            "etiqueta": "Comparación",
+            "nota": "Relaciona la piel del pulpo con algo conocido."
+          },
+          {
+            "texto": " para camuflarse. "
+          },
+          {
+            "texto": "Por ejemplo, el pulpo mimo puede imitar a peces planos o serpientes marinas",
+            "etiqueta": "Ejemplo",
+            "nota": "Muestra un caso concreto."
+          },
+          {
+            "texto": ". Además, aprenden rápido; "
+          },
+          {
+            "texto": "es decir, pueden adaptarse a situaciones nuevas",
+            "etiqueta": "Reformulación",
+            "nota": "Vuelve a decir la idea con otras palabras."
+          },
+          {
+            "texto": "."
+          }
+        ]
+      },
+      "idea_clave": "Definiciones, ejemplos, comparaciones y reformulaciones ayudan a explicar.",
+      "texto_simple": "Los textos explican diciendo qué es algo, dando ejemplos o comparando.",
+      "chequeo": {
+        "pregunta": "\"Es decir, pueden adaptarse a situaciones nuevas\" es…",
+        "opciones": [
+          "una reformulación",
+          "una definición",
+          "una comparación"
+        ],
+        "correcta": 0,
+        "bien": "¡Exacto! \"Es decir\" anuncia que se dice lo mismo con otras palabras.",
+        "mal": "Fijate en \"es decir\". ¿Qué hace esa expresión?"
+      }
+    },
+    {
+      "id": "c5",
+      "titulo": "Darte cuenta de cuándo no entendés",
+      "minutos": 2,
+      "esencial": false,
+      "lumai": "El último truco del detective: saber cuándo te perdiste.",
+      "pose": "idea",
+      "texto": "Un buen lector se da cuenta cuando no entiende.\nSi al terminar un párrafo no podés decir de qué trataba, volvé a leerlo, buscá la palabra que te frenó o preguntá.\nReleer no es de lento: es de lector estratégico.",
+      "interactivo": {
+        "tipo": "ordenar",
+        "titulo": "🔢 Si no entendiste un párrafo…",
+        "consigna": "Ordená qué conviene hacer, del primer paso al último.",
+        "items": [
+          "Darme cuenta de que no puedo decir de qué trataba",
+          "Volver a leerlo con atención",
+          "Buscar la palabra que me frenó",
+          "Si sigo sin entender, preguntar"
+        ],
+        "cierre": "¡Muy bien! Así lee un lector estratégico."
+      },
+      "idea_clave": "Si no entendés, releé, buscá la palabra difícil o preguntá.",
+      "texto_simple": "Si no entendiste, leé otra vez. Si sigue sin entenderse, preguntá.",
+      "chequeo": {
+        "pregunta": "Terminaste un párrafo y no sabés de qué trataba. ¿Qué conviene hacer?",
+        "opciones": [
+          "releerlo",
+          "seguir leyendo igual",
+          "dejar el texto"
+        ],
+        "correcta": 0,
+        "bien": "¡Bien! Releer es una estrategia, no una pérdida de tiempo.",
+        "mal": "Si seguís de largo, ¿vas a entender lo que viene?"
+      }
+    }
+  ],
+  "vocabulario": [
+    {
+      "palabra": "Texto de divulgación",
+      "definicion": "Texto que explica temas científicos o culturales para el público en general."
+    },
+    {
+      "palabra": "Paratexto",
+      "definicion": "Todo lo que rodea al texto y da pistas sobre él: títulos, imágenes, epígrafes, fuente."
+    },
+    {
+      "palabra": "Epígrafe",
+      "definicion": "Texto breve que acompaña a una imagen y explica qué muestra."
+    },
+    {
+      "palabra": "Contexto",
+      "definicion": "Las palabras y oraciones que rodean a una palabra y ayudan a entenderla."
+    },
+    {
+      "palabra": "Fuente",
+      "definicion": "De dónde viene la información: quién la escribió y dónde se publicó."
+    }
+  ],
+  "errores_frecuentes": [
+    {
+      "error": "Leer bien es leer rápido.",
+      "aclaracion": "Leer bien es entender. A veces hay que ir despacio o releer."
+    },
+    {
+      "error": "Si no entiendo una palabra, no voy a entender el texto.",
+      "aclaracion": "Muchas palabras se entienden por el contexto. Seguí leyendo y buscá pistas."
+    },
+    {
+      "error": "Todo lo que está en internet es verdad.",
+      "aclaracion": "Hay que mirar la fuente (quién lo escribió y de dónde sacó la información) y comparar con otras fuentes."
+    }
+  ],
+  "para_ir_mas_alla": {
+    "pregunta": "Buscá dos textos sobre el mismo tema en fuentes distintas, por ejemplo una enciclopedia y un sitio de noticias. ¿Dicen lo mismo? ¿Cuál explica mejor y por qué? ¿En cuál confiarías más?",
+    "conexion": "Con todas las materias: los manuales de Biología, Historia o Geografía son textos de divulgación. Las mismas estrategias sirven para estudiar cualquier materia."
+  },
+  "preguntas_clave": [
+    {
+      "pregunta": "¿Qué es el paratexto?",
+      "respuesta": "Todo lo que rodea al texto y da pistas sobre él: títulos, subtítulos, imágenes, epígrafes y fuente."
+    },
+    {
+      "pregunta": "¿Qué es un epígrafe?",
+      "respuesta": "Un texto breve que acompaña a una imagen."
+    },
+    {
+      "pregunta": "¿Qué conviene hacer primero ante una palabra desconocida?",
+      "respuesta": "Buscar pistas en el contexto."
+    },
+    {
+      "pregunta": "¿Qué procedimiento se usa cuando el texto dice \"es como…\"?",
+      "respuesta": "Una comparación."
+    },
+    {
+      "pregunta": "¿Por qué conviene tener un propósito de lectura?",
+      "respuesta": "Porque define cómo leer: rápido para buscar un dato, despacio para estudiar."
+    },
+    {
+      "pregunta": "¿Qué es un texto de divulgación?",
+      "respuesta": "Un texto que explica temas científicos o culturales para el público en general."
+    }
+  ],
+  "interactivos": [
+    {
+      "tipo": "dato",
+      "ubicacion": "final",
+      "icono": "🐙",
+      "texto": "Los pulpos tienen sangre azul: para transportar el oxígeno usan una sustancia con cobre, y no con hierro como la nuestra."
+    }
+  ],
+  "lumai": {
+    "saludo": "¡Hola, {NOMBRE}! Hoy vamos a leer como detectives: buscando pistas antes, durante y después de leer. Son 5 cápsulas. ¿Listo para investigar?",
+    "cierre": "¡Misión cumplida, detective! Estas estrategias te sirven para leer textos de cualquier materia. Cuando quieras, vamos a las actividades."
+  },
+  "imagenes": [
+    {
+      "id": "len-1-04-a",
+      "ubicacion": "inicio",
+      "archivo": null,
+      "alt": "Un pulpo leyendo un artículo con una lupa",
+      "epigrafe": "¿Tres corazones? Un buen lector revisa de dónde sale el dato.",
+      "descripcion": "Ilustración simpática de un pulpo con una lupa examinando una hoja de diario cuyo titular dice \"Animales sorprendentes del mar\". Se ven tres pequeños corazones dibujados en el cuerpo del pulpo. Estilo caricatura amable, colores de LumAI."
+    },
+    {
+      "id": "len-1-04-b",
+      "ubicacion": "capsula",
+      "archivo": null,
+      "alt": "Página de una revista de divulgación con su título, subtítulos, imagen, epígrafe y fuente señalados",
+      "epigrafe": "Las pistas del paratexto.",
+      "descripcion": "Página de revista de divulgación sobre volcanes, con flechas y etiquetas que señalan: \"Título\", \"Subtítulo\", \"Imagen\", \"Epígrafe\", \"Palabra destacada\" y \"Fuente\". Diseño claro, etiquetas grandes en naranja, texto de relleno ilegible para no distraer."
+    }
+  ]
+}
