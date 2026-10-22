@@ -344,7 +344,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a conocer la pieza con la que está armada toda la vida: la célula. Son 5 actividades. Para empezar, pensá en esto.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya conocés la célula por dentro. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya conocés la célula por dentro. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -464,5 +464,22 @@
       "Las bacterias no tienen núcleo.",
       "Las células vegetales tienen cloroplastos."
     ]
+  },
+  "problema": {
+    "pregunta": "¿Por qué nadie vio las células hasta hace unos 360 años?",
+    "opciones": [
+      "Porque antes no existían",
+      "Porque son tan chiquitas que hizo falta el microscopio",
+      "Porque estaban escondidas dentro de los huesos"
+    ],
+    "correcta": 1,
+    "simple": {
+      "pregunta": "¿Por qué antes no se veían las células?",
+      "opciones": [
+        "Son muy chiquitas",
+        "No existían"
+      ],
+      "correcta": 0
+    }
   }
 }

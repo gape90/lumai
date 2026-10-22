@@ -15,23 +15,26 @@ import {
 
 let gameInstance = null;
 
+// Palabras que el alumno no encontró la primera vez: la sopa vuelve al final, como última oportunidad
+let sopaPendiente = null;
+
 // ==================== CONFIGURACIÓN ADAPTATIVA ====================
 function obtenerConfiguracionSopa() {
     const nivel = nivelDeApoyo() || estadoGlobal.perfil.dimensiones.razonamiento_logico;
     const configuraciones = {
         "bajo": { 
-            gridSize: 10, 
+            gridSize: 7, 
             allowDiagonal: false, 
             allowReverse: false, 
             cantidadPalabras: 3,
-            descripcion: "Básico - Grid 10x10, solo horizontal/vertical" 
+            descripcion: "Básico - Grid 7x7, solo horizontal/vertical" 
         },
         "medio": { 
-            gridSize: 12, 
+            gridSize: 9, 
             allowDiagonal: false, 
-            allowReverse: true, 
+            allowReverse: false, 
             cantidadPalabras: 4,
-            descripcion: "Intermedio - Grid 12x12, + dirección reversa" 
+            descripcion: "Intermedio - Grid 9x9, horizontal/vertical" 
         },
         "alto": { 
             gridSize: 14, 
@@ -469,6 +472,17 @@ function corregirGramaticaPalabra(palabra) {
 export async function generarActividad() {
     console.log("Generando actividad Sopa de Letras con IA...");
     
+    // Última oportunidad: solo las palabras que quedaron pendientes
+    if (sopaPendiente && sopaPendiente.palabras.length) {
+        return {
+            tipo: "sopa-de-letras",
+            actividades: sopaPendiente.palabras,
+            configuracion: obtenerConfiguracionSopa(),
+            instrucciones: "Buscá las palabras que quedaron pendientes",
+            ultimaOportunidad: true
+        };
+    }
+
     try {
         const config = obtenerConfiguracionSopa();
         console.log(`Configuración para ${estadoGlobal.perfil.nombre_visible}: ${config.descripcion}`);
@@ -516,7 +530,7 @@ async function generarPalabrasConIA() {
     
     const nivelApoyo = nivelDeApoyo() || 'medio';
     const maxPalabras = { bajo: 6, medio: 8, alto: 12 }[nivelApoyo];
-    const maxLetras = Math.min(config.gridSize - 1, nivelApoyo === 'bajo' ? 8 : 10);
+    const maxLetras = Math.min(config.gridSize - 1, nivelApoyo === 'bajo' ? 6 : 8);
 
     const prompt = `
 Eres docente y armas una "Sopa de Letras" para estudiantes de secundaria.
@@ -829,7 +843,7 @@ export async function renderizar() {
         <div style="text-align: center; padding: 20px;">
             <h2 style="color: #00509e; margin-bottom: 15px;">Sopa de Letras</h2>
             <p style="margin-bottom: 10px; color: #666;">
-                <strong>Instrucciones:</strong> Encuentra las palabras ocultas en el tablero
+                <strong>Instrucciones:</strong> ${estadoGlobal.actividadActual.ultimaOportunidad ? 'Última oportunidad: buscá las palabras que quedaron pendientes.' : 'Leé la pista y buscá la palabra en el tablero.'} ${config.allowDiagonal ? 'Puede estar en horizontal, vertical o diagonal.' : 'Puede estar en horizontal (→) o vertical (↓).'} Tocá las letras en orden y apretá Verificar.
             </p>
             <div id="sopa-game-container" style="margin: 20px auto; max-width: 600px;"></div>
         </div>
@@ -837,6 +851,7 @@ export async function renderizar() {
     
     const palabras = estadoGlobal.actividadActual.actividades;
     gameInstance = new SopaDeLetrasGame('sopa-game-container', palabras, config);
+    gameInstance.ultimaOportunidad = !!estadoGlobal.actividadActual.ultimaOportunidad;
     
     // Resetear contadores para nueva sesión
     gameInstance.resetearContadores();
@@ -925,6 +940,9 @@ function crearHTMLJuego(config) {
             .sopa-tablero {
                 display: grid;
                 grid-template-columns: repeat(${config.gridSize}, 1fr);
+                max-width: ${Math.min(500, config.gridSize * 56)}px;
+                margin-left: auto;
+                margin-right: auto;
                 gap: 2px; /* REDUCIDO 25% ADICIONAL: era 3px, ahora 2px */
                 justify-content: center;
                 margin-bottom: 15px; /* REDUCIDO: era 20px, ahora 15px */
@@ -962,6 +980,7 @@ function crearHTMLJuego(config) {
                 font-weight: bold; /* AGREGADO: mantener negrita en selección */
             }
             
+            .sopa-solucion { background: #2ecc71 !important; color: #fff !important; outline: 3px solid #fff; }
             .sopa-encontrada {
                 background-color: #28a745 !important;
                 color: white;
@@ -1287,7 +1306,7 @@ class SopaDeLetrasGame {
         }
         
         // CORREGIDO: AGREGAR ESPACIO DESPUÉS DE "Busca:"
-        this.elementos.pista.innerHTML = `<strong>Busca:</strong> ${palabra.pista}`;
+        this.elementos.pista.innerHTML = `<strong>Busca:</strong>&nbsp;${palabra.pista}`;
         
         this.estado.seleccion = [];
         
@@ -1299,33 +1318,39 @@ class SopaDeLetrasGame {
     
     // NUEVA LÓGICA: Completar ronda
     completarRonda() {
-        if (this.rondaActual === 1) {
-            // Terminó la primera ronda
-            this.todasLasPalabrasMostradas = true;
-            
-            if (this.palabrasIncorrectas.length === 0) {
-                // PERFECTO: Encontró todas en la primera ronda
-                console.log('PERFECTO: Todas las palabras encontradas en primera ronda');
-                this.completarActividad(true);
-                return;
-            } else {
-                // Hay palabras no encontradas, continuar con ronda 2
-                console.log(`Primera ronda terminada. ${this.palabrasIncorrectas.length} palabras no encontradas`);
-                this.iniciarSiguienteRonda();
-            }
-        } else {
-            // Terminó una ronda de repetición
-            if (this.palabrasIncorrectas.length === 0) {
-                // ÉXITO: Encontró todas las palabras faltantes
-                console.log('ÉXITO: Encontró todas las palabras faltantes');
-                this.completarActividad(true);
-                return;
-            } else {
-                // Aún hay palabras no encontradas, continuar
-                console.log(`Ronda ${this.rondaActual} terminada. ${this.palabrasIncorrectas.length} palabras aún no encontradas`);
-                this.iniciarSiguienteRonda();
-            }
+        // Última oportunidad: termina siempre; la sopa ya no vuelve a aparecer
+        if (this.ultimaOportunidad) {
+            sopaPendiente = null;
+            estadoGlobal.sopaDiferida = false;
+            this.completarActividad(true);
+            return;
         }
+        if (this.palabrasIncorrectas.length === 0) {
+            sopaPendiente = null;
+            estadoGlobal.sopaDiferida = false;
+            this.completarActividad(true);
+            return;
+        }
+        // Quedaron palabras sin encontrar: se guardan (sin mostrar la respuesta) y la sopa vuelve al final
+        this.guardarPendientes();
+        this.mostrarToast('Esta sopa te va a esperar al final. ¡Seguimos!', 2000);
+        this.completarActividad(false);
+    }
+
+    guardarPendientes() {
+        sopaPendiente = { palabras: this.palabrasIncorrectas.map(i => this.palabras[i]).filter(Boolean) };
+        estadoGlobal.sopaDiferida = sopaPendiente.palabras.length > 0;
+    }
+
+    // Última oportunidad: se muestra dónde estaba la palabra
+    revelarRespuesta() {
+        this.estado.seleccion.forEach(c => c.classList.remove('sopa-seleccionada'));
+        this.estado.seleccion = [];
+        this.estado.palabraCoords.forEach(({ r, c }) => {
+            const celda = this.elementos.tablero.querySelector(`[data-fila="${r}"][data-col="${c}"]`);
+            if (celda) celda.classList.add('sopa-solucion');
+        });
+        this.mostrarToast(`La palabra era ${this.estado.palabraActual.palabra}`, 2600);
     }
     
     iniciarSiguienteRonda() {
@@ -1512,11 +1537,24 @@ class SopaDeLetrasGame {
     
     // NUEVA LÓGICA DE VERIFICACIÓN CON RONDAS Y TRACKING
     verificarSeleccion() {
-        // CASO 1: No hay selección
+        // CASO 1: No hay selección -> se pasa a la siguiente pista (sin mostrar la respuesta ni sumar error)
         if (this.estado.seleccion.length === 0) {
-            this.mostrarToast('¡Selecciona las letras!');
+            if (this.estado.verificando) return;
+            this.estado.verificando = true;
+            if (this.ultimaOportunidad) {
+                this.revelarRespuesta();
+            } else {
+                if (!this.palabrasIncorrectas.includes(this.estado.indicePalabraGlobal)) this.palabrasIncorrectas.push(this.estado.indicePalabraGlobal);
+                this.mostrarToast('Probemos con otra palabra. Esta queda para más tarde.', 1800);
+            }
+            setTimeout(() => {
+                this.estado.verificando = false;
+                this.estado.indicePalabraRonda++;
+                this.generarPalabra();
+            }, this.ultimaOportunidad ? 2800 : 1600);
             return;
         }
+        if (this.estado.verificando) return;
 
         const palabraFormada = this.estado.seleccion.map(c => c.textContent).join('');
         const palabraInvertida = palabraFormada.split('').reverse().join('');
@@ -1556,12 +1594,24 @@ class SopaDeLetrasGame {
                 console.log(`Palabra ${this.estado.indicePalabraGlobal} encontrada. No encontradas restantes: ${this.palabrasIncorrectas.length}`);
             }
             
+            (this.estado.encontradas = this.estado.encontradas || []).push(this.estado.indicePalabraGlobal);
             this.manejarPalabraEncontrada();
             
             if (this.onPalabraEncontrada) {
                 this.onPalabraEncontrada(this.estado.palabraActual, this.estado.indicePalabraRonda + 1);
             }
             
+        } else if (this.ultimaOportunidad) {
+            // Última oportunidad: se muestra la respuesta y se sigue
+            this.estado.verificando = true;
+            this.revelarRespuesta();
+            this.actualizarHUD();
+            setTimeout(() => {
+                this.estado.verificando = false;
+                this.estado.indicePalabraRonda++;
+                this.generarPalabra();
+            }, 2800);
+            return;
         } else {
             // PALABRA NO ENCONTRADA
             this.erroresAcumulados++;
@@ -1581,6 +1631,10 @@ class SopaDeLetrasGame {
                 console.log(`MÁXIMO DE ERRORES ALCANZADO (${this.erroresAcumulados}/${this.maxErrores})`);
                 this.mostrarToast('¡UPS! Sigamos con otro', 2000);
                 this.actualizarHUD();
+                // Las palabras que no encontró quedan pendientes (no se muestra la respuesta todavía)
+                const encontradas = new Set(this.estado.encontradas || []);
+                this.palabrasIncorrectas = this.palabras.map((_, i) => i).filter(i => !encontradas.has(i));
+                this.guardarPendientes();
                 
                 // Completar inmediatamente - LUMAI maneja el mensaje
                 this.completarActividad(false); // Falló por errores

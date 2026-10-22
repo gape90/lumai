@@ -380,7 +380,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! ¿Alguna vez una charla terminó en pelea sin que nadie se diera cuenta? Son 5 actividades cortas para aprender a discutir sin pelear. Mirá lo que pasó en este grupo.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés separar hechos de opiniones y defender tus ideas con argumentos. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés separar hechos de opiniones y defender tus ideas con argumentos. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -488,5 +488,22 @@
       "Un hecho se puede comprobar.",
       "Una opinión es lo que yo pienso."
     ]
+  },
+  "problema": {
+    "pregunta": "¿En qué momento una charla se convierte en discusión?",
+    "opciones": [
+      "Cuando alguien levanta la voz",
+      "Cuando aparece un problema y hay posiciones distintas",
+      "Cuando hay muchos mensajes"
+    ],
+    "correcta": 1,
+    "simple": {
+      "pregunta": "¿Cuándo una charla es una discusión?",
+      "opciones": [
+        "Cuando hay un problema y posiciones distintas",
+        "Cuando hay muchos mensajes"
+      ],
+      "correcta": 0
+    }
   }
 }

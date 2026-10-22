@@ -325,7 +325,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a leer como detectives: buscando pistas antes, durante y después de leer. Son 5 actividades. ¿Listo para investigar?",
-    "cierre": "¡Misión cumplida, detective! Estas estrategias te sirven para leer textos de cualquier materia. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, detective! Estas estrategias te sirven para leer textos de cualquier materia. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -427,5 +427,22 @@
       "Si no entiendo, vuelvo a leer.",
       "La fuente dice de dónde viene el dato."
     ]
+  },
+  "problema": {
+    "pregunta": "¿Cómo podés saber de qué trata un texto antes de leerlo completo?",
+    "opciones": [
+      "Mirando el título, los subtítulos, las imágenes y la fuente",
+      "Leyendo solo la última palabra",
+      "No se puede saber"
+    ],
+    "correcta": 0,
+    "simple": {
+      "pregunta": "¿Cómo anticipás de qué trata un texto?",
+      "opciones": [
+        "Mirando título e imágenes",
+        "Leyendo la última palabra"
+      ],
+      "correcta": 0
+    }
   }
 }

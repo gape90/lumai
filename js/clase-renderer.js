@@ -615,7 +615,7 @@ function inyectarEstilos() {
   if (document.querySelector('style[data-lc-estilos]')) return;
   const estilo = document.createElement('style');
   estilo.setAttribute('data-lc-estilos', '');
-  estilo.textContent = ESTILOS + ESTILOS_CARPETA;
+  estilo.textContent = ESTILOS + ESTILOS_CARPETA + ESTILOS_EXTRA;
   document.head.appendChild(estilo);
 }
 
@@ -1107,7 +1107,7 @@ const FRASES_LUMAI = {
   saludo: '¡Hola, {NOMBRE}! Soy LumAI y hoy vamos a descubrir algo nuevo juntos. Arranquemos con una pregunta.',
   idea: 'Prestá atención, porque esto es lo más importante de toda la clase:',
   pasos: 'Ahora vamos paso a paso. Abrí cada parte cuando estés listo.',
-  cierre: '¡Muy bien! Ya conocés lo esencial. Cuando quieras, pasamos a las actividades.'
+  cierre: '¡Muy bien! Ya conocés lo esencial. Ahora volvamos al problema del principio. Después jugamos repasando.'
 };
 
 function crearLumai(texto, pose, opciones) {
@@ -1183,19 +1183,82 @@ function crearMiLugar(d, ctx, idCapsula) {
   area.id = id;
   area.setAttribute('aria-label', d.pregunta.replace(/\*/g, ''));
   area.placeholder = d.ayuda || 'Escribí tu respuesta acá…';
-  const fila = el('div', 'lc-lugar-fila', '<small>Es para vos: no hay respuestas correctas.</small>');
+  const fila = el('div', 'lc-lugar-fila', '<small>Escribí con tus palabras. LumAI lo lee y te dice cómo te fue.</small>');
   const listo = el('button', 'lc-btn lc-sec lc-btn-chico', 'Listo');
   listo.type = 'button';
   const ok = el('span', 'lc-lugar-ok');
   ok.setAttribute('aria-live', 'polite');
-  listo.addEventListener('click', () => {
-    const largo = area.value.trim().length;
-    ok.textContent = largo ? '¡Gracias! Lo que pasa en tu lugar también es parte de lo que aprendés.' : 'Si querés, pensalo un momento y escribilo.';
-    if (largo) registrar('clase_mi_lugar', { clase: ctx.id, capsula: idCapsula, caracteres: largo });
+  let intentos = 0;
+  listo.addEventListener('click', async () => {
+    const texto = area.value.trim();
+    ok.className = 'lc-lugar-ok';
+    if (texto.replace(/[^\p{L}]/gu, '').length < 4) { ok.textContent = 'Escribí tu respuesta para poder seguir. Si no sabés, escribí qué pensás o qué te gustaría preguntar.'; return; }
+    intentos += 1;
+    listo.disabled = true;
+    ok.textContent = '🤖 LumAI está leyendo tu respuesta…';
+    let r;
+    try {
+      r = typeof ctx.opciones.corregir === 'function'
+        ? await ctx.opciones.corregir({ tipo: 'lugar', consigna: String(d.pregunta).replace(/\*/g, ''), respuesta: texto })
+        : { ok: true, mensaje: 'Anotado. LumAI no pudo revisarlo ahora, pero quedó guardado.', sinRevision: true };
+    } catch (e) { r = { ok: true, mensaje: 'Anotado. LumAI no pudo revisarlo ahora, pero quedó guardado.', sinRevision: true }; }
+    listo.disabled = false;
+    if (r.ok || intentos >= 2) {
+      ok.className = 'lc-lugar-ok lc-lugar-bien';
+      ok.textContent = (r.ok ? '✅ ' : '📝 ') + (r.mensaje || 'Muy bien.');
+      registrar('clase_mi_lugar', { clase: ctx.id, capsula: idCapsula, caracteres: texto.length, revision: r.sinRevision ? 'sin_ia' : (r.ok ? 'ok' : 'con_observaciones'), intentos, respuesta: texto.slice(0, 500) });
+    } else {
+      ok.className = 'lc-lugar-ok lc-lugar-mal';
+      ok.textContent = '✏️ ' + (r.mensaje || 'Probá escribirlo de nuevo, con más detalle.');
+    }
   });
   fila.append(listo);
   t.append(area, fila, ok);
   return t;
+}
+
+function crearProblemaFinal(clase, prob, aj, rotulos, ctx, irAActividades) {
+  const simple = !!((aj.texto && aj.texto !== 'completo') || aj.opciones < 3) && !!prob.simple;
+  const v = simple ? prob.simple : prob;
+  const caja = el('div', 'lc-tarjeta lc-problema-final');
+  caja.appendChild(el('h3', '', `${rotulos.iconoMision} Volvamos al problema de hoy`));
+  caja.appendChild(el('p', 'lc-problema-intro', 'Al empezar te hicimos una pregunta. Ahora, con todo lo que aprendiste, ¡ya podés resolverla!'));
+  caja.appendChild(el('p', 'lc-problema-pregunta', `<b>${fmt(v.pregunta)}</b>`));
+  const lista = el('div', 'lc-opciones');
+  const fb = el('div', 'lc-problema-fb');
+  fb.setAttribute('aria-live', 'polite');
+  const orden = v.opciones.map((t, i) => ({ t, i }));
+  for (let i = orden.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [orden[i], orden[j]] = [orden[j], orden[i]]; }
+  let intentos = 0;
+  let resuelto = false;
+  orden.forEach(({ t, i }) => {
+    const b = el('button', 'lc-opcion', fmt(t));
+    b.type = 'button';
+    b.addEventListener('click', () => {
+      if (resuelto) return;
+      intentos += 1;
+      fb.innerHTML = '';
+      if (i === v.correcta) {
+        resuelto = true;
+        b.classList.add('lc-opcion-bien');
+        lista.querySelectorAll('button').forEach(x => { x.disabled = true; });
+        fb.appendChild(el('p', 'lc-fb-bien', `🎉 <b>¡Lo resolviste!</b> ${clase.mision?.resuelta ? fmt(clase.mision.resuelta) : ''}`));
+        registrar('clase_problema_final', { clase: ctx.id, acerto: true, intentos });
+      } else {
+        b.classList.add('lc-opcion-mal');
+        b.disabled = true;
+        fb.appendChild(el('p', 'lc-fb-mal', '🤔 Todavía no. No pasa nada: volvé a mirar las actividades y probá de nuevo con otra opción.'));
+        const volver = el('button', 'lc-btn lc-sec lc-btn-chico', '↩ Volver a las actividades');
+        volver.type = 'button';
+        volver.addEventListener('click', irAActividades);
+        fb.appendChild(volver);
+        registrar('clase_problema_final', { clase: ctx.id, acerto: false, intentos });
+      }
+    });
+    lista.appendChild(b);
+  });
+  caja.append(lista, fb);
+  return caja;
 }
 
 function crearChequeo(ch, ctx, idCapsula, alAcertar) {
@@ -1394,9 +1457,6 @@ function renderizarCapsulas(clase, destino, opciones) {
         const def = el('div', 'lc-def', `<span><b>${escapar(v.palabra)}:</b> ${fmt(v.definicion)}</span>`);
         def.dataset.palabra = v.palabra;
         def.setAttribute('role', 'note');
-        if (conAsistente) {
-          def.appendChild(botonPreguntar('💬 Preguntale a LumAI', { capsula: capId, pregunta: `¿Qué significa "${v.palabra}"? Explicámelo con otro ejemplo.`, contexto: v.definicion }));
-        }
         parrafo.after(def);
         b.setAttribute('aria-expanded', 'true');
         registrar('clase_termino', { clase: ctx.id, capsula: capId, palabra: v.palabra });
@@ -1423,15 +1483,24 @@ function renderizarCapsulas(clase, destino, opciones) {
   // Portada
   const portada = el('section', 'lc-cap');
   portada.appendChild(crearLumai(frases.saludo, 'saludo', opciones));
+  const usaSimple = !!(aj.texto && aj.texto !== 'completo');
+  const prob = clase.problema || null;
+  const preguntaProblema = prob ? (usaSimple && prob.simple?.pregunta ? prob.simple.pregunta : prob.pregunta) : (clase.gancho?.pregunta || '');
   if (clase.gancho?.texto) {
+    // Situación + problema en un solo recuadro: el alumno lee el problema, pero sabe que se resuelve al final
     const g = el('div', 'lc-gancho');
     g.appendChild(el('div', 'lc-rotulo', escapar(clase.gancho.rotulo || 'Para arrancar')));
     g.appendChild(el('p', 'lc-gancho-texto', fmt(clase.gancho.texto)));
-    if (clase.gancho.pregunta) g.appendChild(el('p', 'lc-gancho-texto', `<b>${fmt(clase.gancho.pregunta)}</b>`));
+    if (preguntaProblema) {
+      const pb = el('div', 'lc-problema');
+      pb.appendChild(el('div', 'lc-problema-rotulo', `${rotulos.iconoMision} ${escapar(rotulos.mision)}`));
+      pb.appendChild(el('p', 'lc-problema-pregunta', fmt(preguntaProblema)));
+      pb.appendChild(el('p', 'lc-problema-aviso', '👉 Todavía no lo respondas. Primero hacé las actividades: al final de la clase vas a poder resolverlo.'));
+      g.appendChild(pb);
+    }
     portada.appendChild(g);
   }
   (clase.imagenes || []).filter(d => d.ubicacion === 'inicio').forEach(d => ponerImagen(d.id, portada));
-  if (clase.mision?.texto) portada.appendChild(notaConIcono('lc-mision', rotulos.iconoMision, escapar(rotulos.mision), `<p>${fmt(clase.mision.texto)}</p>`));
   const agenda = el('div', 'lc-tarjeta');
   agenda.appendChild(el('h3', '', aj.sin_tiempos ? escapar(rotulos.recorrido) : `${escapar(rotulos.recorrido)} · unos ${totalMin} minutos`));
   agenda.appendChild(el('ol', 'lc-agenda', capsulas.map(c => `<li><span>${fmt(c.titulo)}</span>${aj.sin_tiempos ? '' : `<small>${c.minutos || 2} min</small>`}</li>`).join('')));
@@ -1520,13 +1589,7 @@ function renderizarCapsulas(clase, destino, opciones) {
         c.texto_simple ? `<p>${fmt(c.texto_simple)}</p>` : '',
         { abierto: aj.texto === 'con_simple', claseExtra: 'lc-ayuda', alAbrir: () => registrar('clase_ayuda', { clase: ctx.id, capsula: capId, titulo: c.titulo }) });
       if (conAsistente) {
-        const contexto = String(c.texto || '').replace(/\*+/g, '');
-        const acciones = el('div', 'lc-ayuda-acciones');
-        acciones.append(
-          botonPreguntar('💬 Preguntale a LumAI', { capsula: capId, pregunta: null, contexto }),
-          botonPreguntar('🔁 Pedile otro ejemplo', { capsula: capId, pregunta: `Dame otro ejemplo sobre: ${c.titulo}`, contexto })
-        );
-        ayuda.querySelector('.lc-panel').appendChild(acciones);
+        ayuda.querySelector('.lc-panel').appendChild(el('p', 'lc-aviso-ia', '🤖 ¿Tenés una duda o querés otros ejemplos? Tocá a <b>LumAI responde</b>, el robot de abajo a la derecha.'));
       }
       s.appendChild(ayuda);
     }
@@ -1550,7 +1613,7 @@ function renderizarCapsulas(clase, destino, opciones) {
     const h = el('h3', 'lc-cap-titulo', '📒 Mi carpeta');
     h.tabIndex = -1;
     sc.appendChild(h);
-    const carpeta = crearMiCarpeta(clase, { ajustes: aj, dimensiones: opciones.dimensiones || null, nombreAlumno: (opciones.nombreAlumno || '').trim(), registrar });
+    const carpeta = crearMiCarpeta(clase, { ajustes: aj, dimensiones: opciones.dimensiones || null, registrar, corregir: opciones.corregir || null });
     sc.appendChild(carpeta.nodo);
     pantallas.push({ nodo: sc, tipo: 'carpeta', lista: true, paso: '📒', leer: null });
   }
@@ -1559,13 +1622,18 @@ function renderizarCapsulas(clase, destino, opciones) {
   const cierre = el('section', 'lc-cap');
   cierre.appendChild(crearLumai(frases.cierre, 'idea', opciones));
   const cabCierre = el('div', 'lc-logro-cab', '<span class="lc-logro-icono" aria-hidden="true">🏁</span>');
-  const hCierre = el('h3', 'lc-cap-titulo', '¡Misión cumplida!');
+  const hCierre = el('h3', 'lc-cap-titulo', '¡Llegaste al final de la clase!');
   hCierre.tabIndex = -1;
   cabCierre.appendChild(hCierre);
   const puntaje = el('span', 'lc-puntaje');
   if (conChequeo && !aj.sin_puntaje) cabCierre.appendChild(puntaje);
   cierre.appendChild(cabCierre);
-  if (clase.mision?.resuelta) cierre.appendChild(notaConIcono('lc-mision', rotulos.iconoMision, escapar(rotulos.resuelta), `<p>${fmt(clase.mision.resuelta)}</p>`));
+
+  // Volver al problema del principio: ahora sí se puede resolver
+  const irAActividades = () => mostrar(1);
+  if (prob) cierre.appendChild(crearProblemaFinal(clase, prob, aj, rotulos, ctx, irAActividades));
+  else if (clase.mision?.resuelta) cierre.appendChild(notaConIcono('lc-mision', rotulos.iconoMision, escapar(rotulos.resuelta), `<p>${fmt(clase.mision.resuelta)}</p>`));
+
   const ideas = capsulas.filter(c => c.idea_clave);
   if (ideas.length) {
     const t = el('div', 'lc-tarjeta', `<h3>${escapar(rotulos.resumen)}</h3>`);
@@ -1578,14 +1646,7 @@ function renderizarCapsulas(clase, destino, opciones) {
   const chips = el('div', 'lc-chips');
   const respuesta = el('div', 'lc-autoeval-resp');
   respuesta.setAttribute('aria-live', 'polite');
-  const masDificil = () => pantallas.filter(p => p.tipo === 'capsula' && p.intentos > 1).sort((a, b) => b.intentos - a.intentos)[0];
-  const botonVolver = (p) => {
-    const b = el('button', 'lc-btn lc-sec lc-btn-chico', `↩ Volver a "${fmt(p.titulo)}"`);
-    b.type = 'button';
-    b.addEventListener('click', () => mostrar(pantallas.indexOf(p)));
-    return b;
-  };
-  [['entendi', '😊 Lo entendí'], ['mas_o_menos', '😐 Más o menos'], ['me_costo', '😟 Me costó']].forEach(([valor, etiqueta]) => {
+  [['entendi', '😊 Lo entendí'], ['mas_o_menos', '😐 Más o menos']].forEach(([valor, etiqueta]) => {
     const b = el('button', 'lc-chip', etiqueta);
     b.type = 'button';
     b.setAttribute('aria-pressed', 'false');
@@ -1593,16 +1654,15 @@ function renderizarCapsulas(clase, destino, opciones) {
       chips.querySelectorAll('.lc-chip').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
       registrar('clase_autoevaluacion', { clase: ctx.id, respuesta: valor, aciertos, preguntas: conChequeo });
       respuesta.innerHTML = '';
-      const dificil = masDificil();
       if (valor === 'entendi') {
-        respuesta.appendChild(el('p', '', '¡Genial! Ya estás listo para las actividades. Si querés, antes repasá las palabras clave.'));
-      } else if (valor === 'mas_o_menos') {
-        respuesta.appendChild(el('p', '', `Está muy bien darse cuenta. Repasá las palabras clave de abajo${dificil ? ' y volvé a la actividad donde más dudaste.' : '.'}`));
-        if (dificil) respuesta.appendChild(botonVolver(dificil));
+        respuesta.appendChild(el('p', '', '¡Genial! Ya estás listo para jugar repasando. Si querés, antes repasá las palabras clave de abajo.'));
       } else {
-        respuesta.appendChild(el('p', '', 'Gracias por decirlo: así se aprende. Volvé a mirar la actividad con calma y abrí "¿Te trabaste?" para leerla más fácil.'));
-        respuesta.appendChild(botonVolver(dificil || pantallas[1]));
-        if (conAsistente) respuesta.appendChild(botonPreguntar('💬 Preguntale a LumAI', { capsula: null, pregunta: `Me costó entender la clase "${clase.titulo}". ¿Me la explicás de otra forma?`, contexto: clase.idea_central || '' }));
+        respuesta.appendChild(el('p', '', 'Está muy bien darse cuenta. Te recomiendo volver a ver las actividades con calma. Después repasá las palabras clave y las trampas que están más abajo.'));
+        const otra = el('button', 'lc-btn lc-btn-chico', '↩ Empezar las actividades de nuevo');
+        otra.type = 'button';
+        otra.addEventListener('click', () => mostrar(1));
+        respuesta.appendChild(otra);
+        if (conAsistente) respuesta.appendChild(el('p', 'lc-aviso-ia', '🤖 Si te quedan dudas, preguntale a <b>LumAI responde</b>, el robot de abajo a la derecha.'));
       }
     });
     chips.appendChild(b);
@@ -1684,6 +1744,7 @@ function renderizarCapsulas(clase, destino, opciones) {
     raiz.dispatchEvent(new CustomEvent('lumai:capsula', { bubbles: true, composed: true, detail: p.tipo === 'capsula' ? { id: p.id, numero: p.numero, titulo: p.titulo } : null }));
     if (mover && p.tipo === 'capsula' && aj.voz >= 2 && p.leer) setTimeout(p.leer, 300);
     if (p.tipo === 'cierre') {
+      raiz.dispatchEvent(new CustomEvent('lumai:cierre', { bubbles: true, composed: true, detail: { clase: ctx.id } }));
       puntaje.textContent = `⭐ ${aciertos} de ${conChequeo} preguntas bien a la primera`;
       if (!completada) { completada = true; registrar('clase_completada', { clase: ctx.id, aciertos, preguntas: conChequeo }); }
     }
@@ -1747,13 +1808,33 @@ function montar(contenedor) {
   if (host.attachShadow) {
     const sombra = host.attachShadow({ mode: 'open' });
     const estilo = document.createElement('style');
-    estilo.textContent = ESTILOS + ESTILOS_CARPETA;
+    estilo.textContent = ESTILOS + ESTILOS_CARPETA + ESTILOS_EXTRA;
     sombra.appendChild(estilo);
     return sombra;
   }
   inyectarEstilos();
   return host;
 }
+
+
+const ESTILOS_EXTRA = `
+.lc-problema{margin-top:14px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.35)}
+.lc-problema-rotulo{font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#ffd76a;margin-bottom:6px}
+.lc-problema-pregunta{margin:0 0 6px;font-size:1.15rem;font-weight:700}
+.lc-problema-aviso{margin:0;font-size:.92rem;opacity:.95}
+.lc-clase.lc-calmo .lc-problema{background:#fff;border-color:var(--lc-borde)}
+.lc-problema-final .lc-problema-intro{margin:0 0 8px}
+.lc-problema-final .lc-problema-pregunta{font-size:1.1rem;margin:0 0 10px}
+.lc-opcion-bien{border-color:var(--lc-verde)!important;background:var(--lc-verde-claro)!important}
+.lc-opcion-mal{border-color:#d1495b!important;background:#fdecee!important;opacity:.8}
+.lc-problema-fb{margin-top:10px;display:grid;gap:8px}
+.lc-problema-fb p{margin:0}
+.lc-fb-bien{padding:10px 12px;border-radius:10px;background:var(--lc-verde-claro);border:1px solid #bfe9da}
+.lc-fb-mal{padding:10px 12px;border-radius:10px;background:var(--lc-acento-claro,#fff8e1);border:1px solid var(--lc-acento-borde,#f6dc8c)}
+.lc-aviso-ia{margin:8px 0 0;padding:8px 12px;border-radius:10px;background:var(--lc-azul-claro);font-size:.95rem}
+.lc-lugar-bien{color:var(--lc-verde-osc);font-weight:600}
+.lc-lugar-mal{color:var(--lc-naranja-osc);font-weight:600}
+`;
 
 export function renderizarClase(clase, contenedor, opciones = {}) {
   if (!clase || !contenedor) throw new Error('renderizarClase necesita una clase y un contenedor');

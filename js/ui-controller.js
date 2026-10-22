@@ -29,6 +29,7 @@ import {
 import './lumai-metrics-tracker.js';
 
 import { renderizarClase, claseATexto } from './clase-renderer.js';
+import { corregirRespuestaIA } from './chat-tutor.js';
 import { buscarClaseBase } from './clases-base.js';
 import { cargarReglas, calcularAjustes, perfilDesdePlantilla } from './adaptacion.js';
 
@@ -367,12 +368,30 @@ async function mostrarClaseBaseSiExiste() {
     renderizarClase(clase, estadoGlobal.elementosDOM.explicacionEl, {
         ajustes,
         dimensiones: estadoGlobal.perfilDimensiones || null,   // solo para decidir cómo escribe en Mi carpeta; no se guarda ni se envía
+        corregir: (datos) => corregirRespuestaIA(datos),   // LumAI lee lo que escribe el alumno (no recibe su nombre)
         asistente: true,   // botones "preguntale a LumAI" que abren el chat
         nombreAlumno: datosSession.nombreAlumno,
         rutaImagenes: 'img/',
         rutaImagenesClase: 'img/clases/',
         mostrarTitulo: false   // el tema ya se muestra en el encabezado de LumAI
     });
+
+    // "Jugamos repasando" se habilita recién al llegar a la última pantalla de la clase
+    const btnJuego = estadoGlobal.elementosDOM.btnIniciarActividades;
+    if (btnJuego) {
+        btnJuego.textContent = '🎮 Jugamos repasando';
+        btnJuego.disabled = true;
+        btnJuego.title = 'Se activa cuando llegás al final de la clase';
+        btnJuego.setAttribute('aria-disabled', 'true');
+        if (!estadoGlobal.cierreEscuchado) {
+            estadoGlobal.cierreEscuchado = true;
+            document.addEventListener('lumai:cierre', () => {
+                btnJuego.disabled = false;
+                btnJuego.removeAttribute('aria-disabled');
+                btnJuego.title = '';
+            });
+        }
+    }
 
     // Las actividades, la lectura en voz alta y el chat usan el texto de la clase
     const texto = claseATexto(clase);
@@ -649,13 +668,47 @@ function volverAExplicacion() {
 
 function finalizarClase() {
     console.log('🏁 Finalizando clase...');
-    
-    if (window.lumaiTracker) {
-        window.lumaiTracker.endSession();
+    if (window.finalizandoClase) return;
+    window.finalizandoClase = true;
+
+    const nombre = String(datosSession?.nombreAlumno || '').trim();
+    try { document.getElementById('floatingChatContainer')?.remove(); } catch (e) { /* sin chat */ }
+
+    const salir = () => {
+        if (window.lumaiTracker) {
+            window.lumaiTracker.endSession();
+        }
+        sessionStorage.clear();
+        window.location.href = 'index.html';
+    };
+
+    // Despedida cálida con el nombre (el nombre se usa solo acá, en el navegador)
+    const velo = document.createElement('div');
+    velo.setAttribute('role', 'dialog');
+    velo.setAttribute('aria-modal', 'true');
+    velo.setAttribute('aria-label', 'Despedida');
+    velo.style.cssText = 'position:fixed;inset:0;z-index:10000;background:rgba(0,40,90,.92);display:flex;align-items:center;justify-content:center;padding:20px;font-family:Poppins,system-ui,sans-serif';
+    const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    velo.innerHTML = `
+        <div style="background:#fff;border-radius:20px;max-width:460px;width:100%;padding:28px 24px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+            <img src="img/3.png" alt="" style="height:130px;margin-bottom:8px">
+            <h2 style="margin:0 0 10px;color:#00509e;font-size:1.5rem">¡Hasta la próxima${nombre ? ', ' + esc(nombre) : ''}! 👋</h2>
+            <p style="margin:0 0 18px;font-size:1.05rem;color:#1f2a37;line-height:1.5">Hoy aprendiste cosas nuevas y le pusiste ganas. Estoy orgulloso de vos. Descansá, y cuando quieras seguir, acá voy a estar para acompañarte. 💙</p>
+            <button id="btnSalirDespedida" type="button" style="background:linear-gradient(135deg,#00509e,#1d74c9);color:#fff;border:none;border-radius:999px;padding:12px 28px;font-size:1rem;font-weight:700;cursor:pointer">Chau, LumAI 👋</button>
+        </div>`;
+    document.body.appendChild(velo);
+    const b = velo.querySelector('#btnSalirDespedida');
+    b.addEventListener('click', salir);
+    b.focus();
+    try { hablarDespedida(nombre); } catch (e) { /* sin voz */ }
+    setTimeout(salir, 12000);
+}
+
+function hablarDespedida(nombre) {
+    const aj = estadoGlobal.ajustes || {};
+    if (aj.voz >= 1 && aj.voz_sin_auto !== true) {
+        import('./voz.js').then(m => m.hablar(`Hasta la próxima${nombre ? ', ' + nombre : ''}. Hoy aprendiste cosas nuevas. Estoy orgulloso de vos.`, { ajustes: aj, mostrar: false }));
     }
-    
-    sessionStorage.clear();
-    window.location.href = 'index.html';
 }
 
 // ==================== UTILIDADES ====================

@@ -343,7 +343,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a recorrer los ambientes de América, del hielo a la selva. Son 5 actividades. Para empezar, mirá esto.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya conocés los ambientes de América y sus recursos. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya conocés los ambientes de América y sus recursos. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -450,5 +450,22 @@
       "Hay que cuidar el ambiente.",
       "El relieve tiene montañas y llanuras."
     ]
+  },
+  "problema": {
+    "pregunta": "¿Por qué un mismo continente tiene ambientes tan distintos?",
+    "opciones": [
+      "Porque va casi de polo a polo y cambian el calor, el relieve, el mar y las lluvias",
+      "Porque cada país elige su clima",
+      "Porque América es un continente muy chico"
+    ],
+    "correcta": 0,
+    "simple": {
+      "pregunta": "¿Por qué hay ambientes tan distintos en América?",
+      "opciones": [
+        "Porque va casi de polo a polo",
+        "Porque es un continente chico"
+      ],
+      "correcta": 0
+    }
   }
 }

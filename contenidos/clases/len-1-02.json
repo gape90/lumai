@@ -290,7 +290,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a entrenar un superpoder que casi nadie practica: escuchar de verdad. Son 5 actividades, y en una te voy a contar una historia. Para empezar, probá esto.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Escuchar con atención te va a servir en todas las materias. Cuando quieras, seguimos con las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Escuchar con atención te va a servir en todas las materias. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -394,5 +394,22 @@
       "Anoto solo lo importante.",
       "El tema tiene varias partes."
     ]
+  },
+  "problema": {
+    "pregunta": "¿Oír y escuchar son lo mismo?",
+    "opciones": [
+      "Sí: son dos palabras para lo mismo",
+      "No: oír es percibir sonidos y escuchar es prestar atención para entender",
+      "No: escuchar es oír más fuerte"
+    ],
+    "correcta": 1,
+    "simple": {
+      "pregunta": "¿Oír y escuchar son lo mismo?",
+      "opciones": [
+        "No: escuchar es prestar atención",
+        "Sí, es lo mismo"
+      ],
+      "correcta": 0
+    }
   }
 }

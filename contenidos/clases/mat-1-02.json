@@ -289,7 +289,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a comparar números y medir distancias en la recta. Son 4 actividades. Para empezar, viajemos a dos ciudades argentinas.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés comparar enteros y medir distancias. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés comparar enteros y medir distancias. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -387,5 +387,22 @@
       "La distancia nunca es negativa.",
       "El cero está entre los dos lados."
     ]
+  },
+  "problema": {
+    "pregunta": "¿Cuántos grados de diferencia hay entre −6 °C y 14 °C?",
+    "opciones": [
+      "8",
+      "20",
+      "6"
+    ],
+    "correcta": 1,
+    "simple": {
+      "pregunta": "¿Cuántos grados hay entre −6 °C y 14 °C?",
+      "opciones": [
+        "20",
+        "8"
+      ],
+      "correcta": 0
+    }
   }
 }

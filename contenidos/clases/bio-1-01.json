@@ -323,7 +323,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a viajar al origen de la vida. Son 4 actividades. Para empezar, te cuento un misterio que duró siglos.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés qué tienen en común todos los seres vivos. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés qué tienen en común todos los seres vivos. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -430,5 +430,22 @@
       "Un ser vivo viene de otro ser vivo.",
       "Los seres vivos responden al ambiente."
     ]
+  },
+  "problema": {
+    "pregunta": "¿De dónde salían los gusanos que aparecían en la carne?",
+    "opciones": [
+      "De la carne misma, que los generaba sola",
+      "De huevos que ponían las moscas",
+      "Del aire, que los traía ya hechos"
+    ],
+    "correcta": 1,
+    "simple": {
+      "pregunta": "¿De dónde venían los gusanos de la carne?",
+      "opciones": [
+        "De huevos de mosca",
+        "De la carne sola"
+      ],
+      "correcta": 0
+    }
   }
 }

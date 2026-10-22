@@ -31,7 +31,7 @@
       "interactivo": {
         "tipo": "recta",
         "titulo": "🌡️ Un termómetro acostado",
-        "consigna": "La recta numérica es como un termómetro de costado. Tocá cada punto.",
+        "consigna": "La recta numérica es como un termómetro acostado. Tocá cada punto.",
         "modo": "explorar",
         "min": -10,
         "max": 10,
@@ -308,7 +308,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir los números que viven debajo del cero. Son 4 actividades cortas. Para empezar, mirá a tu alrededor.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya conocés los números enteros. Cuando quieras, pasamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya conocés los números enteros. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -411,5 +411,22 @@
       "El cero está en el medio de la recta.",
       "Los negativos están a la izquierda."
     ]
+  },
+  "problema": {
+    "pregunta": "Si estás en el piso 2 y bajás 3 pisos, ¿a qué piso llegás?",
+    "opciones": [
+      "−5",
+      "−1",
+      "1"
+    ],
+    "correcta": 1,
+    "simple": {
+      "pregunta": "Estás en el piso 2 y bajás 3 pisos. ¿A qué piso llegás?",
+      "opciones": [
+        "−1",
+        "1"
+      ],
+      "correcta": 0
+    }
   }
 }

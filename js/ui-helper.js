@@ -2,13 +2,15 @@
 // =====================================================================================
 
 import { llamarGeminiAPI } from './ai-engine.js';
-import { estadoGlobal, generarPromptHibrido } from './config.js';
-import { construirPrompt, fijarCapsulaActual, respaldoSinIA, guiaDeEstilo } from './chat-tutor.js';
+import { estadoGlobal, generarPromptHibrido, datosSession } from './config.js';
+import { construirPrompt, fijarCapsulaActual, obtenerCapsulaActual, respaldoSinIA, temasDelPaso } from './chat-tutor.js';
 import { nivelDeApoyo } from './banco-actividades.js';
-import { hablar } from './voz.js';
+import { hablar, detenerVoz } from './voz.js';
 
 class ExplanationChat {
     constructor() {
+        this.temaActual = '';
+        this.pasoDeTemas = null;
         this.chatContainer = null;
         this.isOpen = false;
         this.explicacionContexto = '';
@@ -44,6 +46,10 @@ class ExplanationChat {
                 font-family: 'Poppins', sans-serif;
             }
 
+            .lumai-responde-label { background: #fff; color: #00509e; font-weight: 700; font-size: .95rem; padding: 8px 14px; border-radius: 999px; box-shadow: 0 2px 12px rgba(0,80,158,.25); border: 2px solid #00509e; pointer-events: none; white-space: nowrap; }
+            #floatingChatContainer.abierto .lumai-responde-label { display: none; }
+            .chat-toggle-btn { padding: 0; border: 3px solid #fff !important; }
+            .chat-toggle-btn .lumai-cara-img { width: 100%; height: 100%; border-radius: 50%; object-fit: contain; }
             .chat-botones { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
             .lumai-avatar-btn {
                 width: 60px; height: 60px; padding: 0; border-radius: 50%; cursor: pointer;
@@ -54,7 +60,8 @@ class ExplanationChat {
             }
             .lumai-avatar-btn:hover { transform: scale(1.08); }
             .lumai-cara-img { width: 100%; height: 100%; object-fit: contain; display: block; }
-            .ai-avatar .lumai-cara-img { width: 44px; height: 44px; border-radius: 50%; background: #0a5aa8; }
+            .ai-avatar { width: 48px !important; height: 48px !important; overflow: hidden; }
+            .ai-avatar .lumai-cara-img { width: 100%; height: 100%; border-radius: 50%; background: #0a5aa8; }
             .chat-toggle-btn:focus-visible, .lumai-avatar-btn:focus-visible { outline: 3px solid #ffbf00; outline-offset: 2px; }
             .chat-toggle-btn {
                 width: 60px;
@@ -417,17 +424,11 @@ class ExplanationChat {
             <div class="chat-window" id="chatWindow">
                 <div class="chat-header">
                     <div class="ai-avatar"><img src="img/lumai-cara.png" alt="" class="lumai-cara-img"></div>
-                    <h3 id="chatTitulo">Asistente IA</h3>
+                    <h3 id="chatTitulo">LumAI responde</h3>
                     <p id="chatSubtitulo">Pregúntame sobre la explicación</p>
                 </div>
                 
                 <div class="chat-messages" id="chatMessages">
-                    <div class="message bot">
-                        <div class="message-bubble" id="mensajeInicial">
-                            ¡Hola! Soy LumAI. Te ayudo con esta clase: preguntame lo que no entiendas o pedime que te lo explique de otra forma. 📚
-                        </div>
-                        <div class="message-time">Ahora</div>
-                    </div>
                 </div>
                 
                 <div class="typing-indicator" id="typingIndicator">
@@ -440,7 +441,7 @@ class ExplanationChat {
                         type="text" 
                         class="chat-input" 
                         id="chatInput" 
-                        placeholder="Escribí tu pregunta acá…"
+                        placeholder="Escribí tu duda acá…"
                         maxlength="500"
                     >
                     <button class="send-btn" id="sendBtn">📤</button>
@@ -448,11 +449,9 @@ class ExplanationChat {
             </div>
 
             <div class="chat-botones">
-                <button class="lumai-avatar-btn" id="lumaiAvatarBtn" type="button" aria-label="LumAI, tu ayudante. Tocá para preguntarle" title="LumAI te explica">
+                <span class="lumai-responde-label" id="lumaiRespondeLabel" aria-hidden="true">LumAI responde</span>
+                <button class="chat-toggle-btn" id="chatToggleBtn" type="button" aria-label="LumAI responde: abrir el asistente para hacer preguntas">
                     <img src="img/lumai-cara.png" alt="" class="lumai-cara-img">
-                </button>
-                <button class="chat-toggle-btn" id="chatToggleBtn" type="button" aria-label="Abrir el chat con LumAI">
-                    💬
                     <div class="notification-badge" id="notificationBadge">?</div>
                 </button>
             </div>
@@ -781,7 +780,7 @@ class ExplanationChat {
         };
         
         const placeholderPersonalizado = placeholdersPersonalizados[estadoGlobal.perfil?.nombre_visible] || 
-                                       "Escribí tu pregunta acá…";
+                                       "Escribí tu duda acá…";
         
         this.chatInput.placeholder = placeholderPersonalizado;
     }
@@ -820,17 +819,7 @@ class ExplanationChat {
         
         setTimeout(() => {
             if (this.contadorPreguntas === 0) {
-                this.addMessage(`¡Hola! Soy LumAI 🤖
-
-¿Todo bien con la clase? 
-
-Si tenés alguna duda, no dudes en preguntarme. ¡Estoy acá para ayudarte!
-
-<div class="quick-response-buttons">
-    <button class="quick-btn">👍 Todo bien</button>
-    <button class="quick-btn">❓ Tengo dudas</button>
-    <button class="quick-btn">🔄 Resumí todo</button>
-</div>`, 'bot', true, false); // Sin efecto de escritura para este mensaje especial
+this.addBotHtml(`<p style="margin:0 0 6px"><b>¿Todo bien con la clase?</b></p><p style="margin:0 0 6px">Si tenés alguna duda, preguntame.</p><div class="quick-response-buttons"><button class="quick-btn" data-modo="temas">📋 Ver temas para explicar</button></div>`);
             }
         }, 60000);
     }
@@ -889,16 +878,16 @@ Si tenés alguna duda, no dudes en preguntarme. ¡Estoy acá para ayudarte!
             "N3": "Análisis y consultas especializadas"
         };
         
-        const perfilName = estadoGlobal.perfil?.nombre_visible;
+        const perfilName = null; // el asistente es el mismo para todos: LumAI responde (el estilo se adapta con las perillas)
         
         const mensajePersonalizado = mensajesIniciales[perfilName] || 
                                    "¡Hola! Soy LumAI. Te ayudo con esta clase: preguntame lo que no entiendas o pedime que te lo explique de otra forma. 📚";
         
         const placeholderPersonalizado = placeholdersPersonalizados[perfilName] || 
-                                       "Escribí tu pregunta acá…";
+                                       "Escribí tu duda acá…";
         
         const tituloPersonalizado = titulosPersonalizados[perfilName] || 
-                                  "LumAI";
+                                  "LumAI responde";
         
         const subtituloPersonalizado = subtitulosPersonalizados[perfilName] || 
                                      "Te ayudo con esta clase";
@@ -930,11 +919,6 @@ Si tenés alguna duda, no dudes en preguntarme. ¡Estoy acá para ayudarte!
             e.stopPropagation();
             this.toggleChat();
         });
-        document.getElementById('lumaiAvatarBtn')?.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (!this.isOpen) this.toggleChat();
-        });
-
         // La clase avisa en qué actividad está el alumno y si quiere preguntar algo puntual
         document.addEventListener('lumai:capsula', (e) => fijarCapsulaActual(e.detail));
         document.addEventListener('lumai:preguntar', (e) => {
@@ -988,6 +972,9 @@ Si tenés alguna duda, no dudes en preguntarme. ¡Estoy acá para ayudarte!
         this.chatWindow.classList.add('active');
         this.chatToggleBtn.classList.add('active');
         this.chatToggleBtn.innerHTML = '✖️';
+        this.chatContainer?.classList.add('abierto');
+        try { detenerVoz(); } catch (e) { /* sin voz */ }
+        this.mostrarTemasSiCorresponde();
         this.hideNotificationBadge();
         
         // ✅ REGISTRAR APERTURA DEL CHAT EN MÉTRICAS
@@ -1008,7 +995,8 @@ Si tenés alguna duda, no dudes en preguntarme. ¡Estoy acá para ayudarte!
     closeChat() {
         this.chatWindow.classList.remove('active');
         this.chatToggleBtn.classList.remove('active');
-        this.chatToggleBtn.innerHTML = '💬<div class="notification-badge" id="notificationBadge">?</div>';
+        this.chatToggleBtn.innerHTML = '<img src="img/lumai-cara.png" alt="" class="lumai-cara-img"><div class="notification-badge" id="notificationBadge">?</div>';
+        this.chatContainer?.classList.remove('abierto');
         this.notificationBadge = document.getElementById('notificationBadge');
         
         // ✅ NUEVO: Detener reconocimiento si está activo
@@ -1041,6 +1029,7 @@ Si tenés alguna duda, no dudes en preguntarme. ¡Estoy acá para ayudarte!
             });
         }
         
+        if (modo === 'libre') this.temaActual = message.slice(0, 90);
         this.showTypingIndicator();
         this.generateAIResponse(message, modo);
     }
@@ -1095,41 +1084,73 @@ Vamos a tomarlo con calma y paso a paso.
     configurarBotonesRapidos(messageDiv) {
         const botonesRapidos = messageDiv.querySelectorAll('.quick-btn');
         botonesRapidos.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const respuesta = e.target.textContent;
-                this.addMessage(respuesta, 'user', false, false); // Usuario sin efecto
-                this.procesarRespuestaRapida(respuesta);
+            btn.addEventListener('click', () => {
+                if (this.isTyping) return;
+                const modo = btn.dataset.modo;
+                if (btn.dataset.tema) this.temaActual = btn.dataset.tema;
+                this.addMessage(btn.textContent, 'user', false, false); // Usuario sin efecto
+                if (window.lumaiTracker) {
+                    window.lumaiTracker.recordCustomEvent('quick_response_used', { modo, tema: (this.temaActual || '').slice(0, 80) });
+                }
+                if (modo === 'temas') { this.mostrarTemas(true); return; }
+                const tema = this.temaActual || 'la clase';
+                const pedidos = {
+                    explicar: `Explicame: ${tema}`,
+                    ejemplo: `Dame ejemplos nuevos sobre: ${tema}`,
+                    otra_forma: `Explicámelo de otra forma: ${tema}`
+                };
+                this.showTypingIndicator();
+                this.generateAIResponse(pedidos[modo] || tema, modo || 'libre');
             });
         });
     }
-    
-    procesarRespuestaRapida(respuesta) {
-        this.showTypingIndicator();
-        
-        // ✅ REGISTRAR RESPUESTA RÁPIDA EN MÉTRICAS
-        if (window.lumaiTracker) {
-            window.lumaiTracker.recordCustomEvent('quick_response_used', {
-                response: respuesta,
-                profileType: estadoGlobal.perfil?.nombre_visible
-            });
-        }
-        
-        this.hideTypingIndicator();
-        if (respuesta.includes('Sí') || respuesta.includes('Entendí') || respuesta.includes('Todo bien')) {
-            this.addMessage('¡Muy bien! Si querés, preguntame otra cosa de la clase.', 'bot', false, true);
-        } else if (respuesta.includes('Resumí') || respuesta.includes('resumen')) {
-            this.showTypingIndicator();
-            this.generateAIResponse('Resumime la clase', 'resumen');
-        } else if (respuesta.includes('ejemplo')) {
-            this.showTypingIndicator();
-            this.generateAIResponse('Dame un ejemplo', 'ejemplo');
+
+    // Mensaje del bot con HTML propio (botones), sin el formateo de las respuestas de la IA
+    addBotHtml(html) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message bot';
+        const hora = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        messageDiv.innerHTML = `<div class="message-bubble">${html}</div><div class="message-time">${hora}</div>`;
+        this.chatMessages.appendChild(messageDiv);
+        this.scrollToBottom();
+        this.configurarBotonesRapidos(messageDiv);
+    }
+
+    escHtml(t) { return String(t ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+    // "¿Qué necesitás que te explique, Mica?" + temas del paso en el que está el alumno
+    async mostrarTemas(forzar = false) {
+        const cap = obtenerCapsulaActual();
+        this.pasoDeTemas = cap?.id || 'general';
+        const nombre = String(datosSession?.nombreAlumno || '').trim();   // solo se muestra acá; no va a la IA
+        let temas = [];
+        try { temas = await temasDelPaso(cap); } catch (e) { temas = []; }
+        const aj = estadoGlobal.ajustes || {};
+        const may = t => (aj.mayusculas ? String(t).toUpperCase() : String(t));
+        const donde = cap ? `Estás en la actividad ${cap.numero}: “${this.escHtml(cap.titulo)}”.` : 'Elegí un tema de la clase.';
+        const botones = temas.map(t => `<button class="quick-btn" data-modo="explicar" data-tema="${this.escHtml(t)}">${this.escHtml(may(t))}</button>`).join('');
+        this.addBotHtml(`<p style="margin:0 0 6px"><b>${this.escHtml(may(`¿Qué necesitás que te explique${nombre ? ', ' + nombre : ''}?`))}</b></p><p style="margin:0 0 6px">${this.escHtml(may(donde.replace(/<[^>]+>/g, '')))}</p><div class="quick-response-buttons">${botones}</div><p style="margin:6px 0 0;font-size:.85rem">${this.escHtml(may('O escribime tu duda abajo.'))}</p>`);
+    }
+
+    mostrarTemasSiCorresponde() {
+        const cap = obtenerCapsulaActual();
+        const paso = cap?.id || 'general';
+        if (this.isTyping) return;
+        if (this.pasoDeTemas !== paso) this.mostrarTemas();
+    }
+
+    // Después de explicar: ofrecer ejemplos nuevos (distintos a los de la clase)
+    ofrecerSeguimiento(modo) {
+        const aj = estadoGlobal.ajustes || {};
+        const may = t => (aj.mayusculas ? String(t).toUpperCase() : String(t));
+        const e = t => this.escHtml(may(t));
+        if (modo === 'ejemplo') {
+            this.addBotHtml(`<p style="margin:0 0 6px"><b>${e('¿Querés otro ejemplo?')}</b></p><div class="quick-response-buttons"><button class="quick-btn" data-modo="ejemplo">${e('💡 Otro ejemplo')}</button><button class="quick-btn" data-modo="temas">${e('📋 Otro tema')}</button></div>`);
         } else {
-            // "Explicá de otra forma", "No entendí", "Tengo dudas"
-            this.showTypingIndicator();
-            this.generateAIResponse('No entendí. Explicámelo de otra forma', respuesta.includes('otra forma') ? 'otra_forma' : 'no_entendi');
+            this.addBotHtml(`<p style="margin:0 0 6px"><b>${e('¿Querés que te dé ejemplos?')}</b></p><div class="quick-response-buttons"><button class="quick-btn" data-modo="ejemplo">${e('💡 Sí, dame ejemplos')}</button><button class="quick-btn" data-modo="otra_forma">${e('🔄 Explicámelo de otra forma')}</button><button class="quick-btn" data-modo="temas">${e('📋 Otro tema')}</button></div>`);
         }
     }
-    
+
     async generateAIResponse(userMessage, modo = 'libre') {
         try {
             const apoyo = nivelDeApoyo() || 'medio';
@@ -1163,18 +1184,8 @@ Vamos a tomarlo con calma y paso a paso.
             const aj = estadoGlobal.ajustes || {};
             if (aj.voz >= 2) { try { hablar(response, { mostrar: false, ajustes: aj }); } catch (e) { /* sin voz */ } }
             
-            const botones = `
-
-<div class="quick-response-buttons">
-    <button class="quick-btn">✅ Sí, entendí</button>
-    <button class="quick-btn">🔄 Explicá de otra forma</button>
-    <button class="quick-btn">💡 Dame un ejemplo</button>
-</div>`;
-            if (apoyo !== 'alto') {
-                this.addMessage(response + botones, 'bot', true, false);
-            } else {
-                this.addMessage(response, 'bot', false, true);
-            }
+            this.addMessage(response, 'bot', false, false);
+            this.ofrecerSeguimiento(modo);
             
         } catch (error) {
             console.error('Error generando respuesta:', error);

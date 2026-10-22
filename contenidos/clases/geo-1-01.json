@@ -407,7 +407,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a mirar el mapa de América con otros ojos. Son 5 actividades cortas y las vas a recorrer a tu ritmo. Para empezar, te propongo imaginar una escena.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés leer el mapa político de América. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés leer el mapa político de América. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -522,5 +522,22 @@
       "La frontera es una zona de encuentro.",
       "Un país manda en su territorio."
     ]
+  },
+  "problema": {
+    "pregunta": "¿Quién dibujó las líneas del mapa de América, y por qué están ahí?",
+    "opciones": [
+      "La naturaleza: vienen marcadas en el suelo",
+      "Las personas, a lo largo de la historia, por acuerdos y guerras",
+      "Un solo geógrafo, que las trazó con regla en un día"
+    ],
+    "correcta": 1,
+    "simple": {
+      "pregunta": "¿Quién dibujó las líneas del mapa?",
+      "opciones": [
+        "Las personas",
+        "La naturaleza"
+      ],
+      "correcta": 0
+    }
   }
 }

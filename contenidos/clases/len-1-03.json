@@ -315,7 +315,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! ¿Te pone nervioso hablar frente al curso? Es muy normal. En 5 actividades te doy las herramientas para una exposición que todos quieran escuchar.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya tenés todo para armar tu propia exposición. Cuando quieras, pasamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya tenés todo para armar tu propia exposición. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -429,5 +429,22 @@
       "Hablo claro y con pausas.",
       "Al final resumo lo principal."
     ]
+  },
+  "problema": {
+    "pregunta": "¿Qué hace que alguien quiera seguir escuchándote en una exposición?",
+    "opciones": [
+      "Leer todo el texto sin mirar al público",
+      "Un comienzo que atrape (pregunta, dato o historia) y un desarrollo ordenado",
+      "Hablar lo más rápido posible"
+    ],
+    "correcta": 1,
+    "simple": {
+      "pregunta": "¿Qué atrapa al público?",
+      "opciones": [
+        "Un comienzo con pregunta o dato",
+        "Leer todo sin mirar"
+      ],
+      "correcta": 0
+    }
   }
 }

@@ -1379,7 +1379,10 @@
             const autos = de('clase_autoevaluacion');
             const auto = autos.length ? autos[autos.length - 1] : null;
             const completada = de('clase_completada').length > 0;
-            const contextos = de('clase_mi_lugar').length;
+            const lugares = de('clase_mi_lugar');
+            const contextos = lugares.length;
+            const pf = de('clase_problema_final');
+            const pfUlt = pf.length ? pf[pf.length - 1] : null;
             const entregas = de('carpeta_entregada');
             const carpeta = entregas.length ? entregas[entregas.length - 1] : null;
             const nombresModo = { copiar: 'copió frases modelo', completar: 'completó frases', libre: 'escribió con sus palabras' };
@@ -1405,7 +1408,8 @@
                 ${costaron.length ? `<p><strong>Preguntas que le costaron:</strong> ${costaron.map(c => `${esc(c.titulo || c.capsula)} (${c.intentos} intentos)`).join(', ')}</p>` : ''}
                 ${ayudas.length ? `<p><strong>Pidió la versión más fácil en:</strong> ${ayudas.map(esc).join(', ')}</p>` : ''}
                 ${palabras.length ? `<p><strong>Palabras que consultó:</strong> ${palabras.map(esc).join(', ')}</p>` : ''}
-                ${contextos ? `<p><strong>Respondió preguntas sobre su propio lugar:</strong> ${contextos}</p>` : ''}
+                ${pfUlt ? `<p><strong>Problema inicial de la clase:</strong> ${pfUlt.acerto ? 'lo resolvió' : 'no lo resolvió'} (${pf.length} ${pf.length === 1 ? 'intento' : 'intentos'}).</p>` : ''}
+                ${contextos ? `<p><strong>Respondió preguntas sobre su propio lugar (revisadas por LumAI):</strong></p>${lugares.map(x => `<p style="margin:2px 0 6px 12px">“${esc(x.respuesta || '')}” <em>(${x.revision === 'ok' ? 'bien' : x.revision === 'sin_ia' ? 'sin revisión' : 'con observaciones'})</em></p>`).join('')}` : ''}
                 ${htmlCarpeta}
                 ${Object.keys(tiempos).length ? `<p><strong>Tiempo por cápsula:</strong> ${Object.entries(tiempos).map(([t, seg]) => `${esc(t)}: ${duracion(seg)}`).join(' · ')}</p>` : ''}`;
             const tarjetas = `<div class="summary-stats">

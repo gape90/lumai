@@ -618,7 +618,7 @@ export async function renderizar() {
         <div style="text-align: center; padding: 20px;">
             <h2 style="color: #00509e; margin-bottom: 15px;">🏃 Carrera del Conocimiento</h2>
             <p style="margin-bottom: 10px; color: #666;">
-                <strong>Instrucciones:</strong> Usa ← → para moverte entre carriles y atraviesa la respuesta correcta
+                <strong>Instrucciones:</strong> Usá ← → para moverte entre carriles y pasá por el auto que lleva la respuesta correcta en el techo
             </p>
             <div id="race-game-container" style="margin: 20px auto; max-width: 980px;"></div>
         </div>
@@ -663,6 +663,34 @@ export async function renderizar() {
 
 // ==================== CLASE DEL JUEGO CARRERA - NUEVA LÓGICA PEDAGÓGICA ====================
 
+
+// ==================== AUTOS (vista desde arriba) ====================
+const COLORES_AUTOS = ['#e11d48', '#f59e0b', '#10b981', '#8b5cf6', '#06b6d4', '#f97316', '#ec4899'];
+const ALTO_AUTO = 112;      // alto de cada auto con respuesta
+const ALTO_JUGADOR = 88;    // alto del auto del alumno
+
+function oscurecer(hex, f = 0.7) {
+    const n = parseInt(hex.slice(1), 16);
+    const c = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(v => Math.round(v * f));
+    return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+
+function autoSVG(color, conTecho = true) {
+    const osc = oscurecer(color);
+    return `<svg viewBox="0 0 100 130" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="position:absolute;inset:0;width:100%;height:100%">
+        <rect x="1" y="18" width="11" height="26" rx="4" fill="#0f172a"/><rect x="88" y="18" width="11" height="26" rx="4" fill="#0f172a"/>
+        <rect x="1" y="88" width="11" height="26" rx="4" fill="#0f172a"/><rect x="88" y="88" width="11" height="26" rx="4" fill="#0f172a"/>
+        <rect x="7" y="3" width="86" height="124" rx="26" fill="${color}" stroke="${osc}" stroke-width="3"/>
+        <rect x="17" y="15" width="66" height="15" rx="7" fill="#1e293b" opacity=".85"/>
+        <rect x="17" y="100" width="66" height="13" rx="6" fill="#1e293b" opacity=".85"/>
+        <circle cx="21" cy="9" r="4.5" fill="#fde68a"/><circle cx="79" cy="9" r="4.5" fill="#fde68a"/>
+        <circle cx="21" cy="121" r="4" fill="#ef4444"/><circle cx="79" cy="121" r="4" fill="#ef4444"/>
+        ${conTecho ? `<rect x="14" y="34" width="72" height="62" rx="10" fill="#fff" opacity=".95" stroke="${osc}" stroke-width="2"/>` : `<rect x="43" y="32" width="6" height="68" fill="#fff" opacity=".9"/><rect x="55" y="32" width="6" height="68" fill="#fff" opacity=".9"/>`}
+    </svg>`;
+}
+
+function escHtml(t) { return String(t ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
 class RaceGame {
     constructor(containerId, preguntas = null, configuracion = null) {
         this.containerId = containerId;
@@ -689,7 +717,7 @@ class RaceGame {
             carril: 1,
             velocidadMundo: this.configuracion.velocidadMundo,
             velocidadDescenso: this.configuracion.velocidadDescenso,
-            topJugador: 36,
+            topJugador: 110,
             puertas: [],
             preguntaActiva: false,
             respondido: false,
@@ -795,14 +823,11 @@ class RaceGame {
                     position: absolute;
                     left: 50%;
                     transform: translateX(-50%);
-                    width: 50px;
-                    height: 50px;
-                    background: conic-gradient(from 200deg at 70% 30%, #93c5fd, #60a5fa, #3b82f6, #2563eb 70%);
-                    border: 2px solid #1e3a8a;
-                    border-radius: 12px;
-                    box-shadow: 0 8px 16px rgba(59,130,246,.4);
+                    width: 56px;
+                    height: ${ALTO_JUGADOR}px;
                     z-index: 15;
                     transition: left 0.15s ease;
+                    filter: drop-shadow(0 6px 10px rgba(59,130,246,.55));
                 }
                 
                 .race-question {
@@ -827,21 +852,27 @@ class RaceGame {
                     bottom: 100%;
                     width: calc(25% - 16px);
                     margin: 0 8px;
-                    height: 70px;
+                    height: ${ALTO_AUTO}px;
+                    z-index: 10;
+                    filter: drop-shadow(0 6px 8px rgba(0,0,0,.5));
+                }
+                
+                .race-roof {
+                    position: absolute;
+                    left: 17%;
+                    right: 17%;
+                    top: 27%;
+                    height: 45%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     text-align: center;
-                    padding: 8px;
-                    border-radius: 10px;
-                    background: rgba(11, 18, 34, 0.9);
-                    border: 2px solid #3b82f6;
-                    color: white;
-                    font-weight: 600;
-                    font-size: 16px;
-                    z-index: 10;
+                    color: #0f172a;
+                    font-weight: 800;
+                    line-height: 1.1;
+                    overflow: hidden;
                     word-break: break-word;
-                    line-height: 1.2;
+                    hyphens: auto;
                 }
                 
                 .race-overlay {
@@ -939,10 +970,7 @@ class RaceGame {
                         padding: 12px;
                     }
                     
-                    .race-gate {
-                        font-size: 14px;
-                        height: 60px;
-                    }
+                    .race-roof { font-size: 0.85em; }
                 }
             </style>
             
@@ -960,7 +988,7 @@ class RaceGame {
                         <div class="race-lane" data-lane="3"></div>
                     </div>
                     
-                    <div class="race-player" id="race-player"></div>
+                    <div class="race-player" id="race-player">${autoSVG("#2563eb", false)}</div>
                     
                     <div class="race-question" id="race-question">
                         <span id="race-question-text">Preparando pregunta...</span>
@@ -975,8 +1003,8 @@ class RaceGame {
                         <div class="race-card">
                             <h2 id="race-title">🏃 Carrera del Conocimiento</h2>
                             <p id="race-description">
-                                Muévete con las <strong>flechas del teclado</strong> ← → entre los 4 carriles.<br/>
-                                Atraviesa la <strong>respuesta correcta</strong> de cada pregunta.
+                                Movete con las <strong>flechas</strong> ← → entre los 4 carriles.<br/>
+                                Pasá por el <strong>auto que lleva la respuesta correcta</strong> en el techo.
                             </p>
                             <button class="race-btn" id="race-btn-start">Comenzar Carrera</button>
                         </div>
@@ -1076,8 +1104,8 @@ class RaceGame {
         this.elementos.overlay.style.display = 'grid';
         this.elementos.title.textContent = '🏃 Carrera del Conocimiento';
         this.elementos.description.innerHTML = `
-            Muévete con las <strong>flechas del teclado</strong> ← → entre los 4 carriles.<br/>
-            Atraviesa la <strong>respuesta correcta</strong> de cada pregunta.
+            Movete con las <strong>flechas</strong> ← → entre los 4 carriles.<br/>
+            Pasá por el <strong>auto que lleva la respuesta correcta</strong> en el techo.
         `;
         this.elementos.btnStart.textContent = 'Comenzar Carrera';
         this.elementos.btnStart.style.display = 'inline-block';
@@ -1091,7 +1119,7 @@ class RaceGame {
         this.estado.corriendo = true;
         this.estado.juegoTerminado = false;
         this.estado.carril = 1;
-        this.estado.topJugador = 36;
+        this.estado.topJugador = 110;
         this.estado.puntos = 0;
         
         this.ocultarOverlay();
@@ -1129,6 +1157,8 @@ class RaceGame {
         
         const carrilCorrecto = Math.floor(Math.random() * 4);
         const opciones = [...pregunta.incorrectas];
+        // Cuatro autos de colores distintos
+        this.estado.coloresAutos = [...COLORES_AUTOS].sort(() => Math.random() - 0.5).slice(0, 4);
         
         for (let i = 0; i < 4; i++) {
             const esCorrecta = i === carrilCorrecto;
@@ -1194,7 +1224,10 @@ class RaceGame {
     crearPuerta(carril, texto, esCorrecta) {
         const puerta = document.createElement('div');
         puerta.className = 'race-gate';
-        puerta.textContent = texto;
+        const color = (this.estado.coloresAutos && this.estado.coloresAutos[carril]) || COLORES_AUTOS[carril];
+        const largo = String(texto).length;
+        const fs = largo <= 10 ? 18 : largo <= 22 ? 14.5 : largo <= 40 ? 12 : 10.5;
+        puerta.innerHTML = `${autoSVG(color)}<div class="race-roof" style="font-size:${fs}px">${escHtml(texto)}</div>`;
         puerta.style.left = `${carril * 25}%`;
         puerta.style.bottom = '-150px';
         
@@ -1367,7 +1400,7 @@ class RaceGame {
         const dt = 1/60;
         const dy = this.estado.velocidadMundo * dt;
         const alturaContenedor = this.elementos.area.clientHeight;
-        const alturaJugador = 50;
+        const alturaJugador = ALTO_JUGADOR;
         
         const fondoJugador = alturaContenedor - (this.estado.topJugador + alturaJugador);
         
@@ -1377,7 +1410,7 @@ class RaceGame {
             puerta.elemento.style.bottom = `${puerta.y}px`;
             
             if (!puerta.verificada && 
-                puerta.y + 70 >= fondoJugador && 
+                puerta.y + ALTO_AUTO >= fondoJugador && 
                 puerta.y <= fondoJugador + alturaJugador) {
                 
                 puerta.verificada = true;
@@ -1407,7 +1440,7 @@ class RaceGame {
     
     actualizarDescensoJugador() {
         const dt = 1/60;
-        const alturaJugador = 50;
+        const alturaJugador = ALTO_JUGADOR;
         const maxTop = this.elementos.area.clientHeight - alturaJugador - 60;
         
         this.estado.topJugador = Math.min(

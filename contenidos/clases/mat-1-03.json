@@ -296,7 +296,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir qué esconde una fracción. Son 4 actividades cortas. Para empezar, imaginate esta situación.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés que una fracción es una división disfrazada. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés que una fracción es una división disfrazada. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -398,5 +398,22 @@
       "El número de abajo dice entre cuántos.",
       "Dividir es repartir."
     ]
+  },
+  "problema": {
+    "pregunta": "Si 3 amigas reparten 2 pizzas en partes iguales, ¿cuánta pizza le toca a cada una?",
+    "opciones": [
+      "3/2 de pizza",
+      "1/3 de pizza",
+      "2/3 de pizza"
+    ],
+    "correcta": 2,
+    "simple": {
+      "pregunta": "2 pizzas entre 3 amigas. ¿Cuánto le toca a cada una?",
+      "opciones": [
+        "2/3",
+        "3/2"
+      ],
+      "correcta": 0
+    }
   }
 }

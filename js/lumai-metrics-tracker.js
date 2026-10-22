@@ -311,7 +311,10 @@ class LumaiMetricsTracker {
                 'clase_chequeo',
                 'clase_completada',
                 'clase_autoevaluacion',
-                'carpeta_entregada'
+                'carpeta_entregada',
+                'carpeta_parte',
+                'clase_problema_final',
+                'clase_mi_lugar'
             ];
             
             if (criticalEvents.includes(eventType)) {

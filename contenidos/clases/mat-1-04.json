@@ -373,7 +373,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a ver que un número puede tener muchas caras. Son 5 actividades cortas. Para empezar, fijate en esto.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés escribir un número de muchas formas y elegir la mejor. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés escribir un número de muchas formas y elegir la mejor. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -488,5 +488,22 @@
       "Un porcentaje es una fracción de cien.",
       "Dos fracciones pueden valer lo mismo."
     ]
+  },
+  "problema": {
+    "pregunta": "½ taza, 50 % y 0,5: ¿qué tienen en común?",
+    "opciones": [
+      "Son tres números distintos",
+      "Solo sirven para cocinar",
+      "Son tres formas de escribir el mismo número"
+    ],
+    "correcta": 2,
+    "simple": {
+      "pregunta": "¿Qué tienen en común ½, 0,5 y 50 %?",
+      "opciones": [
+        "Son el mismo número",
+        "Son números distintos"
+      ],
+      "correcta": 0
+    }
   }
 }

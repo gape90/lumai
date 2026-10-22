@@ -362,7 +362,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a investigar problemas ambientales como verdaderos geógrafos. Son 5 actividades. Para empezar, recordemos algo que pasó cerca de casa.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés analizar un problema ambiental. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés analizar un problema ambiental. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -472,5 +472,22 @@
       "Toda causa tiene una consecuencia.",
       "Hay que cuidar el ambiente."
     ]
+  },
+  "problema": {
+    "pregunta": "¿Por qué el humo del Delta llegó a ciudades lejanas?",
+    "opciones": [
+      "Porque las ciudades quemaron sus propios campos",
+      "Porque el humo se quedó quieto sobre las islas",
+      "Porque los problemas ambientales no respetan límites: el viento llevó el humo"
+    ],
+    "correcta": 2,
+    "simple": {
+      "pregunta": "¿Por qué el humo llegó lejos?",
+      "opciones": [
+        "El viento lo llevó",
+        "Se quedó quieto"
+      ],
+      "correcta": 0
+    }
   }
 }

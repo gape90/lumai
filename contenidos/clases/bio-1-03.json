@@ -342,7 +342,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir cómo los seres vivos se dan cuenta de lo que pasa y responden. Son 4 actividades. Para empezar, hacé esta prueba.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés cómo funciona la relación con el ambiente. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés cómo funciona la relación con el ambiente. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -448,5 +448,22 @@
       "La planta crece hacia la luz.",
       "El cuerpo mantiene su temperatura."
     ]
+  },
+  "problema": {
+    "pregunta": "¿Cómo encuentra la luz una planta si no tiene ojos?",
+    "opciones": [
+      "Tiene ojos muy chiquitos escondidos en las hojas",
+      "Sus células detectan la luz y el tallo se curva hacia ella",
+      "Crece torcida por casualidad"
+    ],
+    "correcta": 1,
+    "simple": {
+      "pregunta": "¿Cómo sabe la planta dónde está la luz?",
+      "opciones": [
+        "Sus células sienten la luz",
+        "Tiene ojos chiquitos"
+      ],
+      "correcta": 0
+    }
   }
 }

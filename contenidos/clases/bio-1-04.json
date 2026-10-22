@@ -343,7 +343,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a ver cómo tu cuerpo trabaja en equipo, en tiempo real. Son 5 actividades. Para empezar, imaginate esta escena.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés cómo tu cuerpo capta, decide y responde. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés cómo tu cuerpo capta, decide y responde. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -454,5 +454,22 @@
       "Los músculos mueven el cuerpo.",
       "Un reflejo es una respuesta rápida."
     ]
+  },
+  "problema": {
+    "pregunta": "¿Qué partes del cuerpo trabajan juntas cuando un arquero ataja un penal?",
+    "opciones": [
+      "Solo los músculos de los brazos",
+      "Los ojos, los nervios, el cerebro y los músculos",
+      "Solo el cerebro, que hace todo"
+    ],
+    "correcta": 1,
+    "simple": {
+      "pregunta": "¿Qué trabaja cuando un arquero ataja?",
+      "opciones": [
+        "Ojos, cerebro y músculos",
+        "Solo los brazos"
+      ],
+      "correcta": 0
+    }
   }
 }

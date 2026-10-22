@@ -347,7 +347,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a conocer a la gente de América: dónde vive, cómo vive y por qué se muda. Son 5 actividades. Para empezar, imaginate esto.",
-    "cierre": "¡Misión cumplida, {NOMBRE}! Ya sabés cómo es la población de América. Cuando quieras, vamos a las actividades."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés cómo es la población de América. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
   },
   "imagenes": [
     {
@@ -452,5 +452,22 @@
       "Nacen y mueren personas todos los años.",
       "La mayoría vive en ciudades."
     ]
+  },
+  "problema": {
+    "pregunta": "¿Por qué la gente se concentra en algunos lugares y no en otros?",
+    "opciones": [
+      "Porque hay lugares con trabajo, servicios y buen clima, sobre todo ciudades y costas",
+      "Porque a la gente le gusta vivir apretada",
+      "Porque está prohibido vivir en el resto"
+    ],
+    "correcta": 0,
+    "simple": {
+      "pregunta": "¿Por qué la gente vive en algunos lugares?",
+      "opciones": [
+        "Hay trabajo y servicios",
+        "Está prohibido vivir en el resto"
+      ],
+      "correcta": 0
+    }
   }
 }

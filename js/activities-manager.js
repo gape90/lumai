@@ -192,15 +192,27 @@ function obtenerSiguienteActividad() {
             return null;
         }
         
+        // La sopa de letras que quedó pendiente espera al final: vuelve cuando no hay otras actividades
+        const sinSopaDiferida = (lista) => (estadoGlobal.sopaDiferida && lista.some(a => a !== 'sopa-de-letras'))
+            ? lista.filter(a => a !== 'sopa-de-letras') : lista;
+        const candidatas = sinSopaDiferida(actividadesPendientes);
+
         if (secuenciaActual.length === 0 || indiceSecuencia >= secuenciaActual.length) {
-            secuenciaActual = [...actividadesPendientes];
+            secuenciaActual = [...candidatas];
             barajarArray(secuenciaActual);
             indiceSecuencia = 0;
             console.log(`🔄 Nueva secuencia aleatoria: ${secuenciaActual.join(', ')}`);
         }
 
-        const siguiente = secuenciaActual[indiceSecuencia];
+        let siguiente = secuenciaActual[indiceSecuencia];
         indiceSecuencia++;
+        if (!candidatas.includes(siguiente)) {
+            // La secuencia ya armada incluye algo que no corresponde (sopa diferida): se rearma
+            secuenciaActual = [...candidatas];
+            barajarArray(secuenciaActual);
+            siguiente = secuenciaActual[0];
+            indiceSecuencia = 1;
+        }
         
         console.log(`🎮 Siguiente actividad: ${siguiente} (${indiceSecuencia}/${secuenciaActual.length})`);
         return siguiente;
