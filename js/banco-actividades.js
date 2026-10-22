@@ -13,6 +13,7 @@
 // =============================================================================
 
 import { estadoGlobal } from './config.js';
+import { hablar } from './voz.js';
 
 let cache = { id: null, clase: null };
 
@@ -161,7 +162,8 @@ export async function actividadesDelBanco(tipo, config = {}) {
   switch (tipo) {
     case 'verdadero-falso': {
       const n = config.cantidadPreguntas || 4;
-      const v = mezclar(hechosVerdaderos(clase)), f = mezclar(hechosFalsos(clase));
+      const cortos = l => { if (ajustesActuales()?.texto !== 'simple') return l; const c = l.filter(x => x.enunciado.length <= 75); return c.length >= Math.ceil(n / 2) ? c : l; };
+      const v = mezclar(cortos(hechosVerdaderos(clase))), f = mezclar(cortos(hechosFalsos(clase)));
       const nF = Math.min(f.length, Math.floor(n / 2)), nV = n - nF;
       const lista = mezclar([...v.slice(0, nV), ...f.slice(0, nF)]);
       return lista.length >= Math.min(3, n) ? lista : null;
@@ -252,17 +254,65 @@ export function aplicarPerillasAJuego() {
   st.textContent = reglas.join('\n');
 
   if (observador) observador.disconnect();
+  observador = null;
+  const tareas = [];
+
   if (a.sin_puntaje) {
-    const ocultar = () => cont.querySelectorAll('*').forEach(el => {
-      if (el.children.length === 0 && /^\s*Puntaje\s*:?/i.test(el.textContent) ) el.style.display = 'none';
+    tareas.push(() => cont.querySelectorAll('*').forEach(el => {
+      if (el.children.length === 0 && /^\s*Puntaje\s*:?/i.test(el.textContent)) el.style.display = 'none';
       else if (el.children.length <= 2 && /Puntaje\s*:/i.test(el.textContent) && el.textContent.length < 40) {
         el.querySelectorAll('span,b,strong').forEach(h => { if (/Puntaje|^\d+$/.test(h.textContent.trim())) h.style.display = 'none'; });
         if (/^\s*Puntaje\s*:\s*\d+\s*$/i.test(el.textContent)) el.style.display = 'none';
       }
-    });
-    observador = new MutationObserver(ocultar);
+    }));
+  }
+  if (a.voz > 0) tareas.push(() => lecturaEnVoz(cont, a));
+
+  if (tareas.length) {
+    const correr = () => tareas.forEach(t => { try { t(); } catch (e) { /* no frena el juego */ } });
+    observador = new MutationObserver(correr);
     observador.observe(cont, { childList: true, subtree: true, characterData: true });
-    ocultar();
+    correr();
+  }
+}
+
+// Verdadero/falso y opción múltiple: si el perfil activa la voz, se lee la consigna (y las opciones) en voz alta
+// con el texto en pantalla, y queda un botón para volver a escucharla. La voz nunca dice cuál es la correcta.
+let ultimaLeida = '';
+function lecturaEnVoz(cont, a) {
+  const el = cont.querySelector('#vf-statement, #mc-question');
+  if (!el) return;
+  const overlay = cont.querySelector('.vf-overlay, .mc-overlay');
+  const overlayVisible = overlay && getComputedStyle(overlay).display !== 'none';
+  const pregunta = el.textContent.trim().replace(/…$/, '');
+  if (!pregunta || overlayVisible) return;
+
+  const opciones = [...cont.querySelectorAll('.mc-option')].map(o => o.textContent.trim().replace(/^([A-D])\)\s*/, '$1: ').replace(/[.…]+$/, ''));
+  const texto = opciones.length ? `${pregunta} ${opciones.join('. ')}` : pregunta;
+  const esVF = el.id === 'vf-statement';
+  const textoVF = esVF ? `Verdadero o falso: ${pregunta}` : texto;
+
+  // botón para repetir (una vez por pregunta)
+  let boton = cont.querySelector('#lumai-btn-escuchar');
+  if (!boton) {
+    boton = document.createElement('button');
+    boton.id = 'lumai-btn-escuchar';
+    boton.type = 'button';
+    boton.textContent = '🔊 Escuchar';
+    boton.style.cssText = 'margin:8px auto;display:block;padding:10px 20px;font-size:1.05rem;font-weight:700;border:none;border-radius:24px;background:#00509e;color:#fff;cursor:pointer';
+    el.insertAdjacentElement('afterend', boton);
+    boton.addEventListener('click', () => {
+      const e2 = cont.querySelector('#vf-statement, #mc-question');
+      const ops = [...cont.querySelectorAll('.mc-option')].map(o => o.textContent.trim().replace(/^([A-D])\)\s*/, '$1: ').replace(/[.…]+$/, ''));
+      const q = e2 ? e2.textContent.trim().replace(/…$/, '') : '';
+      hablar(e2?.id === 'vf-statement' ? `Verdadero o falso: ${q}` : [q, ...ops].join('. '), { ajustes: a, rate: 0.95 });
+    });
+  }
+
+  const clave2 = texto;
+  if (clave2 !== ultimaLeida) {
+    ultimaLeida = clave2;
+    if (!a.voz_sin_auto) hablar(textoVF.replace(/ ([A-D]): /g, '. $1: '), { ajustes: a, rate: 0.95 });
   }
 }
 

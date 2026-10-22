@@ -9,7 +9,7 @@
 
 import { estadoGlobal, obtenerActividadesParaPerfil } from './config.js';
 import { aplicarPerillasAJuego } from './banco-actividades.js';
-import { detenerVoz } from './voz.js';
+import { detenerVoz, hablar } from './voz.js';
 
 // ==================== CONFIGURACIÓN Y ESTADO ====================
 
@@ -20,7 +20,8 @@ let actividadesRealizadasN0 = [];
 
 // Control del flujo secuencial N0
 let flujoSecuencialN0 = {
-    actividades: ['exploradores-sonido', 'aventura-silabas', 'supermercado', 'puente-palabras'],
+    // 2 de lectoescritura (con el vocabulario de la clase) + 2 que aplican lo aprendido en la clase
+    actividades: ['aventura-silabas', 'puente-palabras', 'verdadero-falso', 'multiple-choice'],
     indiceActual: 0,
     enProgreso: false
 };
@@ -315,6 +316,10 @@ export function completarActividadCompleta(dominada) {
         
         flujoSecuencialN0.indiceActual++;
         
+        // Los juegos de contenido no tienen botón "Siguiente" propio: se muestra una tarjeta para seguir
+        const conBotonPropio = ['exploradores-sonido', 'aventura-silabas', 'supermercado', 'puente-palabras'];
+        if (!conBotonPropio.includes(tipoActividadString)) mostrarTarjetaSiguienteN0();
+
         if (flujoSecuencialN0.indiceActual >= flujoSecuencialN0.actividades.length) {
             console.log('🎉 N0: ¡Flujo secuencial completado!');
         } else {
@@ -332,6 +337,26 @@ export function completarActividadCompleta(dominada) {
         
         mostrarMensajeCompletacionActividad(tipoActividadString, dominada);
     }
+}
+
+function mostrarTarjetaSiguienteN0() {
+    const contenedor = estadoGlobal.elementosDOM?.actividadesEl || document.getElementById('actividades');
+    if (!contenedor) return;
+    const nombre = obtenerNombreAlumno();
+    const ultima = flujoSecuencialN0.indiceActual >= flujoSecuencialN0.actividades.length;
+    const mensaje = ultima ? `¡Muy bien ${nombre}! Terminaste todas las actividades.` : `¡Muy bien ${nombre}! Terminaste esta actividad.`;
+    contenedor.innerHTML = `
+        <div style="text-align:center;padding:50px 20px;">
+            <div style="font-size:3.5em;">🎉</div>
+            <p style="font-size:1.5em;color:#00509e;font-weight:700;margin:15px 0;">${mensaje}</p>
+            <button id="lumai-n0-siguiente" style="padding:16px 36px;font-size:1.3em;font-weight:700;border:none;border-radius:50px;background:#f97316;color:#fff;cursor:pointer;box-shadow:0 4px 12px rgba(249,115,22,.4);">➡️ SIGUIENTE</button>
+        </div>`;
+    hablar(mensaje, { rate: 0.95, ajustes: estadoGlobal.ajustes });
+    document.getElementById('lumai-n0-siguiente')?.addEventListener('click', async () => {
+        detenerVoz();
+        procesamientoEnCurso = false;
+        await cargarActividad();
+    });
 }
 
 // ==================== SISTEMA DE MENSAJES EMERGENTES ====================

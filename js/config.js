@@ -49,7 +49,7 @@ export const configuracionMetricas = {
 // ==================== CONFIGURACIÓN DE ACTIVIDADES POR PERFIL ====================
 // 'skater' desactivado temporalmente (en revisión). Para volver a activarlo, agregarlo al final de N1, N2 y N3.
 export const ACTIVIDADES_POR_PERFIL = {
-  'N0': ['exploradores-sonido', 'puente-palabras', 'aventura-silabas', 'supermercado'],
+  'N0': ['aventura-silabas', 'puente-palabras', 'verdadero-falso', 'multiple-choice'],
   'N1': ['sopa-de-letras', 'race', 'basketball', 'multiple-choice', 'verdadero-falso'],
   'N2': ['sopa-de-letras', 'race', 'basketball', 'multiple-choice', 'verdadero-falso'],
   'N3': ['sopa-de-letras', 'race', 'basketball', 'multiple-choice', 'verdadero-falso']
