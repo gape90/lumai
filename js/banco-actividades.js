@@ -17,7 +17,7 @@ import { hablar } from './voz.js';
 
 let cache = { id: null, clase: null };
 
-async function cargarClaseActual() {
+export async function cargarClaseActual() {
   const id = estadoGlobal.claseBase;
   if (!id) return null;
   if (cache.id === id && cache.clase) return cache.clase;

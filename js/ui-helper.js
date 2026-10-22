@@ -3,6 +3,9 @@
 
 import { llamarGeminiAPI } from './ai-engine.js';
 import { estadoGlobal, generarPromptHibrido } from './config.js';
+import { construirPrompt, fijarCapsulaActual, respaldoSinIA, guiaDeEstilo } from './chat-tutor.js';
+import { nivelDeApoyo } from './banco-actividades.js';
+import { hablar } from './voz.js';
 
 class ExplanationChat {
     constructor() {
@@ -14,6 +17,7 @@ class ExplanationChat {
         this.recognition = null;
         this.micBtn = null;
         this.isTyping = false; // 🎯 NUEVO: Para controlar el efecto de escritura
+        this.historial = []; // últimos mensajes (solo texto) para dar continuidad a la charla
         this.currentTypingInterval = null; // 🎯 NUEVO: Para cancelar escritura si es necesario
     }
     
@@ -40,6 +44,18 @@ class ExplanationChat {
                 font-family: 'Poppins', sans-serif;
             }
 
+            .chat-botones { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+            .lumai-avatar-btn {
+                width: 60px; height: 60px; padding: 0; border-radius: 50%; cursor: pointer;
+                border: 3px solid #fff; background: linear-gradient(135deg, #00509e, #0a78d6);
+                box-shadow: 0 4px 20px rgba(0, 80, 158, 0.3); overflow: hidden;
+                display: flex; align-items: center; justify-content: center;
+                transition: transform .2s ease;
+            }
+            .lumai-avatar-btn:hover { transform: scale(1.08); }
+            .lumai-cara-img { width: 100%; height: 100%; object-fit: contain; display: block; }
+            .ai-avatar .lumai-cara-img { width: 44px; height: 44px; border-radius: 50%; background: #0a5aa8; }
+            .chat-toggle-btn:focus-visible, .lumai-avatar-btn:focus-visible { outline: 3px solid #ffbf00; outline-offset: 2px; }
             .chat-toggle-btn {
                 width: 60px;
                 height: 60px;
@@ -400,7 +416,7 @@ class ExplanationChat {
         <div id="floatingChatContainer">
             <div class="chat-window" id="chatWindow">
                 <div class="chat-header">
-                    <div class="ai-avatar">🤖</div>
+                    <div class="ai-avatar"><img src="img/lumai-cara.png" alt="" class="lumai-cara-img"></div>
                     <h3 id="chatTitulo">Asistente IA</h3>
                     <p id="chatSubtitulo">Pregúntame sobre la explicación</p>
                 </div>
@@ -408,7 +424,7 @@ class ExplanationChat {
                 <div class="chat-messages" id="chatMessages">
                     <div class="message bot">
                         <div class="message-bubble" id="mensajeInicial">
-                            ¡Hola! Leí la explicación y estoy acá para ayudarte. ¿Tenés alguna pregunta sobre el tema? 📚
+                            ¡Hola! Soy LumAI. Te ayudo con esta clase: preguntame lo que no entiendas o pedime que te lo explique de otra forma. 📚
                         </div>
                         <div class="message-time">Ahora</div>
                     </div>
@@ -424,17 +440,22 @@ class ExplanationChat {
                         type="text" 
                         class="chat-input" 
                         id="chatInput" 
-                        placeholder="Pregunta sobre la explicación..."
+                        placeholder="Escribí tu pregunta acá…"
                         maxlength="500"
                     >
                     <button class="send-btn" id="sendBtn">📤</button>
                 </div>
             </div>
 
-            <button class="chat-toggle-btn" id="chatToggleBtn">
-                💬
-                <div class="notification-badge" id="notificationBadge">?</div>
-            </button>
+            <div class="chat-botones">
+                <button class="lumai-avatar-btn" id="lumaiAvatarBtn" type="button" aria-label="LumAI, tu ayudante. Tocá para preguntarle" title="LumAI te explica">
+                    <img src="img/lumai-cara.png" alt="" class="lumai-cara-img">
+                </button>
+                <button class="chat-toggle-btn" id="chatToggleBtn" type="button" aria-label="Abrir el chat con LumAI">
+                    💬
+                    <div class="notification-badge" id="notificationBadge">?</div>
+                </button>
+            </div>
         </div>`;
         
         // Insertar en el DOM
@@ -760,7 +781,7 @@ class ExplanationChat {
         };
         
         const placeholderPersonalizado = placeholdersPersonalizados[estadoGlobal.perfil?.nombre_visible] || 
-                                       "Pregunta sobre la explicación...";
+                                       "Escribí tu pregunta acá…";
         
         this.chatInput.placeholder = placeholderPersonalizado;
     }
@@ -799,9 +820,9 @@ class ExplanationChat {
         
         setTimeout(() => {
             if (this.contadorPreguntas === 0) {
-                this.addMessage(`¡Hola ${estadoGlobal.perfil?.nombre_visible || 'estudiante'}! 🎈 
+                this.addMessage(`¡Hola! Soy LumAI 🤖
 
-¿Todo bien con la explicación? 
+¿Todo bien con la clase? 
 
 Si tenés alguna duda, no dudes en preguntarme. ¡Estoy acá para ayudarte!
 
@@ -871,16 +892,16 @@ Si tenés alguna duda, no dudes en preguntarme. ¡Estoy acá para ayudarte!
         const perfilName = estadoGlobal.perfil?.nombre_visible;
         
         const mensajePersonalizado = mensajesIniciales[perfilName] || 
-                                   "¡Hola! Leí la explicación y estoy acá para ayudarte. ¿Tenés alguna pregunta sobre el tema? 📚";
+                                   "¡Hola! Soy LumAI. Te ayudo con esta clase: preguntame lo que no entiendas o pedime que te lo explique de otra forma. 📚";
         
         const placeholderPersonalizado = placeholdersPersonalizados[perfilName] || 
-                                       "Pregunta sobre la explicación...";
+                                       "Escribí tu pregunta acá…";
         
         const tituloPersonalizado = titulosPersonalizados[perfilName] || 
-                                  "Asistente IA";
+                                  "LumAI";
         
         const subtituloPersonalizado = subtitulosPersonalizados[perfilName] || 
-                                     "Pregúntame sobre la explicación";
+                                     "Te ayudo con esta clase";
         
         // Personalizar elementos
         const mensajeEl = document.getElementById('mensajeInicial');
@@ -908,6 +929,21 @@ Si tenés alguna duda, no dudes en preguntarme. ¡Estoy acá para ayudarte!
         this.chatToggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             this.toggleChat();
+        });
+        document.getElementById('lumaiAvatarBtn')?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!this.isOpen) this.toggleChat();
+        });
+
+        // La clase avisa en qué actividad está el alumno y si quiere preguntar algo puntual
+        document.addEventListener('lumai:capsula', (e) => fijarCapsulaActual(e.detail));
+        document.addEventListener('lumai:preguntar', (e) => {
+            const d = e.detail || {};
+            if (!this.isOpen) this.toggleChat();
+            if (d.pregunta && !this.isTyping) {
+                this.chatInput.value = d.pregunta;
+                this.sendMessage(d.modo || 'libre');
+            }
         });
         
         this.chatInput.addEventListener('keypress', (e) => {
@@ -989,7 +1025,7 @@ Si tenés alguna duda, no dudes en preguntarme. ¡Estoy acá para ayudarte!
         }
     }
     
-    sendMessage() {
+    sendMessage(modo = 'libre') {
         const message = this.chatInput.value.trim();
         if (!message || this.isTyping) return; // 🎯 No enviar si se está escribiendo
         
@@ -997,37 +1033,16 @@ Si tenés alguna duda, no dudes en preguntarme. ¡Estoy acá para ayudarte!
         this.chatInput.value = '';
         this.contadorPreguntas++;
         
-        // ✅ REGISTRAR PREGUNTA EN MÉTRICAS
         if (window.lumaiTracker) {
             window.lumaiTracker.recordCustomEvent('chat_question_asked', {
                 questionLength: message.length,
                 questionNumber: this.contadorPreguntas,
-                profileType: estadoGlobal.perfil?.nombre_visible
+                modo
             });
         }
         
-        const palabrasConfusion = ['no entiendo', 'confuso', 'difícil', 'no comprendo', 'ayuda', 'explicá mejor'];
-        const estaConfundido = palabrasConfusion.some(palabra => message.toLowerCase().includes(palabra));
-        
         this.showTypingIndicator();
-        
-        if (estaConfundido && estadoGlobal.perfil && estadoGlobal.perfil.dimensiones.comprension_lectora === "bajo") {
-            // ✅ REGISTRAR CONFUSIÓN EN MÉTRICAS
-            if (window.lumaiTracker) {
-                window.lumaiTracker.recordCustomEvent('confusion_detected', {
-                    confusionWords: palabrasConfusion.filter(palabra => message.toLowerCase().includes(palabra)),
-                    profileType: estadoGlobal.perfil.nombre_visible
-                });
-            }
-            
-            setTimeout(() => {
-                this.hideTypingIndicator();
-                const respuestaEspecial = this.generarRespuestaDeApoyo();
-                this.addMessage(respuestaEspecial, 'bot', true, true); // Con efecto de escritura
-            }, 1000);
-        } else {
-            this.generateAIResponse(message);
-        }
+        this.generateAIResponse(message, modo);
     }
     
     generarRespuestaDeApoyo() {
@@ -1099,207 +1114,76 @@ Vamos a tomarlo con calma y paso a paso.
             });
         }
         
-        setTimeout(() => {
-            this.hideTypingIndicator();
-            
-            if (respuesta.includes('Sí') || respuesta.includes('Entendí') || respuesta.includes('Todo bien')) {
-                const mensajesPositivos = {
-                    "N1": "¡Genial! 🎈 ¡Sos un campeón! ¿Querés que te explique algo más del tema?",
-                    "N2": "¡Excelente! 🌸 Me alegra que lo hayas entendido. ¿Hay algo más que te gustaría saber?",
-                    "N3": "Perfecto. Comprendiste el concepto correctamente. ¿Deseas profundizar en algún aspecto específico?"
-                };
-                this.addMessage(mensajesPositivos[estadoGlobal.perfil?.nombre_visible] || "¡Excelente! ¿Algo más?", 'bot', false, true);
-            } else if (respuesta.includes('Resumí') || respuesta.includes('resumen')) {
-                this.generarResumenPersonalizado();
-            } else if (respuesta.includes('dudas') || respuesta.includes('No entendí') || respuesta.includes('confunde')) {
-                const mensajesAyuda = {
-                    "N1": "¡No te preocupes! 🎈 Te lo explico de otra manera más fácil. ¿Qué parte no entendiste bien?",
-                    "N2": "Está bien, vamos paso a paso. 🌸 ¿Qué parte específica te resulta confusa?",
-                    "N3": "Entiendo. Reformulemos el concepto desde otro ángulo. ¿Qué aspecto requiere mayor clarificación?"
-                };
-                this.addMessage(mensajesAyuda[estadoGlobal.perfil?.nombre_visible] || "No problem, te ayudo.", 'bot', false, true);
-            } else if (respuesta.includes('ejemplo')) {
-                this.generarEjemploPersonalizado();
-            }
-        }, 800);
-    }
-    
-    async generarResumenPersonalizado() {
-        try {
-            const adaptaciones = generarPromptHibrido(estadoGlobal.perfil);
-            const nombreEstudiante = estadoGlobal.perfil?.nombre_visible || 'estudiante';
-            
-            const prompt = `
-Eres un tutor que debe hacer un resumen de la explicación para ${nombreEstudiante}.
-
-PERFIL DEL ESTUDIANTE: ${nombreEstudiante}
-${adaptaciones}
-
-EXPLICACIÓN COMPLETA:
-"""${this.explicacionContexto}"""
-
-INSTRUCCIONES:
-- Hacé un resumen súper claro de los puntos más importantes
-- Máximo 80 palabras para estudiantes con dificultades, 100 para nivel medio, 120 para avanzado
-- Usá párrafos cortos separados por doble salto de línea
-- Terminá preguntando si quiere que profundices en algún punto
-
-Resumen personalizado para ${nombreEstudiante}:`;
-            
-            const resumen = await llamarGeminiAPI(prompt);
-            this.addMessage(resumen, 'bot', false, true); // Con efecto de escritura
-            
-        } catch (error) {
-            this.addMessage("Te hago un resumen rápido de lo más importante de la explicación. ¿Qué parte te interesa más?", 'bot', false, true);
+        this.hideTypingIndicator();
+        if (respuesta.includes('Sí') || respuesta.includes('Entendí') || respuesta.includes('Todo bien')) {
+            this.addMessage('¡Muy bien! Si querés, preguntame otra cosa de la clase.', 'bot', false, true);
+        } else if (respuesta.includes('Resumí') || respuesta.includes('resumen')) {
+            this.showTypingIndicator();
+            this.generateAIResponse('Resumime la clase', 'resumen');
+        } else if (respuesta.includes('ejemplo')) {
+            this.showTypingIndicator();
+            this.generateAIResponse('Dame un ejemplo', 'ejemplo');
+        } else {
+            // "Explicá de otra forma", "No entendí", "Tengo dudas"
+            this.showTypingIndicator();
+            this.generateAIResponse('No entendí. Explicámelo de otra forma', respuesta.includes('otra forma') ? 'otra_forma' : 'no_entendi');
         }
     }
     
-    async generarEjemploPersonalizado() {
+    async generateAIResponse(userMessage, modo = 'libre') {
         try {
-            const adaptaciones = generarPromptHibrido(estadoGlobal.perfil);
-            const nombreEstudiante = estadoGlobal.perfil?.nombre_visible || 'estudiante';
-            
-            const prompt = `
-Creá un ejemplo súper claro para ${nombreEstudiante} basado en la explicación.
+            const apoyo = nivelDeApoyo() || 'medio';
+            const prompt = await construirPrompt({ pregunta: userMessage, modo, historial: this.historial });
+            this.historial.push({ rol: 'user', texto: userMessage });
 
-PERFIL DEL ESTUDIANTE: ${nombreEstudiante}
-${adaptaciones}
-
-EXPLICACIÓN:
-"""${this.explicacionContexto}"""
-
-INSTRUCCIONES:
-- Creá un ejemplo práctico y fácil de entender
-- Usá situaciones de la vida cotidiana que el estudiante pueda relacionar
-- Máximo 60 palabras
-- Sé concreto y visual
-
-Ejemplo práctico para ${nombreEstudiante}:`;
-            
-            const ejemplo = await llamarGeminiAPI(prompt);
-            this.addMessage(ejemplo, 'bot', false, true); // Con efecto de escritura
-            
-        } catch (error) {
-            this.addMessage("Te doy un ejemplo práctico para que sea más fácil de entender. ¿Te ayuda?", 'bot', false, true);
-        }
-    }
-    
-    async generateAIResponse(userMessage) {
-        try {
-            const adaptaciones = generarPromptHibrido(estadoGlobal.perfil);
-            const nombreEstudiante = estadoGlobal.perfil?.nombre_visible || 'estudiante';
-            const nivelEstudiante = estadoGlobal.perfil?.dimensiones?.comprension_lectora || 'medio';
-            
-            let instruccionesEspecificas = "";
-            let longitudMaxima = 120;
-            let incluyeBotones = false;
-            
-            if (nivelEstudiante === "bajo") {
-                instruccionesEspecificas = `
-INSTRUCCIONES ESPECIALES PARA ESTUDIANTE CON DIFICULTADES:
-- Respuesta MÁXIMO 60 palabras
-- Explicá UNA SOLA idea por vez
-- Usá ejemplos súper simples de la vida cotidiana
-- SIEMPRE preguntá si entendió antes de continuar
-- Agregá al final: ¿Entendiste? ¿Te explico algo más?
-- Usá emojis para hacer más visual
-- Dividí conceptos complejos en pasos pequeños`;
-                longitudMaxima = 60;
-                incluyeBotones = true;
-            } else if (nivelEstudiante === "medio") {
-                instruccionesEspecificas = `
-INSTRUCCIONES PARA ESTUDIANTE NIVEL MEDIO:
-- Respuesta MÁXIMO 90 palabras  
-- Podés explicar 2 conceptos relacionados
-- Usá ejemplos claros y concretos
-- Preguntá ocasionalmente si necesita más detalles
-- Equilibrá información con verificación de comprensión`;
-                longitudMaxima = 90;
-                incluyeBotones = false;
-            } else {
-                instruccionesEspecificas = `
-INSTRUCCIONES PARA ESTUDIANTE AVANZADO:
-- Respuesta MÁXIMO 120 palabras
-- Podés usar terminología técnica apropiada
-- Conectá múltiples conceptos
-- Preguntá si quiere profundizar en aspectos específicos`;
-                longitudMaxima = 120;
-                incluyeBotones = false;
+            let response;
+            try {
+                response = await llamarGeminiAPI(prompt);
+            } catch (errIA) {
+                console.warn('⚠️ Sin IA para el chat; respuesta de respaldo desde la clase:', errIA?.message);
+                response = await respaldoSinIA(userMessage);
             }
-            
-            const prompt = `
-Eres un tutor educativo especializado que acompaña al estudiante ${nombreEstudiante}. 
-
-PERFIL DEL ESTUDIANTE: ${nombreEstudiante}
-${adaptaciones}
-
-${instruccionesEspecificas}
-
-EXPLICACIÓN SOBRE LA QUE PUEDE PREGUNTAR:
-"""${this.explicacionContexto}"""
-
-PREGUNTA DEL ESTUDIANTE: "${userMessage}"
-
-REGLAS FUNDAMENTALES:
-- Adaptá tu respuesta según las dimensiones pedagógicas del estudiante SIN mencionarlas
-- Responde SOLO basándote en el contenido de la explicación proporcionada
-- Si la pregunta no está relacionada, redirigí amigablemente al tema
-- Máximo ${longitudMaxima} palabras en tu respuesta
-- Usá párrafos cortos separados por doble salto de línea
-- Sé cálido, motivador y usa español rioplatense (vos, sos, etc.)
-- Terminá con una pregunta que verifique comprensión
-
-Respuesta pedagógica para ${nombreEstudiante}:`;
-
-            const response = await llamarGeminiAPI(prompt);
+            response = String(response || '').trim();
+            if ((estadoGlobal.ajustes || {}).mayusculas) response = response.toUpperCase();
+            response = response.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            this.historial.push({ rol: 'bot', texto: response });
+            if (this.historial.length > 8) this.historial = this.historial.slice(-8);
             
             this.hideTypingIndicator();
             
-            // ✅ REGISTRAR RESPUESTA IA EN MÉTRICAS
             if (window.lumaiTracker) {
                 window.lumaiTracker.recordCustomEvent('ai_response_generated', {
                     responseLength: response.length,
-                    maxWordsAllowed: longitudMaxima,
-                    hasQuickButtons: incluyeBotones,
-                    profileType: estadoGlobal.perfil?.nombre_visible
+                    modo,
+                    apoyo
                 });
             }
+
+            // Los alumnos con voz activada también escuchan la respuesta
+            const aj = estadoGlobal.ajustes || {};
+            if (aj.voz >= 2) { try { hablar(response, { mostrar: false, ajustes: aj }); } catch (e) { /* sin voz */ } }
             
-            if (incluyeBotones) {
-                const respuestaConBotones = response + `
+            const botones = `
 
 <div class="quick-response-buttons">
     <button class="quick-btn">✅ Sí, entendí</button>
-    <button class="quick-btn">❓ No entendí bien</button>
     <button class="quick-btn">🔄 Explicá de otra forma</button>
+    <button class="quick-btn">💡 Dame un ejemplo</button>
 </div>`;
-                this.addMessage(respuestaConBotones, 'bot', true, false); // Con botones, sin efecto de escritura
+            if (apoyo !== 'alto') {
+                this.addMessage(response + botones, 'bot', true, false);
             } else {
-                this.addMessage(response, 'bot', false, true); // 🎯 CON EFECTO DE ESCRITURA
+                this.addMessage(response, 'bot', false, true);
             }
             
         } catch (error) {
             console.error('Error generando respuesta:', error);
             this.hideTypingIndicator();
             
-            // ✅ REGISTRAR ERROR EN MÉTRICAS
             if (window.lumaiTracker) {
-                window.lumaiTracker.recordCustomEvent('ai_response_error', {
-                    error: error.message,
-                    profileType: estadoGlobal.perfil?.nombre_visible
-                });
+                window.lumaiTracker.recordCustomEvent('ai_response_error', { error: error.message });
             }
-            
-            const mensajesError = {
-                "N1": "¡Uy! 🎈 Tuve un problemita técnico. ¿Podés preguntarme de nuevo? ¡Estoy acá para ayudarte!",
-                "N2": "Lo siento mucho, tuve una dificultad técnica. 🌸 ¿Podrías repetir tu pregunta? Te voy a ayudar.",
-                "N3": "Disculpá, hubo un error técnico temporal. ¿Podrías reformular tu pregunta? Estoy para asistirte."
-            };
-            
-            const mensajeError = mensajesError[estadoGlobal.perfil?.nombre_visible] || 
-                              "Lo siento, tuve un problema al procesar tu pregunta. ¿Podrías intentar de nuevo?";
-            
-            this.addMessage(mensajeError, 'bot', false, true); // Con efecto de escritura
+            this.addMessage('Tuve un problemita. ¿Probás preguntarme de nuevo?', 'bot', false, true);
         }
     }
     

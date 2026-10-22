@@ -1380,6 +1380,10 @@
             const auto = autos.length ? autos[autos.length - 1] : null;
             const completada = de('clase_completada').length > 0;
             const contextos = de('clase_mi_lugar').length;
+            const entregas = de('carpeta_entregada');
+            const carpeta = entregas.length ? entregas[entregas.length - 1] : null;
+            const nombresModo = { copiar: 'copió frases modelo', completar: 'completó frases', libre: 'escribió con sus palabras' };
+            const htmlCarpeta = carpeta ? `<div style="margin-top:12px;padding:12px 14px;border:2px solid #00509e;border-radius:10px;background:#f4f8fd"><p style="margin:0 0 6px"><strong>📒 Carpeta entregada para corregir</strong> <em>(${nombresModo[carpeta.modo] || esc(carpeta.modo || '')})</em></p>${(carpeta.entradas || []).map(x => `<p style="margin:6px 0"><strong>${esc(x.titulo)}${x.palabra ? `: ${esc(x.palabra)}` : ''}</strong><br>${x.modelo ? `<span style="color:#555">Modelo: ${esc(x.modelo)}</span><br>` : ''}${esc(x.respuesta || '(sin escribir)')}</p>`).join('')}</div>` : '';
             const textoAuto = { entendi: '😊 Lo entendí', mas_o_menos: '😐 Más o menos', me_costo: '😟 Me costó' };
             const adaptaciones = de('clase_adaptada');
             const adaptacion = adaptaciones.length ? adaptaciones[adaptaciones.length - 1] : null;
@@ -1402,6 +1406,7 @@
                 ${ayudas.length ? `<p><strong>Pidió la versión más fácil en:</strong> ${ayudas.map(esc).join(', ')}</p>` : ''}
                 ${palabras.length ? `<p><strong>Palabras que consultó:</strong> ${palabras.map(esc).join(', ')}</p>` : ''}
                 ${contextos ? `<p><strong>Respondió preguntas sobre su propio lugar:</strong> ${contextos}</p>` : ''}
+                ${htmlCarpeta}
                 ${Object.keys(tiempos).length ? `<p><strong>Tiempo por cápsula:</strong> ${Object.entries(tiempos).map(([t, seg]) => `${esc(t)}: ${duracion(seg)}`).join(' · ')}</p>` : ''}`;
             const tarjetas = `<div class="summary-stats">
                     ${tarjeta(`${vistas}/${info.capsulas || '?'}`, 'Cápsulas vistas')}

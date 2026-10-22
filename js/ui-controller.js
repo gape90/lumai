@@ -366,6 +366,8 @@ async function mostrarClaseBaseSiExiste() {
     // El nombre del alumno se usa solo acá, en el navegador: nunca se envía a la IA
     renderizarClase(clase, estadoGlobal.elementosDOM.explicacionEl, {
         ajustes,
+        dimensiones: estadoGlobal.perfilDimensiones || null,   // solo para decidir cómo escribe en Mi carpeta; no se guarda ni se envía
+        asistente: true,   // botones "preguntale a LumAI" que abren el chat
         nombreAlumno: datosSession.nombreAlumno,
         rutaImagenes: 'img/',
         rutaImagenesClase: 'img/clases/',

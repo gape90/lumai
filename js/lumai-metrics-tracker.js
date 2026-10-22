@@ -310,7 +310,8 @@ class LumaiMetricsTracker {
                 'clase_mostrada',
                 'clase_chequeo',
                 'clase_completada',
-                'clase_autoevaluacion'
+                'clase_autoevaluacion',
+                'carpeta_entregada'
             ];
             
             if (criticalEvents.includes(eventType)) {

@@ -93,6 +93,7 @@
 //   renderizarClase(clase, document.getElementById('contenido'));
 // =============================================================================
 
+import { crearMiCarpeta, ESTILOS_CARPETA } from './mi-carpeta.js';
 import { hablar, detenerVoz, vozDisponible } from './voz.js';
 
 let ajustesVoz = null;   // perillas del perfil (tamaño de letra, mayúsculas) para el texto que se muestra al leer
@@ -614,7 +615,7 @@ function inyectarEstilos() {
   if (document.querySelector('style[data-lc-estilos]')) return;
   const estilo = document.createElement('style');
   estilo.setAttribute('data-lc-estilos', '');
-  estilo.textContent = ESTILOS;
+  estilo.textContent = ESTILOS + ESTILOS_CARPETA;
   document.head.appendChild(estilo);
 }
 
@@ -1542,6 +1543,18 @@ function renderizarCapsulas(clase, destino, opciones) {
     pantallas.push(pantalla);
   });
 
+  // Mi carpeta: el alumno deja por escrito lo que aprendió (se adapta al perfil)
+  if (opciones.carpeta !== false && capsulas.some(c => c.idea_clave)) {
+    const sc = el('section', 'lc-cap');
+    sc.appendChild(crearLumai('Ahora armá tu carpeta: lo que escribas te queda para estudiar, aunque no estés con LumAI.', 'idea', opciones));
+    const h = el('h3', 'lc-cap-titulo', '📒 Mi carpeta');
+    h.tabIndex = -1;
+    sc.appendChild(h);
+    const carpeta = crearMiCarpeta(clase, { ajustes: aj, dimensiones: opciones.dimensiones || null, nombreAlumno: (opciones.nombreAlumno || '').trim(), registrar });
+    sc.appendChild(carpeta.nodo);
+    pantallas.push({ nodo: sc, tipo: 'carpeta', lista: true, paso: '📒', leer: null });
+  }
+
   // Cierre
   const cierre = el('section', 'lc-cap');
   cierre.appendChild(crearLumai(frases.cierre, 'idea', opciones));
@@ -1623,7 +1636,7 @@ function renderizarCapsulas(clase, destino, opciones) {
 
   // Recorrido y navegación
   stepper.innerHTML = pantallas.map((p, i) => {
-    const nombre = p.tipo === 'portada' ? 'Inicio' : (p.tipo === 'cierre' ? 'Cierre' : `${rotulos.capsula} ${p.numero}`);
+    const nombre = p.tipo === 'portada' ? 'Inicio' : (p.tipo === 'cierre' ? 'Cierre' : (p.tipo === 'carpeta' ? 'Mi carpeta' : `${rotulos.capsula} ${p.numero}`));
     return `<li><span class="lc-paso" title="${nombre}" aria-label="${nombre}" data-paso="${p.paso}">${p.paso}</span></li>`;
   }).join('');
   const cuerpo = el('div', 'lc-cap-cuerpo');
@@ -1668,6 +1681,7 @@ function renderizarCapsulas(clase, destino, opciones) {
     desde = Date.now();
     const p = pantallas[i];
     if (p.tipo === 'capsula') registrar('clase_capsula_vista', { clase: ctx.id, capsula: p.id, numero: p.numero });
+    raiz.dispatchEvent(new CustomEvent('lumai:capsula', { bubbles: true, composed: true, detail: p.tipo === 'capsula' ? { id: p.id, numero: p.numero, titulo: p.titulo } : null }));
     if (mover && p.tipo === 'capsula' && aj.voz >= 2 && p.leer) setTimeout(p.leer, 300);
     if (p.tipo === 'cierre') {
       puntaje.textContent = `⭐ ${aciertos} de ${conChequeo} preguntas bien a la primera`;
@@ -1733,7 +1747,7 @@ function montar(contenedor) {
   if (host.attachShadow) {
     const sombra = host.attachShadow({ mode: 'open' });
     const estilo = document.createElement('style');
-    estilo.textContent = ESTILOS;
+    estilo.textContent = ESTILOS + ESTILOS_CARPETA;
     sombra.appendChild(estilo);
     return sombra;
   }
