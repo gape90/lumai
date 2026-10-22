@@ -581,6 +581,23 @@
             font-family: inherit;
         }
 
+        .btn-perfiles {
+            display: inline-block;
+            margin-top: 16px;
+            background: #ffffff;
+            color: #00509e;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+        }
+
+        .btn-perfiles:hover {
+            transform: translateY(-2px);
+        }
+
         .btn-volver:hover {
             background: rgba(255,255,255,0.3);
             border-color: rgba(255,255,255,0.5);
@@ -717,7 +734,6 @@
     <div class="container">
         <div class="header">
             <a href="index.html" class="btn-volver">Volver a LUMAI</a>
-            <a href="perfiles.html" class="btn-volver btn-clave-ia">🧩 Perfiles de alumnos</a>
             <button type="button" class="btn-volver btn-clave-ia" onclick="borrarClaveIA()">🔑 Cambiar clave IA</button>
             <script>
                 // V91: borra la clave de Gemini guardada en ESTE navegador.
@@ -730,6 +746,7 @@
             </script>
             <h1>Reportes de Estudiantes LUMAI</h1>
             <p>Análisis del progreso estudiantil por actividades</p>
+            <a href="perfiles.html" class="btn-perfiles">🧩 Perfiles de alumnos: crear o modificar códigos</a>
         </div>
 
         <div class="tabs">
