@@ -974,10 +974,22 @@ function crearHTMLJuego(config) {
                 font-weight: bold; /* AGREGADO: mantener negrita en incorrectas */
             }
             
+            /* Ayuda: primera letra de la palabra. Solo un aro azul pulsante, SIN pintar la celda,
+               para que no parezca ya seleccionada (la selección es amarilla). */
             .sopa-pista-letra {
-                background-color: rgba(255, 215, 0, 0.3) !important;
-                box-shadow: 0 0 6px 1px rgba(255, 215, 0, 0.4); /* REDUCIDO: era 8px 2px, ahora 6px 1px */
-                font-weight: bold; /* AGREGADO: mantener negrita en pistas */
+                outline: 3px solid #1d74c9;
+                outline-offset: -3px;
+                animation: sopaPistaLatido 1.4s ease-in-out infinite;
+            }
+            .sopa-pista-letra.sopa-seleccionada,
+            .sopa-pista-letra.sopa-encontrada,
+            .sopa-pista-letra.sopa-incorrecta {
+                outline: none;
+                animation: none;
+            }
+            @keyframes sopaPistaLatido {
+                0%, 100% { box-shadow: 0 0 0 0 rgba(29, 116, 201, 0.55); }
+                50% { box-shadow: 0 0 0 5px rgba(29, 116, 201, 0); }
             }
             
             .sopa-overlay {
@@ -1440,7 +1452,7 @@ class SopaDeLetrasGame {
         this.elementos.tablero.innerHTML = "";
         
         // CORREGIDO: Detectar nivel bajo por perfil, no por gridSize
-        const esNivelBajo = estadoGlobal.perfil.nombre_visible === 'N1';
+        const esNivelBajo = estadoGlobal.perfil.nombre_visible === 'N1' || Boolean(estadoGlobal.ajustes?.pista_previa);
         const pistaCoord = esNivelBajo ? this.estado.palabraCoords[0] : null;
         
         console.log(`Nivel detectado: ${estadoGlobal.perfil.nombre_visible}, esNivelBajo: ${esNivelBajo}`);
