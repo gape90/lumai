@@ -80,6 +80,10 @@
 //   Además del color, cada materia cambia: cómo se nombran las partes (ROTULOS: Capítulo / Paso /
 //   Observación / Parada), la forma del recorrido, el "para recordar" (subrayado / pizarrón /
 //   etiqueta de laboratorio / leyenda de mapa), las preguntas y la tipografía.
+//   opciones.ajustes -> perillas de adaptación al perfil del alumno (ver js/adaptacion.js
+//   y contenidos/reglas-adaptacion.json): capsulas, texto, mayusculas, letra, voz,
+//   definiciones_abiertas, opciones, pista_previa, sin_puntaje, recordar_acumulado,
+//   pausa_cada, calmo, botones_grandes, anticipar, mas_alla, sin_tiempos.
 //   capsulas[].mi_lugar {pregunta, ayuda} -> pregunta abierta para pensar en el propio contexto
 //   (no bloquea el avance; solo se registra la cantidad de caracteres, nunca el texto).
 //
@@ -573,6 +577,36 @@ const ESTILOS = `
 .lc-clase[data-tema="geografia"] .lc-chequeo{border:2px solid var(--lc-borde);border-left:8px solid var(--lc-naranja);box-shadow:none}
 .lc-clase[data-tema="geografia"] .lc-chequeo h3{font-family:var(--lc-fuente-mapa);color:var(--lc-naranja-osc)}
 .lc-clase[data-tema="geografia"] .lc-lugar{border:2px solid var(--lc-azul);border-radius:4px;background:#fff}
+/* ---------- Adaptación al perfil (perillas) ---------- */
+.lc-letra-1 .lc-cap-cuerpo{zoom:1.12}
+.lc-letra-2 .lc-cap-cuerpo{zoom:1.26}
+.lc-mayus .lc-cap-texto,.lc-mayus .lc-globo,.lc-mayus .lc-cap-clave p,.lc-mayus .lc-chequeo>p,.lc-mayus .lc-opcion,.lc-mayus .lc-gancho-texto,.lc-mayus .lc-defs{text-transform:uppercase;letter-spacing:.02em}
+.lc-grandes .lc-btn,.lc-grandes .lc-opcion,.lc-grandes .lc-chip,.lc-grandes .lc-btn-desplegar,.lc-grandes .lc-clasif-btns button,.lc-grandes .lc-orden-item,.lc-grandes .lc-error-paso{min-height:56px;font-size:1.08rem;padding-top:12px;padding-bottom:12px}
+.lc-grandes .lc-opciones,.lc-grandes .lc-clasif-btns,.lc-grandes .lc-chips,.lc-grandes .lc-orden-pool{gap:12px}
+.lc-anticipa{margin:0;font-size:.92rem;color:var(--lc-azul-osc);background:var(--lc-azul-claro);border-radius:10px;padding:8px 12px}
+.lc-pausa{background:var(--lc-acento-claro);border:1px dashed var(--lc-acento-borde);border-radius:var(--lc-radio);padding:12px 16px}
+.lc-pausa p{margin:0}
+.lc-acumulado{background:var(--lc-azul-claro);border:1px solid var(--lc-borde)}
+.lc-acumulado ul{margin:4px 0 0;padding-left:18px}
+.lc-acumulado li{margin-bottom:2px}
+.lc-defs{background:var(--lc-azul-claro);border-radius:var(--lc-radio);padding:12px 16px;font-size:.96rem}
+.lc-defs ul{margin:6px 0 0;padding-left:18px}
+.lc-escuchar-fila{display:flex}
+.lc-pista-previa .lc-btn-desplegar{font-size:.92rem;padding:8px 12px;border-style:dashed}
+.lc-pista-previa{margin-bottom:10px}
+.lc-clase.lc-calmo *,.lc-clase.lc-calmo *::before,.lc-clase.lc-calmo *::after{animation:none!important;transition:none!important}
+.lc-clase.lc-calmo{--lc-patron:linear-gradient(transparent,transparent)}
+.lc-clase.lc-calmo[data-tema] .lc-gancho,.lc-clase.lc-calmo[data-tema] .lc-cifra,.lc-clase.lc-calmo[data-tema] .lc-logro-cab{background:var(--lc-azul-claro);color:var(--lc-texto);box-shadow:none}
+.lc-clase.lc-calmo[data-tema] .lc-gancho .lc-rotulo,.lc-clase.lc-calmo[data-tema] .lc-cifra-num{color:var(--lc-azul)}
+.lc-clase.lc-calmo[data-tema] .lc-cifra-puntos i{background:var(--lc-azul)}
+.lc-clase.lc-calmo[data-tema] .lc-cifra-puntos i.lc-tenue{background:var(--lc-borde)}
+.lc-clase.lc-calmo[data-tema] .lc-logro-cab .lc-cap-titulo{color:var(--lc-azul-osc)}
+.lc-clase.lc-calmo[data-tema] .lc-puntaje{background:#fff}
+.lc-clase.lc-calmo[data-tema] .lc-cap-clave{background:var(--lc-acento-claro);color:var(--lc-texto);border:1px solid var(--lc-acento-borde);box-shadow:none;transform:none;outline:none}
+.lc-clase.lc-calmo[data-tema] .lc-cap-clave .lc-rotulo{color:var(--lc-naranja-osc);position:static;background:none;padding:0}
+.lc-clase.lc-calmo[data-tema].lc-modo-capsulas{background-image:none}
+.lc-clase.lc-calmo[data-tema] .lc-tarjeta,.lc-clase.lc-calmo[data-tema] .lc-chequeo{background-image:none;box-shadow:none}
+.lc-clase.lc-calmo[data-tema] .lc-cap-texto>p:first-child::first-letter{float:none;font-size:inherit;color:inherit;margin:0;font-weight:inherit}
 `;
 
 function inyectarEstilos() {
@@ -807,7 +841,8 @@ const INTERACTIVOS = {
     const hots = d.hallazgos.map((h, k) => {
       const b = el('button', 'lc-hot');
       b.type = 'button';
-      Object.assign(b.style, { left: `${h.x}%`, top: `${h.y}%`, width: `${(h.r || 6) * 2}%` });
+      const escala = ctx.ajustes?.botones_grandes ? 1.5 : 1;
+      Object.assign(b.style, { left: `${h.x}%`, top: `${h.y}%`, width: `${(h.r || 6) * 2 * escala}%` });
       b.setAttribute('aria-label', `Posible pista ${k + 1}`);
       b.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1165,7 +1200,16 @@ function crearChequeo(ch, ctx, idCapsula, alAcertar) {
   const t = el('div', 'lc-tarjeta lc-chequeo');
   t.appendChild(el('h3', '', escapar(ctx.rotulos?.chequeo || '✅ ¿Lo entendiste?')));
   t.appendChild(el('p', '', fmt(ch.pregunta)));
-  const opciones = ch.opciones.map((texto, i) => ({ texto, i }));
+  const aj = ctx.ajustes || {};
+  let opciones = ch.opciones.map((texto, i) => ({ texto, i }));
+  if (aj.opciones === 2 && opciones.length > 2) {
+    opciones = [opciones[ch.correcta], opciones.find(o => o.i !== ch.correcta)];
+  }
+  const pista = ch.pista || (ctx.ideas?.[idCapsula] ? `Repasá lo que acabás de leer: ${ctx.ideas[idCapsula]}` : '');
+  if (aj.pista_previa && pista) {
+    t.appendChild(crearDesplegable('💡 Ver una pista antes de responder', `<p>${fmt(pista)}</p>`,
+      { claseExtra: 'lc-pista-previa', alAbrir: () => registrar('clase_pista_previa', { clase: ctx.id, capsula: idCapsula }) }));
+  }
   for (let k = opciones.length - 1; k > 0; k--) {
     const j = Math.floor(Math.random() * (k + 1));
     [opciones[k], opciones[j]] = [opciones[j], opciones[k]];
@@ -1279,9 +1323,25 @@ function renderizarCapsulas(clase, destino, opciones) {
   const frases = { ...FRASES_LUMAI, ...(clase.lumai || {}) };
   const imagenes = Object.fromEntries((clase.imagenes || []).map(d => [d.id, d]));
   const rotulos = ROTULOS[temaDe(clase)] || ROTULOS.general;
-  const ctx = { id: clase.id, imagenes, opciones, rotulos, titulos: Object.fromEntries((clase.capsulas || []).map((c, k) => [c.id || `c${k + 1}`, c.titulo])) };
+  const aj = { ...(opciones.ajustes || {}) };
+  // Con 'esenciales' quedan solo las cápsulas marcadas como esenciales (nunca menos de 2)
+  let capsulas = clase.capsulas;
+  if (aj.capsulas === 'esenciales') {
+    const esenciales = capsulas.filter(c => c.esencial !== false);
+    if (esenciales.length >= 2) capsulas = esenciales;
+  }
+  const idDe = (c, k) => c.id || `c${k + 1}`;
+  const ctx = {
+    id: clase.id, imagenes, opciones, rotulos, ajustes: aj,
+    titulos: Object.fromEntries(capsulas.map((c, k) => [idDe(c, k), c.titulo])),
+    ideas: Object.fromEntries(capsulas.map((c, k) => [idDe(c, k), String(c.idea_clave || '').replace(/\*+/g, '')]))
+  };
   const conAsistente = opciones.asistente === true;
   const raiz = el('article', 'lc-clase lc-modo-capsulas');
+  if (aj.calmo) raiz.classList.add('lc-calmo');
+  if (aj.botones_grandes) raiz.classList.add('lc-grandes');
+  if (aj.mayusculas) raiz.classList.add('lc-mayus');
+  if (aj.letra) raiz.classList.add(`lc-letra-${Math.min(aj.letra, 2)}`);
   raiz.setAttribute('data-clase', clase.id || '');
   raiz.setAttribute('data-tema', temaDe(clase));
   cargarFuentes(temaDe(clase));
@@ -1341,7 +1401,6 @@ function renderizarCapsulas(clase, destino, opciones) {
     });
   };
 
-  const capsulas = clase.capsulas;
   const totalMin = capsulas.reduce((s, c) => s + (c.minutos || 2), 0);
   const conChequeo = capsulas.filter(c => c.chequeo).length;
   const pantallas = [];
@@ -1371,8 +1430,8 @@ function renderizarCapsulas(clase, destino, opciones) {
   (clase.imagenes || []).filter(d => d.ubicacion === 'inicio').forEach(d => ponerImagen(d.id, portada));
   if (clase.mision?.texto) portada.appendChild(notaConIcono('lc-mision', rotulos.iconoMision, escapar(rotulos.mision), `<p>${fmt(clase.mision.texto)}</p>`));
   const agenda = el('div', 'lc-tarjeta');
-  agenda.appendChild(el('h3', '', `${escapar(rotulos.recorrido)} · unos ${totalMin} minutos`));
-  agenda.appendChild(el('ol', 'lc-agenda', capsulas.map(c => `<li><span>${fmt(c.titulo)}</span><small>${c.minutos || 2} min</small></li>`).join('')));
+  agenda.appendChild(el('h3', '', aj.sin_tiempos ? escapar(rotulos.recorrido) : `${escapar(rotulos.recorrido)} · unos ${totalMin} minutos`));
+  agenda.appendChild(el('ol', 'lc-agenda', capsulas.map(c => `<li><span>${fmt(c.titulo)}</span>${aj.sin_tiempos ? '' : `<small>${c.minutos || 2} min</small>`}</li>`).join('')));
   portada.appendChild(agenda);
   if (clase.vocabulario?.length) {
     portada.appendChild(el('p', 'lc-tip', '💡 Las palabras <span class="lc-termino" style="cursor:default">subrayadas así</span> se pueden tocar para ver qué significan. Si algo no se entiende, cada cápsula tiene ayuda.'));
@@ -1381,20 +1440,59 @@ function renderizarCapsulas(clase, destino, opciones) {
 
   // Cápsulas
   capsulas.forEach((c, k) => {
-    const capId = c.id || `c${k + 1}`;
+    const capId = idDe(c, k);
     const s = el('section', 'lc-cap');
     s.setAttribute('data-capsula', capId);
+    if (aj.pausa_cada && k > 0 && k % aj.pausa_cada === 0) {
+      s.appendChild(el('div', 'lc-pausa', '<p>☕ <b>Momento de pausa.</b> Estirate, respirá hondo y seguí cuando quieras.</p>'));
+    }
     if (c.lumai) s.appendChild(crearLumai(c.lumai, c.pose || 'saludo', opciones));
     const intro = el('div', 'lc-cap-intro');
-    intro.appendChild(el('div', 'lc-eyebrow', `${escapar(rotulos.capsula)} ${k + 1} de ${capsulas.length} · ${c.minutos || 2} min`));
+    intro.appendChild(el('div', 'lc-eyebrow', `${escapar(rotulos.capsula)} ${k + 1} de ${capsulas.length}${aj.sin_tiempos ? '' : ` · ${c.minutos || 2} min`}`));
     const h = el('h3', 'lc-cap-titulo', fmt(c.titulo));
     h.tabIndex = -1;
     intro.appendChild(h);
     s.appendChild(intro);
-    if (c.texto) {
+    if (aj.anticipar) {
+      const despues = capsulas[k + 1] ? `Después viene «${capsulas[k + 1].titulo}».` : 'Después viene el cierre de la clase.';
+      s.appendChild(el('p', 'lc-anticipa', `📍 Estás en la parte ${k + 1} de ${capsulas.length}. ${c.interactivo ? 'Primero leés, después hay una actividad y al final una pregunta.' : 'Primero leés y al final hay una pregunta.'} ${despues}`));
+    }
+    if (aj.recordar_acumulado && k > 0) {
+      const previas = capsulas.slice(0, k).filter(x => x.idea_clave).map(x => `<li>${fmt(x.idea_clave)}</li>`).join('');
+      if (previas) s.appendChild(notaConIcono('lc-acumulado', '🧠', 'Hasta ahora aprendiste', `<ul>${previas}</ul>`));
+    }
+    // Texto según el perfil: completo, completo con la versión fácil abierta, o versión fácil primero
+    const usarSimple = aj.texto === 'simple' && c.texto_simple;
+    let textoParaVoz = usarSimple ? c.texto_simple : c.texto;
+    if (usarSimple) {
+      s.appendChild(el('div', 'lc-cap-texto', parrafos(c.texto_simple)));
+      const completo = crearDesplegable('📖 Leer la explicación completa', parrafos(c.texto),
+        { alAbrir: () => registrar('clase_texto_completo', { clase: ctx.id, capsula: capId }) });
+      activarTerminos(completo.querySelector('.lc-panel'), capId);
+      s.appendChild(completo);
+    } else if (c.texto) {
       const texto = el('div', 'lc-cap-texto', parrafos(c.texto));
       activarTerminos(texto, capId);
       s.appendChild(texto);
+    }
+    if (aj.definiciones_abiertas) {
+      const vistas = new Set();
+      const defs = [...String(c.texto || '').matchAll(/\*\*(.+?)\*\*/g)]
+        .map(m => buscarTermino(m[1], clase.vocabulario))
+        .filter(v => v && !vistas.has(v.palabra) && vistas.add(v.palabra));
+      if (defs.length) s.appendChild(el('div', 'lc-defs', `<b>📚 Palabras de esta parte</b><ul>${defs.map(v => `<li><b>${escapar(v.palabra)}:</b> ${fmt(v.definicion)}</li>`).join('')}</ul>`));
+    }
+    let leer = null;
+    if (aj.voz >= 1) {
+      const fila = el('div', 'lc-escuchar-fila');
+      const bVoz = el('button', 'lc-btn lc-sec lc-btn-chico', '🔊 Escuchar');
+      bVoz.type = 'button';
+      const paraLeer = [c.titulo, textoParaVoz, c.idea_clave].filter(Boolean).join('. ').replace(/\*+/g, '').replace(/\n+/g, ' ');
+      leer = () => leerEnVoz(paraLeer, bVoz);
+      bVoz.addEventListener('click', () => { leer(); registrar('clase_escuchar', { clase: ctx.id, capsula: capId }); });
+      if (!('speechSynthesis' in window)) bVoz.disabled = true;
+      fila.appendChild(bVoz);
+      intro.appendChild(fila);
     }
     if (c.presentacion) { const pr = crearPresentacion(c.presentacion); if (pr) s.appendChild(pr); }
     if (c.imagen) ponerImagen(c.imagen, s);
@@ -1407,11 +1505,16 @@ function renderizarCapsulas(clase, destino, opciones) {
     if (c.mi_lugar) s.appendChild(crearMiLugar(c.mi_lugar, ctx, capId));
     if (c.idea_clave) s.appendChild(notaConIcono('lc-cap-clave', rotulos.iconoRecordar, escapar(rotulos.recordar), `<p>${fmt(c.idea_clave)}</p>`));
 
-    // Ayuda para seguir sin docente
-    if (c.texto_simple || conAsistente) {
-      const ayuda = crearDesplegable('🙋 ¿Te trabaste? Leelo más fácil',
+    if (aj.mas_alla && k === capsulas.length - 1 && clase.para_ir_mas_alla?.pregunta) {
+      const mas = clase.para_ir_mas_alla;
+      s.appendChild(el('div', 'lc-tarjeta lc-mas-alla', `<h3>🚀 Desafío para ir más allá</h3><p>${fmt(mas.pregunta)}</p>${mas.conexion ? `<p><b>🔗 Conexión:</b> ${fmt(mas.conexion)}</p>` : ''}`));
+    }
+
+    // Ayuda para seguir sin docente (si el texto principal ya es el fácil, no hace falta)
+    if ((c.texto_simple && !usarSimple) || conAsistente) {
+      const ayuda = crearDesplegable(aj.texto === 'con_simple' ? '🙋 Más fácil' : '🙋 ¿Te trabaste? Leelo más fácil',
         c.texto_simple ? `<p>${fmt(c.texto_simple)}</p>` : '',
-        { claseExtra: 'lc-ayuda', alAbrir: () => registrar('clase_ayuda', { clase: ctx.id, capsula: capId, titulo: c.titulo }) });
+        { abierto: aj.texto === 'con_simple', claseExtra: 'lc-ayuda', alAbrir: () => registrar('clase_ayuda', { clase: ctx.id, capsula: capId, titulo: c.titulo }) });
       if (conAsistente) {
         const contexto = String(c.texto || '').replace(/\*+/g, '');
         const acciones = el('div', 'lc-ayuda-acciones');
@@ -1424,7 +1527,7 @@ function renderizarCapsulas(clase, destino, opciones) {
       s.appendChild(ayuda);
     }
 
-    const pantalla = { nodo: s, tipo: 'capsula', id: capId, numero: k + 1, titulo: c.titulo, intentos: 0, lista: !c.chequeo, paso: String(k + 1) };
+    const pantalla = { nodo: s, tipo: 'capsula', id: capId, numero: k + 1, titulo: c.titulo, intentos: 0, lista: !c.chequeo, paso: String(k + 1), leer };
     if (c.chequeo) {
       s.appendChild(crearChequeo(c.chequeo, ctx, capId, (primera, intentos) => {
         pantalla.intentos = intentos;
@@ -1444,7 +1547,7 @@ function renderizarCapsulas(clase, destino, opciones) {
   hCierre.tabIndex = -1;
   cabCierre.appendChild(hCierre);
   const puntaje = el('span', 'lc-puntaje');
-  if (conChequeo) cabCierre.appendChild(puntaje);
+  if (conChequeo && !aj.sin_puntaje) cabCierre.appendChild(puntaje);
   cierre.appendChild(cabCierre);
   if (clase.mision?.resuelta) cierre.appendChild(notaConIcono('lc-mision', rotulos.iconoMision, escapar(rotulos.resuelta), `<p>${fmt(clase.mision.resuelta)}</p>`));
   const ideas = capsulas.filter(c => c.idea_clave);
@@ -1556,11 +1659,13 @@ function renderizarCapsulas(clase, destino, opciones) {
     if (mover && anterior.tipo === 'capsula') {
       registrar('clase_capsula_tiempo', { clase: ctx.id, capsula: anterior.id, titulo: anterior.titulo, segundos: Math.round((Date.now() - desde) / 1000) });
     }
+    try { if (window.speechSynthesis?.speaking) window.speechSynthesis.cancel(); } catch (e) { /* sin voz */ }
     pantallas.forEach((p, k) => { p.nodo.hidden = k !== i; });
     actual = i;
     desde = Date.now();
     const p = pantallas[i];
     if (p.tipo === 'capsula') registrar('clase_capsula_vista', { clase: ctx.id, capsula: p.id, numero: p.numero });
+    if (mover && p.tipo === 'capsula' && aj.voz >= 2 && p.leer) setTimeout(p.leer, 300);
     if (p.tipo === 'cierre') {
       puntaje.textContent = `⭐ ${aciertos} de ${conChequeo} preguntas bien a la primera`;
       if (!completada) { completada = true; registrar('clase_completada', { clase: ctx.id, aciertos, preguntas: conChequeo }); }
@@ -1579,6 +1684,15 @@ function renderizarCapsulas(clase, destino, opciones) {
   destino.appendChild(raiz);
   mostrar(Math.min(opciones.capsulaInicial || 0, pantallas.length - 1), false);
   registrar('clase_mostrada', { clase: ctx.id, titulo: clase.titulo, materia: clase.materia, formato: 'capsulas', capsulas: capsulas.length, preguntas: conChequeo });
+  const activos = Object.keys(aj).filter(k => k !== 'motivos' && aj[k] && aj[k] !== 'todas' && aj[k] !== 'completo' && !(k === 'opciones' && aj[k] === 3));
+  if (activos.length) {
+    registrar('clase_adaptada', {
+      clase: ctx.id,
+      perillas: Object.fromEntries(activos.map(k => [k, aj[k]])),
+      motivos: (aj.motivos || []).map(m => `${m.dimension}: ${m.grado}`),
+      capsulas_base: clase.capsulas.length
+    });
+  }
   return raiz;
 }
 

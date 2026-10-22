@@ -1357,6 +1357,9 @@
             const completada = de('clase_completada').length > 0;
             const contextos = de('clase_mi_lugar').length;
             const textoAuto = { entendi: '😊 Lo entendí', mas_o_menos: '😐 Más o menos', me_costo: '😟 Me costó' };
+            const adaptaciones = de('clase_adaptada');
+            const adaptacion = adaptaciones.length ? adaptaciones[adaptaciones.length - 1] : null;
+            const nombresPerillas = { capsulas: 'solo cápsulas esenciales', texto: 'versión fácil', mayusculas: 'mayúsculas', letra: 'letra grande', voz: 'lectura en voz alta', definiciones_abiertas: 'definiciones a la vista', opciones: 'preguntas con 2 opciones', pista_previa: 'pista antes de responder', sin_puntaje: 'sin puntaje', recordar_acumulado: 'repaso acumulado', pausa_cada: 'pausas', calmo: 'modo calmo', botones_grandes: 'botones grandes', anticipar: 'anticipación de cada paso', mas_alla: 'desafío extra', sin_tiempos: 'sin tiempos', voz_sin_auto: 'sin lectura automática' };
             const duracion = (seg) => seg < 60 ? `${seg} s` : `${Math.round(seg / 60)} min`;
 
             let lectura = '';
@@ -1368,6 +1371,7 @@
 
             const tarjeta = (valor, etiqueta) => `<div class="summary-card"><div class="summary-value">${valor}</div><div class="summary-label">${etiqueta}</div></div>`;
             const detalle = `
+                ${adaptacion ? `<p><strong>Adaptación aplicada:</strong> ${Object.keys(adaptacion.perillas || {}).map(k => nombresPerillas[k] || k).join(', ')}${adaptacion.motivos && adaptacion.motivos.length ? ` <em>(según ${adaptacion.motivos.map(esc).join('; ')})</em>` : ''}. Vio ${info.capsulas} de ${adaptacion.capsulas_base} cápsulas.</p>` : '<p><strong>Adaptación aplicada:</strong> ninguna (versión base).</p>'}
                 <p><strong>Autoevaluación:</strong> ${auto ? textoAuto[auto.respuesta] || esc(auto.respuesta) : 'No la completó'}</p>
                 ${lectura ? `<p><strong>Para tener en cuenta:</strong> ${lectura}</p>` : ''}
                 ${costaron.length ? `<p><strong>Preguntas que le costaron:</strong> ${costaron.map(c => `${esc(c.titulo || c.capsula)} (${c.intentos} intentos)`).join(', ')}</p>` : ''}

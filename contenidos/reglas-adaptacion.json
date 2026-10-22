@@ -1,0 +1,198 @@
+{
+  "version": 1,
+  "descripcion": "Reglas fijas para adaptar las clases base al perfil de cada alumno. Cada dimensión, según su grado, mueve una o más perillas de la clase. Las perillas de varias dimensiones se combinan: gana siempre el apoyo mayor. La clase base no se modifica ni se guardan versiones adaptadas: la adaptación se calcula al abrir la clase.",
+  "grados": [
+    { "id": "generalizado", "nombre": "Apoyo generalizado" },
+    { "id": "extenso", "nombre": "Apoyo extenso" },
+    { "id": "limitado", "nombre": "Apoyo limitado" },
+    { "id": "tipico", "nombre": "Típico" },
+    { "id": "fortaleza", "nombre": "Fortaleza" }
+  ],
+  "perillas": {
+    "capsulas": "todas | esenciales: con 'esenciales' se muestran solo las cápsulas marcadas como esenciales.",
+    "texto": "completo | con_simple | simple: con_simple muestra la versión fácil abierta debajo del texto; simple muestra la versión fácil como texto principal y deja el completo para abrir.",
+    "mayusculas": "Texto de las cápsulas en mayúsculas (lector inicial).",
+    "letra": "0, 1 o 2: tamaño de letra normal, grande o muy grande.",
+    "voz": "0, 1 o 2: sin botón, botón Escuchar en cada cápsula, o lectura automática al abrir cada cápsula.",
+    "voz_sin_auto": "Impide la lectura automática (cuando escuchar no ayuda).",
+    "definiciones_abiertas": "Las palabras clave de cada cápsula aparecen ya definidas debajo del texto.",
+    "opciones": "3 o 2: cantidad de opciones en la pregunta de comprobación.",
+    "pista_previa": "La pregunta de comprobación ofrece una pista antes de responder.",
+    "sin_puntaje": "No se muestra cuántas preguntas respondió bien a la primera.",
+    "recordar_acumulado": "Cada cápsula empieza recordando las ideas de las cápsulas anteriores.",
+    "pausa_cada": "Cada cuántas cápsulas se propone una pausa breve (0: nunca).",
+    "calmo": "Modo calmo: sin animaciones, sin texturas y con colores suaves.",
+    "botones_grandes": "Botones y zonas para tocar más grandes.",
+    "anticipar": "Cada cápsula dice en qué parte del recorrido está y qué viene después.",
+    "mas_alla": "Se agrega el desafío para ir más allá en la última cápsula.",
+    "sin_tiempos": "No se muestran minutos ni duraciones estimadas."
+  },
+  "dimensiones": [
+    {
+      "id": "lectoescritura", "nombre": "Lectoescritura",
+      "pregunta": "¿Decodifica palabras y oraciones solo?",
+      "fundamento": "Visión Simple de la Lectura (Gough y Tunmer, 1986): decodificar y comprender son capacidades distintas.",
+      "grados": {
+        "generalizado": { "texto": "simple", "mayusculas": true, "letra": 2, "voz": 2, "capsulas": "esenciales" },
+        "extenso": { "texto": "simple", "mayusculas": true, "letra": 1, "voz": 1 },
+        "limitado": { "texto": "con_simple", "voz": 1 },
+        "tipico": {},
+        "fortaleza": {}
+      }
+    },
+    {
+      "id": "comprension_lectora", "nombre": "Comprensión lectora",
+      "pregunta": "¿Entiende lo que lee, aunque lea lento?",
+      "fundamento": "Visión Simple de la Lectura: la comprensión lectora es el producto de decodificar y comprender el lenguaje.",
+      "grados": {
+        "generalizado": { "texto": "simple", "definiciones_abiertas": true, "capsulas": "esenciales", "voz": 1 },
+        "extenso": { "texto": "simple", "definiciones_abiertas": true, "capsulas": "esenciales" },
+        "limitado": { "texto": "con_simple", "definiciones_abiertas": true },
+        "tipico": {},
+        "fortaleza": { "mas_alla": true }
+      }
+    },
+    {
+      "id": "comprension_oral", "nombre": "Comprensión oral",
+      "pregunta": "¿Entiende una explicación hablada?",
+      "fundamento": "Visión Simple de la Lectura: si comprende bien al escuchar, conviene leerle en voz alta en lugar de simplificar; si no, la voz no ayuda.",
+      "grados": {
+        "generalizado": { "voz_sin_auto": true, "definiciones_abiertas": true },
+        "extenso": { "voz_sin_auto": true },
+        "limitado": {},
+        "tipico": {},
+        "fortaleza": { "voz": 1 }
+      }
+    },
+    {
+      "id": "razonamiento", "nombre": "Razonamiento",
+      "pregunta": "¿Relaciona ideas, compara, saca conclusiones?",
+      "fundamento": "DUA, principio de representación: graduar el nivel de abstracción.",
+      "grados": {
+        "generalizado": { "opciones": 2, "pista_previa": true, "capsulas": "esenciales", "texto": "con_simple" },
+        "extenso": { "opciones": 2, "pista_previa": true, "capsulas": "esenciales" },
+        "limitado": { "pista_previa": true },
+        "tipico": {},
+        "fortaleza": { "mas_alla": true }
+      }
+    },
+    {
+      "id": "memoria_trabajo", "nombre": "Memoria de trabajo",
+      "pregunta": "¿Sigue consignas de varios pasos?",
+      "fundamento": "Baddeley y Hitch (1974); teoría de la carga cognitiva (Sweller, 1988): reducir la información que hay que sostener a la vez.",
+      "grados": {
+        "generalizado": { "recordar_acumulado": true, "capsulas": "esenciales", "opciones": 2 },
+        "extenso": { "recordar_acumulado": true, "capsulas": "esenciales" },
+        "limitado": { "recordar_acumulado": true },
+        "tipico": {},
+        "fortaleza": {}
+      }
+    },
+    {
+      "id": "atencion", "nombre": "Atención sostenida",
+      "pregunta": "¿Cuántos minutos se mantiene en una tarea?",
+      "fundamento": "Funciones ejecutivas (Diamond, 2013): tramos más cortos y pausas planificadas.",
+      "grados": {
+        "generalizado": { "capsulas": "esenciales", "pausa_cada": 1 },
+        "extenso": { "capsulas": "esenciales", "pausa_cada": 2 },
+        "limitado": { "pausa_cada": 3 },
+        "tipico": {},
+        "fortaleza": {}
+      }
+    },
+    {
+      "id": "velocidad", "nombre": "Velocidad de procesamiento",
+      "pregunta": "¿Entiende bien pero necesita más tiempo?",
+      "fundamento": "Kail y Salthouse (1994): sin presión de tiempo. En los juegos, sin cuenta regresiva o con tiempo extendido.",
+      "grados": {
+        "generalizado": { "sin_tiempos": true, "pista_previa": true },
+        "extenso": { "sin_tiempos": true },
+        "limitado": { "sin_tiempos": true },
+        "tipico": {},
+        "fortaleza": {}
+      }
+    },
+    {
+      "id": "motricidad", "nombre": "Motricidad fina",
+      "pregunta": "¿Le cuesta arrastrar, apuntar o hacer clics precisos?",
+      "fundamento": "DUA, principio de acción y expresión: reducir la exigencia de precisión motriz.",
+      "grados": {
+        "generalizado": { "botones_grandes": true, "letra": 1 },
+        "extenso": { "botones_grandes": true },
+        "limitado": { "botones_grandes": true },
+        "tipico": {},
+        "fortaleza": {}
+      }
+    },
+    {
+      "id": "canal_acceso", "nombre": "Canal de acceso",
+      "pregunta": "¿Puede acceder solo al texto escrito, o necesita escucharlo?",
+      "fundamento": "DUA, principio de representación: el canal se elige por la barrera de acceso, no por preferencia.",
+      "grados": {
+        "generalizado": { "voz": 2, "letra": 2 },
+        "extenso": { "voz": 2, "letra": 1 },
+        "limitado": { "voz": 1 },
+        "tipico": {},
+        "fortaleza": {}
+      }
+    },
+    {
+      "id": "tolerancia_frustracion", "nombre": "Tolerancia a la frustración",
+      "pregunta": "¿Abandona ante el error?",
+      "fundamento": "DUA, principio de compromiso: sostener el esfuerzo y la persistencia, sin penalizar el error.",
+      "grados": {
+        "generalizado": { "sin_puntaje": true, "pista_previa": true, "opciones": 2 },
+        "extenso": { "sin_puntaje": true, "pista_previa": true },
+        "limitado": { "sin_puntaje": true },
+        "tipico": {},
+        "fortaleza": {}
+      }
+    },
+    {
+      "id": "sentido_numerico", "nombre": "Sentido numérico",
+      "pregunta": "¿Comprende cantidades y operaciones, más allá de leer el enunciado?",
+      "fundamento": "Dificultad específica del aprendizaje en matemática (DSM-5): pasos más cortos y apoyo, o mayor complejidad si es fortaleza.",
+      "solo_materias": ["Matemática"],
+      "grados": {
+        "generalizado": { "texto": "simple", "opciones": 2, "pista_previa": true, "capsulas": "esenciales" },
+        "extenso": { "texto": "con_simple", "opciones": 2, "pista_previa": true },
+        "limitado": { "texto": "con_simple" },
+        "tipico": {},
+        "fortaleza": { "mas_alla": true }
+      }
+    },
+    {
+      "id": "sensibilidad_sensorial", "nombre": "Sensibilidad sensorial",
+      "pregunta": "¿Le molestan los sonidos, las animaciones o los colores intensos?",
+      "fundamento": "Hiper o hiporreactividad sensorial (criterio B4 del autismo, DSM-5): modo calmo.",
+      "grados": {
+        "generalizado": { "calmo": true, "voz_sin_auto": true },
+        "extenso": { "calmo": true },
+        "limitado": { "calmo": true },
+        "tipico": {},
+        "fortaleza": {}
+      }
+    },
+    {
+      "id": "previsibilidad", "nombre": "Previsibilidad",
+      "pregunta": "¿Le cuestan los cambios inesperados o necesita saber qué viene?",
+      "fundamento": "Insistencia en la rutina y dificultad con los cambios (criterio B2 del autismo, DSM-5): anticipar cada paso.",
+      "grados": {
+        "generalizado": { "anticipar": true, "calmo": true },
+        "extenso": { "anticipar": true },
+        "limitado": { "anticipar": true },
+        "tipico": {},
+        "fortaleza": {}
+      }
+    }
+  ],
+  "intereses": "No es una dimensión: es un dato del perfil (por ejemplo, fútbol o dinosaurios). Más adelante, la IA va a reemplazar los ejemplos marcados como intercambiables por uno ambientado en ese interés.",
+  "plantillas": {
+    "descripcion": "Puntos de partida para no completar las 13 dimensiones desde cero. Equivalen a los niveles actuales de LumAI. El docente después ajusta cada dimensión por separado.",
+    "N0": { "nombre": "Apoyo generalizado", "perfil": { "lectoescritura": "generalizado", "comprension_lectora": "generalizado", "memoria_trabajo": "extenso", "canal_acceso": "extenso" } },
+    "N1": { "nombre": "Apoyo extenso", "perfil": { "lectoescritura": "extenso", "comprension_lectora": "extenso", "memoria_trabajo": "limitado", "canal_acceso": "limitado" } },
+    "N2": { "nombre": "Apoyo limitado", "perfil": { "lectoescritura": "limitado", "comprension_lectora": "limitado" } },
+    "N3": { "nombre": "Apoyo intermitente", "perfil": {} },
+    "N4": { "nombre": "Profundización", "perfil": { "razonamiento": "fortaleza", "comprension_lectora": "fortaleza" } }
+  }
+}

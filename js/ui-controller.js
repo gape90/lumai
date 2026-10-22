@@ -30,6 +30,7 @@ import './lumai-metrics-tracker.js';
 
 import { renderizarClase, claseATexto } from './clase-renderer.js';
 import { buscarClaseBase } from './clases-base.js';
+import { cargarReglas, calcularAjustes, perfilDesdePlantilla } from './adaptacion.js';
 
 // ==================== ESTADO Y CONFIGURACIÓN ====================
 
@@ -307,6 +308,32 @@ function mostrarBotonLectura() {
 
 // ==================== GENERACIÓN DE CONTENIDO ====================
 
+// Nivel del alumno (N0 a N3), el mismo que usa config.js a partir de la contraseña
+function nivelDelAlumno() {
+    try {
+        const datos = JSON.parse(sessionStorage.getItem('datosLumai') || '{}');
+        const porClave = { n012: 'N0', n123: 'N1', n234: 'N2', n345: 'N3' };
+        return porClave[String(datos.contrasena || '').toLowerCase()] || datos.perfil || 'N2';
+    } catch (e) {
+        return 'N2';
+    }
+}
+
+// Perfil de 13 dimensiones del alumno. Mientras no exista la ficha que completa el
+// docente, se usa la plantilla de inicio que corresponde a su nivel (N0 a N3).
+// Si en este navegador hay un perfil guardado para el alumno
+// (localStorage 'lumai_perfiles_dimensiones' = { "nombre del alumno": { dimension: grado } }),
+// ese perfil tiene prioridad. El perfil nunca se envía a la IA.
+function perfilDelAlumno(reglas) {
+    try {
+        const guardados = JSON.parse(localStorage.getItem('lumai_perfiles_dimensiones') || '{}');
+        const clave = String(datosSession.nombreAlumno || '').trim().toLowerCase();
+        if (guardados[clave]) return { perfil: guardados[clave], origen: 'ficha del docente' };
+    } catch (e) { /* sin perfiles guardados */ }
+    const nivel = nivelDelAlumno();
+    return { perfil: perfilDesdePlantilla(reglas, nivel), origen: `plantilla ${nivel}` };
+}
+
 // Si hay una clase base (contenidos/clases) para la materia y el tema, se muestra
 // esa clase en cápsulas y no se le pide la explicación a la IA.
 async function mostrarClaseBaseSiExiste() {
@@ -317,8 +344,21 @@ async function mostrarClaseBaseSiExiste() {
     });
     if (!clase || !estadoGlobal.elementosDOM.explicacionEl) return false;
 
+    // Adaptación al perfil del alumno con reglas fijas (contenidos/reglas-adaptacion.json)
+    let ajustes = null;
+    try {
+        const reglas = await cargarReglas();
+        const { perfil, origen } = perfilDelAlumno(reglas);
+        ajustes = calcularAjustes(perfil, reglas, clase.materia);
+        estadoGlobal.adaptacionClase = { origen, perfil, motivos: ajustes.motivos };
+        console.log('🧩 Adaptación de la clase:', origen, ajustes);
+    } catch (error) {
+        console.warn('⚠️ No se pudo adaptar la clase; se muestra la versión base:', error);
+    }
+
     // El nombre del alumno se usa solo acá, en el navegador: nunca se envía a la IA
     renderizarClase(clase, estadoGlobal.elementosDOM.explicacionEl, {
+        ajustes,
         nombreAlumno: datosSession.nombreAlumno,
         rutaImagenes: 'img/',
         rutaImagenesClase: 'img/clases/',
