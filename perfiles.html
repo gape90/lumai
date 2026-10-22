@@ -48,6 +48,12 @@ input[type=text]:focus,select:focus{outline:3px solid var(--azul-claro);border-c
 .escala input[value=tipico]:checked+span{background:var(--suave)}
 .escala input[value=fortaleza]:checked+span{background:var(--verde)}
 @media (max-width:640px){.dim{grid-template-columns:1fr}.escala{flex-wrap:wrap}.escala label{flex:1 1 33%}.escala span{text-align:center}}
+.dim-desc{grid-column:1/-1;font-size:.86rem;background:var(--azul-claro);border-radius:8px;padding:6px 10px;color:var(--azul-osc)}
+.dim-desc:empty{display:none}
+.dim.cambiada .dim-desc{background:var(--naranja-claro);color:#8a3b00}
+.dim-todos{grid-column:1/-1;font-size:.82rem;color:var(--suave)}
+.dim-todos summary{cursor:pointer}
+.dim-todos ul{margin:6px 0 0;padding-left:18px}
 .lateral{position:sticky;top:16px;display:grid;gap:16px}
 @media (max-width:900px){.lateral{position:static}}
 .codigo-caja{text-align:center}
@@ -112,14 +118,14 @@ input[type=text]:focus,select:focus{outline:3px solid var(--azul-claro);border-c
     </section>
 
     <section class="tarjeta">
-      <h2>2. Punto de partida</h2>
-      <p class="ayuda">Elegí una plantilla y después ajustá solo las dimensiones que se apartan. Todas arrancan en "típico".</p>
+      <h2>2. Atajo (opcional)</h2>
+      <p class="ayuda">Si querés, empezá con un atajo y después ajustá cada dimensión. No clasifica al alumno: es solo una comodidad. Todas arrancan en "sin barrera".</p>
       <div class="botones" id="plantillas"></div>
     </section>
 
     <section class="tarjeta">
-      <h2>3. Dimensiones</h2>
-      <p class="ayuda">Marcá lo que observás en el aula. Pasá el mouse sobre cada grado para ver su nombre completo.</p>
+      <h2>3. Barreras y fortalezas</h2>
+      <p class="ayuda">Para cada dimensión, marcá el grado que describe lo que el alumno hace <b>la mayor parte de las veces</b> con las clases tal como están hoy. Si dudás entre dos, elegí el de menor barrera y revisalo más adelante. No es un diagnóstico.</p>
       <div id="dimensiones"></div>
       <div class="grupo">
         <h3>Intereses</h3>
@@ -177,7 +183,7 @@ const GRUPOS = [
   ['Cambian la pantalla', ['atencion', 'velocidad', 'motricidad', 'canal_acceso', 'tolerancia_frustracion']],
   ['Necesidades específicas', ['sentido_numerico', 'sensibilidad_sensorial', 'previsibilidad']]
 ];
-const CORTO = { generalizado: 'Generalizado', extenso: 'Extenso', limitado: 'Limitado', tipico: 'Típico', fortaleza: 'Fortaleza' };
+const CORTO = { generalizado: 'Alta', extenso: 'Moderada', limitado: 'Leve', tipico: 'Sin barrera', fortaleza: 'Fortaleza' };
 let reglas = null;
 let perfil = {};
 let codigoActual = '';
@@ -210,8 +216,8 @@ function armarDimensiones() {
       const fila = document.createElement('div');
       fila.className = 'dim';
       fila.dataset.dim = id;
-      const escala = reglas.grados.map(gr => `<label title="${gr.nombre}"><input type="radio" name="dim-${id}" value="${gr.id}"><span>${CORTO[gr.id]}</span></label>`).join('');
-      fila.innerHTML = `<div><div class="dim-nombre">${d.nombre}${d.solo_materias ? ' <small style="font-weight:400;color:var(--suave)">(solo ' + d.solo_materias.join(', ') + ')</small>' : ''}</div><div class="dim-pregunta">${d.pregunta}</div></div><div class="escala" role="radiogroup" aria-label="${d.nombre}">${escala}</div>`;
+      const escala = reglas.grados.filter(gr => !(gr.id === 'fortaleza' && d.sin_fortaleza)).map(gr => `<label title="${gr.nombre}"><input type="radio" name="dim-${id}" value="${gr.id}"><span>${CORTO[gr.id]}</span></label>`).join('');
+      fila.innerHTML = `<div><div class="dim-nombre">${d.nombre}${d.solo_materias ? ' <small style="font-weight:400;color:var(--suave)">(solo ' + d.solo_materias.join(', ') + ')</small>' : ''}</div><div class="dim-pregunta">${d.pregunta}</div></div><div class="escala" role="radiogroup" aria-label="${d.nombre}">${escala}</div><div class="dim-desc" aria-live="polite"></div><details class="dim-todos"><summary>Ver qué significa cada grado</summary><ul>${reglas.grados.slice().reverse().filter(gr => d.descriptores[gr.id]).map(gr => `<li><b>${CORTO[gr.id]}:</b> ${d.descriptores[gr.id]}</li>`).join('')}</ul></details>`;
       fila.querySelectorAll('input').forEach(r => r.addEventListener('change', () => {
         if (r.value === 'tipico') delete perfil[id]; else perfil[id] = r.value;
         actualizar(true);
@@ -224,9 +230,13 @@ function armarDimensiones() {
 
 function pintarPerfil() {
   document.querySelectorAll('.dim').forEach(fila => {
-    const valor = perfil[fila.dataset.dim] || 'tipico';
-    fila.querySelector(`input[value="${valor}"]`).checked = true;
+    let valor = perfil[fila.dataset.dim] || 'tipico';
+    let radio = fila.querySelector(`input[value="${valor}"]`);
+    if (!radio) { valor = 'tipico'; radio = fila.querySelector('input[value="tipico"]'); }
+    radio.checked = true;
     fila.classList.toggle('cambiada', valor !== 'tipico');
+    const d = reglas.dimensiones.find(x => x.id === fila.dataset.dim);
+    fila.querySelector('.dim-desc').textContent = d.descriptores[valor] || '';
   });
 }
 
@@ -266,7 +276,7 @@ async function iniciar() {
     pl.appendChild(b);
   });
   const todo = document.createElement('button');
-  todo.type = 'button'; todo.className = 'chip'; todo.textContent = '↺ Todo típico';
+  todo.type = 'button'; todo.className = 'chip'; todo.textContent = '↺ Sin barreras';
   todo.addEventListener('click', () => { perfil = {}; actualizar(true); });
   pl.appendChild(todo);
 
