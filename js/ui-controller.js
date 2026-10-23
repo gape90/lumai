@@ -376,6 +376,9 @@ async function mostrarClaseBaseSiExiste() {
         mostrarTitulo: false   // el tema ya se muestra en el encabezado de LumAI
     });
 
+    // El botón "Escucha la explicación" solo aparece en perfiles que usan la voz
+    document.body.classList.toggle('sin-voz', !((estadoGlobal.ajustes || {}).voz >= 1));
+
     // "Nos ponemos a prueba" se habilita recién al llegar a la última pantalla de la clase
     const btnJuego = estadoGlobal.elementosDOM.btnIniciarActividades;
     if (btnJuego) {

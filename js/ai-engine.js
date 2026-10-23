@@ -666,6 +666,17 @@ export async function llamarGeminiAPI(prompt, maxTokens = 1000) {
       }
     }
     
+    // Servicio saturado o demasiados pedidos seguidos: se reintenta dos veces con una pausa
+    for (let reintento = 1; reintento <= 2 && [429, 500, 502, 503, 504].includes(response.status); reintento++) {
+      console.warn(`⏳ Gemini respondió ${response.status}. Reintento ${reintento}…`);
+      await new Promise(r => setTimeout(r, 1500 * reintento));
+      response = await fetch(GEMINI_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': claveAPI },
+        body: JSON.stringify(requestBody)
+      });
+    }
+
     const tiempoTranscurrido = Date.now() - tiempoInicio;
     console.log(`3. Respuesta recibida en ${tiempoTranscurrido}ms. Status: ${response.status}`);
     

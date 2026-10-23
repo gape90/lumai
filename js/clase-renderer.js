@@ -1194,14 +1194,21 @@ function crearMiLugar(d, ctx, idCapsula) {
     ok.className = 'lc-lugar-ok';
     if (texto.replace(/[^\p{L}]/gu, '').length < 4) { ok.textContent = 'Escribí tu respuesta para poder seguir. Si no sabés, escribí qué pensás o qué te gustaría preguntar.'; return; }
     intentos += 1;
+    if (intentos >= 2) {
+      // Ya tuvo la devolución y corrigió: solo se guarda
+      ok.className = 'lc-lugar-ok lc-lugar-bien';
+      ok.textContent = '💾 LumAI guardó tu respuesta.';
+      registrar('clase_mi_lugar', { clase: ctx.id, capsula: idCapsula, caracteres: texto.length, revision: 'corregido_por_alumno', intentos, respuesta: texto.slice(0, 500) });
+      return;
+    }
     listo.disabled = true;
     ok.textContent = '🤖 LumAI está leyendo tu respuesta…';
     let r;
     try {
       r = typeof ctx.opciones.corregir === 'function'
         ? await ctx.opciones.corregir({ tipo: 'lugar', consigna: String(d.pregunta).replace(/\*/g, ''), respuesta: texto })
-        : { ok: true, mensaje: 'Anotado. LumAI no pudo revisarlo ahora, pero quedó guardado.', sinRevision: true };
-    } catch (e) { r = { ok: true, mensaje: 'Anotado. LumAI no pudo revisarlo ahora, pero quedó guardado.', sinRevision: true }; }
+        : { ok: true, mensaje: 'Quedó guardado. (LumAI no pudo revisarlo porque no hay conexión con la IA.)', sinRevision: true };
+    } catch (e) { r = { ok: true, mensaje: 'Quedó guardado. (LumAI no pudo revisarlo porque no hay conexión con la IA.)', sinRevision: true }; }
     listo.disabled = false;
     if (r.ok || intentos >= 2) {
       ok.className = 'lc-lugar-ok lc-lugar-bien';
@@ -1782,13 +1789,19 @@ function renderizarCapsulas(clase, destino, opciones) {
   mostrar(Math.min(opciones.capsulaInicial || 0, pantallas.length - 1), false);
   registrar('clase_mostrada', { clase: ctx.id, titulo: clase.titulo, materia: clase.materia, formato: 'capsulas', capsulas: capsulas.length, preguntas: conChequeo });
   const activos = Object.keys(aj).filter(k => k !== 'motivos' && aj[k] && aj[k] !== 'todas' && aj[k] !== 'completo' && !(k === 'opciones' && aj[k] === 3));
-  if (activos.length) {
-    // Se registra qué se adaptó y qué dimensiones se pusieron en juego (nombre y grado), para que el
-    // docente vea el desempeño por dimensión en su reporte. Nunca se envía a la IA.
+  // Se registra qué se adaptó y el grado de cada una de las 13 dimensiones (nombre y grado), para que el docente vea
+  // el desempeño por dimensión en su reporte. Nunca se envía a la IA.
+  const NOMBRES_DIM = [['lectoescritura', 'Lectoescritura'], ['comprension_lectora', 'Comprensión lectora'], ['comprension_oral', 'Comprensión oral'], ['razonamiento', 'Razonamiento'], ['memoria_trabajo', 'Memoria de trabajo'], ['atencion', 'Atención'], ['velocidad', 'Velocidad de procesamiento'], ['motricidad', 'Motricidad fina'], ['canal_acceso', 'Canal de acceso'], ['tolerancia_frustracion', 'Respuesta ante el error'], ['sentido_numerico', 'Sentido numérico'], ['sensibilidad_sensorial', 'Sensibilidad sensorial'], ['previsibilidad', 'Previsibilidad']];
+  const NOMBRES_GRADO = { generalizado: 'Barrera alta', extenso: 'Barrera moderada', limitado: 'Barrera leve', tipico: 'Sin barrera', fortaleza: 'Fortaleza' };
+  const perfilDim = opciones.dimensiones || null;
+  const dimensiones = perfilDim
+    ? NOMBRES_DIM.map(([id, nombre]) => ({ dimension: nombre, grado: NOMBRES_GRADO[perfilDim[id] || 'tipico'] || 'Sin barrera', perillas: ((aj.motivos || []).find(m => m.dimension === nombre) || {}).perillas || [] }))
+    : (aj.motivos || []).map(m => ({ dimension: m.dimension, grado: m.grado, perillas: m.perillas }));
+  if (activos.length || dimensiones.length) {
     registrar('clase_adaptada', {
       clase: ctx.id,
       perillas: Object.fromEntries(activos.map(k => [k, aj[k]])),
-      dimensiones: (aj.motivos || []).map(m => ({ dimension: m.dimension, grado: m.grado, perillas: m.perillas })),
+      dimensiones,
       capsulas_base: clase.capsulas.length
     });
   }

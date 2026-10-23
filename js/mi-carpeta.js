@@ -251,6 +251,14 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
       const vacio = texto.replace(/[^\p{L}]/gu, '').length < 3 || (c.inicio && norm(texto) === norm(c.inicio));
       if (vacio) { estado.className = 'mc-estado casi'; estado.textContent = mayus('Escribí tu respuesta en el cuadro y después apretá Listo.'); return; }
       intentos += 1;
+      // Si ya recibió la devolución y corrigió, LumAI solo guarda (sin otra devolución)
+      if (intentos >= 2) {
+        anotarIntento(texto, 'corregido_por_alumno', '');
+        aceptar('corregido_por_alumno');
+        estado.className = 'mc-estado ok';
+        estado.textContent = mayus('💾 LumAI guardó tu respuesta. Ahora pasala a tu carpeta.');
+        return;
+      }
       if (c.modelo) {
         // Copia: se avisa si faltó algo, pero a la segunda vez se guarda igual
         const igual = norm(texto) === norm(c.modelo);

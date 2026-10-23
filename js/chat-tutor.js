@@ -173,8 +173,9 @@ Respuesta del alumno: "${texto.replace(/"/g, "'").slice(0, 500)}"
 Respondé SOLO con JSON, sin comillas triples: {"estado":"ok" o "reescribir","mensaje":"..."}`;
   try {
     const { llamarGeminiAPI } = await import('./ai-engine.js');
-    const bruto = String(await llamarGeminiAPI(prompt) || '');
-    const m = bruto.match(/\{[\s\S]*\}/);
+    let bruto = String(await llamarGeminiAPI(prompt) || '');
+    let m = bruto.match(/\{[\s\S]*\}/);
+    if (!m) { bruto = String(await llamarGeminiAPI(prompt) || ''); m = bruto.match(/\{[\s\S]*\}/); }   // un reintento
     if (!m) throw new Error('sin JSON');
     const j = JSON.parse(m[0]);
     let msj = String(j.mensaje || '').trim().replace(/[<>]/g, '');
@@ -182,7 +183,7 @@ Respondé SOLO con JSON, sin comillas triples: {"estado":"ok" o "reescribir","me
     return { ok: j.estado === 'ok', mensaje: msj || (j.estado === 'ok' ? '¡Muy bien!' : 'Probá escribirlo otra vez, con más detalle.') };
   } catch (e) {
     console.warn('⚠️ No se pudo corregir con IA:', e?.message);
-    return { ok: true, mensaje: 'Anotado. LumAI no pudo revisarlo ahora, pero quedó guardado.', sinRevision: true };
+    return { ok: true, mensaje: 'Quedó guardado. (LumAI no pudo revisarlo porque no hay conexión con la IA.)', sinRevision: true };
   }
 }
 
