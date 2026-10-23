@@ -379,7 +379,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! ¿Alguna vez una charla terminó en pelea sin que nadie se diera cuenta? Son 5 actividades cortas para aprender a discutir sin pelear. Mirá lo que pasó en este grupo.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés separar hechos de opiniones y defender tus ideas con argumentos. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés separar hechos de opiniones y defender tus ideas con argumentos. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -428,6 +428,10 @@
       {
         "palabra": "CONVERSAR",
         "pista": "Compartir ideas sobre un tema"
+      },
+      {
+        "palabra": "IDEAS",
+        "pista": "Cuando conversamos, compartimos ___ sobre un tema"
       }
     ],
     "simples": [

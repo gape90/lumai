@@ -27,7 +27,7 @@
       "esencial": false,
       "lumai": "Viajemos a 1665, al día en que alguien vio una célula por primera vez.",
       "pose": "saludo",
-      "texto": "Robert Hooke miró una lámina finísima de corcho con un microscopio. Vio pequeñas cavidades, como las celdas de un panal.\nLas llamó **células**: \"celdas pequeñas\".",
+      "texto": "El científico inglés Robert Hooke miró una lámina finísima de corcho con un microscopio. Vio pequeñas cavidades, como las celdas de un panal.\nLas llamó **células**: \"celdas pequeñas\".",
       "presentacion": {
         "tipo": "cifra",
         "numero": "0,1",
@@ -56,7 +56,7 @@
       "esencial": true,
       "lumai": "Unos años después, tres científicos juntaron todo lo que se sabía en una teoría.",
       "pose": "idea",
-      "texto": "La **teoría celular** afirma tres cosas.\nTodos los seres vivos están formados por una o más células. La célula es la unidad más pequeña que está viva. Y toda célula proviene de otra célula.",
+      "texto": "La **teoría celular** afirma tres cosas.\nTodos los seres vivos están formados por una o más células. La célula es la unidad más pequeña que está viva. Y toda célula proviene de otra célula.\nLa formularon científicos alemanes: Schleiden (botánico), Schwann (zoólogo) y Virchow (médico).",
       "presentacion": {
         "tipo": "ecuacion",
         "piezas": [
@@ -343,7 +343,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a conocer la pieza con la que está armada toda la vida: la célula. Son 5 actividades. Para empezar, pensá en esto.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya conocés la célula por dentro. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya conocés la célula por dentro. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -404,6 +404,14 @@
       {
         "palabra": "CLOROPLASTOS",
         "pista": "Los tienen las células vegetales y no las animales"
+      },
+      {
+        "palabra": "CORCHO",
+        "pista": "Material que Hooke miró con el microscopio"
+      },
+      {
+        "palabra": "PARED",
+        "pista": "La célula vegetal tiene ___ celular y la animal no"
       }
     ],
     "simples": [

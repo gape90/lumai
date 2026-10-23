@@ -82,6 +82,7 @@ export function ajustarConfiguracion(config) {
   if (a.sin_tiempos) {
     if ('tiempoRespuesta' in c) c.tiempoRespuesta = 0;     // 0 = sin límite
     if ('velocidad' in c) c.velocidad = Math.min(c.velocidad, 0.5);
+    if ('velocidadMundo' in c) c.velocidadMundo = Math.round(c.velocidadMundo * 0.8);
   }
   if (a.opciones && 'opciones' in c) c.opciones = Math.min(c.opciones, Math.max(2, a.opciones));
   return c;

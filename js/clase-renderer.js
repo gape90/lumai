@@ -1107,7 +1107,7 @@ const FRASES_LUMAI = {
   saludo: '¡Hola, {NOMBRE}! Soy LumAI y hoy vamos a descubrir algo nuevo juntos. Arranquemos con una pregunta.',
   idea: 'Prestá atención, porque esto es lo más importante de toda la clase:',
   pasos: 'Ahora vamos paso a paso. Abrí cada parte cuando estés listo.',
-  cierre: '¡Muy bien! Ya conocés lo esencial. Ahora volvamos al problema del principio. Después jugamos repasando.'
+  cierre: '¡Muy bien! Ya conocés lo esencial. Ahora volvamos al problema del principio. Después, nos ponemos a prueba.'
 };
 
 function crearLumai(texto, pose, opciones) {
@@ -1655,7 +1655,7 @@ function renderizarCapsulas(clase, destino, opciones) {
       registrar('clase_autoevaluacion', { clase: ctx.id, respuesta: valor, aciertos, preguntas: conChequeo });
       respuesta.innerHTML = '';
       if (valor === 'entendi') {
-        respuesta.appendChild(el('p', '', '¡Genial! Ya estás listo para jugar repasando. Si querés, antes repasá las palabras clave de abajo.'));
+        respuesta.appendChild(el('p', '', '¡Genial! Ya estás listo para ponerte a prueba. Antes de seguir, repasemos juntos las palabras clave de abajo.'));
       } else {
         respuesta.appendChild(el('p', '', 'Está muy bien darse cuenta. Te recomiendo volver a ver las actividades con calma. Después repasá las palabras clave y las trampas que están más abajo.'));
         const otra = el('button', 'lc-btn lc-btn-chico', '↩ Empezar las actividades de nuevo');
@@ -1669,17 +1669,16 @@ function renderizarCapsulas(clase, destino, opciones) {
   });
   autoeval.append(chips, respuesta);
   cierre.appendChild(autoeval);
-  (clase.interactivos || []).filter(d => (d.ubicacion || 'final') === 'final').forEach(d => ponerInteractivo(d, cierre));
   const repaso = el('div', 'lc-repaso');
   if (clase.vocabulario?.length) {
-    const d = crearDesplegable('📚 Repasar las palabras clave', '', { alAbrir: () => registrar('clase_repaso', { clase: ctx.id, parte: 'vocabulario' }) });
+    const d = crearDesplegable('📚 Repasar las palabras clave', '', { abierto: true, alAbrir: () => registrar('clase_repaso', { clase: ctx.id, parte: 'vocabulario' }) });
     d.querySelector('.lc-panel').appendChild(crearVocabulario(clase.vocabulario, ctx));
     repaso.appendChild(d);
   }
   if (clase.errores_frecuentes?.length) {
     repaso.appendChild(crearDesplegable('⚠️ Cuidado con estas trampas',
       clase.errores_frecuentes.map(e => `<p>❌ "${fmt(e.error)}"<br>✅ ${fmt(e.aclaracion)}</p>`).join(''),
-      { alAbrir: () => registrar('clase_repaso', { clase: ctx.id, parte: 'errores' }) }));
+      { abierto: true, alAbrir: () => registrar('clase_repaso', { clase: ctx.id, parte: 'errores' }) }));
   }
   if (clase.para_ir_mas_alla?.pregunta) {
     const mas = clase.para_ir_mas_alla;
@@ -1689,9 +1688,11 @@ function renderizarCapsulas(clase, destino, opciones) {
   }
   if (repaso.children.length) {
     const r = el('div', 'lc-cap-intro');
-    r.append(el('div', 'lc-eyebrow', 'Si querés, repasá'), repaso);
+    r.append(el('div', 'lc-eyebrow', 'Antes de las próximas actividades, repasemos juntos'), repaso);
     cierre.appendChild(r);
   }
+  // El dato curioso (y cualquier extra) va al final de la clase
+  (clase.interactivos || []).filter(d => (d.ubicacion || 'final') === 'final').forEach(d => ponerInteractivo(d, cierre));
   pantallas.push({ nodo: cierre, tipo: 'cierre', lista: true, paso: '★' });
 
   // Recorrido y navegación

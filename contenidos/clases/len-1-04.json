@@ -324,7 +324,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a leer como detectives: buscando pistas antes, durante y después de leer. Son 5 actividades. ¿Listo para investigar?",
-    "cierre": "¡Llegaste al final, detective! Estas estrategias te sirven para leer textos de cualquier materia. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, detective! Estas estrategias te sirven para leer textos de cualquier materia. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -369,6 +369,10 @@
       {
         "palabra": "RELEER",
         "pista": "Volver a leer cuando no se entiende"
+      },
+      {
+        "palabra": "TITULO",
+        "pista": "Parte del paratexto: el nombre del texto"
       }
     ],
     "simples": [

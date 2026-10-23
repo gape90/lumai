@@ -342,7 +342,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a ver cómo tu cuerpo trabaja en equipo, en tiempo real. Son 5 actividades. Para empezar, imaginate esta escena.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés cómo tu cuerpo capta, decide y responde. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés cómo tu cuerpo capta, decide y responde. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -395,6 +395,22 @@
       {
         "palabra": "ENCEFALO",
         "pista": "Parte del sistema nervioso central que está dentro del cráneo"
+      },
+      {
+        "palabra": "OJOS",
+        "pista": "Órganos de los sentidos que captan la luz"
+      },
+      {
+        "palabra": "PIEL",
+        "pista": "Órgano de los sentidos que capta el tacto"
+      },
+      {
+        "palabra": "MEDULA",
+        "pista": "Ordena el acto reflejo sin esperar al cerebro"
+      },
+      {
+        "palabra": "OIDOS",
+        "pista": "Órganos de los sentidos que captan los sonidos"
       }
     ],
     "simples": [

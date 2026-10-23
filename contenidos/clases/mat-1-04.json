@@ -372,7 +372,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a ver que un número puede tener muchas caras. Son 5 actividades cortas. Para empezar, fijate en esto.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés escribir un número de muchas formas y elegir la mejor. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés escribir un número de muchas formas y elegir la mejor. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -429,6 +429,10 @@
       {
         "palabra": "POTENCIAS",
         "pista": "La notación científica usa ___ de 10"
+      },
+      {
+        "palabra": "CEROS",
+        "pista": "El número 10⁶ tiene seis ___"
       }
     ],
     "simples": [

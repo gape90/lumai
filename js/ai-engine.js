@@ -836,6 +836,7 @@ EL PENTAGRAMA TIENE CINCO LÍNEAS...
 3. NUNCA exceder ambos límites a la vez
 
 ⚠️ OTRAS REGLAS CRÍTICAS:
+- Si nombrás a una persona (científico, personaje histórico), presentala SIEMPRE con una aclaración mínima de quién es (por ejemplo: "el médico italiano Francesco Redi")
 - Vocabulario EXTREMADAMENTE SIMPLE (palabras que un niño de 6-8 años entienda)
 - CADA oración debe tener SENTIDO COMPLETO por sí sola
 - Una sola idea clave por explicación
@@ -940,6 +941,7 @@ EL PENTAGRAMA TIENE CINCO LÍNEAS...
 3. NUNCA exceder ambos límites a la vez
 
 ⚠️ OTRAS REGLAS CRÍTICAS:
+- Si nombrás a una persona (científico, personaje histórico), presentala SIEMPRE con una aclaración mínima de quién es (por ejemplo: "el médico italiano Francesco Redi")
 - Vocabulario SIMPLE (palabras que un niño de 8-10 años entienda)
 - CADA oración debe tener SENTIDO COMPLETO por sí sola
 - Una idea principal por explicación

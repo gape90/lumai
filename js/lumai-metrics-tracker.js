@@ -28,6 +28,10 @@ class LumaiMetricsTracker {
                 console.log('📊 Almacenamiento de métricas inicializado');
             } else {
                 console.log('📊 Datos de métricas existentes cargados');
+                // Limpia las copias repetidas que dejaron las versiones anteriores
+                const antes = JSON.stringify(data).length;
+                this.dedupeData(data);
+                if (JSON.stringify(data).length < antes) this.saveData(data);
             }
             
             // ✅ AGREGADO: Mantener referencia en memoria
@@ -53,6 +57,48 @@ class LumaiMetricsTracker {
         }
     }
     
+    // Cada autoguardado agregaba una COPIA más de la misma sesión: los datos crecían hasta llenar el
+    // almacenamiento del navegador y entonces dejaba de guardarse todo. Acá se deja una sola copia por sesión.
+    dedupeData(data) {
+        if (!data || !data.students) return data;
+        Object.values(data.students).forEach(st => {
+            const porInicio = new Map();
+            (st.sessions || []).forEach(se => {
+                const k = se.startTime || Math.random();
+                const previa = porInicio.get(k);
+                if (!previa || (se.customEvents || []).length >= (previa.customEvents || []).length) porInicio.set(k, se);
+            });
+            st.sessions = [...porInicio.values()].sort((a, b) => String(a.startTime).localeCompare(String(b.startTime)));
+            this.recalcularTotales(st);
+        });
+        return data;
+    }
+
+    recalcularTotales(st) {
+        st.totalSessions = st.sessions.length;
+        st.totalTimeSpent = st.sessions.reduce((a, x) => a + (Number(x.timeSpent) || 0), 0);
+        st.totalAnswers = st.sessions.reduce((a, x) => a + (Number(x.totalAnswers) || 0), 0);
+        st.totalCorrectAnswers = st.sessions.reduce((a, x) => a + (Number(x.correctAnswers) || 0), 0);
+        if (st.sessions.length) { st.firstSession = st.sessions[0].startTime; st.lastSession = st.sessions[st.sessions.length - 1].startTime; }
+    }
+
+    // Si el navegador se quedó sin lugar: se aligera lo más viejo (nunca la sesión actual)
+    compactarDatos(data, nivel) {
+        this.dedupeData(data);
+        const actual = this.currentSession && this.currentSession.startTime;
+        Object.values(data.students || {}).forEach(st => {
+            const viejas = st.sessions.filter(x => x.startTime !== actual);
+            const conservar = nivel >= 2 ? 1 : 3;
+            viejas.slice(0, Math.max(0, viejas.length - conservar)).forEach(x => {
+                x.customEvents = (x.customEvents || []).filter(e => /^(clase_(mostrada|completada|autoevaluacion|problema_final|chequeo|adaptada)|carpeta_entregada)$/.test(e.type));
+                x.errors = (x.errors || []).slice(-5);
+            });
+            if (nivel >= 3) st.sessions = st.sessions.filter(x => x.startTime === actual || viejas.slice(-1)[0] === x);
+            this.recalcularTotales(st);
+        });
+        return data;
+    }
+
     // ✅ CORREGIDO: Manejo de parámetro data opcional
     saveData(data) {
         try {
@@ -66,7 +112,15 @@ class LumaiMetricsTracker {
             }
             
             data.lastUpdate = new Date().toISOString();
-            localStorage.setItem(this.storageKey, JSON.stringify(data));
+            let guardado = false, ultimoError = null;
+            for (let nivel = 0; nivel <= 3 && !guardado; nivel++) {
+                try {
+                    if (nivel > 0) this.compactarDatos(data, nivel);
+                    localStorage.setItem(this.storageKey, JSON.stringify(data));
+                    guardado = true;
+                } catch (e) { ultimoError = e; }
+            }
+            if (!guardado) throw ultimoError;
             
             // ✅ AGREGADO: Actualizar referencia en memoria
             this.evaluationData = data;
@@ -185,13 +239,13 @@ class LumaiMetricsTracker {
             
             const student = data.students[studentKey];
             
-            // Actualizar datos del estudiante
-            student.sessions.push({...session});
-            student.lastSession = session.startTime;
-            student.totalSessions += 1;
-            student.totalTimeSpent += session.timeSpent;
-            student.totalAnswers += session.totalAnswers;
-            student.totalCorrectAnswers += session.correctAnswers;
+            // Actualizar datos del estudiante: una sola copia por sesión (se reemplaza en cada guardado)
+            if (!session.endTime) session.timeSpent = Date.now() - new Date(session.startTime).getTime();
+            this.dedupeData(data);
+            const copia = { ...session };
+            const pos = student.sessions.findIndex(x => x.startTime === session.startTime);
+            if (pos >= 0) student.sessions[pos] = copia; else student.sessions.push(copia);
+            this.recalcularTotales(student);
             student.profile = session.profile; // Actualizar perfil por si cambió
             
             // Guardar datos actualizados

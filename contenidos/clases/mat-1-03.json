@@ -295,7 +295,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir qué esconde una fracción. Son 4 actividades cortas. Para empezar, imaginate esta situación.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés que una fracción es una división disfrazada. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés que una fracción es una división disfrazada. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -340,6 +340,18 @@
       {
         "palabra": "DIVISION",
         "pista": "Repartir en partes iguales"
+      },
+      {
+        "palabra": "PARTES",
+        "pista": "El denominador dice entre cuántas ___ se reparte"
+      },
+      {
+        "palabra": "ENTERO",
+        "pista": "Número como 5 o −3, sin parte decimal"
+      },
+      {
+        "palabra": "CIFRAS",
+        "pista": "Los números que forman un decimal; algunas se repiten"
       }
     ],
     "simples": [

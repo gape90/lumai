@@ -544,11 +544,12 @@ REGLAS PARA LA PALABRA:
 - UNA sola palabra, en MAYÚSCULAS, sin tildes, sin espacios ni guiones (ejemplo: NUCLEO, MEMBRANA, FRACCION).
 - Entre 4 y ${maxLetras} letras.
 - Tiene que ser un concepto de la explicación, no una palabra suelta como "COSA" o "TEMA".
+- NUNCA elijas nombres de personas, de científicos ni de lugares. Elegí solo palabras que la explicación enseña de forma clara.
 
 REGLAS PARA LA PISTA:
 - Es una definición corta y concreta de ESA palabra, de MÁXIMO ${maxPalabras} palabras.
 - Usa palabras simples y cotidianas. No uses la palabra buscada dentro de la pista.
-- Tiene que ser verdadera según la explicación y alcanzar para adivinar la palabra.
+- Tiene que ser verdadera según la explicación y alcanzar para adivinar la palabra, usando SOLO lo que la explicación dice (sin datos nuevos). Nada de pistas del tipo "autor de..." o "científico que...".
 - Ejemplos de buenas pistas: "Capa que rodea la célula" (MEMBRANA), "Número de arriba de una fracción" (NUMERADOR).
 
 FORMATO: respondé SOLO con un arreglo JSON, sin texto adicional:
@@ -1477,7 +1478,7 @@ class SopaDeLetrasGame {
         this.elementos.tablero.innerHTML = "";
         
         // CORREGIDO: Detectar nivel bajo por perfil, no por gridSize
-        const esNivelBajo = estadoGlobal.perfil.nombre_visible === 'N1' || Boolean(estadoGlobal.ajustes?.pista_previa);
+        const esNivelBajo = (nivelDeApoyo() || 'medio') !== 'alto';   // la primera letra se marca en todos los perfiles menos altas capacidades
         const pistaCoord = esNivelBajo ? this.estado.palabraCoords[0] : null;
         
         console.log(`Nivel detectado: ${estadoGlobal.perfil.nombre_visible}, esNivelBajo: ${esNivelBajo}`);

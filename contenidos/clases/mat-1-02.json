@@ -288,7 +288,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a comparar números y medir distancias en la recta. Son 4 actividades. Para empezar, viajemos a dos ciudades argentinas.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés comparar enteros y medir distancias. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés comparar enteros y medir distancias. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -329,6 +329,10 @@
       {
         "palabra": "MENOR",
         "pista": "En la recta, el que está más a la izquierda"
+      },
+      {
+        "palabra": "CERO",
+        "pista": "Los opuestos están a la misma distancia del ___"
       }
     ],
     "simples": [

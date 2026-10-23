@@ -341,7 +341,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir cómo los seres vivos se dan cuenta de lo que pasa y responden. Son 4 actividades. Para empezar, hacé esta prueba.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés cómo funciona la relación con el ambiente. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés cómo funciona la relación con el ambiente. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -390,6 +390,18 @@
       {
         "palabra": "TAXISMO",
         "pista": "Desplazamiento de un organismo hacia un estímulo"
+      },
+      {
+        "palabra": "CALOR",
+        "pista": "Cuando hace ___, el cuerpo transpira para enfriarse"
+      },
+      {
+        "palabra": "AGUA",
+        "pista": "Si falta ___, el cuerpo avisa con sed"
+      },
+      {
+        "palabra": "FRIO",
+        "pista": "Cuando hace ___, el cuerpo tiembla para entrar en calor"
       }
     ],
     "simples": [

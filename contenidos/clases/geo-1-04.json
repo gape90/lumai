@@ -346,7 +346,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a conocer a la gente de América: dónde vive, cómo vive y por qué se muda. Son 5 actividades. Para empezar, imaginate esto.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés cómo es la población de América. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés cómo es la población de América. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -395,6 +395,18 @@
       {
         "palabra": "POBLACION",
         "pista": "Conjunto de personas que viven en un lugar"
+      },
+      {
+        "palabra": "EDAD",
+        "pista": "La pirámide muestra cuántas personas hay de cada ___"
+      },
+      {
+        "palabra": "COSTAS",
+        "pista": "La población de América se concentra en ciudades y en las ___"
+      },
+      {
+        "palabra": "URBANA",
+        "pista": "Población que vive en ciudades"
       }
     ],
     "simples": [

@@ -361,7 +361,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a investigar problemas ambientales como verdaderos geógrafos. Son 5 actividades. Para empezar, recordemos algo que pasó cerca de casa.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés analizar un problema ambiental. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés analizar un problema ambiental. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -414,6 +414,10 @@
       {
         "palabra": "CONTAMINACION",
         "pista": "Presencia de sustancias dañinas en el ambiente"
+      },
+      {
+        "palabra": "LOCAL",
+        "pista": "Escala de un problema que afecta a un barrio o a una ciudad"
       }
     ],
     "simples": [

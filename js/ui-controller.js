@@ -376,10 +376,10 @@ async function mostrarClaseBaseSiExiste() {
         mostrarTitulo: false   // el tema ya se muestra en el encabezado de LumAI
     });
 
-    // "Jugamos repasando" se habilita recién al llegar a la última pantalla de la clase
+    // "Nos ponemos a prueba" se habilita recién al llegar a la última pantalla de la clase
     const btnJuego = estadoGlobal.elementosDOM.btnIniciarActividades;
     if (btnJuego) {
-        btnJuego.textContent = '🎮 Jugamos repasando';
+        btnJuego.textContent = '🎮 ¡Nos ponemos a prueba!';
         btnJuego.disabled = true;
         btnJuego.title = 'Se activa cuando llegás al final de la clase';
         btnJuego.setAttribute('aria-disabled', 'true');

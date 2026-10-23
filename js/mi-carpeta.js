@@ -93,6 +93,7 @@ export const ESTILOS_CARPETA = `
 .mc-item{display:grid;gap:8px;background:#fff;border:2px solid var(--lc-borde,#dbe3ec);border-radius:var(--lc-radio,14px);padding:14px 16px}
 .mc-item.mc-hecho{border-color:var(--lc-verde,#00a676)}
 .mc-item h4{margin:0;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--lc-azul-osc,#003f7d);font-family:var(--lc-fuente-titulos,inherit)}
+.mc-nota{margin:0;font-size:.92rem;font-weight:600}
 .mc-consigna{margin:0;font-weight:700;font-size:1.05rem}
 .mc-modelo{margin:0;padding:12px 14px;border-radius:10px;background:var(--lc-azul-claro,#e8f1fb);border-left:6px solid var(--lc-azul,#00509e);font-size:1.15rem;line-height:1.5;font-weight:600;user-select:text}
 .mc-fila{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -129,8 +130,9 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
   const intro = el('div', 'mc-intro');
   intro.innerHTML = `
     <p class="mc-grande">${esc(mayus('Ahora vamos a trabajar en la carpeta de la clase.'))}</p>
-    <ol class="mc-pasos"><li>${esc(mayus('Escribí cada parte acá, en la pantalla.'))}</li><li>${esc(mayus('Apretá “Listo”: LumAI la guarda.'))}</li><li>${esc(mayus('Después escribilo en tu carpeta.'))}</li></ol>
-    <p><small>${esc(mayus('Preguntale a tu docente si tenés que hacerlo en la carpeta, en LumAI o en los dos.'))}</small></p>`;
+    <p><b>${esc(mayus('Primero, preguntale a tu docente'))}</b> ${esc(mayus('si tenés que escribir las actividades solo en la carpeta o también acá, en la pantalla.'))}</p>
+    <p>${esc(mayus('Si también lo tenés que hacer en la pantalla, seguí estos pasos:'))}</p>
+    <ol class="mc-pasos"><li>${esc(mayus('Escribí cada parte acá, en la pantalla.'))}</li><li>${esc(mayus('Apretá “Listo”: LumAI la guarda.'))}</li><li>${esc(mayus('Después escribilo en tu carpeta.'))}</li></ol>`;
   raiz.appendChild(intro);
 
   const campos = []; // { leer(), hecho() }
@@ -143,6 +145,7 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
     const item = el('div', 'mc-item');
     item.appendChild(el('h4', '', esc(mayus(c.titulo))));
     item.appendChild(el('p', 'mc-consigna', esc(mayus(c.consigna))));
+    if (c.tipo === 'palabra') item.appendChild(el('p', 'mc-nota', esc(mayus('Todas las palabras nuevas, escribilas en tu carpeta.'))));
 
     const area = document.createElement('textarea');
     area.id = `mc-t-${clase.id}-${idx}`;
@@ -297,6 +300,12 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
   si.addEventListener('click', () => {
     const hechas = campos.filter(c => c.hecho());
     if (!hechas.length) { resultado.className = 'mc-estado casi'; resultado.textContent = mayus('Primero completá al menos una parte y apretá “Listo”.'); return; }
+    const faltan = campos.map(c => c.leer()).filter(e => !e.hecho).map(e => e.titulo);
+    if (faltan.length) {
+      resultado.className = 'mc-estado casi';
+      resultado.textContent = mayus(`Hay actividades que no guardaste: ${faltan.join(', ')}. Apretá “Listo” en cada una para que le lleguen a tu docente. Después enviá de nuevo.`);
+      return;
+    }
     const h = hoja();
     registrar('carpeta_entregada', {
       clase: clase.id, titulo: h.titulo, modo,

@@ -406,7 +406,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a mirar el mapa de América con otros ojos. Son 5 actividades cortas y las vas a recorrer a tu ritmo. Para empezar, te propongo imaginar una escena.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés leer el mapa político de América. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés leer el mapa político de América. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -463,6 +463,14 @@
       {
         "palabra": "MERCOSUR",
         "pista": "Organismo donde cooperan varios países de América del Sur"
+      },
+      {
+        "palabra": "ISLAS",
+        "pista": "Las Malvinas son ___ ocupadas por el Reino Unido"
+      },
+      {
+        "palabra": "PAIS",
+        "pista": "Estado independiente, como la Argentina"
       }
     ],
     "simples": [

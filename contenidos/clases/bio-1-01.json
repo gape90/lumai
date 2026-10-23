@@ -27,12 +27,12 @@
       "esencial": false,
       "lumai": "Empecemos por una idea antigua que parecía tener mucho sentido.",
       "pose": "saludo",
-      "texto": "Durante mucho tiempo se pensó que algunos seres vivos aparecían solos, a partir de materia sin vida. Ratones de trapos sucios, gusanos de carne podrida.\nEsta idea se llamó **generación espontánea**. Parecía lógica porque nadie veía los huevos ni los microorganismos.",
+      "texto": "Durante mucho tiempo se pensó que algunos seres vivos aparecían solos, a partir de materia sin vida. Ratones de trapos sucios, gusanos de carne podrida.\nEsta idea se llamó **generación espontánea**. Parecía lógica porque nadie veía los huevos ni los microorganismos.\nEn 1668, un médico italiano, Francesco Redi, quiso comprobarlo con un experimento.",
       "imagen": "bio-1-01-a",
       "interactivo": {
         "tipo": "revelar",
         "titulo": "🧪 El experimento de Redi (1668)",
-        "pregunta": "Redi puso carne en varios frascos. A algunos los tapó con tela y a otros los dejó abiertos. ¿En cuáles creés que aparecieron gusanos?",
+        "pregunta": "El médico italiano Francesco Redi puso carne en varios frascos. A algunos los tapó con tela y a otros los dejó abiertos. ¿En cuáles creés que aparecieron gusanos?",
         "respuesta": "Solo en los frascos abiertos, donde las moscas podían llegar y poner huevos. En los tapados, la carne se pudrió pero no aparecieron gusanos."
       },
       "idea_clave": "La generación espontánea decía que la vida surge sola de materia sin vida.",
@@ -56,7 +56,7 @@
       "esencial": true,
       "lumai": "Casi 200 años después, un científico francés diseñó un frasco muy especial.",
       "pose": "idea",
-      "texto": "Alrededor de 1860, Louis Pasteur usó frascos con un cuello largo y curvo, como el de un cisne.\nEl caldo hervido de adentro no se llenaba de microbios: el polvo del aire quedaba atrapado en la curva.\nConclusión: **todo ser vivo proviene de otro ser vivo**.",
+      "texto": "Alrededor de 1860, el científico francés Louis Pasteur usó frascos con un cuello largo y curvo, como el de un cisne.\nEl caldo hervido de adentro no se llenaba de microbios: el polvo del aire quedaba atrapado en la curva.\nConclusión: **todo ser vivo proviene de otro ser vivo**.",
       "imagen": "bio-1-01-b",
       "interactivo": {
         "tipo": "ordenar",
@@ -92,7 +92,7 @@
       "esencial": true,
       "lumai": "Si la vida viene de la vida… ¿de dónde salió la primera?",
       "pose": "saludo",
-      "texto": "La explicación con más apoyo científico es la **teoría quimiosintética**, de Oparin y Haldane.\nEn la Tierra primitiva, con rayos y volcanes, sustancias simples se combinaron en otras cada vez más complejas. Así se formaron las primeras células, hace más de 3.500 millones de años.",
+      "texto": "La explicación con más apoyo científico es la **teoría quimiosintética**, de dos científicos: el bioquímico ruso Alexander Oparin y el biólogo británico John Haldane.\nEn la Tierra primitiva, con rayos y volcanes, sustancias simples se combinaron en otras cada vez más complejas. Así se formaron las primeras células, hace más de 3.500 millones de años.",
       "presentacion": {
         "tipo": "ecuacion",
         "igual": "→",
@@ -284,7 +284,7 @@
   ],
   "para_ir_mas_alla": {
     "pregunta": "Los virus no tienen células y solo pueden multiplicarse dentro de las células de otros seres vivos. Por sí mismos, no se nutren ni responden al ambiente. ¿Los considerarías seres vivos? Armá un argumento a favor y otro en contra.",
-    "conexion": "Con Historia: la idea de la generación espontánea se sostuvo durante más de dos mil años, desde Aristóteles, en la Antigua Grecia, hasta Pasteur. Preguntarse por qué una idea equivocada dura tanto tiempo también es pensar históricamente."
+    "conexion": "Con Historia: la idea de la generación espontánea se sostuvo durante más de dos mil años, desde Aristóteles, un filósofo de la Antigua Grecia, hasta Pasteur. Preguntarse por qué una idea equivocada dura tanto tiempo también es pensar históricamente."
   },
   "preguntas_clave": [
     {
@@ -322,7 +322,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a viajar al origen de la vida. Son 4 actividades. Para empezar, te cuento un misterio que duró siglos.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés qué tienen en común todos los seres vivos. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya sabés qué tienen en común todos los seres vivos. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -365,12 +365,24 @@
         "pista": "Originar nuevos seres vivos"
       },
       {
-        "palabra": "PASTEUR",
-        "pista": "Demostró que todo ser vivo viene de otro ser vivo"
-      },
-      {
         "palabra": "ESPONTANEA",
         "pista": "La generación ___ decía que la vida surge sola"
+      },
+      {
+        "palabra": "CELULA",
+        "pista": "Las primeras ___ se formaron hace más de 3.500 millones de años"
+      },
+      {
+        "palabra": "CARNE",
+        "pista": "Redi puso ___ en varios frascos"
+      },
+      {
+        "palabra": "CISNE",
+        "pista": "El frasco de Pasteur tenía un cuello largo, como el de un ___"
+      },
+      {
+        "palabra": "POLVO",
+        "pista": "El ___ del aire quedaba atrapado en la curva del frasco"
       }
     ],
     "simples": [

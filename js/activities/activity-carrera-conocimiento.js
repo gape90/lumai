@@ -22,23 +22,23 @@ function obtenerConfiguracionRace() {
     
     const configuraciones = {
         "bajo": {
-            velocidadMundo: 50,
+            velocidadMundo: 32,
             tiempoEntrePreguntas: 1200,
-            velocidadDescenso: 3,
+            velocidadDescenso: 2,
             cantidadPreguntas: 4,
             descripcion: "Velocidad muy lenta, mas tiempo para pensar"
         },
         "medio": {
-            velocidadMundo: 70,
+            velocidadMundo: 44,
             tiempoEntrePreguntas: 1000,
-            velocidadDescenso: 6,
+            velocidadDescenso: 4,
             cantidadPreguntas: 6,
             descripcion: "Velocidad media, tiempo moderado"
         },
         "alto": {
-            velocidadMundo: 80,
+            velocidadMundo: 58,
             tiempoEntrePreguntas: 1000,
-            velocidadDescenso: 8,
+            velocidadDescenso: 6,
             cantidadPreguntas: 7,
             descripcion: "Velocidad alta, desafio mayor"
         }

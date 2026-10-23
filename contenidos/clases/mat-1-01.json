@@ -307,7 +307,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a descubrir los números que viven debajo del cero. Son 4 actividades cortas. Para empezar, mirá a tu alrededor.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya conocés los números enteros. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya conocés los números enteros. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {

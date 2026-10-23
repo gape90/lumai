@@ -342,7 +342,7 @@
   ],
   "lumai": {
     "saludo": "¡Hola, {NOMBRE}! Hoy vamos a recorrer los ambientes de América, del hielo a la selva. Son 5 actividades. Para empezar, mirá esto.",
-    "cierre": "¡Llegaste al final, {NOMBRE}! Ya conocés los ambientes de América y sus recursos. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después jugamos repasando."
+    "cierre": "¡Llegaste al final, {NOMBRE}! Ya conocés los ambientes de América y sus recursos. Ahora volvamos al problema del principio: ¡ya podés resolverlo! Después, nos ponemos a prueba."
   },
   "imagenes": [
     {
@@ -391,6 +391,18 @@
       {
         "palabra": "SUSTENTABLE",
         "pista": "Forma de usar los recursos que cuida a las generaciones futuras"
+      },
+      {
+        "palabra": "SELVA",
+        "pista": "Ambiente de América con muchos árboles"
+      },
+      {
+        "palabra": "AGUA",
+        "pista": "Recurso natural que usan los pueblos y las ciudades"
+      },
+      {
+        "palabra": "SUELO",
+        "pista": "Superficie de tierra donde crecen las plantas"
       }
     ],
     "simples": [
