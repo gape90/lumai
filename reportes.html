@@ -1743,13 +1743,16 @@
             const activities = getStudentActivities(student);
 
             if (Object.keys(activities).length === 0) {
+                const recorrido = getRecorridoClaseBase(student);
                 document.getElementById('individual-report').innerHTML = `
                     <div class="report-header">
                         <button class="back-button" onclick="showTab('students')">← Volver</button>
                         <h2>Reporte: ${student.name}</h2>
-                        <p style="color: #ff6b6b;">No hay datos de actividades para este estudiante.</p>
+                        ${recorrido
+                            ? '<p>Todavía no jugó las actividades de repaso (“¡Nos ponemos a prueba!”). Abajo está todo lo que hizo en la clase.</p>'
+                            : '<p style="color: #ff6b6b;">No hay datos de actividades para este estudiante.</p>'}
                     </div>
-                    ${getRecorridoClaseBase(student)}
+                    ${recorrido}
                 `;
                 showTab('individual');
                 return;

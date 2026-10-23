@@ -15,10 +15,26 @@ export function vozDisponible() {
   return typeof window !== 'undefined' && 'speechSynthesis' in window;
 }
 
+// Voz masculina y lo más natural posible. Las voces "Natural"/"Online" (Edge, Windows 11) son
+// neuronales y suenan mucho más reales; después, las voces masculinas en español del sistema.
+const VOCES_MASCULINAS = /(tom[aá]s|jorge|[aá]lvaro|gonzalo|lorenzo|mateo|ra[uú]l|gerardo|diego|juan|carlos|pablo|enrique|emilio|alonso|andr[eé]s|sergio|arnau|dar[ií]o|nicol[aá]s|federico|male|hombre)/i;
+const VOCES_FEMENINAS = /(elena|helena|laura|sabina|paulina|m[oó]nica|dalia|elvira|paloma|ximena|catalina|camila|valentina|salom[eé]|marisol|luc[ií]a|paula|soledad|sof[ií]a|elsa|irene|mar[ií]a|esperanza|female|mujer)/i;
+let vozElegida = null;
 export function elegirVoz() {
   if (!vozDisponible()) return null;
-  const voces = window.speechSynthesis.getVoices();
-  return voces.find(v => v.lang === 'es-AR') || voces.find(v => v.lang?.startsWith('es')) || null;
+  const voces = window.speechSynthesis.getVoices().filter(v => /^es/i.test(v.lang || ''));
+  if (!voces.length) return null;
+  const puntaje = v => {
+    let p = 0;
+    if (/^es[-_]AR/i.test(v.lang)) p += 30; else if (/^es[-_](UY|CL|MX|US|419|CO)/i.test(v.lang)) p += 18; else p += 10;
+    if (/natural|online|neural|premium|enhanced|mejorad/i.test(v.name)) p += 60;
+    if (VOCES_MASCULINAS.test(v.name)) p += 45;
+    if (VOCES_FEMENINAS.test(v.name)) p -= 70;
+    if (/google/i.test(v.name)) p -= 15;   // la voz de Google en español es femenina
+    return p;
+  };
+  vozElegida = [...voces].sort((a, b) => puntaje(b) - puntaje(a))[0];
+  return vozElegida;
 }
 
 // En algunos navegadores las voces cargan tarde: se refrescan al estar listas
@@ -89,6 +105,7 @@ function ocultarTexto() {
 
 export function detenerVoz() {
   if (!vozDisponible()) return;
+  cadenaNatural++;
   const a = actual;
   actual = null;
   try { window.speechSynthesis.cancel(); } catch (e) { /* sin voz */ }
@@ -160,3 +177,61 @@ export function hablar(texto, opciones = {}) {
   u.onerror = (e) => { if (e.error === 'canceled' || e.error === 'interrupted') return; terminar(); };
   window.speechSynthesis.speak(u);
 }
+
+
+// ---------------------------------------------------------------- lectura natural (tocar para escuchar)
+// Prepara el texto para que se entienda al oírlo: sin emojis ni símbolos, con signos dichos en palabras,
+// y lo lee oración por oración con un pequeño silencio entre cada una.
+export function textoParaVoz(t) {
+  let x = limpiarTexto(String(t || '').replace(/\s*\n+\s*/g, '. '))
+    .replace(/[\p{Extended_Pictographic}\uFE0F\u200D]/gu, ' ')
+    .replace(/_{2,}/g, ', espacio en blanco, ')
+    .replace(/\s=\s/g, ' es igual a ')
+    .replace(/−\s?/g, ' menos ')
+    .replace(/\s[–—-]\s/g, ', ')
+    .replace(/(^|\s)\+(?=\s)/g, '$1más')
+    .replace(/(^|[\s(])-(?=\d)/g, '$1 menos ')
+    .replace(/(^|[\s(])\+(?=\d)/g, '$1 más ')
+    .replace(/°\s?C\b/g, ' grados')
+    .replace(/°/g, ' grados')
+    .replace(/(\d)\s?%/g, '$1 por ciento')
+    .replace(/(\d)\s?\/\s?(\d)/g, '$1 sobre $2')
+    .replace(/[→⟶➜]/g, ', ')
+    .replace(/[«»"“”]/g, '')
+    .replace(/\s*[()]\s*/g, ', ')
+    .replace(/\s*;\s*/g, '. ')
+    .replace(/\s*\n+\s*/g, '. ')
+    .replace(/\s+([,.:!?])/g, '$1')
+    .replace(/([,.:])(?:\s*[,.:])+/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (x && !/[.!?…]$/.test(x)) x += '.';
+  return aOracion(x);
+}
+
+let cadenaNatural = 0;
+export function hablarNatural(texto, opciones = {}) {
+  const { onend, rate = 0.95, pausa = 280 } = opciones;
+  if (!vozDisponible()) { onend?.(); return; }
+  detenerVoz();
+  const frases = (textoParaVoz(texto).match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) || []).map(f => f.trim()).filter(Boolean);
+  if (!frases.length) { onend?.(); return; }
+  const id = ++cadenaNatural;
+  const voz = elegirVoz();
+  const decir = (i) => {
+    if (id !== cadenaNatural) return;
+    if (i >= frases.length) { onend?.(); return; }
+    const u = new SpeechSynthesisUtterance(frases[i]);
+    u.lang = voz?.lang || 'es-AR';
+    if (voz) u.voice = voz;
+    u.rate = rate;
+    let siguio = false;
+    const seguir = () => { if (siguio) return; siguio = true; setTimeout(() => decir(i + 1), pausa); };
+    u.onend = seguir;
+    u.onerror = (e) => { if (e.error === 'canceled' || e.error === 'interrupted') return; seguir(); };
+    window.speechSynthesis.speak(u);
+  };
+  decir(0);
+}
+
+export function detenerNatural() { cadenaNatural++; try { window.speechSynthesis.cancel(); } catch (e) { /* sin voz */ } }

@@ -94,7 +94,8 @@
 // =============================================================================
 
 import { crearMiCarpeta, ESTILOS_CARPETA } from './mi-carpeta.js';
-import { hablar, detenerVoz, vozDisponible } from './voz.js';
+import { hablar, detenerVoz, vozDisponible, hablarNatural } from './voz.js';
+import { usaTocarParaLeer, activarTocarParaLeer, ESTILOS_TOCAR } from './tocar-para-leer.js';
 
 let ajustesVoz = null;   // perillas del perfil (tamaño de letra, mayúsculas) para el texto que se muestra al leer
 const RUTA_CLASES = 'contenidos/clases/';
@@ -615,7 +616,7 @@ function inyectarEstilos() {
   if (document.querySelector('style[data-lc-estilos]')) return;
   const estilo = document.createElement('style');
   estilo.setAttribute('data-lc-estilos', '');
-  estilo.textContent = ESTILOS + ESTILOS_CARPETA + ESTILOS_EXTRA;
+  estilo.textContent = ESTILOS + ESTILOS_CARPETA + ESTILOS_EXTRA + ESTILOS_TOCAR;
   document.head.appendChild(estilo);
 }
 
@@ -1411,6 +1412,13 @@ function renderizarCapsulas(clase, destino, opciones) {
   };
   const conAsistente = opciones.asistente === true;
   const raiz = el('article', 'lc-clase lc-modo-capsulas');
+  // Perfiles con mucho apoyo: se toca cada recuadro y LumAI lo lee (sin botones de "Escuchar")
+  const modoTocar = usaTocarParaLeer(aj);
+  if (modoTocar) {
+    raiz.classList.add('lc-modo-tocar');
+    raiz.appendChild(el('div', 'lc-lectura-ayuda', '<span aria-hidden="true">👆🔊</span><div>Tocá cualquier recuadro y LumAI te lo lee.<br>En los botones: el primer toque te dice qué es y el segundo toque lo hace.</div>'));
+    activarTocarParaLeer(raiz);
+  }
   if (aj.calmo) raiz.classList.add('lc-calmo');
   if (aj.botones_grandes) raiz.classList.add('lc-grandes');
   if (aj.mayusculas) raiz.classList.add('lc-mayus');
@@ -1562,7 +1570,11 @@ function renderizarCapsulas(clase, destino, opciones) {
       if (defs.length) s.appendChild(el('div', 'lc-defs', `<b>📚 Palabras de esta parte</b><ul>${defs.map(v => `<li><b>${escapar(v.palabra)}:</b> ${fmt(v.definicion)}</li>`).join('')}</ul>`));
     }
     let leer = null;
-    if (aj.voz >= 1) {
+    if (modoTocar) {
+      // Sin botón: la lectura automática (si corresponde) usa la voz natural con pausas
+      const paraLeer = [c.titulo, c.texto || textoParaVoz, c.idea_clave].filter(Boolean).join('.\n');
+      leer = () => hablarNatural(paraLeer);
+    } else if (aj.voz >= 1) {
       const fila = el('div', 'lc-escuchar-fila');
       const bVoz = el('button', 'lc-btn lc-sec lc-btn-chico', '🔊 Escuchar');
       bVoz.type = 'button';
@@ -1620,7 +1632,7 @@ function renderizarCapsulas(clase, destino, opciones) {
     const h = el('h3', 'lc-cap-titulo', '📒 Mi carpeta');
     h.tabIndex = -1;
     sc.appendChild(h);
-    const carpeta = crearMiCarpeta(clase, { ajustes: aj, dimensiones: opciones.dimensiones || null, registrar, corregir: opciones.corregir || null });
+    const carpeta = crearMiCarpeta(clase, { ajustes: aj, dimensiones: opciones.dimensiones || null, registrar, corregir: opciones.corregir || null, sinBotonEscuchar: modoTocar });
     sc.appendChild(carpeta.nodo);
     pantallas.push({ nodo: sc, tipo: 'carpeta', lista: true, paso: '📒', leer: null });
   }
@@ -1841,7 +1853,7 @@ function montar(contenedor) {
   if (host.attachShadow) {
     const sombra = host.attachShadow({ mode: 'open' });
     const estilo = document.createElement('style');
-    estilo.textContent = ESTILOS + ESTILOS_CARPETA + ESTILOS_EXTRA;
+    estilo.textContent = ESTILOS + ESTILOS_CARPETA + ESTILOS_EXTRA + ESTILOS_TOCAR;
     sombra.appendChild(estilo);
     return sombra;
   }

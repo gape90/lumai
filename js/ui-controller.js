@@ -2,6 +2,7 @@
 // ✅ CORRECCIÓN: Agregado event listener para botón de síntesis de voz
 // ================================================================
 
+import { usaTocarParaLeer, activarTocarParaLeer, ESTILOS_TOCAR } from './tocar-para-leer.js';
 import { 
     estadoGlobal, 
     datosSession, 
@@ -377,7 +378,19 @@ async function mostrarClaseBaseSiExiste() {
     });
 
     // El botón "Escucha la explicación" solo aparece en perfiles que usan la voz
-    document.body.classList.toggle('sin-voz', !((estadoGlobal.ajustes || {}).voz >= 1));
+    // (en los perfiles de "tocá y te leo" tampoco: ahí se toca cada recuadro)
+    const modoTocar = usaTocarParaLeer(estadoGlobal.ajustes);
+    document.body.classList.toggle('sin-voz', !((estadoGlobal.ajustes || {}).voz >= 1) || modoTocar);
+    if (modoTocar && !estadoGlobal.tocarEnBotones) {
+        estadoGlobal.tocarEnBotones = true;
+        if (!document.getElementById('lumai-estilos-tocar')) {
+            const st = document.createElement('style');
+            st.id = 'lumai-estilos-tocar';
+            st.textContent = ESTILOS_TOCAR;
+            document.head.appendChild(st);
+        }
+        activarTocarParaLeer(document, { acciones: '#btnVerActividades, #btnFinalizarClase, #btnVolverExplicacion', sectores: null });
+    }
 
     // "Nos ponemos a prueba" se habilita recién al llegar a la última pantalla de la clase
     const btnJuego = estadoGlobal.elementosDOM.btnIniciarActividades;

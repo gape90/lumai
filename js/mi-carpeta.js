@@ -16,6 +16,31 @@ const CLAVE = 'lumai_carpeta_v1';
 
 const limpiar = t => String(t ?? '').replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
 const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+// Explica en qué se diferencia la copia de la frase modelo (acentos, palabras que faltan o cambian)
+function diferenciasCopia(texto, modelo) {
+  const sinAc = t => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const pal = t => limpiar(t).replace(/[.,;:!¡¿?"'()«»]/g, ' ').split(/\s+/).filter(Boolean);
+  const a = pal(texto), m = pal(modelo);
+  const avisos = [];
+  const acentos = [];
+  let i = 0, j = 0;
+  while (j < m.length && avisos.length + acentos.length < 4) {
+    const w = a[i], mw = m[j];
+    if (w !== undefined && w.toLowerCase() === mw.toLowerCase()) { i++; j++; continue; }
+    if (w !== undefined && sinAc(w).toLowerCase() === sinAc(mw).toLowerCase()) {
+      const k = [...mw].findIndex((ch, x) => ch.toLowerCase() !== ([...w][x] || '').toLowerCase());
+      acentos.push(k >= 0 && /[áéíóúÁÉÍÓÚ]/.test([...mw][k]) ? `«${mw}» lleva acento en la «${[...mw][k]}»` : `«${mw}» se escribe sin acento`);
+      i++; j++; continue;
+    }
+    if (a[i + 1] !== undefined && sinAc(a[i + 1]).toLowerCase() === sinAc(mw).toLowerCase()) { avisos.push(`sobra la palabra «${w}»`); i++; continue; }
+    if (w === undefined || (m[j + 1] !== undefined && sinAc(w).toLowerCase() === sinAc(m[j + 1]).toLowerCase())) { avisos.push(`falta la palabra «${mw}»`); j++; continue; }
+    avisos.push(`escribiste «${w}» y en la frase dice «${mw}»`); i++; j++;
+  }
+  if (j >= m.length && i < a.length && avisos.length < 4) avisos.push(`sobra «${a.slice(i).join(' ')}» al final`);
+  const todo = [...acentos, ...avisos];
+  return todo.length ? todo.join('; ') : '';
+}
+
 const norm = t => limpiar(t).toLowerCase().replace(/[.,;:!¡¿?"'()]/g, '').replace(/\s+/g, ' ').trim();
 
 function el(tag, clase, html) {
@@ -116,7 +141,7 @@ export const ESTILOS_CARPETA = `
 
 // ------------------------------------------------------------------ componente
 // corregir({tipo, consigna, respuesta, referencia}) -> Promise<{ok, mensaje}>  (la pasa la clase; usa la IA)
-export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, registrar = () => {}, corregir = null } = {}) {
+export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, registrar = () => {}, corregir = null, sinBotonEscuchar = false } = {}) {
   const aj = ajustes || {};
   const pistaVisible = !!aj.pista_previa || (dimensiones && dimensiones.lectoescritura === 'extenso');
   const modo = modoDeCarpeta(aj, dimensiones);
@@ -187,7 +212,7 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
 
     if (c.modelo) {
       item.appendChild(el('p', 'mc-modelo', esc(mayus(c.modelo))));
-      if (vozDisponible()) {
+      if (vozDisponible() && !sinBotonEscuchar) {
         const oir = el('button', 'lc-btn lc-sec lc-btn-chico', '🔊 Escuchar');
         oir.type = 'button';
         oir.addEventListener('click', () => hablar(c.modelo, { ajustes: aj, rate: aj.voz >= 2 ? 0.85 : undefined }));
@@ -263,7 +288,12 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
         // Copia: se avisa si faltó algo, pero a la segunda vez se guarda igual
         const igual = norm(texto) === norm(c.modelo);
         anotarIntento(texto, igual ? 'copia_ok' : 'copia_con_diferencias', '');
-        if (!igual && intentos < 2) { estado.className = 'mc-estado casi'; estado.textContent = mayus('Casi. Mirá bien la frase y corregí lo que falta. Si querés, apretá Listo otra vez para guardarla igual.'); return; }
+        if (!igual && intentos < 2) {
+          const dif = diferenciasCopia(texto, c.modelo);
+          estado.className = 'mc-estado casi';
+          estado.textContent = mayus(dif ? `Casi. Revisá: ${dif}. Corregilo y apretá Listo otra vez.` : 'Casi. Mirá bien la frase y corregí lo que falta. Después apretá Listo otra vez.');
+          return;
+        }
         aceptar(igual ? 'copia_ok' : 'copia_con_diferencias');
         estado.className = 'mc-estado ok'; estado.textContent = mayus(igual ? '💾 ¡Perfecto! Guardado en LumAI. Ahora copialo en tu carpeta.' : '💾 Guardado en LumAI. Copialo en tu carpeta.');
         return;

@@ -241,7 +241,10 @@ function generarHTMLJuego() {
             <div class="contenedor-principal" style="display: none;">
                 <div id="desafio-container">
                     <span class="desafio-emoji"></span>
-                    <span class="desafio-palabra"></span>
+                    <div class="desafio-textos">
+                        <span class="desafio-objetivo"></span>
+                        <span class="desafio-palabra"></span>
+                    </div>
                 </div>
                 <div id="zona-de-juego"></div>
                 <button id="boton-siguiente-juego-aventura" style="
@@ -401,6 +404,9 @@ function generarHTMLJuego() {
             }
             .desafio-emoji { font-size: 1.5em; }
             .desafio-palabra { letter-spacing: 5px; }
+            .desafio-textos { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+            .desafio-objetivo { font-size: .42em; letter-spacing: 1px; font-weight: 600; opacity: .95; }
+            .desafio-objetivo b { font-size: 1.35em; letter-spacing: 3px; }
             
             #zona-de-juego {
                 position: absolute;
@@ -599,6 +605,8 @@ function siguientePalabra() {
     
     const desafioEmoji = document.querySelector('.desafio-emoji');
     if (desafioEmoji) desafioEmoji.textContent = rondaActual.emoji;
+    const desafioObjetivo = document.querySelector('.desafio-objetivo');
+    if (desafioObjetivo) desafioObjetivo.innerHTML = `Formá la palabra: <b>${String(rondaActual.palabra || '').replace(/[<>&]/g, '')}</b>`;
     pintarProgresoPalabra();
     
     console.log("🎯 Iniciando palabra:", rondaActual.palabra);
