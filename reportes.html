@@ -734,16 +734,6 @@
     <div class="container">
         <div class="header">
             <a href="docente.html" class="btn-volver">← Módulo docente</a>
-            <button type="button" class="btn-volver btn-clave-ia" onclick="borrarClaveIA()">🔑 Cambiar clave IA</button>
-            <script>
-                // V91: borra la clave de Gemini guardada en ESTE navegador.
-                // La próxima vez que LumAI use la IA, la va a pedir de nuevo.
-                function borrarClaveIA() {
-                    if (!confirm('¿Borrar la clave de IA guardada en esta computadora? LumAI la pedirá de nuevo la próxima vez que la necesite.')) return;
-                    try { localStorage.removeItem('lumai_gemini_api_key'); } catch (e) {}
-                    alert('Listo. La clave se borró de esta computadora.');
-                }
-            </script>
             <h1>Reportes de los alumnos</h1>
             <p>Análisis del progreso estudiantil por actividades</p>
 

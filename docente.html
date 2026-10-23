@@ -96,12 +96,6 @@ main{max-width:980px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-lef
     </a>
   </div>
 
-  <div class="herramientas">
-    <p><b>Clave de la IA en esta compu.</b> LumAI la pide la primera vez que usa la IA y la guarda solo en este navegador.</p>
-    <button class="btn" type="button" id="borrar-clave">🔑 Cambiar clave de IA</button>
-    <p class="aviso" id="aviso-clave" role="status"></p>
-  </div>
-
   <div class="privacidad">🔒 LumAI no guarda los perfiles en ningún lado: cada perfil viaja dentro del código del alumno. Guardá la lista de qué código le diste a cada alumno solo en papel o en tu compu.</div>
 </main>
 
@@ -123,20 +117,6 @@ main{max-width:980px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-lef
   document.getElementById('salir').addEventListener('click', () => {
     LumaiDocente.salir();
     window.location.href = 'index.html';
-  });
-  let confirmar = false;
-  document.getElementById('borrar-clave').addEventListener('click', () => {
-    const aviso = document.getElementById('aviso-clave');
-    if (!confirmar) {
-      confirmar = true;
-      aviso.style.color = '#b42318';
-      aviso.textContent = 'Tocá de nuevo para borrar la clave guardada en esta compu. LumAI la va a pedir la próxima vez.';
-      return;
-    }
-    try { localStorage.removeItem('lumai_gemini_api_key'); } catch (e) {}
-    confirmar = false;
-    aviso.style.color = '';
-    aviso.textContent = 'Listo: la clave se borró de esta compu.';
   });
 })();
 </script>
