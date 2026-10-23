@@ -25,7 +25,7 @@
       "titulo": "Repartir es dividir",
       "minutos": 3,
       "esencial": true,
-      "lumai": "Resolvamos el problema de las pizzas paso a paso.",
+      "lumai": "En este paso vas a ver que repartir en partes iguales es dividir.",
       "pose": "saludo",
       "texto": "Cada vez que repartimos en partes iguales, dividimos. 12 alfajores entre 4 personas: 12 ÷ 4 = 3.\nPero 3 alfajores entre 4 personas no da un número natural. Igual se puede repartir: a cada una le tocan 3/4 de alfajor.",
       "imagen": "mat-1-03-b",
@@ -73,7 +73,7 @@
       "titulo": "La raya es un signo de dividir",
       "minutos": 2,
       "esencial": true,
-      "lumai": "Te cuento el secreto de las fracciones.",
+      "lumai": "Ahora vas a conocer qué significa cada número de una fracción.",
       "pose": "idea",
       "texto": "En una fracción, el **numerador** (arriba) es lo que se reparte. El **denominador** (abajo) es entre cuántas partes.\nPor eso 3/4 significa \"tres dividido cuatro\". Y 8/2 es lo mismo que 8 ÷ 2, o sea, 4.",
       "presentacion": {
@@ -116,7 +116,7 @@
       "titulo": "La misma cantidad, en decimal",
       "minutos": 3,
       "esencial": false,
-      "lumai": "¿Y si hacemos la división con la calculadora?",
+      "lumai": "En este paso vas a ver cómo escribir una fracción como número decimal.",
       "pose": "saludo",
       "texto": "Si hacés 3 ÷ 4 con la calculadora, aparece 0,75. Es el mismo número que 3/4, escrito de otra forma.\nAlgunas divisiones terminan (1/4 = 0,25). Otras repiten cifras para siempre (1/3 = 0,333…).",
       "interactivo": {
@@ -170,7 +170,7 @@
       "titulo": "Fracciones mayores que uno",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última actividad: ¿qué pasa si hay más cosas que personas?",
+      "lumai": "Para terminar, vas a ver las fracciones que son mayores que uno.",
       "pose": "idea",
       "texto": "Si hay más cosas que personas, a cada una le toca más de un entero.\n7 tortas entre 2 personas: 7/2, o sea, 3 tortas y media para cada una.\nSi el numerador es mayor que el denominador, la fracción es mayor que 1.",
       "interactivo": {

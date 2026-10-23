@@ -25,7 +25,7 @@
       "titulo": "Distinta escritura, misma cantidad",
       "minutos": 2,
       "esencial": true,
-      "lumai": "Arranquemos con fracciones que parecen distintas, pero no lo son.",
+      "lumai": "En este paso vas a ver fracciones que se escriben distinto pero valen lo mismo.",
       "pose": "idea",
       "texto": "1/2, 2/4 y 50/100 representan la misma cantidad. Se llaman **fracciones equivalentes**.\nSi multiplicás o dividís arriba y abajo por el mismo número, la fracción cambia de aspecto pero no de valor.",
       "presentacion": {
@@ -74,7 +74,7 @@
       "titulo": "De fracción a decimal, y de vuelta",
       "minutos": 3,
       "esencial": true,
-      "lumai": "Te enseño un truco para pasar de una forma a otra.",
+      "lumai": "Ahora vas a aprender a pasar de fracción a decimal, y de decimal a fracción.",
       "pose": "saludo",
       "texto": "Para pasar de fracción a decimal, se divide: 3/5 = 3 ÷ 5 = 0,6.\nPara pasar de decimal a fracción, se lee en voz alta: 0,6 es \"seis décimos\", o sea 6/10. Y 0,25 es \"veinticinco centésimos\": 25/100.",
       "interactivo": {
@@ -123,7 +123,7 @@
       "titulo": "El porcentaje",
       "minutos": 3,
       "esencial": true,
-      "lumai": "Ahora, la forma favorita de los carteles de descuento.",
+      "lumai": "En este paso vas a conocer el porcentaje.",
       "pose": "idea",
       "texto": "\"Por ciento\" significa \"de cada cien\". 25 % es 25/100, es decir, 1/4 o 0,25.\nPor eso un descuento del 25 % sobre $8.000 es la cuarta parte del precio: $2.000.",
       "interactivo": {
@@ -204,7 +204,7 @@
       "titulo": "Números gigantes y diminutos",
       "minutos": 2,
       "esencial": false,
-      "lumai": "¿Cómo escribís un número con muchísimos ceros sin equivocarte?",
+      "lumai": "Ahora vas a ver cómo escribir números muy grandes y muy chicos.",
       "pose": "saludo",
       "texto": "La distancia de la Tierra al Sol es de unos 150.000.000 km. Con tantos ceros es fácil equivocarse.\nLa **notación científica** lo escribe con una potencia de 10: 1,5 × 10⁸ km. El exponente indica cuántos lugares se corre la coma.",
       "presentacion": {
@@ -239,7 +239,7 @@
       "titulo": "Elegir la forma más útil",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última actividad. Ahora te toca elegir a vos.",
+      "lumai": "Para terminar, vas a elegir la forma más útil de escribir un número en cada situación.",
       "pose": "idea",
       "texto": "No hay una forma mejor que otra: hay una más útil para cada problema.\nFracciones para repartir. Decimales para la plata. Porcentajes para descuentos. Notación científica para la ciencia.",
       "interactivo": {

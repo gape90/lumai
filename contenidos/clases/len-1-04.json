@@ -25,7 +25,7 @@
       "titulo": "Leer con un propósito",
       "minutos": 2,
       "esencial": true,
-      "lumai": "Antes de leer, un detective se pregunta: ¿qué estoy buscando?",
+      "lumai": "En esta actividad vas a ver que la forma de leer depende de para qué leés.",
       "pose": "idea",
       "texto": "No se lee igual para buscar un dato que para estudiar.\nSi buscás un dato, recorrés el texto rápido hasta encontrarlo. Si estudiás, leés despacio y volvés atrás cuando hace falta.",
       "presentacion": {
@@ -65,7 +65,7 @@
       "titulo": "Las pistas del paratexto",
       "minutos": 3,
       "esencial": true,
-      "lumai": "Todo lo que rodea al texto son pistas. Vamos a revisarlas una por una.",
+      "lumai": "Ahora vas a conocer el paratexto: las pistas que rodean al texto.",
       "pose": "saludo",
       "texto": "El título, los subtítulos, las imágenes, los **epígrafes** y la fuente forman el **paratexto**.\nMirarlos antes de leer te permite anticipar el tema y organizar la lectura.",
       "imagen": "len-1-04-b",
@@ -126,7 +126,7 @@
       "titulo": "Palabras desconocidas",
       "minutos": 2,
       "esencial": true,
-      "lumai": "¿Apareció una palabra que no conocés? No corras al diccionario: primero buscá pistas.",
+      "lumai": "En esta actividad vas a ver qué hacer cuando aparece una palabra que no conocés.",
       "pose": "idea",
       "texto": "Mirá las oraciones de alrededor: eso es el **contexto**. ¿Se parece a otra palabra que ya conocés?\nSi leés \"los cefalópodos, como el pulpo y el calamar…\", ya sabés que es un tipo de animal parecido a ellos.\nSi las pistas no alcanzan, usá el diccionario.",
       "interactivo": {
@@ -154,7 +154,7 @@
       "titulo": "Cómo explica el autor",
       "minutos": 3,
       "esencial": false,
-      "lumai": "Los textos de divulgación usan trucos para que entiendas. Descubrilos en este texto sobre pulpos.",
+      "lumai": "Ahora vas a conocer los recursos que usa un autor para explicar.",
       "pose": "saludo",
       "texto": "Para explicar, los textos usan definiciones (\"X es…\"), ejemplos, comparaciones (\"es como…\") y reformulaciones (\"es decir…\").\nReconocerlos te ayuda a separar la idea principal de lo que sirve para explicarla.",
       "interactivo": {
@@ -218,7 +218,7 @@
       "titulo": "Darte cuenta de cuándo no entendés",
       "minutos": 2,
       "esencial": false,
-      "lumai": "El último truco del detective: saber cuándo te perdiste.",
+      "lumai": "Para terminar, vas a ver qué hacer cuando te das cuenta de que no entendiste.",
       "pose": "idea",
       "texto": "Un buen lector se da cuenta cuando no entiende.\nSi al terminar un párrafo no podés decir de qué trataba, volvé a leerlo, buscá la palabra que te frenó o preguntá.\nReleer no es de lento: es de lector estratégico.",
       "interactivo": {

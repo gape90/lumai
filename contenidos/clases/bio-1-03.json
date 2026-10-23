@@ -25,7 +25,7 @@
       "titulo": "Estímulo y respuesta",
       "minutos": 2,
       "esencial": true,
-      "lumai": "Dos palabras que vas a usar toda la clase: estímulo y respuesta.",
+      "lumai": "En esta actividad vas a conocer dos palabras clave de la clase: estímulo y respuesta.",
       "pose": "idea",
       "texto": "Un **estímulo** es cualquier cambio que un ser vivo puede detectar: la luz, el frío, un sonido.\nLa **respuesta** es lo que hace frente a ese estímulo: moverse, crecer hacia un lado, transpirar.\nCaptar estímulos y responder es la **función de relación**.",
       "presentacion": {
@@ -74,7 +74,7 @@
       "titulo": "Afuera y adentro",
       "minutos": 2,
       "esencial": true,
-      "lumai": "Los estímulos no solo vienen de afuera. Tu cuerpo también te avisa cosas.",
+      "lumai": "Ahora vas a ver que los estímulos pueden venir de afuera o de adentro del cuerpo.",
       "pose": "saludo",
       "texto": "Los estímulos pueden venir del **ambiente externo**: una tormenta, el calor, un perro que ladra.\nO del **ambiente interno**, de adentro del cuerpo: falta de agua, demasiada temperatura. La sed es tu cuerpo avisándote un cambio interno.",
       "interactivo": {
@@ -140,7 +140,7 @@
       "titulo": "Mantener el equilibrio",
       "minutos": 3,
       "esencial": true,
-      "lumai": "Haga frío o calor afuera, tu cuerpo se mantiene a unos 36,5 grados. ¿Cómo lo logra?",
+      "lumai": "En esta actividad vas a ver cómo tu cuerpo mantiene el equilibrio, haga frío o calor.",
       "pose": "idea",
       "texto": "Los seres vivos necesitan que sus condiciones internas se mantengan estables.\nSi tu temperatura sube, transpirás: el sudor te enfría. Si baja, temblás: los músculos generan calor.\nMantener ese equilibrio se llama **autorregulación** u homeostasis.",
       "presentacion": {
@@ -205,7 +205,7 @@
       "titulo": "Plantas y microbios también responden",
       "minutos": 3,
       "esencial": false,
-      "lumai": "Última actividad: volvamos a la planta de la ventana.",
+      "lumai": "Para terminar, vas a ver cómo responden las plantas y los microorganismos.",
       "pose": "saludo",
       "texto": "Las plantas responden más lento, pero responden. Sus tallos crecen hacia la luz: es el **fototropismo**.\nAlgunas bacterias nadan hacia donde hay alimento. Esos desplazamientos se llaman taxismos.",
       "imagen": "bio-1-03-c",

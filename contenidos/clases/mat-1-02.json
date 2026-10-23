@@ -25,7 +25,7 @@
       "titulo": "La recta ordena todo",
       "minutos": 2,
       "esencial": true,
-      "lumai": "En la recta numérica hay una regla que no tiene excepciones.",
+      "lumai": "En este paso vas a ver cómo la recta numérica ordena los números.",
       "pose": "idea",
       "texto": "Los números van de menor a mayor, de izquierda a derecha.\nPor eso cualquier positivo es mayor que cualquier negativo. Y el cero queda en el medio.",
       "interactivo": {
@@ -60,7 +60,7 @@
       "titulo": "Entre negativos, gana el más cercano al cero",
       "minutos": 2,
       "esencial": true,
-      "lumai": "Acá aparece la trampa más común. Mirá con atención.",
+      "lumai": "Ahora vas a ver cómo se comparan dos números negativos.",
       "pose": "saludo",
       "texto": "−2 es mayor que −9, aunque 9 sea más grande que 2.\nPensalo con temperaturas: a −2 °C hace menos frío que a −9 °C. Se escribe **−9 < −2**.",
       "presentacion": {
@@ -97,7 +97,7 @@
       "titulo": "La distancia al cero",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Algunos números son \"gemelos\": están a la misma distancia del cero.",
+      "lumai": "En este paso vas a conocer la distancia de un número al cero.",
       "pose": "idea",
       "texto": "La distancia de un número al cero se llama **valor absoluto**. Se escribe entre barras: |−7| = 7 y |7| = 7.\nEl −7 y el 7 están a la misma distancia del cero, pero de lados opuestos. Son **números opuestos**.",
       "presentacion": {
@@ -146,7 +146,7 @@
       "titulo": "La distancia entre dos números",
       "minutos": 3,
       "esencial": true,
-      "lumai": "Ahora, a medir. Tocá dos ciudades en la recta y mirá cuántos grados las separan.",
+      "lumai": "Para terminar, vas a aprender a medir la distancia entre dos números.",
       "pose": "saludo",
       "texto": "Para saber cuánto separa a dos números, contá las unidades que hay entre ellos.\nSi están del mismo lado del cero, se restan sus distancias al cero: entre −8 y −3 hay 5.\nSi están en lados opuestos, se suman: entre −4 y 6 hay 4 + 6 = 10.",
       "imagen": "mat-1-02-b",

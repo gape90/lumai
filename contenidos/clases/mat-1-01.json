@@ -25,7 +25,7 @@
       "titulo": "El cero es un punto de partida",
       "minutos": 3,
       "esencial": true,
-      "lumai": "Primero, una idea que cambia todo: el cero no siempre significa \"nada\".",
+      "lumai": "En este paso vas a ver que el cero no siempre significa \"nada\": puede ser un punto de partida.",
       "pose": "idea",
       "texto": "El cero puede marcar el lugar desde donde se mide. En el ascensor, es la planta baja. En el termómetro, la temperatura a la que se congela el agua.\nLo que está por encima del cero son los números **positivos**. Lo que está por debajo, los **negativos**.",
       "interactivo": {
@@ -83,7 +83,7 @@
       "titulo": "El signo dice de qué lado estás",
       "minutos": 2,
       "esencial": true,
-      "lumai": "Mismo número, historias opuestas. Mirá.",
+      "lumai": "Ahora vas a ver qué indica el signo de un número.",
       "pose": "saludo",
       "texto": "+5 °C y −5 °C tienen el mismo número, pero cuentan historias opuestas.\nA los positivos se los puede escribir sin el +. El signo − nunca se omite: sin él, el número cambia de lado.",
       "presentacion": {
@@ -121,7 +121,7 @@
       "titulo": "Restas que antes no tenían respuesta",
       "minutos": 3,
       "esencial": true,
-      "lumai": "¿Te acordás de que 3 − 7 \"no se podía\"? Ahora sí se puede.",
+      "lumai": "En este paso vas a ver cómo se resuelven las restas que antes \"no se podían\".",
       "pose": "idea",
       "texto": "Con los números enteros, 3 − 7 = −4.\nPasa en un juego de cartas: si tenías 3 puntos y perdés 7, quedás en −4. Es decir, debés 4 puntos.\nLos negativos aparecen cuando lo que se quita es más que lo que había.",
       "interactivo": {
@@ -170,7 +170,7 @@
       "titulo": "Los enteros en la vida real",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última actividad: ¿dónde más aparecen los negativos?",
+      "lumai": "Para terminar, vas a ver dónde aparecen los números negativos en la vida real.",
       "pose": "saludo",
       "texto": "Temperaturas bajo cero, subsuelos, metros bajo el nivel del mar, deudas, la diferencia de gol.\nEn todos los casos hay un cero de referencia y dos sentidos opuestos: arriba y abajo, ganar y perder.",
       "presentacion": {

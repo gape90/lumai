@@ -25,7 +25,7 @@
       "titulo": "Conversar y discutir",
       "minutos": 2,
       "esencial": true,
-      "lumai": "Arranquemos por la diferencia más importante de hoy.",
+      "lumai": "En esta actividad vas a conocer la diferencia entre conversar y discutir.",
       "pose": "saludo",
       "texto": "Cuando conversamos, compartimos ideas y sostenemos un tema entre todos. Es como el vóley: la pelota tiene que seguir en el aire.\nCuando discutimos, hay posiciones distintas. Cada uno defiende la suya con razones.",
       "presentacion": {
@@ -62,7 +62,7 @@
       "titulo": "Tema y problema",
       "minutos": 2,
       "esencial": true,
-      "lumai": "Para discutir bien, primero hay que saber de qué estamos discutiendo.",
+      "lumai": "Ahora vas a ver la diferencia entre el tema y el problema de una discusión.",
       "pose": "idea",
       "texto": "El **tema** es de qué se habla. Por ejemplo, el VAR en el fútbol.\nEl **problema** es la pregunta que divide opiniones: ¿el VAR hace más justo al fútbol?\nSi no acuerdan cuál es el problema, cada uno termina discutiendo otra cosa.",
       "interactivo": {
@@ -129,7 +129,7 @@
       "titulo": "Hechos y opiniones",
       "minutos": 3,
       "esencial": true,
-      "lumai": "Ahora, la herramienta que más te va a servir para discutir.",
+      "lumai": "En esta actividad vas a aprender a distinguir hechos de opiniones.",
       "pose": "saludo",
       "texto": "Un **hecho** se puede comprobar: \"El VAR se usa en los Mundiales desde 2018\".\nUna **opinión** dice lo que alguien piensa o siente: \"El VAR le quita emoción al fútbol\".\nLas opiniones no son verdaderas ni falsas. Pero pueden estar mejor o peor fundamentadas.",
       "interactivo": {
@@ -193,7 +193,7 @@
       "titulo": "Posición y argumentos",
       "minutos": 3,
       "esencial": true,
-      "lumai": "Escuchá cómo discuten Martina y Tomás en la asamblea del curso.",
+      "lumai": "Ahora vas a ver cómo se defiende una posición con argumentos.",
       "pose": "idea",
       "texto": "Tu **posición** es lo que pensás sobre el problema. Los **argumentos** son las razones que la sostienen.\nLos argumentos más fuertes se apoyan en hechos. \"Porque sí\" no convence a nadie.",
       "presentacion": {
@@ -248,7 +248,7 @@
       "titulo": "La voz y el cuerpo también hablan",
       "minutos": 2,
       "esencial": false,
-      "lumai": "Última actividad: no solo importa lo que decís, sino cómo lo decís.",
+      "lumai": "Para terminar, vas a ver cómo la voz y el cuerpo también comunican.",
       "pose": "saludo",
       "texto": "El tono, el volumen y la velocidad de la voz son **recursos paraverbales**. Los gestos y la postura son recursos no verbales.\nUn mismo argumento puede sonar respetuoso o agresivo según cómo lo digas. Gritar no da la razón: hace que los demás dejen de escuchar.",
       "imagen": "len-1-01-b",
