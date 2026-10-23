@@ -95,7 +95,7 @@
 
 import { crearMiCarpeta, ESTILOS_CARPETA } from './mi-carpeta.js';
 import { hablar, detenerVoz, vozDisponible, hablarNatural } from './voz.js';
-import { usaTocarParaLeer, activarTocarParaLeer, ESTILOS_TOCAR } from './tocar-para-leer.js';
+import { usaTocarParaLeer, activarTocarParaLeer, activarLecturaDeDevoluciones, ESTILOS_TOCAR } from './tocar-para-leer.js';
 
 let ajustesVoz = null;   // perillas del perfil (tamaño de letra, mayúsculas) para el texto que se muestra al leer
 const RUTA_CLASES = 'contenidos/clases/';
@@ -1211,7 +1211,7 @@ function crearMiLugar(d0, ctx, idCapsula) {
       return;
     }
     listo.disabled = true;
-    ok.textContent = '🤖 LumAI está leyendo tu respuesta…';
+    ok.textContent = '🤖 Esperá un momento: LumAI está revisando tu respuesta.';
     let r;
     try {
       r = typeof ctx.opciones.corregir === 'function'
@@ -1818,6 +1818,7 @@ function renderizarCapsulas(clase, destino, opciones) {
 
   destino.appendChild(raiz);
   mostrar(Math.min(opciones.capsulaInicial || 0, pantallas.length - 1), false);
+  if (modoTocar) setTimeout(() => activarLecturaDeDevoluciones(raiz), 400);
   registrar('clase_mostrada', { clase: ctx.id, titulo: clase.titulo, materia: clase.materia, formato: 'capsulas', capsulas: capsulas.length, lugares: capsulas.filter(c => c.mi_lugar).length, preguntas: conChequeo });
   const activos = Object.keys(aj).filter(k => k !== 'motivos' && aj[k] && aj[k] !== 'todas' && aj[k] !== 'completo' && !(k === 'opciones' && aj[k] === 3));
   // Se registra qué se adaptó y el grado de cada una de las 13 dimensiones (nombre y grado), para que el docente vea

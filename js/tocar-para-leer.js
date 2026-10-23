@@ -124,6 +124,49 @@ export function activarTocarParaLeer(raiz, opciones = {}) {
   }, true);
 }
 
+// Las devoluciones de LumAI se leen solas: el alumno que casi no lee igual se entera de qué le respondieron.
+// Se observan los recuadros donde aparecen (respuesta a una opción, corrección de lo escrito, pistas,
+// respuestas que se abren) y, cuando cambian, se leen en voz alta.
+const DEVOLUCIONES = '.lc-devolucion, .lc-salida, .lc-lugar-ok, .mc-estado, .lc-problema-fb, .lc-logro, .lc-orden-aviso, .lc-lupa-msg, .lc-autoeval-resp, .lc-clasif-dato, .lc-pasos-cuerpo';
+
+export function activarLecturaDeDevoluciones(raiz) {
+  let ultimaEscritura = 0, timer = null, pendiente = null;
+  const ultimos = new WeakMap();
+  raiz.addEventListener('input', () => { ultimaEscritura = Date.now(); }, true);
+  const leerLuego = (n) => {
+    pendiente = n;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const nodo = pendiente; pendiente = null;
+      if (!nodo || nodo.closest('[hidden]')) return;
+      const texto = textoDe(nodo);
+      if (texto.length < 2) return;
+      const previo = ultimos.get(nodo);
+      if (previo && previo.texto === texto && Date.now() - previo.t < 4000) return;
+      ultimos.set(nodo, { texto, t: Date.now() });
+      raiz.querySelectorAll('.lc-leyendo').forEach(x => x.classList.remove('lc-leyendo'));
+      nodo.classList.add('lc-leyendo');
+      hablarNatural(texto, { onend: () => nodo.classList.remove('lc-leyendo') });
+    }, 180);
+  };
+  const obs = new MutationObserver((registros) => {
+    if (Date.now() - ultimaEscritura < 900) return;   // mientras escribe no se lee cada aviso
+    for (const r of registros) {
+      const base = r.target.nodeType === 1 ? r.target : r.target.parentElement;
+      if (!base) continue;
+      if (r.type === 'attributes') {
+        // un panel que se abre ("Ver la respuesta", "Necesito una pista")
+        if (base.classList.contains('lc-panel') && !base.hidden) { leerLuego(base); return; }
+        continue;
+      }
+      const fb = base.closest(DEVOLUCIONES);
+      if (fb && raiz.contains(fb)) { leerLuego(fb); return; }
+    }
+  });
+  obs.observe(raiz, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden'] });
+  return obs;
+}
+
 export const ESTILOS_TOCAR = `
 .lc-modo-tocar :is(${SECTORES_LECTURA}):not([data-no-leer] *){cursor:pointer;border-radius:8px;transition:background-color .15s,box-shadow .15s}
 .lc-modo-tocar :is(${SECTORES_LECTURA}):not([data-no-leer] *):hover{box-shadow:0 0 0 2px rgba(242,201,76,.8)}

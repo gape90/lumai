@@ -300,7 +300,7 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
         return;
       }
       listo.disabled = true;
-      estado.className = 'mc-estado'; estado.textContent = '🤖 LumAI está leyendo lo que escribiste…';
+      estado.className = 'mc-estado'; estado.textContent = '🤖 Esperá un momento: LumAI está revisando tu respuesta.';
       let r;
       try { r = corregir ? await corregir({ tipo: c.tipo, consigna: c.consigna, respuesta: texto, referencia: c.pista || '' }) : { ok: true, mensaje: '', sinRevision: true }; }
       catch (e) { r = { ok: true, mensaje: '', sinRevision: true }; }
