@@ -1,6 +1,7 @@
 // Intermediario de LumAI (Cloudflare Worker)
 // Guarda la clave de Gemini en secreto y le habla a Google en nombre de LumAI.
-// La clave se carga en Cloudflare como secreto llamado GEMINI_KEY (nunca va en este archivo).
+// La clave se carga en Cloudflare como secreto (nunca va en este archivo). Se usa el secreto llamado
+// GEMINI_KEY o, si el nombre quedó distinto, cualquier secreto que sea una clave de Google (empieza con "AIza").
 
 const PERMITIDOS = [
   'https://gape90.github.io',   // LumAI publicado
@@ -29,7 +30,8 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
     if (!permitido) return responder(403, { error: { message: 'Sitio no autorizado' } });
     if (request.method !== 'POST') return responder(405, { error: { message: 'Solo POST' } });
-    if (!env.GEMINI_KEY) return responder(500, { error: { message: 'Falta la clave GEMINI_KEY en Cloudflare' } });
+    const clave = env.GEMINI_KEY || Object.values(env).find(v => typeof v === 'string' && v.startsWith('AIza'));
+    if (!clave) return responder(500, { error: { message: 'Falta cargar la clave de Gemini como secreto en Cloudflare' } });
 
     const texto = await request.text();
     if (texto.length > MAX_CARACTERES) return responder(413, { error: { message: 'Pedido demasiado largo' } });
@@ -51,7 +53,7 @@ export default {
     try {
       const r = await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': env.GEMINI_KEY },
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': clave },
         body: JSON.stringify(pedido)
       });
       return new Response(await r.text(), { status: r.status, headers: { ...cors, 'Content-Type': 'application/json' } });
