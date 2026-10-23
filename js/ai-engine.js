@@ -14,6 +14,53 @@ import {
 } from './config.js';
 
 import { SimpleEmojiProcessor } from './simple-emoji-processor.js';
+import { CLAVE_INCORPORADA, LIMITES_IA } from './config-ia.js';
+
+// ============================================================================
+// ⏱️ LÍMITES DE USO DE LA IA (por computadora)
+// Se anotan las llamadas en el navegador; si se pasa de un límite, no se llama a Gemini
+// y las actividades siguen con su respuesta de respaldo.
+// ============================================================================
+const CLAVE_USO_IA = 'lumai_uso_ia';
+
+function leerUso() {
+  try {
+    const lista = JSON.parse(localStorage.getItem(CLAVE_USO_IA) || '[]');
+    const desde = Date.now() - 24 * 3600 * 1000;
+    return Array.isArray(lista) ? lista.filter(t => typeof t === 'number' && t > desde) : [];
+  } catch (e) { return []; }
+}
+
+// Devuelve un texto con el motivo si no se puede llamar ahora, o '' si se puede
+function motivoDeLimite(largoPedido) {
+  if (largoPedido > LIMITES_IA.maxCaracteresPedido) return 'el pedido es demasiado largo';
+  const uso = leerUso();
+  const ahora = Date.now();
+  if (uso.filter(t => t > ahora - 60 * 1000).length >= LIMITES_IA.porMinuto) return 'demasiados pedidos en un minuto';
+  if (uso.filter(t => t > ahora - 3600 * 1000).length >= LIMITES_IA.porHora) return 'se alcanzó el límite de esta hora';
+  if (uso.length >= LIMITES_IA.porDia) return 'se alcanzó el límite de hoy';
+  return '';
+}
+
+function anotarUso() {
+  try {
+    const uso = leerUso();
+    uso.push(Date.now());
+    localStorage.setItem(CLAVE_USO_IA, JSON.stringify(uso));
+  } catch (e) { /* sin almacenamiento: no se puede contar */ }
+}
+
+// Para el panel docente: cuántas llamadas hizo esta computadora
+export function usoDeIA() {
+  const uso = leerUso();
+  const ahora = Date.now();
+  return {
+    minuto: uso.filter(t => t > ahora - 60 * 1000).length,
+    hora: uso.filter(t => t > ahora - 3600 * 1000).length,
+    dia: uso.length,
+    limites: LIMITES_IA
+  };
+}
 
 // ============================================================================
 // 🔑 CONFIGURACIÓN DE API (V91)
@@ -84,6 +131,11 @@ function pedirClaveAlDocente(mensajeError = "") {
 }
 
 async function obtenerClaveAPI(mensajeError = "") {
+  // Clave incluida en el programa: los alumnos nunca ven el pedido de clave
+  if (CLAVE_INCORPORADA) {
+    if (mensajeError) throw new Error('La clave incluida en LumAI no es válida');
+    return CLAVE_INCORPORADA;
+  }
   const guardada = leerClaveGuardada();
   if (guardada && !mensajeError) return guardada;
   return await pedirClaveAlDocente(mensajeError);
@@ -624,6 +676,17 @@ export async function llamarGeminiAPI(prompt, maxTokens = 1000) {
     });
   }
   
+  // ⏱️ Límite de uso: si se pasó, no se llama (las actividades usan su respaldo)
+  const motivo = motivoDeLimite(String(prompt || '').length);
+  if (motivo) {
+    console.warn('⏱️ LumAI no llama a la IA:', motivo);
+    if (window.lumaiTracker) {
+      window.lumaiTracker.recordCustomEvent('gemini_api_call_limited', { motivo, timestamp: new Date().toISOString() });
+    }
+    throw new Error(`Límite de uso de la IA: ${motivo}`);
+  }
+  anotarUso();
+
   const requestBody = {
     contents: [{
       parts: [{
@@ -632,7 +695,7 @@ export async function llamarGeminiAPI(prompt, maxTokens = 1000) {
     }],
     generationConfig: {
       // Google recomienda NO fijar temperature/topP/topK en los modelos 3.x
-      maxOutputTokens: Math.max(maxTokens, MIN_TOKENS_SALIDA)
+      maxOutputTokens: Math.min(Math.max(maxTokens, MIN_TOKENS_SALIDA), LIMITES_IA.maxTokensSalida)
     }
   };
   
