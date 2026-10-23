@@ -14,6 +14,7 @@ import {
 } from './config.js';
 
 import { SimpleEmojiProcessor } from './simple-emoji-processor.js';
+import { URL_INTERMEDIARIO } from './config-ia.js';
 
 // ============================================================================
 // 🔑 CONFIGURACIÓN DE API (V91)
@@ -41,6 +42,15 @@ function guardarClave(clave) {
 
 export function borrarClaveAPI() {
   try { localStorage.removeItem(CLAVE_STORAGE_API); } catch (e) { /* nada */ }
+}
+
+
+// Envía el pedido a Gemini: por el intermediario (sin clave) o directo con la clave de esta compu
+function enviarAGemini(cuerpo, clave) {
+  if (URL_INTERMEDIARIO) {
+    return fetch(URL_INTERMEDIARIO, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(cuerpo) });
+  }
+  return fetch(GEMINI_API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': clave }, body: JSON.stringify(cuerpo) });
 }
 
 let pedidoDeClaveEnCurso = null;
@@ -84,6 +94,7 @@ function pedirClaveAlDocente(mensajeError = "") {
 }
 
 async function obtenerClaveAPI(mensajeError = "") {
+  if (URL_INTERMEDIARIO) return "";   // el intermediario guarda la clave: no se pide nada
   const guardada = leerClaveGuardada();
   if (guardada && !mensajeError) return guardada;
   return await pedirClaveAlDocente(mensajeError);
@@ -642,27 +653,16 @@ export async function llamarGeminiAPI(prompt, maxTokens = 1000) {
     const tiempoInicio = Date.now();
     
     let claveAPI = await obtenerClaveAPI();
-    let response = await fetch(GEMINI_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': claveAPI
-      },
-      body: JSON.stringify(requestBody)
-    });
+    let response = await enviarAGemini(requestBody, claveAPI);
 
-    // 🔑 Clave inválida o vencida: se borra y se pide una nueva (un solo reintento)
-    if (response.status === 400 || response.status === 401 || response.status === 403) {
+    // 🔑 Clave inválida o vencida: se borra y se pide una nueva (un solo reintento; no aplica con intermediario)
+    if (!URL_INTERMEDIARIO && (response.status === 400 || response.status === 401 || response.status === 403)) {
       const detalle = await response.clone().text();
       if (/API key|API_KEY|PERMISSION_DENIED|UNAUTHENTICATED/i.test(detalle)) {
         console.warn('🔑 La clave guardada no es válida. Se pide una nueva.');
         borrarClaveAPI();
         claveAPI = await obtenerClaveAPI('La clave anterior no funcionó. Probá con otra.');
-        response = await fetch(GEMINI_API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'x-goog-api-key': claveAPI },
-          body: JSON.stringify(requestBody)
-        });
+        response = await enviarAGemini(requestBody, claveAPI);
       }
     }
     
@@ -670,11 +670,7 @@ export async function llamarGeminiAPI(prompt, maxTokens = 1000) {
     for (let reintento = 1; reintento <= 2 && [429, 500, 502, 503, 504].includes(response.status); reintento++) {
       console.warn(`⏳ Gemini respondió ${response.status}. Reintento ${reintento}…`);
       await new Promise(r => setTimeout(r, 1500 * reintento));
-      response = await fetch(GEMINI_API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': claveAPI },
-        body: JSON.stringify(requestBody)
-      });
+      response = await enviarAGemini(requestBody, claveAPI);
     }
 
     const tiempoTranscurrido = Date.now() - tiempoInicio;
