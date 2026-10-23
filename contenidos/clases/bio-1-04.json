@@ -31,7 +31,7 @@
       "interactivo": {
         "tipo": "explorar",
         "titulo": "👁️ Los sentidos y sus receptores",
-        "consigna": "Tocá cada sentido.",
+        "consigna": "Tocá cada sentido para ver qué receptor lo capta y qué información te da.",
         "elementos": [
           {
             "icono": "👁️",
@@ -86,7 +86,7 @@
       "interactivo": {
         "tipo": "ordenar",
         "titulo": "⚽ Ordená la atajada, en cámara lenta",
-        "consigna": "Tocá los pasos en el orden en que ocurren.",
+        "consigna": "Tocá los pasos en el orden en que ocurren, para ver cómo viaja la información desde el ojo hasta el movimiento.",
         "items": [
           "La pelota sale disparada hacia el arco",
           "Los ojos captan la pelota",
@@ -144,7 +144,7 @@
       "interactivo": {
         "tipo": "clasificar",
         "titulo": "🗂️ ¿Receptor o efector?",
-        "consigna": "Elegí qué es cada uno.",
+        "consigna": "Elegí si cada uno es un receptor (capta información) o un efector (hace una acción), para aprender a distinguirlos.",
         "categorias": [
           "Receptor",
           "Efector"
@@ -216,8 +216,7 @@
         "mal": "La señal no espera al cerebro. ¿Dónde se resuelve?"
       },
       "mi_lugar": {
-        "pregunta": "Pensá en un deporte, un juego o una actividad que hagas. ¿Qué receptores usás, qué decide tu cerebro y qué músculos se mueven?",
-        "ayuda": "Cuando juego a…"
+        "pregunta": "Pensá en un deporte, un juego o una actividad que hagas. ¿Qué receptores usás, qué decide tu cerebro y qué músculos se mueven?"
       }
     },
     {

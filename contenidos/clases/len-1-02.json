@@ -83,7 +83,7 @@
       "interactivo": {
         "tipo": "escuchar",
         "titulo": "🎧 Escuchá el relato",
-        "consigna": "Tocá Escuchar. Intentá responder cada pregunta antes de abrir la respuesta.",
+        "consigna": "Tocá Escuchar y tratá de responder cada pregunta antes de abrir la respuesta, para practicar cómo entender lo que escuchás.",
         "texto": "El sábado a la tarde, Joaquín salió a andar en bici por la costanera. El cielo estaba gris, pero igual se fue sin campera. Mientras pedaleaba, se largó a llover tan fuerte que tuvo que refugiarse debajo del techo de un kiosco. El kiosquero lo vio temblando y le prestó una toalla. Media hora después, cuando paró la lluvia, Joaquín volvió a su casa y se prometió que la próxima vez iba a mirar el pronóstico.",
         "preguntas": [
           {
@@ -159,7 +159,7 @@
       "interactivo": {
         "tipo": "ordenar",
         "titulo": "🔢 Ordená los pasos para tomar notas",
-        "consigna": "Tocá los pasos en el orden en que conviene hacerlos.",
+        "consigna": "Tocá los pasos en el orden en que conviene hacerlos, para aprender a tomar buenas notas.",
         "items": [
           "Pensar para qué voy a escuchar",
           "Anotar solo palabras clave mientras escucho",
@@ -209,8 +209,7 @@
         "mal": "Pensá: estaba empapado y sin campera. ¿Por qué temblaría?"
       },
       "mi_lugar": {
-        "pregunta": "Pensá en algo que alguien te contó hoy o ayer. ¿Qué pudiste inferir aunque no te lo dijeran directamente?",
-        "ayuda": "Me contaron que… y me di cuenta de que…"
+        "pregunta": "Pensá en algo que alguien te contó hoy o ayer. ¿Qué pudiste inferir aunque no te lo dijeran directamente?"
       }
     }
   ],

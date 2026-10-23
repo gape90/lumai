@@ -74,7 +74,7 @@
       "interactivo": {
         "tipo": "explorar",
         "titulo": "🌎 Los ambientes de América",
-        "consigna": "Tocá cada ambiente para conocerlo.",
+        "consigna": "Tocá cada ambiente para conocer cómo es y qué lo caracteriza.",
         "elementos": [
           {
             "icono": "🌴",
@@ -122,8 +122,7 @@
         "mal": "Volvé a tocar los ambientes de la actividad."
       },
       "mi_lugar": {
-        "pregunta": "¿En qué ambiente está tu ciudad o tu pueblo? ¿Qué recursos naturales se aprovechan cerca de donde vivís?",
-        "ayuda": "Vivo en un ambiente de…"
+        "pregunta": "¿En qué ambiente está tu ciudad o tu pueblo? ¿Qué recursos naturales se aprovechan cerca de donde vivís?"
       }
     },
     {
@@ -170,7 +169,7 @@
       "interactivo": {
         "tipo": "clasificar",
         "titulo": "♻️ ¿Renovable o no renovable?",
-        "consigna": "Elegí la opción correcta para cada recurso.",
+        "consigna": "Elegí si cada recurso es renovable o no renovable, para entender cuáles se pueden agotar.",
         "categorias": [
           "Renovable",
           "No renovable"

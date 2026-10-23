@@ -752,7 +752,7 @@
         <div class="tabs">
             <button class="tab active" onclick="showTab('dashboard')">Dashboard</button>
             <button class="tab" onclick="showTab('students')">Estudiantes</button>
-            <button class="tab" onclick="showTab('individual')">Reporte Individual</button>
+            <button class="tab" onclick="showTab('individual')" style="display:none">Reporte Individual</button>
         </div>
 
         <div class="content">
@@ -1349,8 +1349,9 @@
             // Las sesiones pueden guardarse más de una vez: se descartan los eventos repetidos
             const eventos = [];
             const vistos = new Set();
-            student.sessions.forEach(session => (session.customEvents || []).forEach(e => {
-                if (!e.type || e.type.indexOf('clase_') !== 0) return;
+            student.sessions.forEach((session, nSes) => (session.customEvents || []).forEach(e => {
+                if (!e.type || (e.type.indexOf('clase_') !== 0 && e.type.indexOf('carpeta_') !== 0)) return;
+                e = Object.assign({}, e, { _s: nSes });
                 const clave = e.type + '|' + e.timestamp + '|' + JSON.stringify(e.data);
                 if (vistos.has(clave)) return;
                 vistos.add(clave);
@@ -1362,7 +1363,9 @@
             mostradas.sort((x, y) => String(x.timestamp).localeCompare(String(y.timestamp)));
             const ultima = mostradas[mostradas.length - 1];
             const info = ultima.data || {};
-            const desde = String(ultima.timestamp || '');
+            // Si el alumno volvió a la explicación, la clase se vuelve a mostrar: se cuenta desde la primera vez de esa sesión
+            const mismas = mostradas.filter(m => m._s === ultima._s && (m.data || {}).clase === info.clase);
+            const desde = String((mismas[0] || ultima).timestamp || '');
             const de = (tipo) => eventos.filter(e => e.type === tipo && e.data && e.data.clase === info.clase && String(e.timestamp || '') >= desde).map(e => e.data);
 
             const vistas = new Set(de('clase_capsula_vista').map(x => x.capsula)).size;
@@ -1386,11 +1389,48 @@
             const entregas = de('carpeta_entregada');
             const carpeta = entregas.length ? entregas[entregas.length - 1] : null;
             const nombresModo = { copiar: 'copió frases modelo', completar: 'completó frases', libre: 'escribió con sus palabras' };
-            const htmlCarpeta = carpeta ? `<div style="margin-top:12px;padding:12px 14px;border:2px solid #00509e;border-radius:10px;background:#f4f8fd"><p style="margin:0 0 6px"><strong>📒 Carpeta entregada para corregir</strong> <em>(${nombresModo[carpeta.modo] || esc(carpeta.modo || '')})</em></p>${(carpeta.entradas || []).map(x => `<p style="margin:6px 0"><strong>${esc(x.titulo)}${x.palabra ? `: ${esc(x.palabra)}` : ''}</strong><br>${x.modelo ? `<span style="color:#555">Modelo: ${esc(x.modelo)}</span><br>` : ''}${esc(x.respuesta || '(sin escribir)')}</p>`).join('')}</div>` : '';
+            const htmlCarpeta = carpeta ? `<div style="margin-top:12px;padding:12px 14px;border:2px solid #00509e;border-radius:10px;background:#f4f8fd"><p style="margin:0 0 6px"><strong>📒 Carpeta entregada para corregir</strong> <em>(${nombresModo[carpeta.modo] || esc(carpeta.modo || '')})</em></p>${(carpeta.entradas || []).map(x => `<p style="margin:6px 0"><strong>${esc(x.titulo)}${x.palabra ? `: ${esc(x.palabra)}` : ''}</strong><br>${x.modelo ? `<span style="color:#555">Modelo: ${esc(x.modelo)}</span><br>` : ''}${esc(x.respuesta || '(sin escribir)')}${(x.intentos || []).length > 1 ? `<br><small style="color:#555">Intentos (${x.intentos.length}): ${x.intentos.map(t => `“${esc(t.respuesta)}” (${t.resultado === 'ok' || t.resultado === 'copia_ok' ? 'bien' : t.resultado === 'sin_ia' ? 'sin revisión' : 'a corregir'})`).join(' → ')}</small>` : ''}</p>`).join('')}</div>` : '';
+            const promedio = (v) => { const x = v.filter(n => n != null); return x.length ? x.reduce((a, b) => a + b, 0) / x.length : null; };
+            const sumar = (arr, f) => arr.reduce((a, b) => a + (Number(f(b)) || 0), 0);
+            const nInter = de('clase_clasificar_completo').length + de('clase_ordenar_completo').length + de('clase_error_hallado').length + de('clase_lupa_completa').length;
+            const errInter = sumar(de('clase_clasificar_completo'), x => x.errores) + sumar(de('clase_ordenar_completo'), x => x.errores) + sumar(de('clase_error_hallado'), x => Math.max(0, (x.intentos || 1) - 1)) + sumar(de('clase_lupa_completa'), x => x.fallos);
+            const intentosCarpeta = de('carpeta_intento');
+            const escrituras = [].concat(lugares.map(x => x.revision === 'ok' ? 1 : (x.revision === 'sin_ia' ? null : 0.4)), intentosCarpeta.map(x => (x.resultado === 'ok' || x.resultado === 'copia_ok') ? 1 : (x.resultado === 'sin_ia' ? null : 0.4)));
+            const ind = {
+                chequeo: total ? primera / total : null,
+                inter: nInter ? 1 - Math.min(1, errInter / (nInter * 2)) : null,
+                final: pf.length ? (pf[0].acerto ? 1 : (pfUlt.acerto ? 0.6 : 0.2)) : null,
+                escritura: escrituras.filter(n => n != null).length ? promedio(escrituras) : null,
+                completitud: info.capsulas ? (completada ? 1 : Math.min(1, vistas / info.capsulas)) : null
+            };
+            const porDimension = {
+                'Lectoescritura': ['escritura', 'chequeo'], 'Comprensión lectora': ['chequeo', 'escritura'], 'Comprensión oral': ['chequeo'],
+                'Razonamiento': ['final', 'inter', 'chequeo'], 'Memoria de trabajo': ['chequeo', 'final'], 'Atención': ['completitud'],
+                'Velocidad de procesamiento': ['completitud'], 'Motricidad fina': ['inter'], 'Canal de acceso': ['chequeo'],
+                'Respuesta ante el error': ['completitud', 'final'], 'Sentido numérico': ['chequeo', 'final', 'inter'],
+                'Sensibilidad sensorial': ['completitud'], 'Previsibilidad': ['completitud']
+            };
+            const nombresPerillas = { capsulas: 'solo cápsulas esenciales', texto: 'versión fácil', mayusculas: 'mayúsculas', letra: 'letra grande', voz: 'lectura en voz alta', definiciones_abiertas: 'definiciones a la vista', opciones: 'preguntas con 2 opciones', pista_previa: 'pista antes de responder', sin_puntaje: 'sin puntaje', recordar_acumulado: 'repaso acumulado', pausa_cada: 'pausas', calmo: 'modo calmo', botones_grandes: 'botones grandes', anticipar: 'anticipación de cada paso', mas_alla: 'desafío extra', sin_tiempos: 'sin tiempos', voz_sin_auto: 'sin lectura automática' };
+            const nombreInd = { chequeo: 'preguntas bien a la primera', inter: 'actividades interactivas sin errores', final: 'problema inicial', escritura: 'lo que escribió', completitud: 'recorrido de la clase' };
+            const dimsApl = ((de('clase_adaptada').slice(-1)[0] || {}).dimensiones) || [];
+            const filasDim = dimsApl.map(d => {
+                const claves = porDimension[d.dimension] || ['completitud'];
+                const val = promedio(claves.map(k => ind[k]));
+                const usadas = claves.filter(k => ind[k] != null).map(k => `${nombreInd[k]} ${Math.round(ind[k] * 100)} %`);
+                let nivel = 'Sin datos suficientes', color = '#6b7280', sugerencia = 'Hace falta que complete más actividades para medir esta dimensión.';
+                if (val != null) {
+                    const esFort = d.grado === 'Fortaleza';
+                    if (val >= 0.75) { nivel = 'Logrado'; color = '#15803d'; sugerencia = esFort ? 'Sostiene el desafío: podés proponerle más.' : 'Responde bien con el apoyo actual: podés probar bajar un grado el apoyo.'; }
+                    else if (val >= 0.5) { nivel = 'En proceso'; color = '#b45309'; sugerencia = 'Mantené el apoyo actual y observá cómo evoluciona.'; }
+                    else { nivel = 'Necesita más apoyo'; color = '#b91c1c'; sugerencia = esFort ? 'El desafío le resultó difícil: conviene bajar la exigencia.' : 'Conviene subir un grado el apoyo o acompañarlo de cerca.'; }
+                }
+                const apoyos = (d.perillas || []).map(k => nombresPerillas[k] || k).join(', ');
+                return `<tr><td style="padding:8px;border-bottom:1px solid #e5e7eb"><strong>${esc(d.dimension)}</strong><br><small>${esc(d.grado)}${apoyos ? ` · apoyo: ${esc(apoyos)}` : ''}</small></td><td style="padding:8px;border-bottom:1px solid #e5e7eb;color:${color};font-weight:700;white-space:nowrap">${nivel}</td><td style="padding:8px;border-bottom:1px solid #e5e7eb"><small>${usadas.length ? 'Se midió con: ' + esc(usadas.join('; ')) + '.<br>' : ''}${sugerencia}</small></td></tr>`;
+            });
+            const htmlDim = filasDim.length ? `<div style="margin:14px 0"><p><strong>📊 Desempeño por dimensión en esta clase</strong></p><table style="width:100%;border-collapse:collapse;font-size:.92rem"><thead><tr style="text-align:left;background:#f1f5f9"><th style="padding:8px">Dimensión y apoyo aplicado</th><th style="padding:8px">Desempeño</th><th style="padding:8px">Qué sugiere</th></tr></thead><tbody>${filasDim.join('')}</tbody></table><p style="margin:6px 0 0"><small>Es una lectura orientativa a partir de lo que hizo en esta clase: sirve para decidir si conviene modificar el grado de cada dimensión, no es una evaluación.</small></p></div>` : '';
             const textoAuto = { entendi: '😊 Lo entendí', mas_o_menos: '😐 Más o menos', me_costo: '😟 Me costó' };
             const adaptaciones = de('clase_adaptada');
             const adaptacion = adaptaciones.length ? adaptaciones[adaptaciones.length - 1] : null;
-            const nombresPerillas = { capsulas: 'solo cápsulas esenciales', texto: 'versión fácil', mayusculas: 'mayúsculas', letra: 'letra grande', voz: 'lectura en voz alta', definiciones_abiertas: 'definiciones a la vista', opciones: 'preguntas con 2 opciones', pista_previa: 'pista antes de responder', sin_puntaje: 'sin puntaje', recordar_acumulado: 'repaso acumulado', pausa_cada: 'pausas', calmo: 'modo calmo', botones_grandes: 'botones grandes', anticipar: 'anticipación de cada paso', mas_alla: 'desafío extra', sin_tiempos: 'sin tiempos', voz_sin_auto: 'sin lectura automática' };
             const duracion = (seg) => seg < 60 ? `${seg} s` : `${Math.round(seg / 60)} min`;
 
             let lectura = '';
@@ -1410,6 +1450,7 @@
                 ${palabras.length ? `<p><strong>Palabras que consultó:</strong> ${palabras.map(esc).join(', ')}</p>` : ''}
                 ${pfUlt ? `<p><strong>Problema inicial de la clase:</strong> ${pfUlt.acerto ? 'lo resolvió' : 'no lo resolvió'} (${pf.length} ${pf.length === 1 ? 'intento' : 'intentos'}).</p>` : ''}
                 ${contextos ? `<p><strong>Respondió preguntas sobre su propio lugar (revisadas por LumAI):</strong></p>${lugares.map(x => `<p style="margin:2px 0 6px 12px">“${esc(x.respuesta || '')}” <em>(${x.revision === 'ok' ? 'bien' : x.revision === 'sin_ia' ? 'sin revisión' : 'con observaciones'})</em></p>`).join('')}` : ''}
+                ${htmlDim}
                 ${htmlCarpeta}
                 ${Object.keys(tiempos).length ? `<p><strong>Tiempo por cápsula:</strong> ${Object.entries(tiempos).map(([t, seg]) => `${esc(t)}: ${duracion(seg)}`).join(' · ')}</p>` : ''}`;
             const tarjetas = `<div class="summary-stats">

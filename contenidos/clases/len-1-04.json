@@ -57,8 +57,7 @@
         "mal": "Pensá: ¿necesitás leer todo, o solo encontrar algo?"
       },
       "mi_lugar": {
-        "pregunta": "¿Qué leés en tu día a día: mensajes, carteles, recetas, noticias? Elegí uno: ¿para qué lo leés?",
-        "ayuda": "Leo… para…"
+        "pregunta": "¿Qué leés en tu día a día: mensajes, carteles, recetas, noticias? Elegí uno: ¿para qué lo leés?"
       }
     },
     {
@@ -73,7 +72,7 @@
       "interactivo": {
         "tipo": "explorar",
         "titulo": "🧭 Las pistas del paratexto",
-        "consigna": "Tocá cada pista para ver qué te cuenta.",
+        "consigna": "Tocá cada pista para ver qué te cuenta del texto antes de leerlo.",
         "elementos": [
           {
             "icono": "🏷️",
@@ -161,7 +160,7 @@
       "interactivo": {
         "tipo": "texto_anotado",
         "titulo": "🔍 Detectá los procedimientos",
-        "consigna": "Tocá las partes subrayadas.",
+        "consigna": "Tocá las partes subrayadas para ver qué procedimiento usa el texto en cada una para explicar.",
         "segmentos": [
           {
             "texto": "Los pulpos son animales sorprendentes. "
@@ -203,7 +202,7 @@
       "idea_clave": "Definiciones, ejemplos, comparaciones y reformulaciones ayudan a explicar.",
       "texto_simple": "Los textos explican diciendo qué es algo, dando ejemplos o comparando.",
       "chequeo": {
-        "pregunta": "\"Es decir, pueden adaptarse a situaciones nuevas\" es…",
+        "pregunta": "Esta frase, \"Es decir, pueden adaptarse a situaciones nuevas\", es…",
         "opciones": [
           "una reformulación",
           "una definición",
@@ -225,7 +224,7 @@
       "interactivo": {
         "tipo": "ordenar",
         "titulo": "🔢 Si no entendiste un párrafo…",
-        "consigna": "Ordená qué conviene hacer, del primer paso al último.",
+        "consigna": "Ordená qué conviene hacer, del primer paso al último, para aprender a recuperar lo que no entendiste.",
         "items": [
           "Darme cuenta de que no puedo decir de qué trataba",
           "Volver a leerlo con atención",

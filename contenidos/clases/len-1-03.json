@@ -57,8 +57,7 @@
         "mal": "Buscá el que te haría querer saber más."
       },
       "mi_lugar": {
-        "pregunta": "Si tuvieras que exponer sobre algo de tu lugar (una comida, una fiesta, un paisaje, un club), ¿con qué pregunta o dato sorprendente arrancarías?",
-        "ayuda": "¿Sabían que…?"
+        "pregunta": "Si tuvieras que exponer sobre algo de tu lugar (una comida, una fiesta, un paisaje, un club), ¿con qué pregunta o dato sorprendente arrancarías?"
       }
     },
     {
@@ -73,7 +72,7 @@
       "interactivo": {
         "tipo": "ordenar",
         "titulo": "🔢 Armá la exposición sobre el río Paraná",
-        "consigna": "Tocá las partes en el orden en que irían.",
+        "consigna": "Tocá las partes en el orden en que irían en la exposición, para ver cómo se organiza.",
         "items": [
           "\"¿Sabían que el río Paraná nace en Brasil y recorre miles de kilómetros hasta el Río de la Plata?\"",
           "Dónde nace el río y por qué provincias pasa",
@@ -91,7 +90,7 @@
       "idea_clave": "Presentación, desarrollo y cierre: las tres partes de una exposición.",
       "texto_simple": "Primero contás de qué vas a hablar. Después lo explicás. Al final resumís.",
       "chequeo": {
-        "pregunta": "\"En resumen, las abejas son clave para que haya frutas\" va en…",
+        "pregunta": "Esta frase, \"En resumen, las abejas son clave para que haya frutas\", va en…",
         "opciones": [
           "el cierre",
           "la presentación",
@@ -109,11 +108,11 @@
       "esencial": true,
       "lumai": "Para explicar bien hay herramientas. Encontralas en este fragmento sobre las abejas.",
       "pose": "saludo",
-      "texto": "Para explicar se usan **definiciones** (\"una abeja obrera es…\"), ejemplos y comparaciones (\"funciona como…\").\nTambién reformulaciones: decir lo mismo con otras palabras (\"o sea…\"). No es repetir de más: ayuda a que la idea se fije.",
+      "texto": "Para explicar se usan **definiciones**. Por ejemplo: \"Una abeja obrera es…\".\nLas **comparaciones** relacionan algo nuevo con algo conocido. Por ejemplo: \"La colmena funciona como…\".\nLos **ejemplos** muestran un caso concreto. Por ejemplo: \"los manzanos necesitan insectos…\".\nY las **reformulaciones** dicen lo mismo con otras palabras (\"o sea…\"). No es repetir de más: ayuda a que la idea se fije.",
       "interactivo": {
         "tipo": "texto_anotado",
         "titulo": "🔍 Los recursos de una exposición",
-        "consigna": "Tocá las partes subrayadas.",
+        "consigna": "Tocá las partes subrayadas para mostrarte a qué recurso pertenece cada una (definición, comparación, ejemplo o reformulación).",
         "segmentos": [
           {
             "texto": "En una colmena pueden vivir miles de abejas. "
@@ -155,7 +154,7 @@
       "idea_clave": "Definiciones, ejemplos, comparaciones y reformulaciones ayudan a que el público entienda.",
       "texto_simple": "Para explicar, decí qué es, da un ejemplo o compará con algo conocido.",
       "chequeo": {
-        "pregunta": "\"La colmena funciona como una ciudad\" es…",
+        "pregunta": "Esta frase, \"La colmena funciona como una ciudad\", es…",
         "opciones": [
           "una comparación",
           "una definición",
@@ -177,7 +176,7 @@
       "interactivo": {
         "tipo": "error",
         "titulo": "🕵️ ¿Qué diapositiva está mal?",
-        "consigna": "Tocá la diapositiva que no conviene usar.",
+        "consigna": "Tocá la diapositiva que no conviene usar, para aprender cómo es un buen apoyo visual.",
         "pasos": [
           {
             "texto": "Una foto grande de una colmena con el título \"La colmena\".",

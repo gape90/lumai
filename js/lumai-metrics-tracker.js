@@ -312,7 +312,7 @@ class LumaiMetricsTracker {
                 'clase_completada',
                 'clase_autoevaluacion',
                 'carpeta_entregada',
-                'carpeta_parte',
+                'carpeta_parte', 'carpeta_intento',
                 'clase_problema_final',
                 'clase_mi_lugar'
             ];

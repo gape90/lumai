@@ -520,7 +520,7 @@ class ExplanationChat {
             `;
             
             this.chatMessages.appendChild(messageDiv);
-            this.scrollToBottom();
+            this.scrollToMensaje(messageDiv);
             
             // Iniciar efecto de escritura gradual
             const bubbleElement = messageDiv.querySelector('.message-bubble');
@@ -534,7 +534,7 @@ class ExplanationChat {
             `;
             
             this.chatMessages.appendChild(messageDiv);
-            this.scrollToBottom();
+            if (type === 'bot') this.scrollToMensaje(messageDiv); else this.scrollToBottom();
             
             if (incluirBotones) {
                 this.configurarBotonesRapidos(messageDiv);
@@ -1029,6 +1029,11 @@ this.addBotHtml(`<p style="margin:0 0 6px"><b>¿Todo bien con la clase?</b></p><
             });
         }
         
+        if (modo === 'libre' && !this.temaElegido) {
+            // Antes de responder, el alumno elige el tema que no entiende
+            this.mostrarTemas(true, true);
+            return;
+        }
         if (modo === 'libre') this.temaActual = message.slice(0, 90);
         this.showTypingIndicator();
         this.generateAIResponse(message, modo);
@@ -1087,7 +1092,7 @@ Vamos a tomarlo con calma y paso a paso.
             btn.addEventListener('click', () => {
                 if (this.isTyping) return;
                 const modo = btn.dataset.modo;
-                if (btn.dataset.tema) this.temaActual = btn.dataset.tema;
+                if (btn.dataset.tema) { this.temaActual = btn.dataset.tema; this.temaElegido = true; }
                 this.addMessage(btn.textContent, 'user', false, false); // Usuario sin efecto
                 if (window.lumaiTracker) {
                     window.lumaiTracker.recordCustomEvent('quick_response_used', { modo, tema: (this.temaActual || '').slice(0, 80) });
@@ -1106,21 +1111,22 @@ Vamos a tomarlo con calma y paso a paso.
     }
 
     // Mensaje del bot con HTML propio (botones), sin el formateo de las respuestas de la IA
-    addBotHtml(html) {
+    addBotHtml(html, sinScroll = false) {
         const messageDiv = document.createElement('div');
         messageDiv.className = 'message bot';
         const hora = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         messageDiv.innerHTML = `<div class="message-bubble">${html}</div><div class="message-time">${hora}</div>`;
         this.chatMessages.appendChild(messageDiv);
-        this.scrollToBottom();
+        if (!sinScroll) this.scrollToMensaje(messageDiv);
         this.configurarBotonesRapidos(messageDiv);
     }
 
     escHtml(t) { return String(t ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
     // "¿Qué necesitás que te explique, Mica?" + temas del paso en el que está el alumno
-    async mostrarTemas(forzar = false) {
+    async mostrarTemas(forzar = false, pedirElegir = false) {
         const cap = obtenerCapsulaActual();
+        if (this.pasoDeTemas !== (cap?.id || 'general')) this.temaElegido = false;
         this.pasoDeTemas = cap?.id || 'general';
         const nombre = String(datosSession?.nombreAlumno || '').trim();   // solo se muestra acá; no va a la IA
         let temas = [];
@@ -1129,7 +1135,7 @@ Vamos a tomarlo con calma y paso a paso.
         const may = t => (aj.mayusculas ? String(t).toUpperCase() : String(t));
         const donde = cap ? `Estás en la actividad ${cap.numero}: “${this.escHtml(cap.titulo)}”.` : 'Elegí un tema de la clase.';
         const botones = temas.map(t => `<button class="quick-btn" data-modo="explicar" data-tema="${this.escHtml(t)}">${this.escHtml(may(t))}</button>`).join('');
-        this.addBotHtml(`<p style="margin:0 0 6px"><b>${this.escHtml(may(`¿Qué necesitás que te explique${nombre ? ', ' + nombre : ''}?`))}</b></p><p style="margin:0 0 6px">${this.escHtml(may(donde.replace(/<[^>]+>/g, '')))}</p><div class="quick-response-buttons">${botones}</div><p style="margin:6px 0 0;font-size:.85rem">${this.escHtml(may('O escribime tu duda abajo.'))}</p>`);
+        this.addBotHtml(`<p style="margin:0 0 6px"><b>${this.escHtml(may(pedirElegir ? `Primero elegí el tema que no entendés${nombre ? ', ' + nombre : ''}:` : `¿Qué necesitás que te explique${nombre ? ', ' + nombre : ''}?`))}</b></p><p style="margin:0 0 6px">${this.escHtml(may(donde.replace(/<[^>]+>/g, '')))}</p><div class="quick-response-buttons">${botones}</div>${pedirElegir ? '' : `<p style="margin:6px 0 0;font-size:.85rem">${this.escHtml(may('Tocá el tema que querés que te explique.'))}</p>`}`);
     }
 
     mostrarTemasSiCorresponde() {
@@ -1145,9 +1151,9 @@ Vamos a tomarlo con calma y paso a paso.
         const may = t => (aj.mayusculas ? String(t).toUpperCase() : String(t));
         const e = t => this.escHtml(may(t));
         if (modo === 'ejemplo') {
-            this.addBotHtml(`<p style="margin:0 0 6px"><b>${e('¿Querés otro ejemplo?')}</b></p><div class="quick-response-buttons"><button class="quick-btn" data-modo="ejemplo">${e('💡 Otro ejemplo')}</button><button class="quick-btn" data-modo="temas">${e('📋 Otro tema')}</button></div>`);
+            this.addBotHtml(`<p style="margin:0 0 6px"><b>${e('¿Querés otro ejemplo?')}</b></p><div class="quick-response-buttons"><button class="quick-btn" data-modo="ejemplo">${e('💡 Otro ejemplo')}</button><button class="quick-btn" data-modo="temas">${e('📋 Otro tema')}</button></div>`, true);
         } else {
-            this.addBotHtml(`<p style="margin:0 0 6px"><b>${e('¿Querés que te dé ejemplos?')}</b></p><div class="quick-response-buttons"><button class="quick-btn" data-modo="ejemplo">${e('💡 Sí, dame ejemplos')}</button><button class="quick-btn" data-modo="otra_forma">${e('🔄 Explicámelo de otra forma')}</button><button class="quick-btn" data-modo="temas">${e('📋 Otro tema')}</button></div>`);
+            this.addBotHtml(`<p style="margin:0 0 6px"><b>${e('¿Querés que te dé ejemplos?')}</b></p><div class="quick-response-buttons"><button class="quick-btn" data-modo="ejemplo">${e('💡 Sí, dame ejemplos')}</button><button class="quick-btn" data-modo="otra_forma">${e('🔄 Explicámelo de otra forma')}</button><button class="quick-btn" data-modo="temas">${e('📋 Otro tema')}</button></div>`, true);
         }
     }
 
@@ -1162,7 +1168,11 @@ Vamos a tomarlo con calma y paso a paso.
                 response = await llamarGeminiAPI(prompt);
             } catch (errIA) {
                 console.warn('⚠️ Sin IA para el chat; respuesta de respaldo desde la clase:', errIA?.message);
-                response = await respaldoSinIA(userMessage);
+                if (modo === 'ejemplo' || modo === 'otra_forma') {
+                    response = 'Ahora no pude armar ' + (modo === 'ejemplo' ? 'ejemplos nuevos' : 'otra explicación') + '. Probá de nuevo en un ratito, o releé la actividad con calma.';
+                } else {
+                    response = await respaldoSinIA(userMessage);
+                }
             }
             response = String(response || '').trim();
             if ((estadoGlobal.ajustes || {}).mayusculas) response = response.toUpperCase();
@@ -1216,6 +1226,13 @@ Vamos a tomarlo con calma y paso a paso.
         this.typingIndicator.style.display = 'none';
     }
     
+    // Muestra el comienzo de un mensaje (para que las respuestas largas se lean desde el principio)
+    scrollToMensaje(div) {
+        if (!this.chatMessages || !div) return;
+        const delta = div.getBoundingClientRect().top - this.chatMessages.getBoundingClientRect().top;
+        this.chatMessages.scrollTop += delta - 8;
+    }
+
     scrollToBottom() {
         // 🎯 MEJORADO: Scroll más suave y confiable
         if (this.chatMessages) {

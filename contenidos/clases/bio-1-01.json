@@ -61,7 +61,7 @@
       "interactivo": {
         "tipo": "ordenar",
         "titulo": "🔢 Ordená el experimento de Pasteur",
-        "consigna": "Tocá los pasos en el orden en que los hizo Pasteur.",
+        "consigna": "Tocá los pasos en el orden en que los hizo Pasteur, para ver cómo se armó su experimento paso a paso.",
         "items": [
           "Puso caldo nutritivo en frascos de vidrio",
           "Estiró el cuello del frasco en forma de S",
@@ -174,7 +174,7 @@
       "interactivo": {
         "tipo": "clasificar",
         "titulo": "🗂️ ¿Está vivo?",
-        "consigna": "Elegí la opción correcta para cada uno.",
+        "consigna": "Elegí la opción correcta para cada caso, para practicar cómo reconocer si algo está vivo.",
         "categorias": [
           "Ser vivo",
           "No vivo"
@@ -238,8 +238,7 @@
         "mal": "Está reaccionando a algo del ambiente. ¿Qué función es esa?"
       },
       "mi_lugar": {
-        "pregunta": "Mirá a tu alrededor: nombrá tres seres vivos que haya cerca de tu casa o tu escuela. ¿Cómo se nutre cada uno?",
-        "ayuda": "Cerca de mi casa hay…"
+        "pregunta": "Mirá a tu alrededor: nombrá tres seres vivos que haya cerca de tu casa o tu escuela. ¿Cómo se nutre cada uno?"
       }
     }
   ],

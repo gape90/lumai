@@ -88,6 +88,7 @@ export const ESTILOS_CARPETA = `
 .mc{display:grid;gap:14px}
 .mc-intro{display:grid;gap:6px;padding:14px 16px;border-radius:var(--lc-radio,14px);background:var(--lc-azul-claro,#e8f1fb);border:1px solid var(--lc-borde,#dbe3ec)}
 .mc-intro p{margin:0}
+.mc-pasos{margin:0;padding-left:22px;display:grid;gap:4px}
 .mc-intro .mc-grande{font-weight:700;font-size:1.05rem}
 .mc-item{display:grid;gap:8px;background:#fff;border:2px solid var(--lc-borde,#dbe3ec);border-radius:var(--lc-radio,14px);padding:14px 16px}
 .mc-item.mc-hecho{border-color:var(--lc-verde,#00a676)}
@@ -128,7 +129,7 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
   const intro = el('div', 'mc-intro');
   intro.innerHTML = `
     <p class="mc-grande">${esc(mayus('Ahora vamos a trabajar en la carpeta de la clase.'))}</p>
-    <p>${esc(mayus('1. Escribí cada parte acá, en la pantalla. 2. Apretá “Listo”: LumAI la guarda. 3. Después pasala a tu carpeta.'))}</p>
+    <ol class="mc-pasos"><li>${esc(mayus('Escribí cada parte acá, en la pantalla.'))}</li><li>${esc(mayus('Apretá “Listo”: LumAI la guarda.'))}</li><li>${esc(mayus('Después escribilo en tu carpeta.'))}</li></ol>
     <p><small>${esc(mayus('Preguntale a tu docente si tenés que hacerlo en la carpeta, en LumAI o en los dos.'))}</small></p>`;
   raiz.appendChild(intro);
 
@@ -154,6 +155,13 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
     let palabraElegida = previo.palabra || '';
     let hecho = !!previo.hecho;
     let intentos = 0;
+    const historial = Array.isArray(previo.historial) ? previo.historial.slice(-10) : [];
+    const anotarIntento = (texto, resultado, mensaje) => {
+      const reg = { n: historial.length + 1, respuesta: texto.slice(0, 500), resultado, mensaje: String(mensaje || '').slice(0, 200), hora: new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' }) };
+      historial.push(reg);
+      guardarHoja(clase.id, hoja());
+      registrar('carpeta_intento', { clase: clase.id, modo, indice: idx, titulo: c.titulo, ...reg });
+    };
     const listo = el('button', 'lc-btn lc-btn-chico', '✅ Listo');
     listo.type = 'button';
     if (hecho) { item.classList.add('mc-hecho'); estado.className = 'mc-estado ok'; estado.textContent = '💾 Guardado en LumAI.'; }
@@ -243,6 +251,7 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
       if (c.modelo) {
         // Copia: se avisa si faltó algo, pero a la segunda vez se guarda igual
         const igual = norm(texto) === norm(c.modelo);
+        anotarIntento(texto, igual ? 'copia_ok' : 'copia_con_diferencias', '');
         if (!igual && intentos < 2) { estado.className = 'mc-estado casi'; estado.textContent = mayus('Casi. Mirá bien la frase y corregí lo que falta. Si querés, apretá Listo otra vez para guardarla igual.'); return; }
         aceptar(igual ? 'copia_ok' : 'copia_con_diferencias');
         estado.className = 'mc-estado ok'; estado.textContent = mayus(igual ? '💾 ¡Perfecto! Guardado en LumAI. Ahora copialo en tu carpeta.' : '💾 Guardado en LumAI. Copialo en tu carpeta.');
@@ -254,6 +263,7 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
       try { r = corregir ? await corregir({ tipo: c.tipo, consigna: c.consigna, respuesta: texto, referencia: c.pista || '' }) : { ok: true, mensaje: '', sinRevision: true }; }
       catch (e) { r = { ok: true, mensaje: '', sinRevision: true }; }
       listo.disabled = false;
+      anotarIntento(texto, r.sinRevision ? 'sin_ia' : (r.ok ? 'ok' : 'reescribir'), r.mensaje);
       if (r.ok || intentos >= 2) {
         aceptar(r.sinRevision ? 'sin_ia' : (r.ok ? 'ok' : 'con_observaciones'));
         estado.className = 'mc-estado ok';
@@ -268,7 +278,7 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
     filaListo.appendChild(listo);
     item.append(area, filaListo, estado);
     campos.push({
-      leer: () => ({ tipo: c.tipo, titulo: c.titulo, consigna: c.consigna, modelo: c.modelo || '', palabra: palabraElegida, respuesta: area.value.trim(), hecho }),
+      leer: () => ({ tipo: c.tipo, titulo: c.titulo, consigna: c.consigna, modelo: c.modelo || '', palabra: palabraElegida, respuesta: area.value.trim(), hecho, historial: historial.slice(-10) }),
       hecho: () => hecho
     });
     raiz.appendChild(item);
@@ -290,7 +300,7 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
     const h = hoja();
     registrar('carpeta_entregada', {
       clase: clase.id, titulo: h.titulo, modo,
-      entradas: h.entradas.filter(e => e.hecho).map(e => ({ titulo: e.titulo, palabra: e.palabra, modelo: e.modelo.slice(0, 220), respuesta: e.respuesta.slice(0, 600) })).slice(0, 8)
+      entradas: h.entradas.filter(e => e.hecho).map(e => ({ titulo: e.titulo, palabra: e.palabra, modelo: e.modelo.slice(0, 220), respuesta: e.respuesta.slice(0, 600), intentos: (e.historial || []).slice(-6) })).slice(0, 8)
     });
     resultado.className = 'mc-estado ok';
     resultado.textContent = mayus('¡Listo! Tus respuestas van a llegar a tu docente. 🎉');

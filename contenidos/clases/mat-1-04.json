@@ -80,7 +80,7 @@
       "interactivo": {
         "tipo": "error",
         "titulo": "🕵️ Encontrá el error de Tomi",
-        "consigna": "Tomi pasó estos decimales a fracción. Uno está mal: tocalo.",
+        "consigna": "Tomi pasó estos decimales a fracción y uno está mal. Tocalo para encontrar el error y practicar el pasaje.",
         "pasos": [
           {
             "texto": "0,6 = 6/10",
@@ -129,7 +129,7 @@
       "interactivo": {
         "tipo": "representaciones",
         "titulo": "🔄 Un número, muchas caras",
-        "consigna": "Elegí un número para verlo de todas sus formas y ubicado en la recta.",
+        "consigna": "Elegí un número para verlo de todas sus formas y ubicado en la recta: es el mismo número con distintas caras.",
         "min": 0,
         "max": 2,
         "marcas": 0.25,
@@ -196,8 +196,7 @@
         "mal": "50 % es lo mismo que 1/2. ¿Cuánto es la mitad de $10.000?"
       },
       "mi_lugar": {
-        "pregunta": "Buscá un cartel de descuento en un negocio de tu barrio o en internet. ¿Qué porcentaje dice? ¿Qué fracción del precio te descuentan?",
-        "ayuda": "El cartel dice… es como…"
+        "pregunta": "Buscá un cartel de descuento en un negocio de tu barrio o en internet. ¿Qué porcentaje dice? ¿Qué fracción del precio te descuentan?"
       }
     },
     {
@@ -246,7 +245,7 @@
       "interactivo": {
         "tipo": "clasificar",
         "titulo": "🧰 ¿Qué forma conviene?",
-        "consigna": "Elegí la forma más cómoda para cada situación.",
+        "consigna": "Elegí la forma más cómoda para cada situación, para aprender cuándo conviene usar fracción, decimal o porcentaje.",
         "categorias": [
           "Fracción",
           "Decimal",

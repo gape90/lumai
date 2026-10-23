@@ -75,7 +75,7 @@
       "interactivo": {
         "tipo": "ordenar",
         "titulo": "🌳 Armá la cadena de la deforestación",
-        "consigna": "Tocá los eslabones en orden, de la causa a la consecuencia más lejana.",
+        "consigna": "Tocá los eslabones en orden, de la causa a la consecuencia más lejana, para ver cómo se encadena la deforestación.",
         "items": [
           "Se talan árboles para ganar tierras para cultivos",
           "Los animales pierden su hogar",
@@ -116,7 +116,7 @@
       "interactivo": {
         "tipo": "clasificar",
         "titulo": "🔍 ¿Local, regional o mundial?",
-        "consigna": "Elegí la escala de cada problema.",
+        "consigna": "Elegí la escala de cada problema (local, regional o mundial), para ver hasta dónde llegan sus efectos.",
         "categorias": [
           "Local",
           "Regional",
@@ -172,8 +172,7 @@
         "mal": "Pensá en cómo se mueve el humo."
       },
       "mi_lugar": {
-        "pregunta": "¿Hay algún problema ambiental en tu barrio, tu ciudad o tu región? ¿Es local, regional o mundial? ¿Cuál creés que es su causa?",
-        "ayuda": "En mi lugar hay…"
+        "pregunta": "¿Hay algún problema ambiental en tu barrio, tu ciudad o tu región? ¿Es local, regional o mundial? ¿Cuál creés que es su causa?"
       }
     },
     {
@@ -187,7 +186,7 @@
       "interactivo": {
         "tipo": "explorar",
         "titulo": "🗺️ Problemas ambientales de América",
-        "consigna": "Tocá cada lugar para conocer su problema.",
+        "consigna": "Tocá cada lugar para conocer qué problema ambiental tiene.",
         "elementos": [
           {
             "icono": "🌳",

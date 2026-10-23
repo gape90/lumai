@@ -528,7 +528,7 @@ const ESTILOS = `
 .lc-clase[data-tema="lengua"] .lc-stepper li::after{height:0;border-top:2px dotted var(--lc-borde);background:none}
 .lc-clase[data-tema="lengua"] .lc-stepper li.lc-hecho::after{border-top-color:var(--lc-azul-osc);background:none}
 .lc-clase[data-tema="lengua"] .lc-lugar{background:#fffdf8;border-style:solid;border-width:1px;border-color:#efe2d6;border-left:4px solid var(--lc-naranja)}
-.lc-clase[data-tema="lengua"] .lc-lugar textarea{background:repeating-linear-gradient(#fff 0 27px,#ecd9e3 27px 28px);line-height:28px;padding-top:2px}
+.lc-clase[data-tema="lengua"] .lc-lugar textarea{background:repeating-linear-gradient(#fff 0 27px,#ecd9e3 27px 28px);line-height:28px;padding:0 12px;min-height:84px;background-attachment:local}
 
 /* ========== MATEMÁTICA: cuaderno cuadriculado y pizarrón ========== */
 .lc-clase[data-tema="matematica"]{--lc-fuente-numeros:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace}
@@ -766,7 +766,7 @@ const INTERACTIVOS = {
     const etiquetas = [...new Set(d.segmentos.filter(s => s.etiqueta).map(s => s.etiqueta))];
     const colorDe = (e) => colores[etiquetas.indexOf(e) % colores.length];
     const caja = el('div', 'lc-texto-anotado');
-    const salida = el('div', 'lc-salida', '<span class="lc-consigna">Tocá las partes subrayadas.</span>');
+    const salida = el('div', 'lc-salida', '<span class="lc-consigna">Tocá una parte subrayada para ver a qué concepto pertenece.</span>');
     salida.setAttribute('aria-live', 'polite');
     d.segmentos.forEach(s => {
       if (!s.etiqueta) {
@@ -1169,7 +1169,7 @@ function parrafos(texto) {
 // Cómo se nombran las partes de la clase en cada materia (la estructura es la misma)
 const ROTULOS = {
   general:    { capsula: 'Actividad', recordar: 'Para recordar', iconoRecordar: '📌', chequeo: '✅ ¿Lo entendiste?', mision: 'Tu misión', iconoMision: '🎯', resuelta: 'La respuesta a tu misión', recorrido: '🗺️ El recorrido', resumen: '📌 Lo que te llevás', lugar: '📍 Pensá en tu lugar' },
-  lengua:     { capsula: 'Capítulo', recordar: 'Subrayá esto', iconoRecordar: '🖍️', chequeo: 'Pregunta de lectura', mision: 'Tu desafío de hoy', iconoMision: '📖', resuelta: 'Desafío resuelto', recorrido: '📑 Índice', resumen: '🖍️ Lo que subrayaste', lugar: '✍️ Escribí desde tu lugar' },
+  lengua:     { capsula: 'Capítulo', recordar: 'Recordá esto', iconoRecordar: '🖍️', chequeo: 'Pregunta de lectura', mision: 'Tu desafío de hoy', iconoMision: '📖', resuelta: 'Desafío resuelto', recorrido: '📑 Índice', resumen: '🖍️ Para recordar', lugar: '✍️ Escribí desde tu lugar' },
   matematica: { capsula: 'Paso', recordar: 'La regla', iconoRecordar: '📐', chequeo: 'Resolvé', mision: 'El problema de hoy', iconoMision: '🧮', resuelta: 'Problema resuelto', recorrido: '🧮 Plan de trabajo', resumen: '📐 Las reglas de hoy', lugar: '📍 Los números de tu lugar' },
   biologia:   { capsula: 'Observación', recordar: 'Hallazgo', iconoRecordar: '🔬', chequeo: '🧪 Comprobá', mision: 'Tu investigación', iconoMision: '🧪', resuelta: 'Conclusión de la investigación', recorrido: '📓 Bitácora', resumen: '🔬 Tus hallazgos', lugar: '🌿 Observá a tu alrededor' },
   geografia:  { capsula: 'Parada', recordar: 'Leyenda', iconoRecordar: '🧭', chequeo: 'Ubicate', mision: 'Tu expedición', iconoMision: '🗺️', resuelta: 'Expedición cumplida', recorrido: '🗺️ Hoja de ruta', resumen: '🧭 La leyenda del día', lugar: '📍 Tu lugar en el mapa' }
@@ -1182,7 +1182,7 @@ function crearMiLugar(d, ctx, idCapsula) {
   const area = document.createElement('textarea');
   area.id = id;
   area.setAttribute('aria-label', d.pregunta.replace(/\*/g, ''));
-  area.placeholder = d.ayuda || 'Escribí tu respuesta acá…';
+  area.placeholder = '';
   const fila = el('div', 'lc-lugar-fila', '<small>Escribí con tus palabras. LumAI lo lee y te dice cómo te fue.</small>');
   const listo = el('button', 'lc-btn lc-sec lc-btn-chico', 'Listo');
   listo.type = 'button';
@@ -1609,7 +1609,7 @@ function renderizarCapsulas(clase, destino, opciones) {
   // Mi carpeta: el alumno deja por escrito lo que aprendió (se adapta al perfil)
   if (opciones.carpeta !== false && capsulas.some(c => c.idea_clave)) {
     const sc = el('section', 'lc-cap');
-    sc.appendChild(crearLumai('Ahora armá tu carpeta: lo que escribas te queda para estudiar, aunque no estés con LumAI.', 'idea', opciones));
+    sc.appendChild(crearLumai('Ahora armá tu carpeta: lo que escribas te queda como registro de lo aprendido, aunque no estés con LumAI.', 'idea', opciones));
     const h = el('h3', 'lc-cap-titulo', '📒 Mi carpeta');
     h.tabIndex = -1;
     sc.appendChild(h);
@@ -1756,6 +1756,24 @@ function renderizarCapsulas(clase, destino, opciones) {
     }
   }
 
+  // Texto de la pantalla que se está viendo (para el botón "Escucha la explicación")
+  try {
+    window.lumaiTextoPantalla = () => {
+      const p = pantallas[actual];
+      if (!p) return '';
+      const limpio = t => String(t || '').replace(/\s+/g, ' ').trim();
+      if (p.tipo === 'portada') {
+        const partes = [...p.nodo.querySelectorAll('.lc-lumai-texto, .lc-lumai, .lc-gancho, .lc-agenda')].map(n => limpio(n.innerText));
+        return limpio(partes.length ? partes.join('. ') : p.nodo.innerText);
+      }
+      if (p.tipo === 'capsula') {
+        const partes = [...p.nodo.querySelectorAll('.lc-cap-titulo, .lc-cap-texto, .lc-ejemplo, .lc-cap-clave')].map(n => limpio(n.innerText));
+        return limpio(partes.join('. '));
+      }
+      return limpio(p.nodo.innerText);
+    };
+  } catch (e) { /* sin ventana */ }
+
   atras.addEventListener('click', () => { if (actual > 0) mostrar(actual - 1); });
   siguiente.addEventListener('click', () => { if (pantallas[actual].lista && actual < pantallas.length - 1) mostrar(actual + 1); });
 
@@ -1764,11 +1782,12 @@ function renderizarCapsulas(clase, destino, opciones) {
   registrar('clase_mostrada', { clase: ctx.id, titulo: clase.titulo, materia: clase.materia, formato: 'capsulas', capsulas: capsulas.length, preguntas: conChequeo });
   const activos = Object.keys(aj).filter(k => k !== 'motivos' && aj[k] && aj[k] !== 'todas' && aj[k] !== 'completo' && !(k === 'opciones' && aj[k] === 3));
   if (activos.length) {
-    // Solo se registra QUÉ se adaptó, no las dimensiones del alumno: el reporte guarda
-    // el nombre, y el perfil no debe quedar junto a él.
+    // Se registra qué se adaptó y qué dimensiones se pusieron en juego (nombre y grado), para que el
+    // docente vea el desempeño por dimensión en su reporte. Nunca se envía a la IA.
     registrar('clase_adaptada', {
       clase: ctx.id,
       perillas: Object.fromEntries(activos.map(k => [k, aj[k]])),
+      dimensiones: (aj.motivos || []).map(m => ({ dimension: m.dimension, grado: m.grado, perillas: m.perillas })),
       capsulas_base: clase.capsulas.length
     });
   }

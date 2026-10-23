@@ -39,7 +39,7 @@
       "interactivo": {
         "tipo": "explorar",
         "titulo": "📍 ¿Dónde vive la gente?",
-        "consigna": "Tocá cada zona.",
+        "consigna": "Tocá cada zona para ver cuánta gente vive ahí y por qué.",
         "elementos": [
           {
             "icono": "🏙️",
@@ -126,7 +126,7 @@
       "interactivo": {
         "tipo": "error",
         "titulo": "🕵️ Encontrá el error en la cuenta",
-        "consigna": "En un año, en un país nacen 100.000 personas, mueren 60.000, llegan 10.000 y se van 5.000. Un compañero calculó así. Tocá el paso equivocado.",
+        "consigna": "En un año, en un país nacen 100.000 personas, mueren 60.000, llegan 10.000 y se van 5.000. Un compañero calculó así. Tocá el paso equivocado para encontrar su error y practicar la cuenta.",
         "pasos": [
           {
             "texto": "Nacimientos menos muertes: 100.000 − 60.000 = 40.000",
@@ -182,7 +182,7 @@
       "interactivo": {
         "tipo": "clasificar",
         "titulo": "🧳 ¿Interna o internacional?",
-        "consigna": "Elegí el tipo de migración.",
+        "consigna": "Elegí el tipo de migración (interna o internacional), para distinguir cuándo la gente se mueve dentro de un país y cuándo cruza fronteras.",
         "categorias": [
           "Interna",
           "Internacional"
@@ -225,8 +225,7 @@
         "mal": "Pensá en el papá de Camila: ¿por qué se mudaron?"
       },
       "mi_lugar": {
-        "pregunta": "¿Alguien de tu familia o de tu barrio vino de otro lugar? ¿De dónde y por qué? Si preferís no contar algo personal, pensá en la historia de tu ciudad.",
-        "ayuda": "Mi familia / mi ciudad…"
+        "pregunta": "¿Alguien de tu familia o de tu barrio vino de otro lugar? ¿De dónde y por qué? Si preferís no contar algo personal, pensá en la historia de tu ciudad."
       }
     },
     {

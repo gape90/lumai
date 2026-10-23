@@ -68,7 +68,7 @@
       "interactivo": {
         "tipo": "clasificar",
         "titulo": "🗂️ ¿Tema o problema?",
-        "consigna": "Elegí la opción correcta para cada frase.",
+        "consigna": "Elegí si cada frase plantea un tema o un problema, para aprender a reconocer sobre qué se puede debatir.",
         "categorias": [
           "Tema",
           "Problema"
@@ -110,7 +110,7 @@
       "idea_clave": "El tema es de qué se habla. El problema es la pregunta que divide opiniones.",
       "texto_simple": "El tema es de qué hablamos. El problema es una pregunta en la que no todos piensan igual.",
       "chequeo": {
-        "pregunta": "\"¿Las vacaciones de invierno deberían durar un mes?\" es…",
+        "pregunta": "Esta frase, \"¿Las vacaciones de invierno deberían durar un mes?\", es…",
         "opciones": [
           "un problema",
           "un tema",
@@ -121,8 +121,7 @@
         "mal": "Fijate: ¿todos responderían lo mismo a esa pregunta?"
       },
       "mi_lugar": {
-        "pregunta": "Pensá en un tema que se discuta en tu escuela, tu barrio o tu casa. ¿Cuál sería el problema, la pregunta que divide opiniones?",
-        "ayuda": "Por ejemplo: el tema es… y el problema es…"
+        "pregunta": "Pensá en un tema que se discuta en tu escuela, tu barrio o tu casa. ¿Cuál sería el problema, la pregunta que divide opiniones?"
       }
     },
     {
@@ -136,7 +135,7 @@
       "interactivo": {
         "tipo": "texto_anotado",
         "titulo": "🔍 ¿Hecho u opinión?",
-        "consigna": "Leé esta discusión y tocá las partes subrayadas.",
+        "consigna": "Leé esta discusión y tocá las partes subrayadas para ver si cada una es un hecho o una opinión.",
         "segmentos": [
           {
             "texto": "Lucas: —"
@@ -178,7 +177,7 @@
       "idea_clave": "Un hecho se puede comprobar. Una opinión dice lo que alguien piensa.",
       "texto_simple": "Un hecho es algo que pasó y se puede probar. Una opinión es lo que alguien piensa.",
       "chequeo": {
-        "pregunta": "\"Para mí, el básquet es más divertido que el fútbol\" es…",
+        "pregunta": "Esta frase, \"Para mí, el básquet es más divertido que el fútbol\", es…",
         "opciones": [
           "una opinión",
           "un hecho",
@@ -211,7 +210,7 @@
       "interactivo": {
         "tipo": "error",
         "titulo": "🕵️ ¿Cuál es el argumento débil?",
-        "consigna": "Las tres personas quieren limitar los celulares en clase. Tocá el argumento más débil.",
+        "consigna": "Las tres personas quieren limitar los celulares en clase. Tocá el argumento más débil, para aprender a reconocer cuándo una razón no alcanza.",
         "pasos": [
           {
             "texto": "\"Porque las notificaciones interrumpen la atención durante la clase.\"",
@@ -256,7 +255,7 @@
       "interactivo": {
         "tipo": "explorar",
         "titulo": "🗣️ La voz y el cuerpo",
-        "consigna": "Tocá cada recurso para ver qué comunica.",
+        "consigna": "Tocá cada recurso para ver qué comunican la voz y el cuerpo cuando hablás.",
         "elementos": [
           {
             "icono": "🎵",

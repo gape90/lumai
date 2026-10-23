@@ -579,7 +579,10 @@ function configurarEventos() {
             }
             
             // Ejecutar síntesis de voz si hay explicación
-            if (estadoGlobal.explicacionGenerada) {
+            const textoPantalla = typeof window.lumaiTextoPantalla === 'function' ? window.lumaiTextoPantalla() : '';
+            if (textoPantalla) {
+                activarSintesisVoz(textoPantalla);
+            } else if (estadoGlobal.explicacionGenerada) {
                 activarSintesisVoz(estadoGlobal.explicacionGenerada);  // ⭐ CORREGIDO
             } else {
                 console.warn('⚠️ No hay explicación generada para leer');

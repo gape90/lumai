@@ -65,8 +65,7 @@
         "mal": "Se reparte 1 alfajor entre 2. ¿Qué va arriba y qué abajo?"
       },
       "mi_lugar": {
-        "pregunta": "Pensá en una situación de tu casa o de tus amigos en la que tuvieron que repartir algo que no daba justo. ¿Cómo lo resolvieron?",
-        "ayuda": "Teníamos… y éramos…"
+        "pregunta": "Pensá en una situación de tu casa o de tus amigos en la que tuvieron que repartir algo que no daba justo. ¿Cómo lo resolvieron?"
       }
     },
     {
@@ -123,7 +122,7 @@
       "interactivo": {
         "tipo": "error",
         "titulo": "🕵️ ¿Qué igualdad está mal?",
-        "consigna": "Una de estas igualdades tiene un error. Hacé la división y tocala.",
+        "consigna": "Una de estas igualdades tiene un error. Hacé la división y tocala, para practicar cómo se calcula una fracción.",
         "pasos": [
           {
             "texto": "1/4 = 0,25",
@@ -177,7 +176,7 @@
       "interactivo": {
         "tipo": "recta",
         "titulo": "📍 Cada reparto tiene su lugar",
-        "consigna": "Tocá cada punto para ver qué reparto representa.",
+        "consigna": "Tocá cada punto para ver qué reparto representa y dónde queda en la recta.",
         "modo": "explorar",
         "min": 0,
         "max": 4,

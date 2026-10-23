@@ -31,7 +31,7 @@
       "interactivo": {
         "tipo": "ordenar",
         "titulo": "🔢 Ordená de menor a mayor",
-        "consigna": "Tocá los números empezando por el más chico.",
+        "consigna": "Tocá los números empezando por el más chico, para practicar cómo se ordenan los enteros.",
         "items": [
           "−10",
           "−7",
@@ -153,7 +153,7 @@
       "interactivo": {
         "tipo": "recta",
         "titulo": "📏 Medí distancias entre ciudades",
-        "consigna": "Cada punto es la temperatura de una ciudad a las 7 de la mañana.",
+        "consigna": "Cada punto es la temperatura de una ciudad a las 7 de la mañana. Medí distancias para ver cuántos grados las separan.",
         "modo": "distancia",
         "unidad": "grados",
         "min": -8,
@@ -212,8 +212,7 @@
         "mal": "Cuidado con la trampa: están en lados opuestos del cero. ¿Se restan o se suman?"
       },
       "mi_lugar": {
-        "pregunta": "¿Cuál es la temperatura más baja y la más alta que recordás en tu ciudad o tu pueblo? ¿Cuántos grados de diferencia hay entre las dos?",
-        "ayuda": "La más baja fue… y la más alta…"
+        "pregunta": "¿Cuál es la temperatura más baja y la más alta que recordás en tu ciudad o tu pueblo? ¿Cuántos grados de diferencia hay entre las dos?"
       }
     }
   ],
