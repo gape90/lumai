@@ -136,6 +136,27 @@ export async function respaldoSinIA(pregunta) {
 // y avisa de errores de tipeo, ortografía o de concepto. Sin IA, hace una revisión mínima local.
 const PALABRAS_VACIAS = /^(no\s*s[eé]|nose|nada|ni\s*idea|ninguno|ninguna|\.+|x+|a+|jaja+|asd+|\?+)$/i;
 
+// Segunda mirada: la IA confirma cada supuesto error (evita correcciones inventadas, como
+// poner acento a una palabra bien escrita). Las palabras que aparecen tal cual en la clase se dan por buenas.
+async function confirmarErrores(texto, errores, textoClase = '') {
+  if (!Array.isArray(errores) || !errores.length) return [];
+  const enClase = new Set((String(textoClase).match(/[\p{L}]+/gu) || []));
+  const candidatos = errores.filter(e => e && typeof e.escrito === 'string' && !enClase.has(e.escrito.trim()));
+  if (!candidatos.length) return [];
+  const prompt = `Sos un corrector de ortografía del español de la Argentina. Un alumno escribió esta oración:
+"${String(texto).replace(/"/g, "'").slice(0, 600)}"
+Otra revisión marcó estos posibles errores: ${JSON.stringify(candidatos.slice(0, 5))}
+Para cada uno, decidí si la palabra "escrito" está REALMENTE mal escrita en ese contexto (acento, letra, mayúscula de nombre propio) y si "correcto" es la forma correcta. Si "escrito" está bien escrita, descartala.
+Respondé SOLO con JSON: {"errores":[{"escrito":"...","correcto":"..."}]} con los errores confirmados (puede quedar vacío).`;
+  try {
+    const llamar = (await import('./ai-engine.js')).llamarGeminiAPI;
+    const bruto = String(await llamar(prompt) || '');
+    const m = bruto.match(/\{[\s\S]*\}/);
+    const conf = m ? (JSON.parse(m[0]).errores || []) : [];
+    return candidatos.filter(e => conf.some(c => c && c.escrito === e.escrito && c.correcto === e.correcto));
+  } catch (e) { return []; }
+}
+
 // Solo se avisan errores de ortografía que de verdad están en lo que escribió el alumno:
 // la palabra "escrito" tiene que aparecer tal cual en su texto y ser distinta de la "correcta".
 function erroresVerificados(texto, errores) {
@@ -213,7 +234,7 @@ Respondé SOLO con JSON, sin comillas triples: {"estado":"ok" o "reescribir","me
     let msj = String(j.mensaje || '').trim().replace(/[<>]/g, '');
     // Por si la IA igual habló de ortografía en el mensaje: esas oraciones se quitan (se arman abajo, verificadas)
     msj = msj.split(/(?<=[.!?])\s+/).filter(o => !/(se escribe|acento|tilde|ortograf|may[uú]scula|min[uú]scula)/i.test(o)).join(' ').trim();
-    const avisoOrto = erroresVerificados(texto, j.errores);
+    const avisoOrto = erroresVerificados(texto, await confirmarErrores(texto, j.errores, contexto));
     if (avisoOrto) msj = `${msj} ${avisoOrto}`.trim();
     if (aj.mayusculas) msj = msj.toUpperCase();
     return { ok: j.estado === 'ok', mensaje: msj || (j.estado === 'ok' ? '¡Muy bien!' : 'Probá escribirlo otra vez, con más detalle.') };
