@@ -1383,7 +1383,7 @@
             const auto = autos.length ? autos[autos.length - 1] : null;
             const completada = de('clase_completada').length > 0;
             const lugares = de('clase_mi_lugar');
-            const contextos = lugares.length;
+            const contextos = new Set(lugares.map(x => x.capsula)).size;
             const pf = de('clase_problema_final');
             const pfUlt = pf.length ? pf[pf.length - 1] : null;
             const entregas = de('carpeta_entregada');
@@ -1459,7 +1459,7 @@
                 ${ayudas.length ? `<p><strong>Pidió la versión más fácil en:</strong> ${ayudas.map(esc).join(', ')}</p>` : ''}
                 ${palabras.length ? `<p><strong>Palabras que consultó:</strong> ${palabras.map(esc).join(', ')}</p>` : ''}
                 ${pfUlt ? `<p><strong>Problema inicial de la clase:</strong> ${pfUlt.acerto ? 'lo resolvió' : 'no lo resolvió'} (${pf.length} ${pf.length === 1 ? 'intento' : 'intentos'}).</p>` : ''}
-                ${contextos ? `<p><strong>Respondió preguntas sobre su propio lugar (revisadas por LumAI):</strong></p>${lugares.map(x => `<p style="margin:2px 0 6px 12px">“${esc(x.respuesta || '')}” <em>(${x.revision === 'ok' ? 'bien' : x.revision === 'corregido_por_alumno' ? 'la corrigió después de la devolución' : x.revision === 'sin_ia' ? 'sin revisión' : 'con observaciones'})</em></p>`).join('')}` : ''}
+                ${info.lugares && contextos < info.lugares ? `<p><strong>Pensá en tu lugar:</strong> ${contextos ? `respondió ${contextos} de ${info.lugares}` : `no respondió ${info.lugares === 1 ? 'la pregunta' : `ninguna de las ${info.lugares} preguntas`}`} (no es obligatoria).</p>` : ''}${contextos ? `<p><strong>Respondió preguntas sobre su propio lugar (revisadas por LumAI):</strong></p>${lugares.map(x => `<p style="margin:2px 0 6px 12px">“${esc(x.respuesta || '')}” <em>(${x.revision === 'ok' ? 'bien' : x.revision === 'corregido_por_alumno' ? 'la corrigió después de la devolución' : x.revision === 'sin_ia' ? 'sin revisión' : 'con observaciones'})</em></p>`).join('')}` : ''}
                 ${htmlDim}
                 ${htmlCarpeta}
                 ${Object.keys(tiempos).length ? `<p><strong>Tiempo por cápsula:</strong> ${Object.entries(tiempos).map(([t, seg]) => `${esc(t)}: ${duracion(seg)}`).join(' · ')}</p>` : ''}`;

@@ -1229,7 +1229,7 @@ function crearMiLugar(d0, ctx, idCapsula) {
     }
   });
   fila.append(listo);
-  t.append(area, fila, ok);
+  t.append(area, ok, fila);
   return t;
 }
 
@@ -1563,23 +1563,22 @@ function renderizarCapsulas(clase, destino, opciones) {
     // Texto según el perfil: completo, completo con la versión fácil abierta, o versión fácil primero
     const usarSimple = aj.texto === 'simple' && c.texto_simple;
     let textoParaVoz = usarSimple ? c.texto_simple : c.texto;
-    if (usarSimple) {
-      s.appendChild(el('div', 'lc-cap-texto', parrafos(c.texto_simple)));
-      const completo = crearDesplegable('📖 Leer la explicación completa', parrafos(c.texto),
-        { alAbrir: () => registrar('clase_texto_completo', { clase: ctx.id, capsula: capId }) });
-      activarTerminos(completo.querySelector('.lc-panel'), capId);
-      s.appendChild(completo);
-    } else if (c.texto) {
-      const texto = el('div', 'lc-cap-texto', parrafos(c.texto));
-      activarTerminos(texto, capId);
-      s.appendChild(texto);
-    }
+    // Palabras nuevas: en los perfiles con definiciones a la vista se presentan ANTES del texto
+    // (y en el texto no quedan como enlaces punteados)
     if (aj.definiciones_abiertas) {
       const vistas = new Set();
       const defs = [...String(c.texto || '').matchAll(/\*\*(.+?)\*\*/g)]
         .map(m => buscarTermino(m[1], clase.vocabulario))
         .filter(v => v && !vistas.has(v.palabra) && vistas.add(v.palabra));
-      if (defs.length) s.appendChild(el('div', 'lc-defs', `<b>📚 Palabras de esta parte</b><ul>${defs.map(v => `<li><b>${escapar(v.palabra)}:</b> ${fmt(v.definicion)}</li>`).join('')}</ul>`));
+      if (defs.length) s.appendChild(el('div', 'lc-defs', `<b>📚 Palabras nuevas de esta parte</b><ul>${defs.map(v => `<li><b>${escapar(v.palabra)}:</b> ${fmt(v.definicion)}</li>`).join('')}</ul>`));
+    }
+    const conEnlaces = n => { if (!aj.definiciones_abiertas) activarTerminos(n, capId); return n; };
+    if (usarSimple) {
+      // Primero la idea en pocas palabras y, a la vista, la explicación completa
+      s.appendChild(notaConIcono('lc-en-pocas', '💬', 'En pocas palabras', parrafos(c.texto_simple)));
+      if (c.texto) s.appendChild(conEnlaces(el('div', 'lc-cap-texto', parrafos(c.texto))));
+    } else if (c.texto) {
+      s.appendChild(conEnlaces(el('div', 'lc-cap-texto', parrafos(c.texto))));
     }
     let leer = null;
     if (modoTocar) {
@@ -1616,7 +1615,10 @@ function renderizarCapsulas(clase, destino, opciones) {
     }
 
     // Ayuda para seguir sin docente (si el texto principal ya es el fácil, no hace falta)
-    if ((c.texto_simple && !usarSimple) || conAsistente) {
+    if (usarSimple && conAsistente) {
+      // El texto fácil ya está arriba: solo se indica dónde pedir ayuda
+      s.appendChild(el('p', 'lc-aviso-ia', '🤖 ¿Tenés una duda? Tocá a <b>LumAI responde</b>, el robot de abajo a la derecha.'));
+    } else if ((c.texto_simple && !usarSimple) || conAsistente) {
       const ayuda = crearDesplegable(aj.texto === 'con_simple' ? '🙋 Más fácil' : '🙋 ¿Te trabaste? Leelo más fácil',
         c.texto_simple ? `<p>${fmt(c.texto_simple)}</p>` : '',
         { abierto: aj.texto === 'con_simple', claseExtra: 'lc-ayuda', alAbrir: () => registrar('clase_ayuda', { clase: ctx.id, capsula: capId, titulo: c.titulo }) });
@@ -1705,7 +1707,7 @@ function renderizarCapsulas(clase, destino, opciones) {
   // En el nivel con más apoyo solo se repasan las palabras que el alumno vio en los textos simples
   const sinAc = t => String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const textosVistos = sinAc(capsulas.map(c => (aj.texto === 'simple' && c.texto_simple) ? c.texto_simple : `${c.texto || ''} ${c.idea_clave || ''}`).join(' '));
-  const vocabularioDelNivel = aj.texto === 'simple' ? (clase.vocabulario || []).filter(v => textosVistos.includes(sinAc(v.palabra))) : (clase.vocabulario || []);
+  const vocabularioDelNivel = clase.vocabulario || [];   // la explicación completa queda siempre a la vista
   if (vocabularioDelNivel.length) {
     const d = crearDesplegable('📚 Repasar las palabras clave', '', { abierto: true, alAbrir: () => registrar('clase_repaso', { clase: ctx.id, parte: 'vocabulario' }) });
     d.querySelector('.lc-panel').appendChild(crearVocabulario(vocabularioDelNivel, ctx));
@@ -1716,7 +1718,7 @@ function renderizarCapsulas(clase, destino, opciones) {
       clase.errores_frecuentes.map(e => `<p>❌ "${fmt(e.error)}"<br>✅ ${fmt(e.aclaracion)}</p>`).join(''),
       { abierto: true, alAbrir: () => registrar('clase_repaso', { clase: ctx.id, parte: 'errores' }) }));
   }
-  if (clase.para_ir_mas_alla?.pregunta) {
+  if (clase.para_ir_mas_alla?.pregunta && aj.texto !== 'simple') {
     const mas = clase.para_ir_mas_alla;
     repaso.appendChild(crearDesplegable('🚀 Para ir más allá',
       `<p>${fmt(mas.pregunta)}</p>${mas.conexion ? `<p><b>🔗 Conexión:</b> ${fmt(mas.conexion)}</p>` : ''}`,
@@ -1816,7 +1818,7 @@ function renderizarCapsulas(clase, destino, opciones) {
 
   destino.appendChild(raiz);
   mostrar(Math.min(opciones.capsulaInicial || 0, pantallas.length - 1), false);
-  registrar('clase_mostrada', { clase: ctx.id, titulo: clase.titulo, materia: clase.materia, formato: 'capsulas', capsulas: capsulas.length, preguntas: conChequeo });
+  registrar('clase_mostrada', { clase: ctx.id, titulo: clase.titulo, materia: clase.materia, formato: 'capsulas', capsulas: capsulas.length, lugares: capsulas.filter(c => c.mi_lugar).length, preguntas: conChequeo });
   const activos = Object.keys(aj).filter(k => k !== 'motivos' && aj[k] && aj[k] !== 'todas' && aj[k] !== 'completo' && !(k === 'opciones' && aj[k] === 3));
   // Se registra qué se adaptó y el grado de cada una de las 13 dimensiones (nombre y grado), para que el docente vea
   // el desempeño por dimensión en su reporte. Nunca se envía a la IA.
@@ -1880,6 +1882,8 @@ function montar(contenedor) {
 
 
 const ESTILOS_EXTRA = `
+.lc-en-pocas{background:#fff8e6;border-radius:12px}
+.lc-lugar-ok:empty{display:none}
 .lc-problema{margin-top:14px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.35)}
 .lc-problema-rotulo{font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#ffd76a;margin-bottom:6px}
 .lc-problema-pregunta{margin:0 0 6px;font-size:1.15rem;font-weight:700}

@@ -118,6 +118,7 @@ export const ESTILOS_CARPETA = `
 .mc-item{display:grid;gap:8px;background:#fff;border:2px solid var(--lc-borde,#dbe3ec);border-radius:var(--lc-radio,14px);padding:14px 16px}
 .mc-item.mc-hecho{border-color:var(--lc-verde,#00a676)}
 .mc-item h4{margin:0;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--lc-azul-osc,#003f7d);font-family:var(--lc-fuente-titulos,inherit)}
+.mc-estado:empty{display:none}
 .mc-nota{margin:0;font-size:.92rem;font-weight:600}
 .mc-consigna{margin:0;font-weight:700;font-size:1.05rem}
 .mc-modelo{margin:0;padding:12px 14px;border-radius:10px;background:var(--lc-azul-claro,#e8f1fb);border-left:6px solid var(--lc-azul,#00509e);font-size:1.15rem;line-height:1.5;font-weight:600;user-select:text}
@@ -317,7 +318,7 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
 
     const filaListo = el('div', 'mc-fila');
     filaListo.appendChild(listo);
-    item.append(area, filaListo, estado);
+    item.append(area, estado, filaListo);   // la devolución queda arriba del botón
     campos.push({
       leer: () => {
         const r = area.value.trim();

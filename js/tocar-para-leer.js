@@ -88,6 +88,15 @@ export function activarTocarParaLeer(raiz, opciones = {}) {
     opciones.registrar?.();
   };
 
+  // Al entrar a un cuadro para escribir, se lee lo que ya tiene escrito (por ejemplo, el comienzo de una frase)
+  raiz.addEventListener('focusin', (e) => {
+    const campo = e.composedPath ? e.composedPath()[0] : e.target;
+    if (!campo || !/^(TEXTAREA|INPUT)$/.test(campo.tagName) || (raiz !== document && !raiz.contains(campo))) return;
+    const v = String(campo.value || '').trim();
+    desarmar();
+    leer(campo, v ? `Cuadro para escribir. Ya dice: ${v}. Completalo con tus palabras.` : 'Cuadro para escribir. Escribí acá tu respuesta.');
+  });
+
   raiz.addEventListener('click', (e) => {
     const destino = e.composedPath ? e.composedPath()[0] : e.target;
     const base = destino && destino.nodeType === 1 ? destino : e.target;
