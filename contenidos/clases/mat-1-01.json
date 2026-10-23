@@ -231,7 +231,11 @@
         "mal": "El cero es el nivel del mar. ¿El buzo está arriba o abajo?"
       },
       "mi_lugar": {
-        "pregunta": "¿Dónde aparecen números negativos en tu lugar? Pensá en el invierno, en un edificio con subsuelo o en un mapa de alturas."
+        "pregunta": "¿Dónde aparecen números negativos en tu lugar? Pensá en el invierno, en un edificio con subsuelo o en un mapa de alturas.",
+        "simple": {
+          "pregunta": "¿Dónde viste un número negativo?",
+          "inicio": "Vi un número negativo en "
+        }
       }
     }
   ],

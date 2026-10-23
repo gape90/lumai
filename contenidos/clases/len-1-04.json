@@ -57,7 +57,11 @@
         "mal": "Pensá: ¿necesitás leer todo, o solo encontrar algo?"
       },
       "mi_lugar": {
-        "pregunta": "¿Qué leés en tu día a día: mensajes, carteles, recetas, noticias? Elegí uno: ¿para qué lo leés?"
+        "pregunta": "¿Qué leés en tu día a día: mensajes, carteles, recetas, noticias? Elegí uno: ¿para qué lo leés?",
+        "simple": {
+          "pregunta": "¿Qué leés todos los días?",
+          "inicio": "Todos los días leo "
+        }
       }
     },
     {

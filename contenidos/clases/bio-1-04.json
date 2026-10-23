@@ -216,7 +216,11 @@
         "mal": "La señal no espera al cerebro. ¿Dónde se resuelve?"
       },
       "mi_lugar": {
-        "pregunta": "Pensá en un deporte, un juego o una actividad que hagas. ¿Qué receptores usás, qué decide tu cerebro y qué músculos se mueven?"
+        "pregunta": "Pensá en un deporte, un juego o una actividad que hagas. ¿Qué receptores usás, qué decide tu cerebro y qué músculos se mueven?",
+        "simple": {
+          "pregunta": "Pensá en un deporte o un juego. ¿Qué parte del cuerpo movés?",
+          "inicio": "Cuando juego, muevo "
+        }
       }
     },
     {

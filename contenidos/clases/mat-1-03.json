@@ -65,7 +65,11 @@
         "mal": "Se reparte 1 alfajor entre 2. ¿Qué va arriba y qué abajo?"
       },
       "mi_lugar": {
-        "pregunta": "Pensá en una situación de tu casa o de tus amigos en la que tuvieron que repartir algo que no daba justo. ¿Cómo lo resolvieron?"
+        "pregunta": "Pensá en una situación de tu casa o de tus amigos en la que tuvieron que repartir algo que no daba justo. ¿Cómo lo resolvieron?",
+        "simple": {
+          "pregunta": "Pensá en una vez que repartiste algo con tus amigos.",
+          "inicio": "Una vez repartimos "
+        }
       }
     },
     {

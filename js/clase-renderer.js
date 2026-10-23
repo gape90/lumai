@@ -1177,14 +1177,22 @@ const ROTULOS = {
 };
 
 // Pregunta abierta para que el alumno piense en su propio contexto (no bloquea ni se envía)
-function crearMiLugar(d, ctx, idCapsula) {
+function crearMiLugar(d0, ctx, idCapsula) {
+  // Barrera alta en lectoescritura: pregunta corta y una frase para completar (mismo criterio que Mi carpeta)
+  const aj = ctx.ajustes || {};
+  const dims = ctx.opciones?.dimensiones;
+  const conFrase = !!d0.simple && (dims ? dims.lectoescritura === 'generalizado' : (aj.texto === 'simple' && aj.mayusculas));
+  const d = conFrase ? { ...d0, pregunta: d0.simple.pregunta } : d0;
+  const inicio = conFrase ? String(d0.simple.inicio || '') : '';
+  const sinInicio = t => (inicio && t.toLowerCase().startsWith(inicio.trim().toLowerCase()) ? t.slice(inicio.trim().length) : t);
   const t = el('div', 'lc-lugar', `<h3>${escapar(ctx.rotulos.lugar)}</h3><p>${fmt(d.pregunta)}</p>`);
   const id = idUnico('lc-lugar');
   const area = document.createElement('textarea');
   area.id = id;
   area.setAttribute('aria-label', d.pregunta.replace(/\*/g, ''));
   area.placeholder = '';
-  const fila = el('div', 'lc-lugar-fila', '<small>Escribí con tus palabras. LumAI lo lee y te dice cómo te fue.</small>');
+  if (conFrase) { area.value = inicio; area.rows = 2; }
+  const fila = el('div', 'lc-lugar-fila', conFrase ? '<small>Completá la frase y apretá Listo. LumAI la lee.</small>' : '<small>Escribí con tus palabras. LumAI lo lee y te dice cómo te fue.</small>');
   const listo = el('button', 'lc-btn lc-sec lc-btn-chico', 'Listo');
   listo.type = 'button';
   const ok = el('span', 'lc-lugar-ok');
@@ -1193,7 +1201,7 @@ function crearMiLugar(d, ctx, idCapsula) {
   listo.addEventListener('click', async () => {
     const texto = area.value.trim();
     ok.className = 'lc-lugar-ok';
-    if (texto.replace(/[^\p{L}]/gu, '').length < 4) { ok.textContent = 'Escribí tu respuesta para poder seguir. Si no sabés, escribí qué pensás o qué te gustaría preguntar.'; return; }
+    if (sinInicio(texto).replace(/[^\p{L}]/gu, '').length < (conFrase ? 3 : 4)) { ok.textContent = conFrase ? 'Completá la frase con tus palabras y apretá Listo.' : 'Escribí tu respuesta para poder seguir. Si no sabés, escribí qué pensás o qué te gustaría preguntar.'; return; }
     intentos += 1;
     if (intentos >= 2) {
       // Ya tuvo la devolución y corrigió: solo se guarda
@@ -1207,7 +1215,7 @@ function crearMiLugar(d, ctx, idCapsula) {
     let r;
     try {
       r = typeof ctx.opciones.corregir === 'function'
-        ? await ctx.opciones.corregir({ tipo: 'lugar', consigna: String(d.pregunta).replace(/\*/g, ''), respuesta: texto })
+        ? await ctx.opciones.corregir({ tipo: conFrase ? 'lugar_frase' : 'lugar', consigna: String(d.pregunta).replace(/\*/g, ''), respuesta: texto })
         : { ok: true, mensaje: 'Quedó guardado. (LumAI no pudo revisarlo porque no hay conexión con la IA.)', sinRevision: true };
     } catch (e) { r = { ok: true, mensaje: 'Quedó guardado. (LumAI no pudo revisarlo porque no hay conexión con la IA.)', sinRevision: true }; }
     listo.disabled = false;

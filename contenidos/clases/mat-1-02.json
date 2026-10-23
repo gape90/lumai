@@ -212,7 +212,11 @@
         "mal": "Cuidado con la trampa: están en lados opuestos del cero. ¿Se restan o se suman?"
       },
       "mi_lugar": {
-        "pregunta": "¿Cuál es la temperatura más baja y la más alta que recordás en tu ciudad o tu pueblo? ¿Cuántos grados de diferencia hay entre las dos?"
+        "pregunta": "¿Cuál es la temperatura más baja y la más alta que recordás en tu ciudad o tu pueblo? ¿Cuántos grados de diferencia hay entre las dos?",
+        "simple": {
+          "pregunta": "¿Cuál es la temperatura más baja que recordás en tu pueblo?",
+          "inicio": "La temperatura más baja que recuerdo es "
+        }
       }
     }
   ],

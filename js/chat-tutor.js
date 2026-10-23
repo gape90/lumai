@@ -200,6 +200,7 @@ export async function corregirRespuestaIA({ tipo = 'lugar', consigna = '', respu
   const contexto = clase ? contextoDeClase(clase, aj) : `TEXTO:\n${estadoGlobal.explicacionGenerada || ''}`;
   const tipos = {
     lugar: 'Es una pregunta personal: no hay una única respuesta correcta, pero la respuesta tiene que tener relación con la pregunta y con la clase.',
+    lugar_frase: 'El alumno completa una frase corta sobre su lugar (le cuesta mucho escribir). Solo revisá que tenga sentido y relación con la pregunta: no le pidas más detalle ni que escriba más. Si tiene sentido, es "ok".',
     idea: 'El alumno completa lo que aprendió. Tiene que ser coherente con la clase.',
     palabra: 'El alumno define una palabra clave con sus palabras. La definición tiene que ser correcta según la clase.',
     ejemplo: 'El alumno inventa un ejemplo propio. Tiene que mostrar bien la idea de la clase.',

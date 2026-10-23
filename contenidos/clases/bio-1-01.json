@@ -238,7 +238,11 @@
         "mal": "Está reaccionando a algo del ambiente. ¿Qué función es esa?"
       },
       "mi_lugar": {
-        "pregunta": "Mirá a tu alrededor: nombrá tres seres vivos que haya cerca de tu casa o tu escuela. ¿Cómo se nutre cada uno?"
+        "pregunta": "Mirá a tu alrededor: nombrá tres seres vivos que haya cerca de tu casa o tu escuela. ¿Cómo se nutre cada uno?",
+        "simple": {
+          "pregunta": "Nombrá un ser vivo que haya cerca de tu casa.",
+          "inicio": "Cerca de mi casa hay "
+        }
       }
     }
   ],

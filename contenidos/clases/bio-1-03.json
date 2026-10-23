@@ -197,7 +197,11 @@
         "mal": "Pensá qué sentís cuando el sudor se seca en la piel."
       },
       "mi_lugar": {
-        "pregunta": "¿Cómo es el clima donde vivís en verano y en invierno? ¿Qué hace tu cuerpo para adaptarse en cada estación?"
+        "pregunta": "¿Cómo es el clima donde vivís en verano y en invierno? ¿Qué hace tu cuerpo para adaptarse en cada estación?",
+        "simple": {
+          "pregunta": "¿Qué hace tu cuerpo cuando hace mucho calor?",
+          "inicio": "Cuando hace calor, mi cuerpo "
+        }
       }
     },
     {

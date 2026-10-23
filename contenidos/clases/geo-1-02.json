@@ -122,7 +122,11 @@
         "mal": "Volvé a tocar los ambientes de la actividad."
       },
       "mi_lugar": {
-        "pregunta": "¿En qué ambiente está tu ciudad o tu pueblo? ¿Qué recursos naturales se aprovechan cerca de donde vivís?"
+        "pregunta": "¿En qué ambiente está tu ciudad o tu pueblo? ¿Qué recursos naturales se aprovechan cerca de donde vivís?",
+        "simple": {
+          "pregunta": "¿Qué recurso natural hay cerca de donde vivís?",
+          "inicio": "Cerca de donde vivo hay "
+        }
       }
     },
     {

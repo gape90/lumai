@@ -156,7 +156,11 @@
         ]
       },
       "mi_lugar": {
-        "pregunta": "¿Vivís cerca de un límite entre provincias o entre países? ¿Qué pasa en esa zona? Si no, ¿cuál es el límite más cercano a tu ciudad o tu pueblo?"
+        "pregunta": "¿Vivís cerca de un límite entre provincias o entre países? ¿Qué pasa en esa zona? Si no, ¿cuál es el límite más cercano a tu ciudad o tu pueblo?",
+        "simple": {
+          "pregunta": "¿Cuál es el límite más cercano a tu pueblo o tu ciudad?",
+          "inicio": "El límite más cercano es "
+        }
       }
     },
     {

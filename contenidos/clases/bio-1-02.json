@@ -101,7 +101,11 @@
         "mal": "Recordá la tercera idea de la teoría celular."
       },
       "mi_lugar": {
-        "pregunta": "Pensá en alguna vez que te lastimaste. ¿Cuánto tardó en curarse la herida? ¿Qué estaban haciendo tus células mientras tanto?"
+        "pregunta": "Pensá en alguna vez que te lastimaste. ¿Cuánto tardó en curarse la herida? ¿Qué estaban haciendo tus células mientras tanto?",
+        "simple": {
+          "pregunta": "Pensá en una vez que te lastimaste. ¿Se curó la herida?",
+          "inicio": "Cuando me lastimé, "
+        }
       }
     },
     {

@@ -225,7 +225,11 @@
         "mal": "Pensá en el papá de Camila: ¿por qué se mudaron?"
       },
       "mi_lugar": {
-        "pregunta": "¿Alguien de tu familia o de tu barrio vino de otro lugar? ¿De dónde y por qué? Si preferís no contar algo personal, pensá en la historia de tu ciudad."
+        "pregunta": "¿Alguien de tu familia o de tu barrio vino de otro lugar? ¿De dónde y por qué? Si preferís no contar algo personal, pensá en la historia de tu ciudad.",
+        "simple": {
+          "pregunta": "¿Conocés a alguien que vino de otro lugar a vivir a tu ciudad?",
+          "inicio": "Conozco a alguien que vino de "
+        }
       }
     },
     {

@@ -209,7 +209,11 @@
         "mal": "Pensá: estaba empapado y sin campera. ¿Por qué temblaría?"
       },
       "mi_lugar": {
-        "pregunta": "Pensá en algo que alguien te contó hoy o ayer. ¿Qué pudiste inferir aunque no te lo dijeran directamente?"
+        "pregunta": "Pensá en algo que alguien te contó hoy o ayer. ¿Qué pudiste inferir aunque no te lo dijeran directamente?",
+        "simple": {
+          "pregunta": "Pensá en algo que alguien te contó. ¿Qué te diste cuenta sin que te lo dijeran?",
+          "inicio": "Me di cuenta de que "
+        }
       }
     }
   ],

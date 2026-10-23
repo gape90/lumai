@@ -172,7 +172,11 @@
         "mal": "Pensá en cómo se mueve el humo."
       },
       "mi_lugar": {
-        "pregunta": "¿Hay algún problema ambiental en tu barrio, tu ciudad o tu región? ¿Es local, regional o mundial? ¿Cuál creés que es su causa?"
+        "pregunta": "¿Hay algún problema ambiental en tu barrio, tu ciudad o tu región? ¿Es local, regional o mundial? ¿Cuál creés que es su causa?",
+        "simple": {
+          "pregunta": "¿Hay algún problema ambiental en tu barrio?",
+          "inicio": "En mi barrio hay "
+        }
       }
     },
     {

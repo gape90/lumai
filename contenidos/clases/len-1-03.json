@@ -57,7 +57,11 @@
         "mal": "Buscá el que te haría querer saber más."
       },
       "mi_lugar": {
-        "pregunta": "Si tuvieras que exponer sobre algo de tu lugar (una comida, una fiesta, un paisaje, un club), ¿con qué pregunta o dato sorprendente arrancarías?"
+        "pregunta": "Si tuvieras que exponer sobre algo de tu lugar (una comida, una fiesta, un paisaje, un club), ¿con qué pregunta o dato sorprendente arrancarías?",
+        "simple": {
+          "pregunta": "Pensá en algo lindo de tu lugar. ¿Con qué dato empezarías a contarlo?",
+          "inicio": "¿Sabían que en mi pueblo "
+        }
       }
     },
     {

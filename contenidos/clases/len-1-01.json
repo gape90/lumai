@@ -121,7 +121,11 @@
         "mal": "Fijate: ¿todos responderían lo mismo a esa pregunta?"
       },
       "mi_lugar": {
-        "pregunta": "Pensá en un tema que se discuta en tu escuela, tu barrio o tu casa. ¿Cuál sería el problema, la pregunta que divide opiniones?"
+        "pregunta": "Pensá en un tema que se discuta en tu escuela, tu barrio o tu casa. ¿Cuál sería el problema, la pregunta que divide opiniones?",
+        "simple": {
+          "pregunta": "Pensá en un tema que se discuta en tu escuela.",
+          "inicio": "En mi escuela se discute sobre "
+        }
       }
     },
     {

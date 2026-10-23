@@ -196,7 +196,11 @@
         "mal": "50 % es lo mismo que 1/2. ¿Cuánto es la mitad de $10.000?"
       },
       "mi_lugar": {
-        "pregunta": "Buscá un cartel de descuento en un negocio de tu barrio o en internet. ¿Qué porcentaje dice? ¿Qué fracción del precio te descuentan?"
+        "pregunta": "Buscá un cartel de descuento en un negocio de tu barrio o en internet. ¿Qué porcentaje dice? ¿Qué fracción del precio te descuentan?",
+        "simple": {
+          "pregunta": "¿Viste algún cartel de descuento? ¿Qué número tenía?",
+          "inicio": "Vi un cartel que decía "
+        }
       }
     },
     {
