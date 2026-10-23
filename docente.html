@@ -100,20 +100,11 @@ main{max-width:980px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-lef
     <p><b>Clave de la IA en esta compu.</b> LumAI la pide la primera vez que usa la IA y la guarda solo en este navegador.</p>
     <button class="btn" type="button" id="borrar-clave">🔑 Cambiar clave de IA</button>
     <p class="aviso" id="aviso-clave" role="status"></p>
-    <p id="uso-ia" style="color:#475467;font-size:.92rem"></p>
   </div>
 
   <div class="privacidad">🔒 LumAI no guarda los perfiles en ningún lado: cada perfil viaja dentro del código del alumno. Guardá la lista de qué código le diste a cada alumno solo en papel o en tu compu.</div>
 </main>
 
-<script type="module">
-  import { usoDeIA } from './js/ai-engine.js';
-  import { CLAVE_INCORPORADA } from './js/config-ia.js';
-  const u = usoDeIA();
-  document.getElementById('uso-ia').textContent =
-    `Uso de la IA en esta compu — último minuto: ${u.minuto}/${u.limites.porMinuto} · última hora: ${u.hora}/${u.limites.porHora} · hoy: ${u.dia}/${u.limites.porDia}` +
-    (CLAVE_INCORPORADA ? ' · La clave viene incluida en LumAI.' : '');
-</script>
 <script src="js/acceso-docente.js"></script>
 <script>
 (function () {
