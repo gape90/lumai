@@ -87,7 +87,7 @@ function armarConsignas(clase, modo, aj) {
   if (modo === 'copiar') {
     // Frases cortas para copiar: la primera oración de la idea clave, y las más breves de la clase
     const primera = t => { const x = limpiar(t); const m = x.match(/^.+?[.!?](?=\s|$)/); return m ? m[0] : x; };
-    const cortas = caps.map(c => ({ c, f: primera(c.idea_clave) })).sort((a, b) => a.f.length - b.f.length).slice(0, cant);
+    const cortas = caps.map(c => ({ c, f: primera(c.texto_simple || c.idea_clave) })).sort((a, b) => a.f.length - b.f.length).slice(0, cant);
     cortas.sort((a, b) => caps.indexOf(a.c) - caps.indexOf(b.c))
       .forEach(({ c, f }) => L.push({ tipo: 'idea', titulo: limpiar(c.titulo), consigna: 'Copiá esta frase en tu carpeta:', modelo: f }));
     const s = simples[0];
@@ -319,7 +319,12 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
     filaListo.appendChild(listo);
     item.append(area, filaListo, estado);
     campos.push({
-      leer: () => ({ tipo: c.tipo, titulo: c.titulo, consigna: c.consigna, modelo: c.modelo || '', palabra: palabraElegida, respuesta: area.value.trim(), hecho, historial: historial.slice(-10) }),
+      leer: () => {
+        const r = area.value.trim();
+        const conLetras = r.replace(/[^\p{L}]/gu, '').length >= 3 && !(c.inicio && norm(r) === norm(c.inicio)) && !(palabraElegida && norm(r) === norm(`${palabraElegida}:`));
+        const completa = conLetras && (!c.modelo || norm(r) === norm(c.modelo));
+        return { tipo: c.tipo, titulo: c.titulo, consigna: c.consigna, modelo: c.modelo || '', palabra: palabraElegida, respuesta: r, hecho, completa, historial: historial.slice(-10) };
+      },
       hecho: () => hecho
     });
     raiz.appendChild(item);
@@ -336,21 +341,21 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
   const resultado = el('p', 'mc-estado');
   resultado.setAttribute('aria-live', 'polite');
   si.addEventListener('click', () => {
-    const hechas = campos.filter(c => c.hecho());
-    if (!hechas.length) { resultado.className = 'mc-estado casi'; resultado.textContent = mayus('Primero completá al menos una parte y apretá “Listo”.'); return; }
-    const faltan = campos.map(c => c.leer()).filter(e => !e.hecho).map(e => e.titulo);
-    if (faltan.length) {
-      resultado.className = 'mc-estado casi';
-      resultado.textContent = mayus(`Hay actividades que no guardaste: ${faltan.join(', ')}. Apretá “Listo” en cada una para que le lleguen a tu docente. Después enviá de nuevo.`);
-      return;
-    }
+    // Se envía siempre; si algo quedó sin escribir, incompleto o sin "Listo", se le avisa al alumno
+    const entradas = campos.map(c => c.leer());
+    const problemas = entradas.filter(e => !e.completa || !e.hecho).map(e => e.titulo);
     const h = hoja();
     registrar('carpeta_entregada', {
       clase: clase.id, titulo: h.titulo, modo,
-      entradas: h.entradas.filter(e => e.hecho).map(e => ({ titulo: e.titulo, palabra: e.palabra, modelo: e.modelo.slice(0, 220), respuesta: e.respuesta.slice(0, 600), intentos: (e.historial || []).slice(-6) })).slice(0, 8)
+      entradas: entradas.map(e => ({ titulo: e.titulo, palabra: e.palabra, modelo: e.modelo.slice(0, 220), respuesta: e.respuesta.slice(0, 600), guardada: e.hecho, completa: e.completa, intentos: (e.historial || []).slice(-6) })).slice(0, 8)
     });
-    resultado.className = 'mc-estado ok';
-    resultado.textContent = mayus('¡Listo! Tus respuestas van a llegar a tu docente. 🎉');
+    if (problemas.length) {
+      resultado.className = 'mc-estado casi';
+      resultado.textContent = mayus(`Se enviaron a tu docente. Ojo: ${problemas.join(', ')} ${problemas.length === 1 ? 'quedó' : 'quedaron'} sin terminar. Si la${problemas.length === 1 ? '' : 's'} completás, apretá “Listo” y enviá de nuevo.`);
+    } else {
+      resultado.className = 'mc-estado ok';
+      resultado.textContent = mayus('¡Listo! Tus respuestas van a llegar a tu docente. 🎉');
+    }
   });
   no.addEventListener('click', () => { resultado.className = 'mc-estado'; resultado.textContent = mayus('Está bien. Quedaron guardadas en LumAI y las podés mostrar a tu docente cuando quieras.'); });
   fila.append(si, no);

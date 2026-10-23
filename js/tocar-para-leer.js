@@ -18,14 +18,40 @@ export function usaTocarParaLeer(a) {
 }
 
 export const SECTORES_LECTURA = [
-  '.lc-globo', '.lc-gancho > p', '.lc-gancho > h3', '.lc-gancho .lc-eyebrow', '.lc-problema', '.lc-cap-titulo', '.lc-cap-texto p',
-  '.lc-cap-texto li', '.lc-ejemplo', '.lc-cap-clave', '.lc-consigna', '.lc-tarjeta > h3', '.lc-chequeo > p', '.lc-dato',
-  '.lc-resumen li', '.lc-panel p', '.lc-panel li', '.lc-defs li', '.lc-tip', '.lc-lugar h3', '.lc-lugar p', '.lc-lugar-ok',
-  '.lc-autoeval-resp p', '.lc-salida', '.lc-devolucion', '.lc-fb-bien', '.lc-fb-mal', '.lc-dato-clasif', '.lc-chequeo > h3', '.lc-mision', '.lc-agenda li', '.lc-eyebrow', '.lc-aviso-ia', '.lc-problema-fb',
-  '.mc-intro p', '.mc-intro li', '.mc h3', '.mc h4', '.mc-consigna', '.mc-nota', '.mc-modelo', '.mc-pista', '.mc-envio p', '.mc-estado'
+  // recuadros y dibujos completos
+  '.lc-lectura-ayuda', '.lc-globo', '.lc-problema', '.lc-ejemplo', '.lc-cap-clave', '.lc-dato', '.lc-devolucion', '.lc-salida', '.lc-mision',
+  '.lc-ec-pieza', '.lc-ct', '.lc-cifra', '.lc-tiempo li', '.lc-columna', '.lc-clasif-dato', '.lc-pasos-cuerpo', '.lc-lupa-msg',
+  '.lc-logro', '.lc-orden-aviso', '.lc-leyenda', '.lc-lugar-ok', '.lc-aviso-ia', '.lc-problema-fb', '.lc-fb-bien', '.lc-fb-mal',
+  '.lc-consigna', '.lc-cap-titulo', '.lc-tip', '.lc-eyebrow', '.lc-contador', '.lc-defs li', '.lc-resumen li',
+  '.mc-consigna', '.mc-nota', '.mc-modelo', '.mc-pista', '.mc-estado',
+  // cualquier texto de la clase
+  'p', 'li', 'h3', 'h4', 'h5', 'figcaption', 'blockquote', 'td', 'th', 'dt', 'dd'
 ].join(',');
 
 const ACCIONES = 'button, a[href], [role="button"], summary, .lc-opcion, .lc-chip, .mc-chip';
+
+// Qué decir después de leer un botón, según lo que hace
+function pistaDeAccion(b) {
+  const t = (b.innerText || b.getAttribute('aria-label') || '').toLowerCase();
+  const c = b.classList;
+  if (c.contains('lc-btn-desplegar')) return b.getAttribute('aria-expanded') === 'true' ? 'Tocá otra vez para cerrarlo.' : 'Tocá otra vez para abrirlo.';
+  if (c.contains('lc-orden-item')) return 'Tocá otra vez para ubicarlo.';
+  if (c.contains('lc-opcion')) return 'Tocá otra vez para elegir esta respuesta.';
+  if (c.contains('lc-error-paso')) return 'Tocá otra vez si creés que acá está el error.';
+  if (c.contains('lc-termino')) return 'Tocá otra vez para ver qué significa.';
+  if (c.contains('lc-hot') || c.contains('lc-seg')) return 'Tocá otra vez para ver más.';
+  if (b.closest('.lc-clasif-btns')) return 'Tocá otra vez para elegirla.';
+  if (c.contains('lc-chip') || c.contains('mc-chip')) return 'Tocá otra vez para elegirla.';
+  if (/siguiente|empezar|terminar|seguir/.test(t)) return 'Tocá otra vez para seguir.';
+  if (/volver/.test(t)) return 'Tocá otra vez para volver.';
+  if (/listo/.test(t)) return 'Tocá otra vez para guardar.';
+  if (/enviar/.test(t)) return 'Tocá otra vez para enviar.';
+  if (/ponemos a prueba|actividades/.test(t)) return 'Tocá otra vez para empezar.';
+  if (/finalizar/.test(t)) return 'Tocá otra vez para terminar la clase.';
+  if (/pista|respuesta|ver /.test(t)) return 'Tocá otra vez para verla.';
+  if (/escuchar/.test(t)) return 'Tocá otra vez para escucharlo.';
+  return 'Tocá otra vez para hacerlo.';
+}
 
 function textoDe(n) {
   // Se lee el texto visible, sin rótulos decorativos (el "LumAI" del globo, íconos ocultos)
@@ -48,7 +74,7 @@ function textoDe(n) {
 export function activarTocarParaLeer(raiz, opciones = {}) {
   const selAcciones = opciones.acciones || ACCIONES;
   const selSectores = opciones.sectores === undefined ? SECTORES_LECTURA : opciones.sectores;
-  let armado = null, armadoCuando = 0, leyendo = null, avisos = 0;
+  let armado = null, armadoCuando = 0, leyendo = null;
 
   const marcar = (n) => {
     if (leyendo && leyendo !== n) leyendo.classList.remove('lc-leyendo');
@@ -76,12 +102,12 @@ export function activarTocarParaLeer(raiz, opciones = {}) {
       armado = accion; armadoCuando = Date.now();
       accion.classList.add('lc-armado');
       const texto = textoDe(accion);
-      leer(accion, texto + (avisos++ < 2 ? '. Tocá otra vez para hacerlo.' : ''));
+      leer(accion, `${texto}.\n${pistaDeAccion(accion)}`);
       return;
     }
     if (!selSectores) return;
     const sector = base.closest?.(selSectores);
-    if (sector && !base.closest('textarea, input, select')) {
+    if (sector && !base.closest('textarea, input, select') && !sector.closest('[data-no-leer]') && (raiz === document || raiz.contains(sector))) {
       desarmar();
       const texto = textoDe(sector);
       if (texto.length >= 2) leer(sector, texto);
@@ -90,8 +116,8 @@ export function activarTocarParaLeer(raiz, opciones = {}) {
 }
 
 export const ESTILOS_TOCAR = `
-.lc-modo-tocar :is(${SECTORES_LECTURA}){cursor:pointer;border-radius:8px;transition:background-color .15s,box-shadow .15s}
-.lc-modo-tocar :is(${SECTORES_LECTURA}):hover{box-shadow:0 0 0 2px rgba(242,201,76,.8)}
+.lc-modo-tocar :is(${SECTORES_LECTURA}):not([data-no-leer] *){cursor:pointer;border-radius:8px;transition:background-color .15s,box-shadow .15s}
+.lc-modo-tocar :is(${SECTORES_LECTURA}):not([data-no-leer] *):hover{box-shadow:0 0 0 2px rgba(242,201,76,.8)}
 .lc-leyendo{box-shadow:0 0 0 3px #f2c94c !important;background-color:rgba(242,201,76,.16) !important;border-radius:8px}
 .lc-armado{box-shadow:0 0 0 4px #f59e0b, 0 0 0 9px rgba(245,158,11,.25) !important}
 .lc-lectura-ayuda{display:flex;gap:10px;align-items:center;margin:0 0 14px;padding:10px 14px;border-radius:14px;background:#fff8dc;border:1.5px solid #f2c94c;color:#1e3a5f;font-weight:600;font-size:.95rem}

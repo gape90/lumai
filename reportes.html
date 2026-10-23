@@ -1389,7 +1389,7 @@
             const entregas = de('carpeta_entregada');
             const carpeta = entregas.length ? entregas[entregas.length - 1] : null;
             const nombresModo = { copiar: 'copió frases modelo', completar: 'completó frases', libre: 'escribió con sus palabras' };
-            const htmlCarpeta = carpeta ? `<div style="margin-top:12px;padding:12px 14px;border:2px solid #00509e;border-radius:10px;background:#f4f8fd"><p style="margin:0 0 6px"><strong>📒 Carpeta entregada para corregir</strong> <em>(${nombresModo[carpeta.modo] || esc(carpeta.modo || '')})</em></p>${(carpeta.entradas || []).map(x => `<p style="margin:6px 0"><strong>${esc(x.titulo)}${x.palabra ? `: ${esc(x.palabra)}` : ''}</strong><br>${x.modelo ? `<span style="color:#555">Modelo: ${esc(x.modelo)}</span><br>` : ''}${esc(x.respuesta || '(sin escribir)')}${(x.intentos || []).length > 1 ? `<br><small style="color:#555">Intentos (${x.intentos.length}): ${x.intentos.map(t => `“${esc(t.respuesta)}” (${t.resultado === 'ok' || t.resultado === 'copia_ok' ? 'bien' : t.resultado === 'sin_ia' ? 'sin revisión' : t.resultado === 'corregido_por_alumno' ? 'corregida' : 'a corregir'})`).join(' → ')}</small>` : ''}</p>`).join('')}</div>` : '';
+            const htmlCarpeta = carpeta ? `<div style="margin-top:12px;padding:12px 14px;border:2px solid #00509e;border-radius:10px;background:#f4f8fd"><p style="margin:0 0 6px"><strong>📒 Carpeta entregada para corregir</strong> <em>(${nombresModo[carpeta.modo] || esc(carpeta.modo || '')})</em></p>${(carpeta.entradas || []).map(x => `<p style="margin:6px 0"><strong>${esc(x.titulo)}${x.palabra ? `: ${esc(x.palabra)}` : ''}</strong><br>${x.modelo ? `<span style="color:#555">Modelo: ${esc(x.modelo)}</span><br>` : ''}${esc(x.respuesta || '(sin escribir)')}${x.completa === false ? ' <em style="color:#b45309">(incompleta)</em>' : ''}${x.guardada === false ? ' <em style="color:#6b7280">(no apretó Listo)</em>' : ''}${(x.intentos || []).length > 1 ? `<br><small style="color:#555">Intentos (${x.intentos.length}): ${x.intentos.map(t => `“${esc(t.respuesta)}” (${t.resultado === 'ok' || t.resultado === 'copia_ok' ? 'bien' : t.resultado === 'sin_ia' ? 'sin revisión' : t.resultado === 'corregido_por_alumno' ? 'corregida' : 'a corregir'})`).join(' → ')}</small>` : ''}</p>`).join('')}</div>` : '';
             const promedio = (v) => { const x = v.filter(n => n != null); return x.length ? x.reduce((a, b) => a + b, 0) / x.length : null; };
             const sumar = (arr, f) => arr.reduce((a, b) => a + (Number(f(b)) || 0), 0);
             const nInter = de('clase_clasificar_completo').length + de('clase_ordenar_completo').length + de('clase_error_hallado').length + de('clase_lupa_completa').length;
@@ -1681,6 +1681,28 @@
         }
 
         // Mostrar estudiantes
+        // Resumen corto de la última clase base (para la lista de estudiantes)
+        function resumenClase(student) {
+            const ev = [];
+            (student.sessions || []).forEach(se => (se.customEvents || []).forEach(e => { if (e.type && e.type.indexOf('clase_') === 0) ev.push(e); }));
+            const mostradas = ev.filter(e => e.type === 'clase_mostrada').sort((a, b) => String(a.timestamp).localeCompare(String(b.timestamp)));
+            if (!mostradas.length) return null;
+            const info = mostradas[mostradas.length - 1].data || {};
+            const mismas = mostradas.filter(m => (m.data || {}).clase === info.clase);
+            const desde = String(mismas[0].timestamp || '');
+            const de = t => ev.filter(e => e.type === t && e.data && e.data.clase === info.clase && String(e.timestamp || '') >= desde).map(e => e.data);
+            const porCap = {};
+            de('clase_chequeo').forEach(c => { porCap[c.capsula] = c; });
+            const ch = Object.values(porCap);
+            return {
+                vistas: new Set(de('clase_capsula_vista').map(x => x.capsula)).size,
+                capsulas: info.capsulas || 0,
+                primera: ch.filter(c => c.primera).length,
+                preguntas: info.preguntas || ch.length,
+                completada: de('clase_completada').length > 0
+            };
+        }
+
         function displayStudents() {
             const container = document.getElementById('students-list');
             const studentsData = evaluationData.students || {};
@@ -1704,9 +1726,22 @@
                 const totalCorrect = Object.values(activities).reduce((sum, act) => sum + act.correct, 0);
                 const accuracy = totalQuestions > 0 ? (totalCorrect / totalQuestions * 100).toFixed(1) : 0;
                 
+                const rc = resumenClase(student);
+                const precisionClase = rc && rc.preguntas ? Math.round(rc.primera / rc.preguntas * 100) : null;
+                const valorPrecision = totalQuestions > 0 ? Number(accuracy) : (precisionClase ?? 0);
                 let statusClass = 'success';
-                if (accuracy < 60) statusClass = 'danger';
-                else if (accuracy < 80) statusClass = 'warning';
+                if (valorPrecision < 60) statusClass = 'danger';
+                else if (valorPrecision < 80) statusClass = 'warning';
+                const badgesJuegos = totalQuestions > 0
+                    ? `<span class="stat-badge ${statusClass}">${accuracy}% precisión</span>
+                            <span class="stat-badge">${Object.keys(activities).length} actividades</span>
+                            <span class="stat-badge">${totalQuestions} preguntas</span>`
+                    : '';
+                const badgesClase = rc
+                    ? `${totalQuestions > 0 ? '' : `<span class="stat-badge ${statusClass}">${precisionClase ?? 0}% bien a la primera</span>`}
+                            <span class="stat-badge">Clase: ${rc.vistas}/${rc.capsulas || '?'} actividades</span>
+                            <span class="stat-badge">${rc.completada ? 'Terminó la clase' : 'No terminó la clase'}</span>`
+                    : '';
 
                 html += `
                     <div class="student-item">
@@ -1716,9 +1751,8 @@
                             <p>Última sesión: ${new Date(student.lastSession).toLocaleDateString()}</p>
                         </div>
                         <div class="student-stats">
-                            <span class="stat-badge ${statusClass}">${accuracy}% precisión</span>
-                            <span class="stat-badge">${Object.keys(activities).length} actividades</span>
-                            <span class="stat-badge">${totalQuestions} preguntas</span>
+                            ${badgesClase}
+                            ${badgesJuegos || (rc ? '' : `<span class="stat-badge ${statusClass}">0% precisión</span><span class="stat-badge">0 actividades</span>`)}
                             <button class="view-report-btn" onclick="showIndividualReport('${studentKey}')">
                                 Ver Detalle
                             </button>

@@ -1491,6 +1491,7 @@ function renderizarCapsulas(clase, destino, opciones) {
     cab.appendChild(el('h2', 'lc-titulo', fmt(clase.titulo)));
   }
   const stepper = el('ol', 'lc-stepper');
+  stepper.dataset.noLeer = '';
   stepper.setAttribute('aria-label', 'Recorrido de la clase');
   cab.appendChild(stepper);
   raiz.appendChild(cab);
@@ -1517,6 +1518,7 @@ function renderizarCapsulas(clase, destino, opciones) {
   }
   (clase.imagenes || []).filter(d => d.ubicacion === 'inicio').forEach(d => ponerImagen(d.id, portada));
   const agenda = el('div', 'lc-tarjeta');
+  agenda.dataset.noLeer = '';   // los títulos y tiempos del recorrido no se leen al tocar
   agenda.appendChild(el('h3', '', aj.sin_tiempos ? escapar(rotulos.recorrido) : `${escapar(rotulos.recorrido)} · unos ${totalMin} minutos`));
   agenda.appendChild(el('ol', 'lc-agenda', capsulas.map(c => `<li><span>${fmt(c.titulo)}</span>${aj.sin_tiempos ? '' : `<small>${c.minutos || 2} min</small>`}</li>`).join('')));
   portada.appendChild(agenda);
@@ -1535,7 +1537,9 @@ function renderizarCapsulas(clase, destino, opciones) {
     }
     if (c.lumai) s.appendChild(crearLumai(c.lumai, c.pose || 'saludo', opciones));
     const intro = el('div', 'lc-cap-intro');
-    intro.appendChild(el('div', 'lc-eyebrow', `${escapar(rotulos.capsula)} ${k + 1} de ${capsulas.length}${aj.sin_tiempos ? '' : ` · ${c.minutos || 2} min`}`));
+    const ceja = el('div', 'lc-eyebrow', `${escapar(rotulos.capsula)} ${k + 1} de ${capsulas.length}${aj.sin_tiempos ? '' : ` · ${c.minutos || 2} min`}`);
+    ceja.dataset.noLeer = '';
+    intro.appendChild(ceja);
     const h = el('h3', 'lc-cap-titulo', fmt(c.titulo));
     h.tabIndex = -1;
     intro.appendChild(h);
@@ -1595,7 +1599,8 @@ function renderizarCapsulas(clase, destino, opciones) {
     }
     if (c.interactivo) ponerInteractivo(c.interactivo, s);
     if (c.mi_lugar) s.appendChild(crearMiLugar(c.mi_lugar, ctx, capId));
-    if (c.idea_clave) s.appendChild(notaConIcono('lc-cap-clave', rotulos.iconoRecordar, escapar(rotulos.recordar), `<p>${fmt(c.idea_clave)}</p>`));
+    // En el nivel con más apoyo el texto ya es la idea en palabras simples: no se repite con términos técnicos
+    if (c.idea_clave && !(usarSimple)) s.appendChild(notaConIcono('lc-cap-clave', rotulos.iconoRecordar, escapar(rotulos.recordar), `<p>${fmt(c.idea_clave)}</p>`));
 
     if (aj.mas_alla && k === capsulas.length - 1 && clase.para_ir_mas_alla?.pregunta) {
       const mas = clase.para_ir_mas_alla;
@@ -1656,7 +1661,7 @@ function renderizarCapsulas(clase, destino, opciones) {
   const ideas = capsulas.filter(c => c.idea_clave);
   if (ideas.length) {
     const t = el('div', 'lc-tarjeta', `<h3>${escapar(rotulos.resumen)}</h3>`);
-    t.appendChild(el('ol', 'lc-resumen', ideas.map(c => `<li>${fmt(c.idea_clave)}</li>`).join('')));
+    t.appendChild(el('ol', 'lc-resumen', ideas.map(c => `<li>${fmt(aj.texto === 'simple' && c.texto_simple ? c.texto_simple : c.idea_clave)}</li>`).join('')));
     cierre.appendChild(t);
   }
 
@@ -1689,9 +1694,13 @@ function renderizarCapsulas(clase, destino, opciones) {
   autoeval.append(chips, respuesta);
   cierre.appendChild(autoeval);
   const repaso = el('div', 'lc-repaso');
-  if (clase.vocabulario?.length) {
+  // En el nivel con más apoyo solo se repasan las palabras que el alumno vio en los textos simples
+  const sinAc = t => String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const textosVistos = sinAc(capsulas.map(c => (aj.texto === 'simple' && c.texto_simple) ? c.texto_simple : `${c.texto || ''} ${c.idea_clave || ''}`).join(' '));
+  const vocabularioDelNivel = aj.texto === 'simple' ? (clase.vocabulario || []).filter(v => textosVistos.includes(sinAc(v.palabra))) : (clase.vocabulario || []);
+  if (vocabularioDelNivel.length) {
     const d = crearDesplegable('📚 Repasar las palabras clave', '', { abierto: true, alAbrir: () => registrar('clase_repaso', { clase: ctx.id, parte: 'vocabulario' }) });
-    d.querySelector('.lc-panel').appendChild(crearVocabulario(clase.vocabulario, ctx));
+    d.querySelector('.lc-panel').appendChild(crearVocabulario(vocabularioDelNivel, ctx));
     repaso.appendChild(d);
   }
   if (clase.errores_frecuentes?.length) {
@@ -1762,7 +1771,7 @@ function renderizarCapsulas(clase, destino, opciones) {
     const p = pantallas[i];
     if (p.tipo === 'capsula') registrar('clase_capsula_vista', { clase: ctx.id, capsula: p.id, numero: p.numero });
     raiz.dispatchEvent(new CustomEvent('lumai:capsula', { bubbles: true, composed: true, detail: p.tipo === 'capsula' ? { id: p.id, numero: p.numero, titulo: p.titulo } : null }));
-    if (mover && p.tipo === 'capsula' && aj.voz >= 2 && p.leer) setTimeout(p.leer, 300);
+    if (mover && p.tipo === 'capsula' && aj.voz >= 2 && p.leer && !modoTocar) setTimeout(p.leer, 300);
     if (p.tipo === 'cierre') {
       raiz.dispatchEvent(new CustomEvent('lumai:cierre', { bubbles: true, composed: true, detail: { clase: ctx.id } }));
       puntaje.textContent = `⭐ ${aciertos} de ${conChequeo} preguntas bien a la primera`;

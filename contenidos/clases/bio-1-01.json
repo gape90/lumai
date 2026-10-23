@@ -36,7 +36,7 @@
         "respuesta": "Solo en los frascos abiertos, donde las moscas podían llegar y poner huevos. En los tapados, la carne se pudrió pero no aparecieron gusanos."
       },
       "idea_clave": "La generación espontánea decía que la vida surge sola de materia sin vida.",
-      "texto_simple": "Antes se creía que los bichos nacían solos de la basura o la carne.",
+      "texto_simple": "Antes se creía que los bichos nacían solos de la basura o la carne. Un médico italiano, Francesco Redi, lo puso a prueba con un experimento.",
       "chequeo": {
         "pregunta": "¿Qué demostró el experimento de Redi?",
         "opciones": [
@@ -61,7 +61,7 @@
       "interactivo": {
         "tipo": "ordenar",
         "titulo": "🔢 Ordená el experimento de Pasteur",
-        "consigna": "Tocá los pasos en el orden en que los hizo Pasteur, para ver cómo se armó su experimento paso a paso.",
+        "consigna": "Tocá los pasos en el orden en que los hizo el científico Louis Pasteur, para ver cómo se armó su experimento paso a paso.",
         "items": [
           "Puso caldo nutritivo en frascos de vidrio",
           "Estiró el cuello del frasco en forma de S",
@@ -72,7 +72,7 @@
         "cierre": "¡Muy bien! La vida no aparecía sola: llegaba desde el aire."
       },
       "idea_clave": "Pasteur demostró que todo ser vivo proviene de otro ser vivo.",
-      "texto_simple": "Pasteur probó que los seres vivos no aparecen solos: vienen de otros seres vivos.",
+      "texto_simple": "El científico francés Louis Pasteur probó que los seres vivos no aparecen solos: vienen de otros seres vivos.",
       "chequeo": {
         "pregunta": "¿Por qué el caldo del frasco con cuello de cisne no se descomponía?",
         "opciones": [
