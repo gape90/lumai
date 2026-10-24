@@ -409,6 +409,35 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
+
+        /* Ventana "¿Qué es LumAI?" */
+        .btn-que-es {
+            display: block;
+            margin: 14px auto 0;
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.75);
+            padding: 10px 26px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .btn-que-es:hover { background: #fff; color: #1e3a8a; }
+        #que-es-lumai { position: fixed; inset: 0; z-index: 9999; background: rgba(15, 23, 42, 0.65); display: flex; align-items: center; justify-content: center; padding: 16px; }
+        #que-es-lumai[hidden] { display: none; }
+        .que-es-caja { position: relative; background: #fff; color: #1f2937; width: min(720px, 100%); max-height: calc(100vh - 32px); overflow-y: auto; border-radius: 20px; padding: 28px 30px 26px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); line-height: 1.55; text-align: left; }
+        .que-es-caja h2 { margin: 0 40px 6px 0; color: #1e3a8a; font-size: 1.6rem; }
+        .que-es-caja .que-es-lema { margin: 0 0 16px; color: #475569; font-size: 1.02rem; }
+        .que-es-caja h3 { margin: 18px 0 6px; font-size: 1.05rem; color: #1e3a8a; }
+        .que-es-caja p { margin: 0 0 10px; }
+        .que-es-caja ul { margin: 0 0 6px; padding-left: 20px; }
+        .que-es-caja li { margin-bottom: 6px; }
+        .que-es-cerrar { position: absolute; top: 12px; right: 14px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: #eef2ff; color: #1e3a8a; font-size: 1.3rem; cursor: pointer; }
+        .que-es-cerrar:hover { background: #dbe4ff; }
+        @media (max-width: 520px) { .que-es-caja { padding: 22px 18px 20px; } .que-es-caja h2 { font-size: 1.35rem; } }
+
         .btn-reportes {
             background: linear-gradient(45deg, #ff9a56, #ff6b6b);
             color: white;
@@ -716,10 +745,61 @@
                     <button class="btn-reportes" onclick="window.location.href='docente.html'">
                         🧑‍🏫 Ingresar al módulo docente
                     </button>
+                    <button type="button" class="btn-que-es" id="btn-que-es" aria-haspopup="dialog">
+                        💡 ¿Qué es LumAI?
+                    </button>
                 </div>
             </section>
         </div>
     </div>
+
+
+    <!-- Ventana "¿Qué es LumAI?" -->
+    <div id="que-es-lumai" hidden>
+        <div class="que-es-caja" role="dialog" aria-modal="true" aria-labelledby="que-es-titulo">
+            <button type="button" class="que-es-cerrar" id="que-es-cerrar" aria-label="Cerrar">✕</button>
+            <h2 id="que-es-titulo">¿Qué es LumAI?</h2>
+            <p class="que-es-lema">Una aplicación educativa que ilumina el aprendizaje: personaliza la enseñanza para atender la neurodiversidad que hay en el aula, desde los estudiantes con mayores barreras hasta los de altas capacidades.</p>
+
+            <h3>El alumno trabaja de forma directa</h3>
+            <p>El docente puede armar material adaptado con LumAI, pero lo central es que cada estudiante trabaja por sí mismo desde su notebook o su celular, con una clase y actividades ajustadas a su perfil, a su ritmo y con autonomía.</p>
+
+            <h3>Todo el curso, un mismo tema</h3>
+            <p>LumAI busca integrar a los estudiantes con neurodiversidad en las actividades grupales: todo el curso trabaja sobre el mismo contenido, pero cada uno con su perfil adaptado.</p>
+
+            <h3>Un perfil detallado de 13 dimensiones</h3>
+            <p>El perfil de cada alumno se arma a partir de 13 dimensiones, lo que permite describir con precisión qué apoyos necesita y adaptar en consecuencia la clase: la cantidad de contenido, el tipo de texto, la lectura en voz alta, el tipo de actividades y la ayuda que recibe. Hay perfiles predefinidos, y el docente puede modificarlos a medida que el alumno avanza.</p>
+
+            <h3>Qué incluye</h3>
+            <ul>
+                <li><b>Clases adaptadas</b> a cada perfil, con explicaciones más simples o más profundas según el caso.</li>
+                <li><b>Gamificación:</b> juegos y actividades interactivas para practicar y consolidar lo aprendido.</li>
+                <li><b>Correctores automáticos con inteligencia artificial</b> que revisan lo que el alumno escribe y le devuelven una orientación.</li>
+                <li><b>Asistente virtual</b> con el que el alumno puede consultar sus dudas sobre el tema de la clase.</li>
+                <li><b>Apoyos de accesibilidad,</b> como la lectura en voz alta de los contenidos y de las devoluciones para quienes más lo necesitan.</li>
+            </ul>
+
+            <h3>Un reporte para el docente</h3>
+            <p>LumAI registra el recorrido de cada estudiante y lo muestra en un reporte por dimensión. Con esa información, el docente puede ir graduando los perfiles según el progreso real de cada alumno.</p>
+        </div>
+    </div>
+
+    <script>
+        // Ventana "¿Qué es LumAI?": se abre con el botón; se cierra con la cruz, tocando afuera o con Esc
+        (function () {
+            var ventana = document.getElementById('que-es-lumai');
+            var abrir = document.getElementById('btn-que-es');
+            var cerrar = document.getElementById('que-es-cerrar');
+            if (!ventana || !abrir || !cerrar) return;
+            var overflowPrevio = '';
+            function mostrar() { ventana.hidden = false; overflowPrevio = document.body.style.overflow; document.body.style.overflow = 'hidden'; cerrar.focus(); }
+            function ocultar() { ventana.hidden = true; document.body.style.overflow = overflowPrevio; abrir.focus(); }
+            abrir.addEventListener('click', mostrar);
+            cerrar.addEventListener('click', ocultar);
+            ventana.addEventListener('click', function (e) { if (e.target === ventana) ocultar(); });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !ventana.hidden) ocultar(); });
+        })();
+    </script>
 
     <script src="js/codigo-perfil.js"></script>
     <script>
