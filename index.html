@@ -618,7 +618,8 @@
             animation: character-switch-alt 6s infinite;
         }
         /* Clases base listas (contenidos/indice.json) */
-        .clases-listas { margin-top: 12px; }
+        .clases-listas { margin: 0 0 12px; }
+        #tema:disabled { opacity: 0.6; cursor: not-allowed; }
         .clases-listas-titulo { display: block; color: rgba(255,255,255,0.92); font-size: 0.95rem; margin-bottom: 8px; }
         .clases-listas-chips { display: flex; flex-wrap: wrap; gap: 8px; }
         .chip-clase { border: 2px solid rgba(255,255,255,0.85); background: rgba(255,255,255,0.14); color: #fff; border-radius: 999px; padding: 8px 14px; font: inherit; font-size: 0.92rem; cursor: pointer; text-align: left; transition: all 0.2s ease; }
@@ -689,7 +690,7 @@
                         <select id="ciclo" class="input-field">
                             <option value="">Selecciona tu ciclo</option>
                             <option value="basico">Ciclo Básico</option>
-                            <option value="orientado">Ciclo Orientado</option>
+                            <option value="orientado" id="opcion-orientado">Ciclo Orientado</option>
                         </select>
                     </div>
 
@@ -722,12 +723,11 @@
                 <div class="form-row">
                     <div class="input-group">
                         <label class="input-label">🎯 ¿Qué tema quieres aprender hoy?</label>
-                        <input type="text" id="tema" class="input-field" placeholder="Ejemplo: Suma y resta, Células, Guerra de Independencia..." maxlength="100" list="temas-sugeridos" autocomplete="off">
-                        <datalist id="temas-sugeridos"></datalist>
                         <div id="clases-listas" class="clases-listas" style="display: none;">
-                            <span class="clases-listas-titulo">✨ Clases listas de LumAI para esta materia. Tocá una o escribí otro tema:</span>
                             <div class="clases-listas-chips"></div>
                         </div>
+                        <input type="text" id="tema" class="input-field" placeholder="Escribir otro tema (próximamente)" maxlength="100" list="temas-sugeridos" autocomplete="off" disabled>
+                        <datalist id="temas-sugeridos"></datalist>
                     </div>
                 </div>
 
@@ -969,6 +969,16 @@
         // En Ciclo Básico, las materias que todavía no tienen clases cargadas aparecen deshabilitadas,
         // para que el docente vea cuáles faltan. Cambiar a false para volver a habilitarlas.
         const DESHABILITAR_MATERIAS_SIN_MATERIAL = true;
+        // Ciclo Orientado: todavía no tiene clases cargadas. Cambiar a false para habilitarlo.
+        const DESHABILITAR_CICLO_ORIENTADO = true;
+        // Casillero para escribir un tema libre (usa la IA). Cambiar a true para habilitarlo.
+        const HABILITAR_TEMA_LIBRE = false;
+        (function () {
+            const op = document.getElementById('opcion-orientado');
+            if (op && DESHABILITAR_CICLO_ORIENTADO) { op.disabled = true; op.textContent = 'Ciclo Orientado (aún sin material)'; }
+            const campo = document.getElementById('tema');
+            if (campo) { campo.disabled = !HABILITAR_TEMA_LIBRE; if (HABILITAR_TEMA_LIBRE) campo.placeholder = 'Ejemplo: Suma y resta, Células, Guerra de Independencia...'; }
+        })();
         function marcarMateriasSinMaterial() {
             if (!DESHABILITAR_MATERIAS_SIN_MATERIAL || !indiceClases) return;
             if (document.getElementById('ciclo').value !== 'basico') return;
