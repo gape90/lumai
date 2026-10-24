@@ -1282,11 +1282,21 @@ Responde AHORA:`;
 // ============================================================================
 // 📊 SÍNTESIS DE VOZ (Web Speech API)
 // ============================================================================
-export function activarSintesisVoz(texto) {
+// alTerminar (opcional): se llama cuando la lectura termina o se detiene, para que el botón vuelva a "Escuchar"
+let finLecturaActual = null;
+function terminarLectura(fin) {
+  if (fin && finLecturaActual === fin) {
+    finLecturaActual = null;
+    try { fin(); } catch (e) { /* nada */ }
+  }
+}
+
+export function activarSintesisVoz(texto, alTerminar = null) {
   console.log('📊 Activando síntesis de voz...');
   
   if (!('speechSynthesis' in window)) {
     console.warn('⚠️ Síntesis de voz no soportada en este navegador');
+    if (alTerminar) alTerminar();
     return;
   }
   
@@ -1300,11 +1310,14 @@ export function activarSintesisVoz(texto) {
   
   if (!textoLimpio) {
     console.warn('⚠️ Texto vacío para síntesis de voz');
+    if (alTerminar) alTerminar();
     return;
   }
   
-  // Detener cualquier síntesis previa
+  // Detener cualquier síntesis previa (y avisar a su botón)
+  if (finLecturaActual) { const anterior = finLecturaActual; finLecturaActual = null; try { anterior(); } catch (e) { /* nada */ } }
   window.speechSynthesis.cancel();
+  finLecturaActual = alTerminar;
   
   // Crear utterance
   const utterance = new SpeechSynthesisUtterance(textoLimpio);
@@ -1338,6 +1351,7 @@ export function activarSintesisVoz(texto) {
   
   utterance.onend = () => {
     console.log('✅ Síntesis de voz completada');
+    terminarLectura(alTerminar);
     
     if (window.lumaiTracker) {
       window.lumaiTracker.recordCustomEvent('voice_synthesis_completed', {
@@ -1348,6 +1362,7 @@ export function activarSintesisVoz(texto) {
   
   utterance.onerror = (event) => {
     console.error('❌ Error en síntesis de voz:', event);
+    terminarLectura(alTerminar);
     
     if (window.lumaiTracker) {
       window.lumaiTracker.recordCustomEvent('voice_synthesis_error', {
@@ -1367,6 +1382,7 @@ export function detenerSintesisVoz() {
     window.speechSynthesis.cancel();
     console.log('🔇 Síntesis de voz detenida');
   }
+  if (finLecturaActual) { const f = finLecturaActual; finLecturaActual = null; try { f(); } catch (e) { /* nada */ } }
 }
 
 // ============================================================================

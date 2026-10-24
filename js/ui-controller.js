@@ -583,7 +583,14 @@ function configurarEventos() {
 
     // ⭐⭐⭐ NUEVO: Event listener para el botón de síntesis de voz ⭐⭐⭐
     if (estadoGlobal.elementosDOM.btnSintesisVoz) {
+        let leyendoExplicacion = false;
         estadoGlobal.elementosDOM.btnSintesisVoz.addEventListener('click', function() {
+            const boton = this;
+            // Si ya está leyendo, el segundo toque detiene la voz
+            if (leyendoExplicacion) {
+                detenerSintesisVoz();
+                return;
+            }
             console.log('🔊 Botón de síntesis de voz presionado');
             
             // Registrar evento en métricas
@@ -596,13 +603,18 @@ function configurarEventos() {
             
             // Ejecutar síntesis de voz si hay explicación
             const textoPantalla = typeof window.lumaiTextoPantalla === 'function' ? window.lumaiTextoPantalla() : '';
-            if (textoPantalla) {
-                activarSintesisVoz(textoPantalla);
-            } else if (estadoGlobal.explicacionGenerada) {
-                activarSintesisVoz(estadoGlobal.explicacionGenerada);  // ⭐ CORREGIDO
-            } else {
+            const texto = textoPantalla || estadoGlobal.explicacionGenerada || '';
+            if (!texto) {
                 console.warn('⚠️ No hay explicación generada para leer');
+                return;
             }
+            if (!boton.dataset.rotuloOriginal) boton.dataset.rotuloOriginal = boton.textContent;
+            leyendoExplicacion = true;
+            boton.textContent = '⏹️ Detener';
+            activarSintesisVoz(texto, () => {
+                leyendoExplicacion = false;
+                boton.textContent = boton.dataset.rotuloOriginal;
+            });
         });
         console.log('✅ Event listener de síntesis de voz configurado correctamente');
     } else {
