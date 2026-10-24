@@ -275,10 +275,6 @@ async function iniciar() {
     b.addEventListener('click', () => { perfil = perfilDesdePlantilla(reglas, nivel); actualizar(true); });
     pl.appendChild(b);
   });
-  const todo = document.createElement('button');
-  todo.type = 'button'; todo.className = 'chip'; todo.textContent = '↺ Sin barreras';
-  todo.addEventListener('click', () => { perfil = {}; actualizar(true); });
-  pl.appendChild(todo);
 
   document.getElementById('copiar').addEventListener('click', async () => {
     const aviso = document.getElementById('aviso-copia');

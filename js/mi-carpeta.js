@@ -10,7 +10,7 @@
 // El nombre del alumno no se usa acá.
 // =====================================================================================
 
-import { hablar, vozDisponible } from './voz.js';
+import { hablar, vozDisponible, alternarLectura } from './voz.js';
 
 const CLAVE = 'lumai_carpeta_v1';
 
@@ -216,7 +216,7 @@ export function crearMiCarpeta(clase, { ajustes = {}, dimensiones = null, regist
       if (vozDisponible() && !sinBotonEscuchar) {
         const oir = el('button', 'lc-btn lc-sec lc-btn-chico', '🔊 Escuchar');
         oir.type = 'button';
-        oir.addEventListener('click', () => hablar(c.modelo, { ajustes: aj, rate: aj.voz >= 2 ? 0.85 : undefined }));
+        oir.addEventListener('click', () => alternarLectura(oir, c.modelo, { ajustes: aj, rate: aj.voz >= 2 ? 0.85 : undefined }));
         item.appendChild(el('div', 'mc-fila')).appendChild(oir);
       }
     }

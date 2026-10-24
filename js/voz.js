@@ -235,3 +235,26 @@ export function hablarNatural(texto, opciones = {}) {
 }
 
 export function detenerNatural() { cadenaNatural++; try { window.speechSynthesis.cancel(); } catch (e) { /* sin voz */ } }
+
+// ---------------------------------------------------------------- botón "Escuchar" que se puede detener
+// Primer toque: lee el texto y el botón pasa a "Detener". Segundo toque sobre el mismo botón: se detiene
+// (no vuelve a empezar). Si se toca otro botón "Escuchar" mientras suena, el anterior vuelve a su texto.
+let botonLeyendo = null;
+const ROTULO_DETENER = '⏹️ Detener';
+function restablecerBoton(b) { if (b) b.textContent = b.dataset.rotuloOriginal || '🔊 Escuchar'; }
+
+export function alternarLectura(boton, texto, opciones = {}) {
+  if (!vozDisponible()) return;
+  if (botonLeyendo === boton) {
+    botonLeyendo = null;
+    detenerVoz();
+    restablecerBoton(boton);
+    return;
+  }
+  if (botonLeyendo) { restablecerBoton(botonLeyendo); botonLeyendo = null; }
+  if (!boton.dataset.rotuloOriginal) boton.dataset.rotuloOriginal = boton.textContent;
+  botonLeyendo = boton;
+  boton.textContent = ROTULO_DETENER;
+  const fin = () => { if (botonLeyendo === boton) botonLeyendo = null; restablecerBoton(boton); };
+  hablar(texto, { ...opciones, onend: fin, onstop: fin });
+}

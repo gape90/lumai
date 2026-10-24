@@ -94,7 +94,7 @@
 // =============================================================================
 
 import { crearMiCarpeta, ESTILOS_CARPETA } from './mi-carpeta.js';
-import { hablar, detenerVoz, vozDisponible, hablarNatural } from './voz.js';
+import { hablar, detenerVoz, vozDisponible, hablarNatural, alternarLectura } from './voz.js';
 import { usaTocarParaLeer, activarTocarParaLeer, activarLecturaDeDevoluciones, ESTILOS_TOCAR } from './tocar-para-leer.js';
 
 let ajustesVoz = null;   // perillas del perfil (tamaño de letra, mayúsculas) para el texto que se muestra al leer
@@ -172,16 +172,8 @@ function crearDesplegable(textoBoton, contenidoHtml, { abierto = false, claseExt
 }
 
 function leerEnVoz(texto, boton) {
-  if (!vozDisponible()) return;
-  if (window.speechSynthesis.speaking) { detenerVoz(); boton.textContent = '🔊 Escuchar'; return; }
-  boton.textContent = '⏹️ Detener';
-  // Misma voz que los juegos; el texto se muestra en pantalla marcando la palabra que suena
-  hablar(texto, {
-    rate: 0.95,
-    ajustes: ajustesVoz,
-    onend: () => { boton.textContent = '🔊 Escuchar'; },
-    onstop: () => { boton.textContent = '🔊 Escuchar'; }
-  });
+  // Un toque lee (misma voz que los juegos, con el texto en pantalla); otro toque sobre el mismo botón lo detiene
+  alternarLectura(boton, texto, { rate: 0.95, ajustes: ajustesVoz });
 }
 
 // ---------------------------------------------------------------------------

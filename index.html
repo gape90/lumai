@@ -964,9 +964,26 @@
             });
             contenedor.style.display = lista.length ? 'block' : 'none';
         }
+
+        // ========== MATERIAS SIN MATERIAL ==========
+        // En Ciclo Básico, las materias que todavía no tienen clases cargadas aparecen deshabilitadas,
+        // para que el docente vea cuáles faltan. Cambiar a false para volver a habilitarlas.
+        const DESHABILITAR_MATERIAS_SIN_MATERIAL = true;
+        function marcarMateriasSinMaterial() {
+            if (!DESHABILITAR_MATERIAS_SIN_MATERIAL || !indiceClases) return;
+            if (document.getElementById('ciclo').value !== 'basico') return;
+            const conMaterial = new Set((indiceClases.clases || []).map(c => c.materia));
+            document.querySelectorAll('#materia option').forEach(op => {
+                if (!op.value) return;
+                if (!op.dataset.nombre) op.dataset.nombre = op.textContent;
+                const sin = !conMaterial.has(op.value);
+                op.disabled = sin;
+                op.textContent = sin ? op.dataset.nombre + ' (aún sin material)' : op.dataset.nombre;
+            });
+        }
         fetch('contenidos/indice.json')
             .then(r => r.ok ? r.json() : null)
-            .then(datos => { indiceClases = datos; actualizarClasesListas(); })
+            .then(datos => { indiceClases = datos; actualizarClasesListas(); marcarMateriasSinMaterial(); })
             .catch(() => { /* sin clases base, el formulario funciona igual */ });
         document.addEventListener('DOMContentLoaded', () => {
             // Después de que se recarguen las materias del ciclo elegido
@@ -1117,6 +1134,7 @@
                         option.textContent = materia;
                         materiaSelect.appendChild(option);
                     });
+                    marcarMateriasSinMaterial();
                 } else {
                     orientacionGroup.style.display = 'none';
                     materiaSelect.innerHTML = '<option value="">Primero elige ciclo</option>';
